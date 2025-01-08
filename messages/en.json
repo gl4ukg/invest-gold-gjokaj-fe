@@ -1,0 +1,36 @@
+{
+    "navbar": {
+        "about": "About us",
+        "rings": "Rings",
+        "jewelery": "Jewelry",
+        "services": "Services",
+        "contact": "Contact",
+        "shop": "Shop"
+    },
+    "header": {
+        "title": "INVEST GOLD",
+        "subtitle": "We are always close to those who swear in front of love",
+        "seeMore": "view more",
+        "video": "video"
+    },
+    "about": {
+        "title": "About us",
+        "subtitle": "Invest Gold is a modern company with a style inspired by the concept of German work with the dynamism to create something with passion, we are always close to those who swear in front of love, from those who appreciate classic style and simplicity. Technology with the highest quality, with the best equipment, which makes your selection perfect and sustainable as eternal love!"
+    },
+    "rings": {
+        "rings": "Rings",
+        "title": "Ring",
+        "subtitle": "The beginning of a love story...",
+        "seeMore": "view more",
+        "shop": "Shop",
+        "width": "Width",
+        "height": "Height",
+        "yellowGold": "Yellow Gold",
+        "whiteGold": "White Gold",
+        "roseGold": "Rose Gold",
+        "twoColorGold": "Two-color Gold",
+        "multiColorGold": "MultiColored Gold",
+        "prev": "Prev",
+        "next": "Next"
+    }
+}
