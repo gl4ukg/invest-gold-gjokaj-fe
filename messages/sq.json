@@ -1,0 +1,36 @@
+{
+    "navbar": {
+        "about": "Historia",
+        "rings": "Unazat",
+        "jewelery": "Bizhuteri",
+        "services": "Shërbimet",
+        "contact": "Kontakti",
+        "shop": "Dyqani Online"
+    },
+    "header": {
+        "title": "INVEST GOLD",
+        "subtitle": "Ne jemi gjithmonë të afërt me ata që betohen në frontin e dashurisë",
+        "seeMore": "Shiko më shumë",
+        "video": "video"
+    },
+    "about": {
+        "title": "Historia jonë",
+        "subtitle": "Invest Gold është një kompani moderne me një stil të frymëzuar nga koncepti i punës Gjermane me dinamikën për të krijuar diçka me pasion, ne jemi gjithmonë të afërt me ata që betohen në frontin e dashurisë, nga ata që e vlerësojnë stilin klasik dhe thjeshtësinë. Teknologjia me cilësinë më të lartë, me pajisjet më të mira, që bën përzgjedhjen tuaj të përsosur dhe të qëndrueshme ashtu si dashuria e përjetshme!"
+    },
+    "rings": {
+        "rings": "Unazat",
+        "title": "Unaza",
+        "subtitle": "Fillimi i një historie Dashurie...",
+        "seeMore": "Shiko më shumë",
+        "shop": "Dyqani Online",
+        "width": "Gjerësia",
+        "height": "Gjatësia",
+        "yellowGold": "Ari i verdhe",
+        "whiteGold": "Ari i bardhe",
+        "roseGold": "Ari i rozë",
+        "twoColorGold": "Ari dy ngjyresh",
+        "multiColorGold": "Ari shumëngjyrësh",
+        "prev": "Para",
+        "next": "Pas"
+    }
+}
