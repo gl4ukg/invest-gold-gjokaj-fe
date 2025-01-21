@@ -48,15 +48,30 @@ const AboutSection: React.FC<AboutSectionProps> = ({
             data-wow-duration="0.5s"
             data-wow-delay=".1s"
           >
-            <h1 className="text-5xl font-bold text-primary mb-4 font-[Poppins]">
-              {title}
-            </h1>
-            <p className="text-lg text-tertiary leading-relaxed font-[Poppins] wow slideInRight"
-              data-wow-duration="0.5s"
-              data-wow-delay=".2s"
+            <h2
+              className="text-5xl font-bold text-primary mb-4 font-[Poppins]"
+              itemProp="name"
             >
-              {description}
-            </p>
+              {title}
+            </h2>
+            <article itemProp="description" className="text-gray-700">
+              <p className="text-lg text-tertiary leading-relaxed font-[Poppins] wow slideInRight"
+                data-wow-duration="0.5s"
+                data-wow-delay=".2s"
+              >
+                {description}
+              </p>
+              <div
+                itemScope
+                itemType="https://schema.org/JewelryStore"
+                className="hidden"
+              >
+                <meta itemProp="name" content="Invest Gold Gjokaj" />
+                <meta itemProp="description" content={description} />
+                <meta itemProp="priceRange" content="€€€" />
+                <meta itemProp="areaServed" content="Kosovo" />
+              </div>
+            </article>
           </div>
         </div>
       </div>

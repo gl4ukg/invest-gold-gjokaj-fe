@@ -18,7 +18,7 @@ const Footer = () => {
         {/* Social Media Links */}
         <div className="flex space-x-6">
           <Link
-            href="https://web.facebook.com/investgold2017/"
+            href="https://www.facebook.com/invest.goldGjokaj"
             target="_blank"
             aria-label="Facebook"
           >

@@ -1,39 +1,140 @@
+'use client';
+
 import React from 'react';
-import { FaMinus } from 'react-icons/fa'; 
+import { useTranslations } from 'next-intl';
+import { 
+  FaRing, 
+  FaLink, 
+  FaGem, 
+  FaMagic,
+  FaTools,
+  FaClock,
+  FaTruck,
+  FaHandshake 
+} from 'react-icons/fa';
 
-interface ServiceItem {
-  id: number;
-  name: string;
-}
+const ServicesSection = () => {
+  const t = useTranslations('services');
 
-const services: ServiceItem[] = [
-  { id: 1, name: 'Prodhim' },
-  { id: 2, name: 'Rafinim' },
-  { id: 3, name: 'Analiz XRA' },
-  { id: 4, name: 'Eksport' },
-  { id: 5, name: 'Import' },
-  { id: 6, name: 'Përpunim' },
-  { id: 7, name: 'Riparim' },
-];
+  const services = [
+    {
+      id: 'rings',
+      icon: <FaRing className="w-10 h-10 text-primary mb-4" />,
+      name: t('items.rings.title'),
+      description: t('items.rings.description'),
+      keywords: "unaza fejese, unaza martese, engagement rings, wedding rings"
+    },
+    {
+      id: 'bracelets',
+      icon: <FaLink className="w-10 h-10 text-primary mb-4" />,
+      name: t('items.bracelets.title'),
+      description: t('items.bracelets.description'),
+      keywords: "rrathe ari, bylyzyk ari, gold bracelets, gold bangles"
+    },
+    {
+      id: 'necklaces',
+      icon: <FaGem className="w-10 h-10 text-primary mb-4" />,
+      name: t('items.necklaces.title'),
+      description: t('items.necklaces.description'),
+      keywords: "zinxhirë ari, qafore ari, gold chains, gold necklaces"
+    },
+    {
+      id: 'custom',
+      icon: <FaMagic className="w-10 h-10 text-primary mb-4" />,
+      name: t('items.custom.title'),
+      description: t('items.custom.description'),
+      keywords: "stoli të personalizuara, custom jewelry, custom gold"
+    }
+  ];
 
-const ServiceListItem: React.FC<{ name: string }> = ({ name }) => (
-  <li className="flex text-lg text-gray hover:text-primary items-center">
-    <FaMinus className="mr-2" /> {name}
-  </li>
-);
+  const additionalServices = [
+    {
+      id: 'repair',
+      icon: <FaTools className="w-8 h-8 text-primary" />,
+      name: t('items.repair.title'),
+      description: t('items.repair.description')
+    },
+    {
+      id: 'express',
+      icon: <FaClock className="w-8 h-8 text-primary" />,
+      name: t('items.express.title'),
+      description: t('items.express.description')
+    },
+    {
+      id: 'delivery',
+      icon: <FaTruck className="w-8 h-8 text-primary" />,
+      name: t('items.delivery.title'),
+      description: t('items.delivery.description')
+    },
+    {
+      id: 'guarantee',
+      icon: <FaHandshake className="w-8 h-8 text-primary" />,
+      name: t('items.guarantee.title'),
+      description: t('items.guarantee.description')
+    }
+  ];
 
-const ServicesSection: React.FC = () => {
   return (
     <section id="services" className="bg-[url('/images/cover2-01.png')] bg-cover bg-center bg-no-repeat py-24">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row">
-          <div className="md:w-1/2">
-            <h1 className="text-4xl md:text-5xl text-primary mb-2">Shërbimet</h1>
-            <ul className="text-lg pl-10 md:text-xl font-medium">
-              {services.map((service) => (
-                <ServiceListItem key={service.id} name={service.name} />
-              ))}
-            </ul>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-medium text-primary mb-6" itemProp="name">
+            {t('title')}
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12" itemProp="description">
+            {t('subtitle')}
+          </p>
+        </div>
+
+        {/* Main Services */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {services.map((service) => (
+            <article 
+              key={service.id} 
+              className="service-item" 
+              itemScope 
+              itemType="https://schema.org/Service"
+            >
+              <div className="p-6 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-shadow text-center">
+                {service.icon}
+                <h3 className="text-2xl font-semibold text-primary mb-4" itemProp="name">
+                  {service.name}
+                </h3>
+                <p className="text-gray-600 mb-4" itemProp="description">
+                  {service.description}
+                </p>
+                <meta itemProp="keywords" content={service.keywords} />
+                <meta itemProp="category" content="Jewelry" />
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Additional Services */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          {additionalServices.map((service) => (
+            <div 
+              key={service.id}
+              className="flex flex-col items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg"
+            >
+              {service.icon}
+              <h4 className="text-lg font-medium text-primary mt-3 mb-2">
+                {service.name}
+              </h4>
+              <p className="text-sm text-gray-600 text-center">
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* SEO Metadata */}
+        <div itemScope itemType="https://schema.org/JewelryStore" className="hidden">
+          <meta itemProp="name" content="Invest Gold Gjokaj" />
+          <meta itemProp="description" content={t('seoDescription')} />
+          <meta itemProp="keywords" content="unaza fejese, unaza martese, rrathe ari, zinxhir ari, stoli të personalizuara, engagement rings, wedding rings, gold bracelets, gold chains, custom jewelry" />
+          <div itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
+            <meta itemProp="name" content="Gold Jewelry Services" />
           </div>
         </div>
       </div>

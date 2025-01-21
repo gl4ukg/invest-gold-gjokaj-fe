@@ -94,12 +94,28 @@ const RingsSection: React.FC<RingsSectionProps> = ({ categories }) => {
       <div className="container mx-auto px-4">
         {/* Top Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 items-center">
-          {/* Left: Title and Subtitle */}
-          <div className="text-left">
-            <h1 className="text-5xl text-primary font-[Poppins]">{t('title')}</h1>
-            <p className="text-tertiary font-[Poppins] mt-4">
+          <div>
+            <h2 
+              className="text-5xl text-primary font-[Poppins]" 
+              itemProp="name"
+            >
+            {t('title')}
+          </h2>
+          <article itemProp="description">
+            <p className="text-tertiary text-lg font-[Poppins] mt-4">
               {t('subtitle')}
             </p>
+            <div 
+              itemScope 
+              itemType="https://schema.org/CollectionPage" 
+              className="hidden"
+            >
+              <meta itemProp="name" content="Gold Rings Collection - Invest Gold Gjokaj" />
+              <meta itemProp="description" content={t('subtitle')} />
+              <meta itemProp="keywords" content="unaza fejese, unaza martese, rrathe ari, gold rings, engagement rings, wedding rings" />
+            </div>
+          </article>
+
           </div>
           {/* Right: Featured Image */}
           <div className="flex justify-center">
