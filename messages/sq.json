@@ -10,17 +10,18 @@
     "header": {
         "title": "INVEST GOLD",
         "subtitle": "Ne jemi gjithmonë të afërt me ata që betohen në frontin e dashurisë",
+        "secondSubtitle": "Unaza Fejese, Unaza Martese, Rrathe Ari dhe Zinxhirë Ari në Kosovë",
         "seeMore": "Shiko më shumë",
         "video": "video"
     },
     "about": {
         "title": "Historia jonë",
-        "subtitle": "Invest Gold është një kompani moderne me një stil të frymëzuar nga koncepti i punës Gjermane me dinamikën për të krijuar diçka me pasion, ne jemi gjithmonë të afërt me ata që betohen në frontin e dashurisë, nga ata që e vlerësojnë stilin klasik dhe thjeshtësinë. Teknologjia me cilësinë më të lartë, me pajisjet më të mira, që bën përzgjedhjen tuaj të përsosur dhe të qëndrueshme ashtu si dashuria e përjetshme!"
+        "subtitle": "Invest Gold Gjokaj është dyqani juaj i specializuar për unaza fejese, unaza martese, rrathe ari dhe zinxhirë ari në Kosovë. Krijojmë momente të paharrueshme me koleksionin tonë të zgjedhur të stolive të arit, duke përfshirë unaza fejese moderne, unaza martese klasike, rrathe ari të personalizuara dhe zinxhirë ari cilësor. Çdo stoli është krijuar me mjeshtëri për të përjetësuar momentet tuaja më të veçanta."
     },
     "rings": {
         "rings": "Unazat",
         "title": "Unaza",
-        "subtitle": "Fillimi i një historie Dashurie...",
+        "subtitle": "Zgjidhni unazën perfekte të fejesës apo martesës nga koleksioni ynë i zgjedhur. Rrathe ari dhe zinxhirë ari me dizajne unike për çdo moment special në jetën tuaj. Mjeshtëria jonë në punimin e arit garanton cilësi të lartë dhe stil të përhershëm.",
         "seeMore": "Shiko më shumë",
         "shop": "Dyqani Online",
         "width": "Gjerësia",
@@ -32,5 +33,62 @@
         "multiColorGold": "Ari shumëngjyrësh",
         "prev": "Para",
         "next": "Pas"
+    },
+    "services": {
+        "title": "Shërbimet Tona",
+        "subtitle": "Zbuloni koleksionin tonë të zgjedhur të stolive të arit dhe shërbimeve profesionale",
+        "seoDescription": "Shërbime profesionale për stoli ari në Kosovë, duke përfshirë unaza fejese, unaza martese, rrathe ari dhe zinxhirë ari të personalizuar",
+        "items": {
+            "rings": {
+                "title": "Unaza Fejese dhe Martese",
+                "description": "Koleksion i veçantë unazash fejese dhe martese, të punuara me mjeshtëri nga arti më i pastër. Dizajne moderne dhe klasike për momentet tuaja më të rëndësishme."
+            },
+            "bracelets": {
+                "title": "Rrathe dhe Bylyzyk Ari",
+                "description": "Rrathe dhe bylyzyk ari të personalizuara, të krijuara me detaje të hollësishme për çdo stil dhe rast. Zgjidhni nga koleksioni ynë i gjerë i dizajneve unike."
+            },
+            "necklaces": {
+                "title": "Zinxhirë dhe Qafore Ari",
+                "description": "Zinxhirë dhe qafore ari me dizajne të ndryshme, nga klasike deri tek moderne. Të gjitha të punuara me ar të pastër për të garantuar cilësi të lartë."
+            },
+            "custom": {
+                "title": "Stoli të Personalizuara",
+                "description": "Krijojmë stoli të personalizuara sipas dëshirës suaj. Nga dizajni deri tek realizimi, çdo detaj përshtatet me preferencat tuaja."
+            },
+            "repair": {
+                "title": "Riparim Profesional",
+                "description": "Shërbime profesionale riparimi për të gjitha llojet e stolive të arit. Restaurim dhe mirëmbajtje me kujdes maksimal."
+            },
+            "express": {
+                "title": "Shërbim i Shpejtë",
+                "description": "Realizim i shpejtë i porosive tuaja, me të njëjtën cilësi të lartë që na karakterizon."
+            },
+            "delivery": {
+                "title": "Dërgesa në Shtëpi",
+                "description": "Shërbim i sigurt transporti për produktet tuaja deri në derën e shtëpisë."
+            },
+            "guarantee": {
+                "title": "Garanci e Plotë",
+                "description": "Ofrojmë garanci të plotë për të gjitha produktet tona, duke garantuar cilësinë më të lartë."
+            }
+        }
+    },
+    "contact": {
+        "title": "Kontakti",
+        "informationContact": "Informacioni Kontakti",
+        "openingHours": "Orari i Punës",
+        "hours": {
+            "weekdays": "E Hënë - E Premte: 09:00 - 20:00",
+            "saturday": "E Shtunë: 09:00 - 18:00",
+            "sunday": "E Diel: Mbyllur"
+        },
+        "form": {
+            "firstName": "Emri",
+            "lastName": "Mbiemri",
+            "email": "Email",
+            "phone": "Telefoni",
+            "message": "Mesazhi",
+            "send": "Dërgo"
+        }
     }
 }

@@ -10,17 +10,18 @@
     "header": {
         "title": "INVEST GOLD",
         "subtitle": "We are always close to those who swear in front of love",
+        "secondSubtitle": "Engagement Rings, Wedding Rings, Gold Bracelets and Chains in Kosovo",
         "seeMore": "view more",
         "video": "video"
     },
     "about": {
         "title": "About us",
-        "subtitle": "Invest Gold is a modern company with a style inspired by the concept of German work with the dynamism to create something with passion, we are always close to those who swear in front of love, from those who appreciate classic style and simplicity. Technology with the highest quality, with the best equipment, which makes your selection perfect and sustainable as eternal love!"
+        "subtitle": "Invest Gold Gjokaj is your premier destination for engagement rings, wedding rings, gold bracelets, and gold chains in Kosovo. We create unforgettable moments with our curated collection of gold jewelry, including modern engagement rings, classic wedding bands, custom gold bracelets, and quality gold chains. Each piece is crafted with expertise to immortalize your special moments."
     },
     "rings": {
         "rings": "Rings",
         "title": "Ring",
-        "subtitle": "The beginning of a love story...",
+        "subtitle": "Choose the perfect engagement or wedding ring from our curated collection. Discover unique gold bracelets and chains designed for every special moment in your life. Our gold craftsmanship ensures lasting quality and timeless style.",
         "seeMore": "view more",
         "shop": "Shop",
         "width": "Width",
@@ -32,5 +33,62 @@
         "multiColorGold": "MultiColored Gold",
         "prev": "Prev",
         "next": "Next"
+    },
+    "services": {
+        "title": "Our Services",
+        "subtitle": "Discover our curated collection of gold jewelry and professional services",
+        "seoDescription": "Professional gold jewelry services in Kosovo, including engagement rings, wedding rings, gold bracelets, and custom gold chains",
+        "items": {
+            "rings": {
+                "title": "Engagement & Wedding Rings",
+                "description": "Exclusive collection of engagement and wedding rings, masterfully crafted from the purest gold. Modern and classic designs for your most important moments."
+            },
+            "bracelets": {
+                "title": "Gold Bracelets & Bangles",
+                "description": "Custom gold bracelets and bangles, created with intricate details for every style and occasion. Choose from our extensive collection of unique designs."
+            },
+            "necklaces": {
+                "title": "Gold Chains & Necklaces",
+                "description": "Gold chains and necklaces in various designs, from classic to modern. All crafted with pure gold to ensure premium quality."
+            },
+            "custom": {
+                "title": "Custom Jewelry",
+                "description": "We create custom jewelry according to your preferences. From design to realization, every detail is tailored to your specifications."
+            },
+            "repair": {
+                "title": "Professional Repair",
+                "description": "Professional repair services for all types of gold jewelry. Restoration and maintenance with maximum care."
+            },
+            "express": {
+                "title": "Express Service",
+                "description": "Quick fulfillment of your orders, maintaining our signature high quality standards."
+            },
+            "delivery": {
+                "title": "Home Delivery",
+                "description": "Secure transportation service for your products right to your doorstep."
+            },
+            "guarantee": {
+                "title": "Full Guarantee",
+                "description": "We offer a complete guarantee for all our products, ensuring the highest quality standards."
+            }
+        }
+    },
+    "contact": {
+        "title": "Contact",
+        "informationContact": "Contact Information",
+        "openingHours": "Opening Hours",
+        "hours": {
+            "weekdays": "Monday - Friday: 09:00 - 20:00",
+            "saturday": "Saturday: 09:00 - 18:00",
+            "sunday": "Sunday: Closed"
+        },
+        "form": {
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "phone": "Phone",
+            "message": "Message",
+            "send": "Send"
+        }
     }
 }
