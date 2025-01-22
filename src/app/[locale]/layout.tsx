@@ -3,7 +3,8 @@ import { Poppins } from "next/font/google";
 import "../globals.css";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-
+import { Toaster } from 'react-hot-toast';
+import { CartProvider } from '../context/CartContext';
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -131,7 +132,10 @@ export default async function RootLayout({
         className={`${poppins.variable} antialiased`}
         >
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <CartProvider>
+            {children}
+            <Toaster position="bottom-right" />
+          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>

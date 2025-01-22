@@ -90,5 +90,48 @@
             "message": "Message",
             "send": "Send"
         }
+    },
+    "shop": {
+        "title": "Shop",
+        "filters": "Filters",
+        "search": "Search",
+        "searchPlaceholder": "Search products...",
+        "categories": "Categories",
+        "priceRange": "Price Range",
+        "min": "Min",
+        "max": "Max",
+        "sortBy": "Sort by",
+        "newest": "Newest",
+        "priceLowToHigh": "Price: Low to High",
+        "priceHighToLow": "Price: High to Low",
+        "addToCart": "Add to Cart",
+        "loading": "Loading...",
+        "noProducts": "No products found",
+        "outOfStock": "Out of Stock",
+        "errorFetchingProducts": "Error loading products",
+        "errorFetchingCategories": "Error loading categories",
+        "categoryAll": "All",
+        "categoryRings": "Rings",
+        "categoryBracelets": "Bracelets",
+        "categoryNecklaces": "Necklaces",
+        "categoryCustom": "Custom",
+        "allCategories": "All Categories",
+        "inStock": "In Stock"
+    },
+    "cart": {
+        "title": "Shopping Cart",
+        "close": "Close",
+        "emptyCart": "Your cart is empty",
+        "startShopping": "Start shopping by adding some items to your cart",
+        "continueShopping": "Continue Shopping",
+        "subtotal": "Subtotal",
+        "shippingNote": "Shipping and taxes calculated at checkout",
+        "checkout": "Proceed to Checkout",
+        "or": "or",
+        "addToCart": "Add to Cart",
+        "outOfStock": "Out of Stock",
+        "itemAdded": "Item added to cart",
+        "itemRemoved": "Item removed from cart",
+        "quantityUpdated": "Quantity updated"
     }
 }

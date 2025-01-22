@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { href: '#jewelry', key: 'jewelery' },
   { href: '#services', key: 'services' },
   { href: '#contact', key: 'contact' },
-  { href: '#shop', key: 'shop' },
+  { href: '/shop', key: 'shop' },
 ];
 
 // Define Language Links
