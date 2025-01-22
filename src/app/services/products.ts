@@ -2,10 +2,49 @@ import axios from 'axios';
 import axiosInstance from './api';
 import { Product } from '../types/product.types';
 
+interface SearchParams {
+    search?: string;
+    minPrice?: number;
+    maxPrice?: number;
+    categoryId?: string;
+    page?: number;
+    limit?: number;
+    sortBy?: string;
+}
+
+interface SearchResponse {
+    products: Product[];
+    total: number;
+    page: number;
+    totalPages: number;
+}
+
 const ProductsService = {
     getAll: async (): Promise<Product[]> => {
         try {
             const response = await axiosInstance.get('/products');
+            return response.data;
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error)) {
+                throw error.response?.data;
+            }
+            throw error;
+        }
+    },
+
+    search: async (params: SearchParams): Promise<SearchResponse> => {
+        try {
+            const queryParams = new URLSearchParams();
+            
+            if (params.search) queryParams.append('search', params.search);
+            if (params.minPrice) queryParams.append('minPrice', params.minPrice.toString());
+            if (params.maxPrice) queryParams.append('maxPrice', params.maxPrice.toString());
+            if (params.categoryId) queryParams.append('categoryId', params.categoryId);
+            if (params.page) queryParams.append('page', params.page.toString());
+            if (params.limit) queryParams.append('limit', params.limit.toString());
+            if (params.sortBy) queryParams.append('sortBy', params.sortBy.toString());
+
+            const response = await axiosInstance.get(`/products/search?${queryParams.toString()}`);
             return response.data;
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
