@@ -45,7 +45,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Logo */}
-        <Link href="#page-top" className="text-white text-xl font-bold flex-shrink-0">
+        <Link href="/" className="text-white text-xl font-bold flex-shrink-0">
           <Image src="/images/logo-01.svg" alt="logo" width={220} height={50} priority />
         </Link>
 

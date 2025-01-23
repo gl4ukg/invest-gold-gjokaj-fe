@@ -5,6 +5,9 @@ import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from '../context/CartContext';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import PayPalProvider from "../components/PayPalProvider";
+import NavigationWrapper from "../components/NavigationWrapper";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -12,7 +15,6 @@ const poppins = Poppins({
   variable: "--font-poppins",
   display: "swap",
 });
-
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://investgoldgjokaj.com'),
@@ -112,7 +114,11 @@ export const metadata: Metadata = {
     'business:contact_data:phone_number': '+383 43 666 236'
   }
 };
-
+const initialOptions = {
+  clientId: "your_paypal_client_id",
+  currency: "EUR",
+  intent: "capture"
+};
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -132,10 +138,13 @@ export default async function RootLayout({
         className={`${poppins.variable} antialiased`}
         >
         <NextIntlClientProvider messages={messages}>
-          <CartProvider>
-            {children}
-            <Toaster position="bottom-right" />
-          </CartProvider>
+          <PayPalProvider>
+            <CartProvider>
+              <NavigationWrapper />
+              {children}
+              <Toaster position="bottom-right" />
+            </CartProvider>
+          </PayPalProvider>
         </NextIntlClientProvider>
       </body>
     </html>
