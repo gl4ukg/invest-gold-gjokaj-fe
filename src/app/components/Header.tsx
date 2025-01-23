@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import ReusableModal from './Modal';
-import Navbar from './Navbar';
 import { useState } from 'react';
 import { Link } from '@/i18n/routing';
 
@@ -19,7 +18,6 @@ const Header = () => {
         className="relative w-full h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/images/header-01.png')" }}
         >
-            <Navbar />
 
             <div className="container mx-auto h-full flex items-center py-4">
                 <div

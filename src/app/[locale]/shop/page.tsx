@@ -11,6 +11,8 @@ import { useCart } from '@/app/context/CartContext';
 import Cart from '@/app/components/Cart';
 import { FaShoppingCart, FaFilter } from 'react-icons/fa';
 import { debounce } from 'lodash';
+import { useRouter } from '@/i18n/routing';
+import ProductCard from '@/app/components/ProductCard';
 
 interface Filter {
     minPrice: number;
@@ -38,6 +40,7 @@ export default function Shop() {
 
     const { addToCart, itemCount } = useCart();
     const t = useTranslations();
+    const router = useRouter();
 
     const fetchCategories = async () => {
         try {
@@ -166,7 +169,7 @@ export default function Shop() {
     }, []);
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-20">
             {/* Header with Cart Button */}
             <div className="flex justify-between items-center mb-8">
                 <h1 className="text-3xl font-bold">{t('shop.title')}</h1>
@@ -195,7 +198,7 @@ export default function Shop() {
 
                 {/* Filters Sidebar */}
                 <aside className={`lg:w-1/4 ${isMobileFiltersOpen ? 'block' : 'hidden'} lg:block`}>
-                    <div className="bg-white rounded-lg shadow-lg p-6 sticky top-4">
+                    <div className="bg-primary rounded-lg shadow-lg p-6 sticky top-4">
                         {/* Search */}
                         <div className="mb-6">
                             <h3 className="text-lg font-semibold mb-3">{t('shop.search')}</h3>
@@ -296,33 +299,7 @@ export default function Shop() {
                         <>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {products.map((product) => (
-                                    <div key={product.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                                        <div className="relative h-64">
-                                            <Image
-                                                src={product.image || '/images/placeholder.jpg'}
-                                                alt={product.name}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        </div>
-                                        <div className="p-4">
-                                            <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
-                                            <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
-                                            <div className="flex justify-between items-center">
-                                                <span className="text-xl font-bold">€{product.price}</span>
-                                                {product.stock > 0 ? (
-                                                    <button
-                                                        onClick={() => addToCart(product)}
-                                                        className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors"
-                                                    >
-                                                        {t('shop.addToCart')}
-                                                    </button>
-                                                ) : (
-                                                    <span className="text-red-500">{t('shop.outOfStock')}</span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <ProductCard key={product.id} product={product} />
                                 ))}
                             </div>
 
