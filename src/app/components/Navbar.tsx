@@ -39,9 +39,12 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-colors duration-300 z-[99999] ${
-        isScrolled ? 'bg-black/70 shadow-md' : 'bg-black/70 lg:bg-transparent'
-      }`}
+    className={`fixed top-0 w-full z-50 transition-colors duration-300 z-[99999] bg-black/70 shadow-md
+    `}
+      // className={`fixed top-0 w-full z-50 transition-colors duration-300 z-[99999] ${
+      //   isScrolled ? 'bg-black/70 shadow-md' : 'bg-black/70 lg:bg-transparent'
+      // }
+      // `}
     >
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Logo */}

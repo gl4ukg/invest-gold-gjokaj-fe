@@ -1,6 +1,6 @@
 import axios from 'axios';
 import axiosInstance from './api';
-import { Product } from '../types/product.types';
+import { CreateProduct, Product } from '../types/product.types';
 
 interface SearchParams {
     search?: string;
@@ -66,7 +66,7 @@ const ProductsService = {
         }
     },
 
-    create: async (productData: Product): Promise<Product> => {
+    create: async (productData: CreateProduct): Promise<Product> => {
         try {
             const token = localStorage.getItem('token');
             if (!token) throw new Error("Token not found");

@@ -169,10 +169,10 @@ export default function Shop() {
     }, []);
 
     return (
-        <div className="container mx-auto px-4 py-20">
+        <div className="container mx-auto px-4 pt-32 pb-20">
             {/* Header with Cart Button */}
             <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold">{t('shop.title')}</h1>
+                <h1 className="text-3xl font-bold text-darkGray">{t('shop.title')}</h1>
                 <button
                     onClick={() => setIsCartOpen(true)}
                     className="relative bg-primary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
@@ -180,7 +180,7 @@ export default function Shop() {
                     <FaShoppingCart />
                     <span>{t('cart.title')}</span>
                     {itemCount > 0 && (
-                        <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                        <span className="absolute -top-2 -right-2 bg-white border text-primary rounded-full w-6 h-6 flex items-center justify-center text-xs">
                             {itemCount}
                         </span>
                     )}
@@ -198,22 +198,22 @@ export default function Shop() {
 
                 {/* Filters Sidebar */}
                 <aside className={`lg:w-1/4 ${isMobileFiltersOpen ? 'block' : 'hidden'} lg:block`}>
-                    <div className="bg-primary rounded-lg shadow-lg p-6 sticky top-4">
+                    <div className="bg-gray rounded-lg shadow-lg p-6 sticky top-4">
                         {/* Search */}
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold mb-3">{t('shop.search')}</h3>
+                            <h3 className="text-lg font-semibold mb-3 text-darkGray">{t('shop.search')}</h3>
                             <input
                                 type="text"
                                 value={searchTerm}
                                 onChange={handleSearchChange}
                                 placeholder={t('shop.searchPlaceholder')}
-                                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                className="w-full px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-lightGray"
                             />
                         </div>
 
                         {/* Categories */}
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold mb-3">{t('shop.categories')}</h3>
+                            <h3 className="text-lg font-semibold mb-3 text-darkGray">{t('shop.categories')}</h3>
                             <div className="space-y-2">
                                 <label className="flex items-center gap-2">
                                     <input
@@ -221,20 +221,20 @@ export default function Shop() {
                                         name="category"
                                         checked={selectedCategory === ''}
                                         onChange={() => handleCategoryChange('')}
-                                        className="text-primary"
+                                        className=" text-lightGray"
                                     />
-                                    <span>{t('shop.allCategories')}</span>
+                                    <span className="text-darkGray">{t('shop.allCategories')}</span>
                                 </label>
                                 {categories.map((category) => (
-                                    <label key={category.id} className="flex items-center gap-2">
+                                    <label key={category.id} className="flex items-center text-darkGray gap-2">
                                         <input
                                             type="radio"
                                             name="category"
                                             checked={selectedCategory === category.id}
                                             onChange={() => handleCategoryChange(category.id!)}
-                                            className="text-primary"
+                                            className="text-lightGray"
                                         />
-                                        <span>{category.name}</span>
+                                        <span className="text-darkGray">{category.name}</span>
                                     </label>
                                 ))}
                             </div>
@@ -242,24 +242,24 @@ export default function Shop() {
 
                         {/* Price Range */}
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold mb-3">{t('shop.priceRange')}</h3>
+                            <h3 className="text-lg font-semibold mb-3 text-darkGray">{t('shop.priceRange')}</h3>
                             <div className="flex gap-4">
                                 <div>
-                                    <label className="text-sm text-gray-600">{t('shop.min')}</label>
+                                    <label className="text-sm text-darkGray">{t('shop.min')}</label>
                                     <input
                                         type="number"
                                         value={filters.minPrice}
                                         onChange={(e) => handleFilterChange({ minPrice: Number(e.target.value) })}
-                                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-3 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-lightGray"
                                     />
                                 </div>
                                 <div>
-                                    <label className="text-sm text-gray-600">{t('shop.max')}</label>
+                                    <label className="text-sm text-darkGray">{t('shop.max')}</label>
                                     <input
                                         type="number"
                                         value={filters.maxPrice}
                                         onChange={(e) => handleFilterChange({ maxPrice: Number(e.target.value) })}
-                                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                        className="w-full px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-lightGray"
                                     />
                                 </div>
                             </div>
@@ -267,11 +267,11 @@ export default function Shop() {
 
                         {/* Sort */}
                         <div>
-                            <h3 className="text-lg font-semibold mb-3">{t('shop.sortBy')}</h3>
+                            <h3 className="text-lg font-semibold mb-3 text-darkGray">{t('shop.sortBy')}</h3>
                             <select
                                 value={filters.sortBy}
                                 onChange={(e) => handleFilterChange({ sortBy: e.target.value as Filter['sortBy'] })}
-                                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                className="w-full px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary  text-lightGray"
                             >
                                 <option value="newest">{t('shop.newest')}</option>
                                 <option value="price_asc">{t('shop.priceLowToHigh')}</option>
@@ -285,7 +285,7 @@ export default function Shop() {
                 <div className="flex-1">
                     {loading ? (
                         <div className="text-center py-12">
-                            <p className="text-gray-500">{t('shop.loading')}</p>
+                            <p className="text-darkGray">{t('shop.loading')}</p>
                         </div>
                     ) : error ? (
                         <div className="text-center py-12">
@@ -293,7 +293,7 @@ export default function Shop() {
                         </div>
                     ) : products.length === 0 ? (
                         <div className="text-center py-12">
-                            <p className="text-gray-500">{t('shop.noProducts')}</p>
+                            <p className="text-darkGray">{t('shop.noProducts')}</p>
                         </div>
                     ) : (
                         <>

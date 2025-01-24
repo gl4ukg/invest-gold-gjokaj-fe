@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Slider from 'react-slick';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 interface Ring {
   id: string;
@@ -46,7 +47,7 @@ const RingsSection: React.FC<RingsSectionProps> = ({ categories }) => {
         style={{ ...style, display: 'block' }}
         onClick={onClick}
       >
-        {t('prev')}
+        <GrFormPrevious />
       </button>
     );
   };
@@ -59,7 +60,7 @@ const RingsSection: React.FC<RingsSectionProps> = ({ categories }) => {
         style={{ ...style, display: 'block' }}
         onClick={onClick}
       >
-        {t('next')}
+        <GrFormNext />
       </button>
     );
   };
