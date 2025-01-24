@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import CategoriesService from '@/app/services/categories';
 import { Category } from '@/app/types/category.types';
 import toast from 'react-hot-toast';
+import Pagination from '../Pagination';
 
 export default function CategoriesContent() {
     const [categories, setCategories] = useState<Category[]>([]);
@@ -15,6 +16,12 @@ export default function CategoriesContent() {
         name: '',
         description: ''
     });
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = categories.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(categories.length / itemsPerPage);
 
     const fetchCategories = async () => {
         try {
@@ -100,6 +107,10 @@ export default function CategoriesContent() {
         }
     };
 
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+    };
+
     return (
         <div className="space-y-6">
             {/* Create/Edit Category Form */}
@@ -178,7 +189,7 @@ export default function CategoriesContent() {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {categories.map((category) => (
+                            {currentItems.map((category) => (
                                 <tr key={category.id}>
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-darkGray">{category.name}</div>
@@ -204,6 +215,13 @@ export default function CategoriesContent() {
                             ))}
                         </tbody>
                     </table>
+                </div>
+                <div className="p-4 lg:p-6">
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                    />
                 </div>
             </div>
         </div>

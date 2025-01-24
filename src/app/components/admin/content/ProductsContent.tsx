@@ -7,6 +7,7 @@ import { Category } from '@/app/types/category.types';
 import { FaImage, FaTrash } from 'react-icons/fa';
 import Image from 'next/image';
 import { toast } from 'react-hot-toast';
+import Pagination from '../Pagination';
 
 const ProductsContent: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -26,6 +27,12 @@ const ProductsContent: React.FC = () => {
     });
     const [isEditing, setIsEditing] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(products.length / itemsPerPage);
 
     const fetchData = async () => {
         try {
@@ -52,12 +59,12 @@ const ProductsContent: React.FC = () => {
         const file = e.target.files?.[0];
         if (file) {
             if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                toast.error('Madhësia e imazhit duhet để jetë më pak se 5 MB');
+                toast.error('Madhësia e imazhit duhet të jetë më pak se 5 MB');
                 return;
             }
             
             if (!file.type.startsWith('image/')) {
-                toast.error('Ju lutem shtojni nje imazh');
+                toast.error('Ju lutem shtojni një imazh');
                 return;
             }
 
@@ -82,11 +89,11 @@ const ProductsContent: React.FC = () => {
 
     const validateForm = (): boolean => {
         if (!formData.name.trim()) {
-            toast.error('Emri i produktit esht&euml; bosh');
+            toast.error('Emri i produktit është bosh');
             return false;
         }
         if (!formData.description.trim()) {
-            toast.error('Pershkrimi i produktit esht&euml; bosh');
+            toast.error('Përshkrimi i produktit është bosh');
             return false;
         }
         if (formData.price <= 0) {
@@ -180,7 +187,7 @@ const ProductsContent: React.FC = () => {
             if (isEditing && selectedProductId) {
                 // Update existing product
                 await ProductsService.update(selectedProductId, newProduct);
-                toast.success('Produkti u perditesua me sukses');
+                toast.success('Produkti u përditësua me sukses');
             } else {
                 // Create new product
                 const payload = {
@@ -203,7 +210,7 @@ const ProductsContent: React.FC = () => {
     };
 
     const handleDelete = async (id: string) => {
-        if (window.confirm('Jeni i sigurt qe deshironi te fshini produktin?')) {
+        if (window.confirm('Jeni i sigurt që deshironi të fshini produktin?')) {
             try {
                 setLoading(true);
                 await ProductsService.delete(id);
@@ -216,6 +223,10 @@ const ProductsContent: React.FC = () => {
                 setLoading(false);
             }
         }
+    };
+
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
     };
 
     if (loading) {
@@ -241,7 +252,7 @@ const ProductsContent: React.FC = () => {
                         </label>
                         <div className="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 lg:space-x-4">
                             {/* Image Preview */}
-                            <div className="w-full w-[150px] aspect-square relative bg-gray-50 rounded-lg overflow-hidden">
+                            <div className="w-[150px] aspect-square relative bg-gray-50 rounded-lg overflow-hidden">
                                 {imagePreview ? (
                                     <Image
                                         src={imagePreview}
@@ -269,7 +280,7 @@ const ProductsContent: React.FC = () => {
                                     onClick={() => fileInputRef.current?.click()}
                                     className="w-full border lg:w-auto bg-gray-100 text-lightGray px-4 py-2 rounded-md hover:bg-gray-200 focus:outline-none"
                                 >
-                                    Kliko per zgjedhje te imazhit
+                                    Kliko për zgjedhje të imazhit
                                 </button>
                                 <p className="text-sm text-darkGray">
                                     Maksimali mb: 5MB. Formatet e suportuar: JPG, PNG, GIF
@@ -324,7 +335,7 @@ const ProductsContent: React.FC = () => {
 
                     <div>
                         <label htmlFor="description" className="block text-sm font-medium text-darkGray">
-                            Pershkrimi
+                            Përshkrimi
                         </label>
                         <textarea
                             id="description"
@@ -412,7 +423,7 @@ const ProductsContent: React.FC = () => {
                                     Emri
                                 </th>
                                 <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Pershkrimi
+                                    Përshkrimi
                                 </th>
                                 <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Qmimi
@@ -429,7 +440,7 @@ const ProductsContent: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {products.map((product) => (
+                            {currentItems.map((product) => (
                                 <tr key={product.id}>
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="w-12 h-12 relative rounded-lg overflow-hidden">
@@ -478,6 +489,13 @@ const ProductsContent: React.FC = () => {
                     </table>
                 </div>
             </div>
+
+            {/* Pagination */}
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
         </div>
     );
 };
