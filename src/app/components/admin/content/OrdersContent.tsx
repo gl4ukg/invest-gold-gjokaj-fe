@@ -14,7 +14,7 @@ const OrdersContent: React.FC = () => {
             // setOrders(data);
             setError(null);
         } catch (err) {
-            setError('Failed to fetch orders');
+            setError('Marrja e të dhënave dështoi');
             console.error(err);
         } finally {
             setLoading(false);
@@ -31,7 +31,7 @@ const OrdersContent: React.FC = () => {
     //         fetchOrders(); // Refresh the list
     //         setError(null);
     //     } catch (err) {
-    //         setError('Failed to update order status');
+    //         setError('Ndrrimi i statusit deshtoi');
     //         console.error(err);
     //     }
     // };
@@ -42,7 +42,7 @@ const OrdersContent: React.FC = () => {
         <div className="space-y-6">
             <div className="bg-white rounded-lg border shadow">
                 <div className="p-6">
-                    <h2 className="text-xl font-semibold text-darkGray mb-4">Orders</h2>
+                    <h2 className="text-xl font-semibold text-darkGray mb-4">Porositë</h2>
                     {error && <div className="text-red-500 mb-4">{error}</div>}
                 </div>
                 <div className="overflow-x-auto">
@@ -50,22 +50,22 @@ const OrdersContent: React.FC = () => {
                         <thead className="bg-gray-50">
                             <tr>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Order ID
+                                    Id e porosise
                                 </th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Status
+                                    Statusi
                                 </th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Total
+                                    Totali
                                 </th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Items
                                 </th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Shipping Address
+                                    Adresa e Dergeses
                                 </th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Actions
+                                    Veprimet
                                 </th>
                             </tr>
                         </thead>
@@ -103,10 +103,10 @@ const OrdersContent: React.FC = () => {
                                             // onChange={(e) => handleStatusUpdate(order.id!, e.target.value as Order['status'])}
                                             className="text-sm rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                                         >
-                                            <option value="pending">Pending</option>
-                                            <option value="processing">Processing</option>
-                                            <option value="completed">Completed</option>
-                                            <option value="cancelled">Cancelled</option>
+                                            <option value="pending">Në pritje</option>
+                                            <option value="processing">Procesuar</option>
+                                            <option value="completed">Kompletuar</option>
+                                            <option value="cancelled">Anulluar</option>
                                         </select>
                                     </td>
                                 </tr>

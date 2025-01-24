@@ -5,14 +5,14 @@
         "jewelery": "Schmuck",
         "services": "Dienstleistungen",
         "contact": "Kontakt",
-        "shop": "Geschäft"
+        "shop": "Shop"
     },
     "header": {
         "title": "INVEST GOLD",
         "subtitle": "Wir sind immer nah an denen, die vor der Liebe schwören",
         "secondSubtitle": "Verlobungsringe, Eheringe, Goldarmreifen und Goldketten in Kosovo",
-        "seeMore": "mehr sehen",
-        "video": "video"
+        "seeMore": "Mehr sehen",
+        "video": "Video"
     },
     "about": {
         "title": "Über uns",
@@ -22,8 +22,8 @@
         "rings": "Ringe",
         "title": "Ring",
         "subtitle": "Wählen Sie den perfekten Verlobungs- oder Ehering aus unserer kuratierten Kollektion. Entdecken Sie einzigartige Goldarmreifen und Ketten, die für jeden besonderen Moment in Ihrem Leben gestaltet sind. Unsere Goldschmiedekunst garantiert dauerhafte Qualität und zeitlosen Stil.",
-        "seeMore": "mehr sehen",
-        "shop": "Geschäft",
+        "seeMore": "Mehr sehen",
+        "shop": "Shop",
         "width": "Breite",
         "height": "Höhe",
         "yellowGold": "Gelbgold",
@@ -31,8 +31,8 @@
         "roseGold": "Roségold",
         "twoColorGold": "Zweifarbiges Gold",
         "multiColorGold": "Mehrfarbiges Gold",
-        "prev": "Vorher",
-        "next": "Nächster"
+        "prev": "Zurück",
+        "next": "Weiter"
     },
     "services": {
         "title": "Unsere Dienstleistungen",
@@ -73,6 +73,30 @@
             }
         }
     },
+    "contact": {
+        "title": "Kontakt",
+        "informationContact": "Kontaktinformationen",
+        "openingHours": "Öffnungszeiten",
+        "address": "Adresse",
+        "phone": "Telefon",
+        "email": "E-Mail",
+        "weekdays": "Montag - Freitag",
+        "saturday": "Samstag",
+        "sunday": "Sonntag",
+        "hours": {
+            "weekdays": "09:00 - 20:00",
+            "saturday": "09:00 - 18:00",
+            "sunday": "Geschlossen"
+        },
+        "form": {
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "email": "E-Mail",
+            "phone": "Telefon",
+            "message": "Nachricht",
+            "send": "Senden"
+        }
+    },
     "shop": {
         "title": "Shop",
         "filters": "Filter",
@@ -89,10 +113,13 @@
         "addToCart": "In den Warenkorb",
         "loading": "Wird geladen...",
         "noProducts": "Keine Produkte gefunden",
+        "outOfStock": "Nicht auf Lager",
+        "errorFetchingProducts": "Fehler beim Laden der Produkte",
+        "errorFetchingCategories": "Fehler beim Laden der Kategorien",
         "categoryAll": "Alle",
         "categoryRings": "Ringe",
         "categoryBracelets": "Armbänder",
-        "categoryNecklaces": "Ketten",
+        "categoryNecklaces": "Halsketten",
         "categoryCustom": "Maßanfertigung",
         "allCategories": "Alle Kategorien",
         "inStock": "Auf Lager"
@@ -113,22 +140,75 @@
         "itemRemoved": "Artikel aus dem Warenkorb entfernt",
         "quantityUpdated": "Menge aktualisiert"
     },
-    "contact": {
-        "title": "Kontakt",
-        "informationContact": "Kontaktinformationen",
-        "openingHours": "Öffnungszeiten",
-        "hours": {
-            "weekdays": "Montag - Freitag: 09:00 - 20:00",
-            "saturday": "Samstag: 09:00 - 18:00",
-            "sunday": "Sonntag: Geschlossen"
-        },
-        "form": {
-            "firstName": "Vorname",
-            "lastName": "Nachname",
-            "email": "E-Mail",
-            "phone": "Telefon",
-            "message": "Nachricht",
-            "send": "Senden"
-        }
+    "checkout": {
+        "title": "Kasse",
+        "emptyCart": "Ihr Warenkorb ist leer",
+        "continueShopping": "Weiter einkaufen",
+        "contactInformation": "Kontaktinformationen",
+        "email": "E-Mail",
+        "shippingAddress": "Lieferadresse",
+        "fullName": "Vollständiger Name",
+        "address": "Adresse",
+        "city": "Stadt",
+        "country": "Land",
+        "postalCode": "Postleitzahl",
+        "phone": "Telefon",
+        "shippingMethod": "Versandart",
+        "localDelivery": "Lokale Lieferung (Kosovo)",
+        "internationalDelivery": "Internationaler Versand",
+        "paymentMethod": "Zahlungsmethode",
+        "creditCard": "Kreditkarte",
+        "bankTransfer": "Banküberweisung",
+        "cashOnDelivery": "Nachnahme",
+        "orderSummary": "Bestellübersicht",
+        "quantity": "Menge",
+        "subtotal": "Zwischensumme",
+        "shipping": "Versand",
+        "total": "Gesamtsumme",
+        "placeOrder": "Bestellung aufgeben",
+        "processing": "Wird bearbeitet...",
+        "errorProcessingOrder": "Fehler bei der Bearbeitung Ihrer Bestellung. Bitte versuchen Sie es erneut."
+    },
+    "orderConfirmation": {
+        "loading": "Bestelldetails werden geladen...",
+        "error": "Fehler beim Laden",
+        "errorLoading": "Bestelldetails können nicht geladen werden",
+        "backToShop": "Zurück zum Shop",
+        "thankYou": "Vielen Dank für Ihre Bestellung!",
+        "orderNumber": "Bestellnummer",
+        "orderDetails": "Bestelldetails",
+        "status": "Status",
+        "items": "Artikel",
+        "quantity": "Menge",
+        "shippingAddress": "Lieferadresse",
+        "paymentInformation": "Zahlungsinformationen",
+        "method": "Zahlungsmethode",
+        "shipping": "Versandart",
+        "orderSummary": "Bestellübersicht",
+        "subtotal": "Zwischensumme",
+        "total": "Gesamtsumme",
+        "continueShopping": "Weiter einkaufen"
+    },
+    "product": {
+        "loading": "Produkt wird geladen...",
+        "error": "Fehler beim Laden des Produkts",
+        "notFound": "Produkt nicht gefunden",
+        "backToShop": "Zurück zum Shop",
+        "addToCart": "In den Warenkorb",
+        "outOfStock": "Nicht auf Lager",
+        "description": "Beschreibung",
+        "specifications": "Spezifikationen",
+        "category": "Kategorie",
+        "price": "Preis",
+        "stock": "Lagerbestand",
+        "inStock": "Auf Lager",
+        "relatedProducts": "Ähnliche Produkte",
+        "quantity": "Menge"
+    },
+    "notifications": {
+        "productAdded": "Produkt zum Warenkorb hinzugefügt",
+        "productRemoved": "Produkt aus dem Warenkorb entfernt",
+        "cartUpdated": "Warenkorb erfolgreich aktualisiert",
+        "error": "Ein Fehler ist aufgetreten"
     }
 }

@@ -52,7 +52,7 @@ export default function CategoriesContent() {
             // Scroll to form
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (error) {
-            toast.error('Failed to fetch category details');
+            toast.error('Marrja e kategorise deshtoi');
             console.error(error);
         }
     };
@@ -63,18 +63,18 @@ export default function CategoriesContent() {
 
         try {
             if (!formData.name.trim()) {
-                toast.error('Category name is required');
+                toast.error('Kategoria nuk mund te jete bosh');
                 return;
             }
 
             if (isEditing && selectedCategoryId) {
                 // Update existing category
                 await CategoriesService.update(selectedCategoryId, formData);
-                toast.success('Category updated successfully');
+                toast.success('Kategoria u ndryshua me sukses');
             } else {
                 // Create new category
                 await CategoriesService.create(formData as Category);
-                toast.success('Category created successfully');
+                toast.success('Kategoria u krijua me sukses');
             }
 
             resetForm();
@@ -88,13 +88,13 @@ export default function CategoriesContent() {
     };
 
     const handleDelete = async (id: string) => {
-        if (window.confirm('Are you sure you want to delete this category?')) {
+        if (window.confirm('A jeni i sigurt qe deshironi te fshini kategorin?')) {
             try {
                 await CategoriesService.delete(id);
-                toast.success('Category deleted successfully');
+                toast.success('Kategoria u fshi me sukses');
                 fetchCategories();
             } catch (error) {
-                toast.error('Failed to delete category');
+                toast.error('Deshtoi fshirja e kategorise');
                 console.error(error);
             }
         }
@@ -103,14 +103,14 @@ export default function CategoriesContent() {
     return (
         <div className="space-y-6">
             {/* Create/Edit Category Form */}
-            <div className="bg-white rounded-lg border shadow p-6">
+            <div className="bg-white rounded-lg border shadow p-4 lg:p-6">
                 <h2 className="text-xl font-semibold mb-4 text-darkGray">
                     {isEditing ? 'Edit Category' : 'Create New Category'}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-darkGray">
-                            Name
+                            Emri
                         </label>
                         <input
                             type="text"
@@ -123,7 +123,7 @@ export default function CategoriesContent() {
                     </div>
                     <div>
                         <label htmlFor="description" className="block text-sm font-medium text-darkGray">
-                            Description
+                            Pershkrimi
                         </label>
                         <textarea
                             id="description"
@@ -133,69 +133,71 @@ export default function CategoriesContent() {
                             rows={3}
                         />
                     </div>
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className={`w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                            loading ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
-                    >
-                        {loading ? (isEditing ? 'Updating...' : 'Creating...') : (isEditing ? 'Update Category' : 'Create Category')}
-                    </button>
-                    {isEditing && (
+                    <div className="flex flex-col lg:flex-row gap-2">
                         <button
-                            type="button"
-                            onClick={resetForm}
-                            className="w-full mt-2 bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                            type="submit"
+                            disabled={loading}
+                            className={`flex-1 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                                loading ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
                         >
-                            Cancel Edit
+                            {loading ? (isEditing ? 'Po ndryshon...' : 'Po krijohet...') : (isEditing ? 'Ndrysho kategorin' : 'Krijo kategorin')}
                         </button>
-                    )}
+                        {isEditing && (
+                            <button
+                                type="button"
+                                onClick={resetForm}
+                                className="flex-1 bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                            >
+                                Anulo
+                            </button>
+                        )}
+                    </div>
                 </form>
             </div>
 
             {/* Categories Table */}
-            <div className="bg-white rounded-lg border shadow">
-                <div className="p-6">
-                    <h2 className="text-xl font-semibold mb-4 text-darkGray">Categories</h2>
+            <div className="bg-white rounded-lg border shadow overflow-hidden">
+                <div className="p-4 lg:p-6">
+                    <h2 className="text-xl font-semibold mb-4 text-darkGray">Kategorite</h2>
                     {error && <div className="text-red-500 mb-4">{error}</div>}
                 </div>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Name
+                                <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
+                                    Emri
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Description
+                                <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
+                                    Pershkrimi
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Actions
+                                <th className="px-4 lg:px-6 py-3 text-right text-xs font-medium text-darkGray uppercase tracking-wider">
+                                    Veprimet
                                 </th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {categories.map((category) => (
                                 <tr key={category.id}>
-                                    <td className="px-6 py-4 whitespace-nowrap">
+                                    <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-darkGray">{category.name}</div>
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="hidden lg:table-cell px-6 py-4">
                                         <div className="text-sm text-darkGray line-clamp-2">{category.description}</div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <td className="px-4 lg:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <button
                                             onClick={() => handleEditClick(category)}
-                                            className="text-blue-600 hover:text-blue-900 mr-4"
+                                            className="text-blue-600 hover:text-blue-900 mr-2 lg:mr-4"
                                         >
-                                            Edit
+                                            Ndrysho
                                         </button>
                                         <button
                                             onClick={() => handleDelete(category.id!)}
                                             className="text-red-600 hover:text-red-900"
                                         >
-                                            Delete
+                                            Fshij
                                         </button>
                                     </td>
                                 </tr>

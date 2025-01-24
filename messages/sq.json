@@ -118,12 +118,18 @@
     },
     "contact": {
         "title": "Kontakti",
-        "informationContact": "Informacioni Kontakti",
+        "informationContact": "Informacionet e Kontaktit",
         "openingHours": "Orari i Punës",
+        "address": "Adresa",
+        "phone": "Telefoni",
+        "email": "Email",
+        "weekdays": "E Hënë - E Premte",
+        "saturday": "E Shtunë",
+        "sunday": "E Diel",
         "hours": {
-            "weekdays": "E Hënë - E Premte: 09:00 - 20:00",
-            "saturday": "E Shtunë: 09:00 - 18:00",
-            "sunday": "E Diel: Mbyllur"
+            "weekdays": "09:00 - 20:00",
+            "saturday": "09:00 - 18:00",
+            "sunday": "Mbyllur"
         },
         "form": {
             "firstName": "Emri",

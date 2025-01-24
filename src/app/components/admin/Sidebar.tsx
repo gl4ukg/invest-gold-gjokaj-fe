@@ -12,9 +12,9 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ activePage, onPageChange }) => {
     const router = useRouter();
     const menuItems = [
-        { name: 'Products', id: 'products' },
-        { name: 'Categories', id: 'categories' },
-        { name: 'Orders', id: 'orders' }
+        { name: 'Produktet', id: 'products' },
+        { name: 'Kategorite', id: 'categories' },
+        { name: 'Porosite', id: 'orders' }
     ];
 
     const handleLogout = () => {
@@ -57,7 +57,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, onPageChange }) => {
                     className="w-full flex items-center justify-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                 >
                     <FiLogOut className="w-5 h-5" />
-                    <span>Log Out</span>
+                    <span>Dil</span>
                 </button>
             </div>
         </div>
