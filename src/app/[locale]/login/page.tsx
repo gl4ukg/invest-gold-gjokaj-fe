@@ -2,17 +2,32 @@
 import React, { useState } from 'react';
 import AuthService from '@/app/services/auth';
 import { useRouter } from '@/i18n/routing';
+import toast from 'react-hot-toast';
 
 const LoginPage: React.FC = () => {
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        const login = await AuthService.login(email, password);
-        if (login) {
-            router.push('/admin');
+        setLoading(true);
+        
+        try {
+            const login = await AuthService.login(email, password);
+            if (login) {
+                router.push('/admin');
+            }
+        } catch (error) {
+            let errorMessage = 'Login failed. Please check your credentials.';
+            if (error instanceof Error) {
+                errorMessage = error.message;
+            }
+            toast.error(errorMessage);
+            setPassword('');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -28,7 +43,9 @@ const LoginPage: React.FC = () => {
                             id="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500  text-darkGray"
+                            className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-darkGray"
+                            disabled={loading}
+                            required
                         />
                     </div>
                     <div>
@@ -39,13 +56,18 @@ const LoginPage: React.FC = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-darkGray"
+                            disabled={loading}
+                            required
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 text-white bg-lightGray rounded-md"
+                        className={`w-full px-4 py-2 text-white bg-lightGray rounded-md ${
+                            loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-darkGray'
+                        }`}
+                        disabled={loading}
                     >
-                        Login
+                        {loading ? 'Logging in...' : 'Login'}
                     </button>
                 </form>
             </div>

@@ -1,32 +1,118 @@
-import React from 'react';
+"use client";
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 const JewelrySection: React.FC = () => {
+  // Refs for scroll detection
+  const firstSectionRef = useRef(null);
+  const secondSectionRef = useRef(null);
+  const isFirstSectionInView = useInView(firstSectionRef, { once: true, amount: 0.3 });
+  const isSecondSectionInView = useInView(secondSectionRef, { once: true, amount: 0.3 });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <div>
-        <section
+      <section
+        ref={firstSectionRef}
         id="jewelry"
         className="bg-[url('/images/cover-01.png')] bg-cover bg-center bg-no-repeat py-24"
+      >
+        <motion.div 
+          className="container mx-auto px-4 py-12"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isFirstSectionInView ? "visible" : "hidden"}
         >
-            <div className="container mx-auto px-4 py-12">
-                <div className="flex justify-start">
-                <div
-                    className="w-full md:w-7/12 animate-slideInRight"
-                    style={{ animationDuration: '0.5s', animationDelay: '0.1s' }}
-                >
-                    <p className="text-[#907C33] font-medium italic text-3xl md:text-4xl">
-                    We offer our clients the opportunity to discover the unique,
-                    elegant, and precious world of jewelry.
-                    </p>
-                </div>
-                </div>
-            </div>
-        </section>
-        <section className="bg-white py-32 jewelryTwo">
-            <div className="container mx-auto px-4">
-                <p className="text-center text-primary text-5xl">Bizhuteri</p>
-                <p className='text-center text-tertiary text-2xl mt-8'>Nuk janë të disponueshme për momentin</p>
-            </div>
-        </section>
+          <motion.div 
+            className="flex justify-start"
+            variants={itemVariants}
+          >
+            <motion.div
+              className="w-full md:w-7/12 animate-slideInRight"
+              variants={imageVariants}
+            >
+              <motion.p 
+                className="text-[#907C33] font-medium italic text-3xl md:text-4xl"
+                variants={itemVariants}
+              >
+                We offer our clients the opportunity to discover the unique,
+                elegant, and precious world of jewelry.
+              </motion.p>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      <section 
+        ref={secondSectionRef}
+        className="bg-white py-32 jewelryTwo"
+      >
+        <motion.div 
+          className="container mx-auto px-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isSecondSectionInView ? "visible" : "hidden"}
+        >
+          <motion.p 
+            className="text-center text-primary text-5xl"
+            variants={itemVariants}
+          >
+            Bizhuteri
+          </motion.p>
+          <motion.p 
+            className='text-center text-tertiary text-2xl mt-8'
+            variants={itemVariants}
+          >
+            Nuk janë të disponueshme për momentin
+          </motion.p>
+        </motion.div>
+      </section>
     </div>
   );
 };

@@ -79,7 +79,7 @@ export default function ProductDetail() {
 
   if (error || !product) {
     return (
-      <div className="container mx-auto px-4 py-20">
+      <div className="container h-screen mx-auto px-4 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-red-500 mb-4">
             {error || t('product.notFound')}

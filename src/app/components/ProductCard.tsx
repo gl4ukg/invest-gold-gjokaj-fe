@@ -57,7 +57,7 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
                 <FaCartShopping className='text-white' />
               </button>
             ) : (
-              <span className="text-red-500">{t('shop.outOfStock')}</span>
+              <span className="text-primary">{t('shop.outOfStock')}</span>
             )
           )}
         </div>

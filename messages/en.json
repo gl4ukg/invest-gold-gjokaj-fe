@@ -77,10 +77,16 @@
         "title": "Contact",
         "informationContact": "Contact Information",
         "openingHours": "Opening Hours",
+        "address": "Address",
+        "phone": "Phone",
+        "email": "Email",
+        "weekdays": "Monday - Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
         "hours": {
-            "weekdays": "Monday - Friday: 09:00 - 20:00",
-            "saturday": "Saturday: 09:00 - 18:00",
-            "sunday": "Sunday: Closed"
+            "weekdays": "09:00 - 20:00",
+            "saturday": "09:00 - 18:00",
+            "sunday": "Closed"
         },
         "form": {
             "firstName": "First Name",
@@ -100,23 +106,16 @@
         "priceRange": "Price Range",
         "min": "Min",
         "max": "Max",
-        "sortBy": "Sort by",
-        "newest": "Newest",
-        "priceLowToHigh": "Price: Low to High",
-        "priceHighToLow": "Price: High to Low",
-        "addToCart": "Add to Cart",
-        "loading": "Loading...",
-        "noProducts": "No products found",
-        "outOfStock": "Out of Stock",
-        "errorFetchingProducts": "Error loading products",
-        "errorFetchingCategories": "Error loading categories",
-        "categoryAll": "All",
-        "categoryRings": "Rings",
-        "categoryBracelets": "Bracelets",
-        "categoryNecklaces": "Necklaces",
-        "categoryCustom": "Custom",
-        "allCategories": "All Categories",
-        "inStock": "In Stock"
+        "apply": "Apply",
+        "reset": "Reset",
+        "sort": "Sort by",
+        "sortOptions": {
+            "newest": "Newest",
+            "priceAsc": "Price: Low to High",
+            "priceDesc": "Price: High to Low",
+            "nameAsc": "Name: A to Z",
+            "nameDesc": "Name: Z to A"
+        }
     },
     "cart": {
         "title": "Shopping Cart",

@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import ReusableModal from './Modal';
 import { useState } from 'react';
 import { Link } from '@/i18n/routing';
+import { motion } from 'framer-motion';
 
 const Header = () => {
 
@@ -12,6 +13,29 @@ const Header = () => {
 
     const openVideoModal = () => setIsVideoOpen(true);
     const closeVideoModal = () => setIsVideoOpen(false);
+
+    const textVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: {
+                duration: 0.8,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    const fadeIn = {
+        hidden: { opacity: 0 },
+        visible: { 
+            opacity: 1,
+            transition: {
+                duration: 1,
+                delay: 0.5
+            }
+        }
+    };
 
     return (
         <header
@@ -23,18 +47,43 @@ const Header = () => {
                 <div
                 className="text-left animate-zoomIn"
                 >
-                <h1 className="text-6xl font-bold text-white font-[Poppins]" itemProp="name">
+                <motion.h1 
+                    className="text-6xl font-bold text-white font-[Poppins]" 
+                    itemProp="name"
+                    variants={textVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
                     {t('title')}
-                </h1>
-                <h2 className="text-2xl text-white font-[Poppins] mt-4" itemProp="description">
+                </motion.h1>
+                <motion.h2 
+                    className="text-2xl text-white font-[Poppins] mt-4" 
+                    itemProp="description"
+                    variants={textVariants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: 0.2 }}
+                >
                     {t('subtitle')}
-                </h2>
+                </motion.h2>
                 {/* Product categories as h3 for SEO */}
-                <h3 className="text-lg text-white font-[Poppins] mt-4" itemProp="offers">
+                <motion.h3 
+                    className="text-lg text-white font-[Poppins] mt-4" 
+                    itemProp="offers"
+                    variants={textVariants}
+                    initial="hidden"
+                    animate="visible"
+                    transition={{ delay: 0.4 }}
+                >
                     {t('secondSubtitle')}
-                </h3>
+                </motion.h3>
 
-                <div className="mt-6 flex space-x-4">
+                <motion.div
+                    className="mt-6 flex space-x-4"
+                    variants={fadeIn}
+                    initial="hidden"
+                    animate="visible"
+                >
                     <Link href="#about" className="scroll-smooth">
                         <button 
                         style={{ width: '170px' }}
@@ -50,7 +99,7 @@ const Header = () => {
                             {t('video')}
                         </button>
                     </Link>
-                </div>
+                </motion.div>
                 </div>
             </div>
 
