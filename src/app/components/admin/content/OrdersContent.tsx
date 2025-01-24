@@ -2,11 +2,18 @@
 import React, { useEffect, useState } from 'react';
 import OrdersService from '@/app/services/orders';
 import { Order } from '@/app/types/order.types';
+import Pagination from '../Pagination';
 
 const OrdersContent: React.FC = () => {
     const [orders, setOrders] = useState<Order[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(orders.length / itemsPerPage);
 
     const fetchOrders = async () => {
         try {
@@ -19,6 +26,10 @@ const OrdersContent: React.FC = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
     };
 
     useEffect(() => {
@@ -70,7 +81,7 @@ const OrdersContent: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {orders.map((order) => (
+                            {currentItems.map((order) => (
                                 <tr key={order.id}>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm font-medium text-darkGray">#{order.id}</div>
@@ -115,6 +126,11 @@ const OrdersContent: React.FC = () => {
                     </table>
                 </div>
             </div>
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
         </div>
     );
 };

@@ -18,7 +18,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activePage, onPageC
     };
 
     return (
-        <div className="flex h-screen bg-gray-100 fixed">
+        <div className="flex w-full h-screen bg-gray-100 fixed">
             {/* Mobile Menu Button */}
             <button
                 onClick={toggleSidebar}
