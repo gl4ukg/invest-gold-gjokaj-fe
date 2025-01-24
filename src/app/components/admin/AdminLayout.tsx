@@ -10,9 +10,9 @@ interface AdminLayoutProps {
 
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activePage, onPageChange }) => {
     return (
-        <div className="flex min-h-screen bg-gray-100">
+        <div className="flex h-screen bg-gray-100">
             <Sidebar activePage={activePage} onPageChange={onPageChange} />
-            <main className="flex-1 p-8">
+            <main className="h-screen overflow-y-auto flex-1 p-8">
                 {children}
             </main>
         </div>

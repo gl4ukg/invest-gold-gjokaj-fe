@@ -27,7 +27,6 @@ export default function Home() {
       <JewelrySection/>
       <ServicesSection />
       <ContactSection />
-      <Footer/>
     </div>
   );
 }

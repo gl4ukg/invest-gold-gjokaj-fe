@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ProductsService from '@/app/services/products';
 import CategoriesService from '@/app/services/categories';
-import { Product } from '@/app/types/product.types';
+import { CreateProduct, Product } from '@/app/types/product.types';
 import { Category } from '@/app/types/category.types';
 import { FaImage, FaTrash } from 'react-icons/fa';
 import Image from 'next/image';
@@ -20,10 +20,12 @@ const ProductsContent: React.FC = () => {
         name: '',
         description: '',
         price: 0,
-        categoryId: '',
+        category: { id: '', name: '' },
         stock: 0,
         image: ''
     });
+    const [isEditing, setIsEditing] = useState(false);
+    const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
 
     const fetchData = async () => {
         try {
@@ -95,11 +97,54 @@ const ProductsContent: React.FC = () => {
             toast.error('Stock cannot be negative');
             return false;
         }
-        if (!formData.categoryId) {
+        if (!formData.category.id) {
             toast.error('Please select a category');
             return false;
         }
         return true;
+    };
+
+    const resetForm = () => {
+        setFormData({
+            name: '',
+            description: '',
+            price: 0,
+            category: { id: '', name: '' },
+            stock: 0,
+            image: ''
+        });
+        setIsEditing(false);
+        setSelectedProductId(null);
+        setSelectedImage(null);
+        setImagePreview(null);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    };
+
+    const handleEditClick = async (product: Product) => {
+        try {
+            const productData = await ProductsService.getById(product.id!);
+            setFormData({
+                name: productData.name,
+                description: productData.description,
+                price: productData.price,
+                category: productData.category,
+                stock: productData.stock,
+                image: productData.image || ''
+            });
+            // Set image preview if product has an image
+            if (productData.image) {
+                setImagePreview(productData.image);
+            }
+            setSelectedProductId(product.id!);
+            setIsEditing(true);
+            // Scroll to form
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (error) {
+            toast.error('Failed to fetch product details');
+            console.error(error);
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -123,34 +168,31 @@ const ProductsContent: React.FC = () => {
                 });
             }
 
-            // Create product with all fields
-            const newProduct: Omit<Product, 'id' | 'createdAt' | 'updatedAt'> = {
+            const newProduct = {
                 name: formData.name.trim(),
                 description: formData.description.trim(),
                 price: Number(formData.price),
-                categoryId: formData.categoryId,
+                category: formData.category,
                 stock: Number(formData.stock),
                 image: base64Image || formData.image
             };
 
-            await ProductsService.create(newProduct as Product);
-            
-            // Reset form
-            setFormData({
-                name: '',
-                description: '',
-                price: 0,
-                categoryId: '',
-                stock: 0,
-                image: ''
-            });
-            setSelectedImage(null);
-            setImagePreview(null);
-            if (fileInputRef.current) {
-                fileInputRef.current.value = '';
+            if (isEditing && selectedProductId) {
+                // Update existing product
+                await ProductsService.update(selectedProductId, newProduct);
+                toast.success('Product updated successfully');
+            } else {
+                // Create new product
+                const payload = {
+                    product: newProduct,
+                    categoryId: formData.category.id
+                }   
+
+                await ProductsService.create(payload as CreateProduct);
+                toast.success('Product created successfully');
             }
             
-            toast.success('Product created successfully');
+            resetForm();
             fetchData(); // Refresh the list
         } catch (err) {
             console.error('Error creating product:', err);
@@ -178,7 +220,7 @@ const ProductsContent: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-screen">
+            <div className="flex justify-center items-center h-screen">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
             </div>
         );
@@ -187,12 +229,14 @@ const ProductsContent: React.FC = () => {
     return (
         <div className="space-y-6">
             {/* Create Product Form */}
-            <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-xl font-semibold mb-4">Create New Product</h2>
+            <div className="bg-white rounded-lg border shadow p-6">
+                <h2 className="text-xl font-semibold mb-4 text-darkGray">
+                    {isEditing ? 'Edit Product' : 'Create New Product'}
+                </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Image Upload */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-darkGray mb-2">
                             Product Image
                         </label>
                         <div className="flex items-center space-x-4">
@@ -232,19 +276,19 @@ const ProductsContent: React.FC = () => {
                                 <button
                                     type="button"
                                     onClick={() => fileInputRef.current?.click()}
-                                    className="bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                                    className="bg-gray-100 text-lightGray px-4 py-2 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-text-darkGray focus:ring-offset-2"
                                 >
                                     Choose File
                                 </button>
                             )}
                         </div>
-                        <p className="mt-2 text-sm text-gray-500">
+                        <p className="mt-2 text-sm text-darkGray">
                             Maximum file size: 5MB. Supported formats: JPG, PNG, GIF
                         </p>
                     </div>
 
                     <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="name" className="block text-sm font-medium text-darkGray">
                             Name
                         </label>
                         <input
@@ -252,38 +296,38 @@ const ProductsContent: React.FC = () => {
                             id="name"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            className="mt-1 p-1 h-[40px] border block w-full text-lightGray rounded-md border-gray-300 shadow-sm "
                             required
                         />
                     </div>
                     <div>
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="description" className="block text-sm font-medium text-darkGray">
                             Description
                         </label>
                         <textarea
                             id="description"
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            className="mt-1 p-1 border block w-full text-lightGray rounded-md border-gray-300 shadow-sm "
                             rows={3}
                             required
                         />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="price" className="block text-sm font-medium text-darkGray">
                                 Price
                             </label>
                             <div className="mt-1 relative rounded-md shadow-sm">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <span className="text-gray-500 sm:text-sm">€</span>
+                                    <span className="text-darkGray sm:text-sm">€</span>
                                 </div>
                                 <input
                                     type="number"
                                     id="price"
                                     value={formData.price}
                                     onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-                                    className="pl-7 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                    className="pl-7 h-[40px] border text-lightGray block w-full rounded-md border-gray-300 shadow-sm "
                                     required
                                     min="0"
                                     step="0.01"
@@ -291,7 +335,7 @@ const ProductsContent: React.FC = () => {
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="stock" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="stock" className="block text-sm font-medium text-darkGray">
                                 Stock
                             </label>
                             <input
@@ -299,21 +343,29 @@ const ProductsContent: React.FC = () => {
                                 id="stock"
                                 value={formData.stock}
                                 onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) })}
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                className="mt-1 h-[40px] border ps-3 text-lightGray block w-full rounded-md border-gray-300 shadow-sm "
                                 required
                                 min="0"
                             />
                         </div>
                     </div>
                     <div>
-                        <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="category" className="block text-sm font-medium text-darkGray">
                             Category
                         </label>
                         <select
                             id="category"
-                            value={formData.categoryId}
-                            onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                            value={formData.category.id}
+                            onChange={(e) => 
+                                setFormData({ 
+                                    ...formData, 
+                                    category: { 
+                                        id: categories.find(cat => cat.id === e.target.value)?.id, 
+                                        name: String(categories.find(cat => cat.id === e.target.value)?.name)
+                                    } 
+                                })
+                            }
+                            className="mt-1 h-[40px] border block w-full rounded-md border-gray-300 text-lightGray shadow-sm "
                             required
                         >
                             <option value="">Select a category</option>
@@ -327,44 +379,53 @@ const ProductsContent: React.FC = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                        className={`w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                             loading ? 'opacity-50 cursor-not-allowed' : ''
                         }`}
                     >
-                        {loading ? 'Creating...' : 'Create Product'}
+                        {loading ? (isEditing ? 'Updating...' : 'Creating...') : (isEditing ? 'Update Product' : 'Create Product')}
                     </button>
+                    {isEditing && (
+                        <button
+                            type="button"
+                            onClick={resetForm}
+                            className="w-full mt-2 bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                        >
+                            Cancel Edit
+                        </button>
+                    )}
                 </form>
             </div>
 
             {/* Products Table */}
-            <div className="bg-white rounded-lg shadow">
+            <div className="bg-white rounded-lg border shadow">
                 <div className="p-6">
-                    <h2 className="text-xl font-semibold mb-4">Products</h2>
+                    <h2 className="text-xl font-semibold mb-4 text-darkGray">Products</h2>
                     {error && <div className="text-red-500 mb-4">{error}</div>}
                 </div>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Image
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Name
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Description
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Price
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Stock
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Category
                                 </th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Actions
                                 </th>
                             </tr>
@@ -383,27 +444,32 @@ const ProductsContent: React.FC = () => {
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm font-medium text-gray-900">{product.name}</div>
+                                        <div className="text-sm font-medium text-darkGray">{product.name}</div>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <div className="text-sm text-gray-500 line-clamp-2">{product.description}</div>
+                                        <div className="text-sm text-darkGray line-clamp-2">{product.description}</div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm text-gray-900">€{product.price}</div>
+                                        <div className="text-sm text-darkGray">€{product.price}</div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm text-gray-900">{product.stock}</div>
+                                        <div className="text-sm text-darkGray">{product.stock}</div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm text-gray-900">
-                                            {categories.find(c => c.id === product.categoryId)?.name}
+                                        <div className="text-sm text-darkGray">
+                                            {categories.find(c => c.id === product.category.id)?.name}
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <button
+                                            onClick={() => handleEditClick(product)}
+                                            className="text-blue-600 hover:text-blue-900 mr-4"
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
                                             onClick={() => handleDelete(product.id!)}
                                             className="text-red-600 hover:text-red-900"
-                                            disabled={loading}
                                         >
                                             Delete
                                         </button>

@@ -31,9 +31,9 @@ export default function ProductDetail() {
         setProduct(productData);
 
         // Fetch related products from the same category
-        if (productData.categoryId) {
+        if (productData.category.id) {
           const related = await ProductsService.search({
-            categoryId: productData.categoryId,
+            categoryId: productData.category.id,
             page: 1,
             limit: 4,
           });
@@ -63,7 +63,7 @@ export default function ProductDetail() {
 
   const handleAddToCart = () => {
     if (product) {
-      addToCart({ ...product, quantity });
+      addToCart(product, quantity );
     }
   };
 
@@ -71,7 +71,7 @@ export default function ProductDetail() {
     return (
       <div className="container mx-auto px-4 py-20">
         <div className="text-center">
-          <p className="text-gray-600">{t('product.loading')}</p>
+          <p className="text-darkGray">{t('product.loading')}</p>
         </div>
       </div>
     );
@@ -96,7 +96,7 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-20">
+    <div className="container mx-auto px-4 py-32">
       {/* Product Details */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {/* Product Image */}
@@ -111,30 +111,30 @@ export default function ProductDetail() {
 
         {/* Product Info */}
         <div className="space-y-6">
-          <h1 className="text-3xl font-bold">{product.name}</h1>
+          <h1 className="text-3xl font-bold text-darkGray">{product.name}</h1>
           
           <div className="text-2xl font-bold text-primary">
             €{product.price}
           </div>
 
           <div>
-            <h2 className="text-xl font-semibold mb-2">
+            <h2 className="text-xl font-semibold mb-2 text-darkGray">
               {t('product.description')}
             </h2>
-            <p className="text-gray-600">{product.description}</p>
+            <p className="text-lightGray">{product.description}</p>
           </div>
 
           <div>
-            <h2 className="text-xl font-semibold mb-2">
+            <h2 className="text-xl text-darkGray font-semibold mb-2">
               {t('product.specifications')}
             </h2>
             <div className="space-y-2">
-              <div className="flex justify-between py-2 border-b">
+              <div className="flex justify-between text-lightGray py-2 border-b">
                 <span className="font-medium">{t('product.category')}</span>
-                <span>{product.categoryId}</span>
+                <span>{product.category.name}</span>
               </div>
-              <div className="flex justify-between py-2 border-b">
-                <span className="font-medium">{t('product.stock')}</span>
+              <div className="flex justify-between py-2 border-b text-lightGray">
+                <span className="font-medium text-lightGray">{t('product.stock')}</span>
                 <span className={product.stock > 0 ? 'text-green-600' : 'text-red-600'}>
                   {product.stock > 0 ? t('product.inStock') : t('product.outOfStock')}
                 </span>
@@ -144,7 +144,7 @@ export default function ProductDetail() {
 
           {product.stock > 0 && (
             <div className="space-y-4">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 text-lightGray">
                 <span className="font-medium">{t('product.quantity')}:</span>
                 <div className="flex items-center space-x-2">
                   <button
@@ -178,7 +178,7 @@ export default function ProductDetail() {
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <div>
-          <h2 className="text-2xl font-bold mb-6">
+          <h2 className="text-2xl font-bold mb-6 text-darkGray">
             {t('product.relatedProducts')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -186,7 +186,6 @@ export default function ProductDetail() {
               <ProductCard
                 key={relatedProduct.id}
                 product={relatedProduct}
-                showAddToCart={false}
               />
             ))}
           </div>

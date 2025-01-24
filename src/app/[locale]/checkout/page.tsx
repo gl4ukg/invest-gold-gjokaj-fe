@@ -78,21 +78,22 @@ export default function Checkout() {
         quantity: item.quantity,
         price: item.product.price,
       }));
+      console.log(orderItems,"order items");
 
-      const order = await OrdersService.createOrder({
-        email: formData.email,
-        items: orderItems,
-        shippingAddress: {
-          fullName: formData.fullName,
-          address: formData.address,
-          city: formData.city,
-          country: formData.country,
-          postalCode: formData.postalCode,
-          phone: formData.phone,
-        },
-        paymentMethod: formData.paymentMethod,
-        shippingMethod: formData.shippingMethod,
-      });
+      // const order = await OrdersService.createOrder({
+      //   email: formData.email,
+      //   items: orderItems,
+      //   shippingAddress: {
+      //     fullName: formData.fullName,
+      //     address: formData.address,
+      //     city: formData.city,
+      //     country: formData.country,
+      //     postalCode: formData.postalCode,
+      //     phone: formData.phone,
+      //   },
+      //   paymentMethod: formData.paymentMethod,
+      //   shippingMethod: formData.shippingMethod,
+      // });
 
       if (formData.paymentMethod === 'paypal') {
         // PayPal payment will be handled by PayPal buttons
@@ -101,7 +102,7 @@ export default function Checkout() {
 
       // For other payment methods, redirect to confirmation
       clearCart();
-      router.push(`/order-confirmation/${order.id}`);
+      // router.push(`/order-confirmation/${order.id}`);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : t('checkout.errorProcessingOrder')
@@ -128,7 +129,7 @@ export default function Checkout() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-20">
+    <div className="container mx-auto px-4 pt-32 pb-20 text-darkGray">
       <h1 className="text-3xl font-bold mb-8">{t('checkout.title')}</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -296,7 +297,7 @@ export default function Checkout() {
               </div>
             )}
 
-            {formData.paymentMethod === 'paypal' ? (
+            {/* {formData.paymentMethod === 'paypal' ? (
               <PayPalButtons
                 createOrder={(data, actions) => {
                   return actions.order.create({
@@ -332,7 +333,7 @@ export default function Checkout() {
                   ? t('checkout.processing')
                   : t('checkout.placeOrder')}
               </button>
-            )}
+            )} */}
           </form>
         </div>
 

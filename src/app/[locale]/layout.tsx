@@ -8,6 +8,7 @@ import { CartProvider } from '../context/CartContext';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import PayPalProvider from "../components/PayPalProvider";
 import NavigationWrapper from "../components/NavigationWrapper";
+import FooterWrapper from "../components/FooterWrapper";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -97,7 +98,7 @@ export const metadata: Metadata = {
     google: 'your-google-site-verification',
     yandex: 'your-yandex-verification',
     yahoo: 'your-yahoo-verification',
-    bing: 'your-bing-verification',
+    // bing: 'your-bing-verification',
   },
   category: 'Jewelry Store',
   classification: 'Business',
@@ -135,13 +136,14 @@ export default async function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body 
-        className={`${poppins.variable} antialiased`}
+        className={`${poppins.variable} antialiased bg-white`}
         >
         <NextIntlClientProvider messages={messages}>
           <PayPalProvider>
             <CartProvider>
               <NavigationWrapper />
               {children}
+              <FooterWrapper />
               <Toaster position="bottom-right" />
             </CartProvider>
           </PayPalProvider>

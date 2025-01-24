@@ -19,7 +19,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 overflow-hidden">
+        <div className="fixed inset-0 z-[99999] overflow-hidden">
             {/* Backdrop */}
             <div 
                 className="absolute inset-0 bg-black bg-opacity-50 transition-opacity"
@@ -31,13 +31,13 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                 <div className="flex h-full flex-col bg-white shadow-xl">
                     {/* Header */}
                     <div className="flex items-center justify-between px-4 py-6 sm:px-6">
-                        <h2 className="text-lg font-medium text-gray-900 flex items-center">
+                        <h2 className="text-lg font-medium text-darkGray flex items-center">
                             <FaShoppingCart className="mr-2" />
                             {t('title')} ({itemCount})
                         </h2>
                         <button
                             type="button"
-                            className="text-gray-400 hover:text-gray-500"
+                            className="text-darkGray hover:text-darkGray"
                             onClick={onClose}
                         >
                             <span className="sr-only">{t('close')}</span>
@@ -51,9 +51,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                     <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                         {cart.items.length === 0 ? (
                             <div className="text-center py-12">
-                                <FaShoppingCart className="mx-auto h-12 w-12 text-gray-400" />
-                                <h3 className="mt-2 text-sm font-medium text-gray-900">{t('emptyCart')}</h3>
-                                <p className="mt-1 text-sm text-gray-500">{t('startShopping')}</p>
+                                <FaShoppingCart className="mx-auto h-12 w-12 text-darkGray" />
+                                <h3 className="mt-2 text-sm font-medium text-darkGray">{t('emptyCart')}</h3>
+                                <p className="mt-1 text-sm text-darkGray">{t('startShopping')}</p>
                                 <div className="mt-6">
                                     <Link
                                         href="/shop"
@@ -80,11 +80,11 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
                                             <div className="ml-4 flex flex-1 flex-col">
                                                 <div>
-                                                    <div className="flex justify-between text-base font-medium text-gray-900">
+                                                    <div className="flex justify-between text-base font-medium text-darkGray">
                                                         <h3>{item.product.name}</h3>
                                                         <p className="ml-4">€{(item.product.price * item.quantity).toFixed(2)}</p>
                                                     </div>
-                                                    <p className="mt-1 text-sm text-gray-500 line-clamp-2">
+                                                    <p className="mt-1 text-sm text-darkGray line-clamp-2">
                                                         {item.product.description}
                                                     </p>
                                                 </div>
@@ -92,16 +92,16 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                                     <div className="flex items-center space-x-2">
                                                         <button
                                                             onClick={() => updateQuantity(item.product.id!, item.quantity - 1)}
-                                                            className="text-gray-500 hover:text-gray-700"
+                                                            className="text-darkGray hover:text-gray-700"
                                                         >
                                                             <FaMinus size={12} />
                                                         </button>
-                                                        <span className="text-gray-500">
+                                                        <span className="text-darkGray">
                                                             {item.quantity}
                                                         </span>
                                                         <button
                                                             onClick={() => updateQuantity(item.product.id!, item.quantity + 1)}
-                                                            className="text-gray-500 hover:text-gray-700"
+                                                            className="text-darkGray hover:text-gray-700"
                                                         >
                                                             <FaPlus size={12} />
                                                         </button>
@@ -126,11 +126,11 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                     {/* Footer */}
                     {cart.items.length > 0 && (
                         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                            <div className="flex justify-between text-base font-medium text-gray-900">
+                            <div className="flex justify-between text-base font-medium text-darkGray">
                                 <p>{t('subtotal')}</p>
                                 <p>€{cart.total.toFixed(2)}</p>
                             </div>
-                            <p className="mt-0.5 text-sm text-gray-500">{t('shippingNote')}</p>
+                            <p className="mt-0.5 text-sm text-darkGray">{t('shippingNote')}</p>
                             <div className="mt-6">
                                 <Link
                                     href="/checkout"
@@ -140,7 +140,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                     {t('checkout')}
                                 </Link>
                             </div>
-                            <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                            <div className="mt-6 flex justify-center text-center text-sm text-darkGray">
                                 <p>
                                     {t('or')}{' '}
                                     <button

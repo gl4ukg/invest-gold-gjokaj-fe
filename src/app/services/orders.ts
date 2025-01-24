@@ -107,6 +107,18 @@ const OrdersService = {
       throw error;
     }
   },
+
+  async getAll(): Promise<Order[]> {
+    try {
+      const response = await axiosInstance.get(`/orders`);
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw error.response?.data;
+      }
+      throw error;
+    }
+  },
 };
 
 export default OrdersService;
