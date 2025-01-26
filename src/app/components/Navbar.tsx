@@ -4,6 +4,8 @@ import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
+import { useCart } from '../context/CartContext';
 
 // Define Navbar Links
 const NAV_LINKS = [
@@ -24,6 +26,7 @@ const LANGUAGE_LINKS = [
 
 const Navbar = () => {
   const t = useTranslations('navbar');
+  const { itemCount, setIsCartOpen } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -64,16 +67,28 @@ const Navbar = () => {
         </ul>
 
         {/* Language Links */}
-        <ul className="hidden lg:flex space-x-0 ml-auto">
-          {LANGUAGE_LINKS.map((lang) => (
-            <li key={lang.href}>
-              <Link href={lang.href} className="text-white hover:text-gray-400">
-                {lang.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
+        <div className='flex items-center'>
+          <ul className="hidden lg:flex space-x-0 ml-auto">
+            {LANGUAGE_LINKS.map((lang) => (
+              <li key={lang.href}>
+                <Link href={lang.href} className="text-white hover:text-gray-400">
+                  {lang.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          {itemCount > 0 && <button
+              onClick={() => setIsCartOpen(true)}
+              className="hidden lg:flex ms-3 relative bg-primary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
+          >
+              <FaShoppingCart />
+              {itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-white border text-primary rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                      {itemCount}
+                  </span>
+              )}
+          </button>}
+        </div>
         {/* Mobile Toggle Button */}
         <button
           className="text-white cursor-pointer lg:hidden"
@@ -122,6 +137,17 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+        <button
+            onClick={() => setIsCartOpen(true)}
+            className="relative bg-primary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
+        >
+            <FaShoppingCart />
+            {itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-white border text-primary rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                    {itemCount}
+                </span>
+            )}
+        </button>
       </div>
     </nav>
   );

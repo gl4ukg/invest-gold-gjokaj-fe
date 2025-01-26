@@ -1,18 +1,18 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import ProductsService from '@/app/services/products';
 import CategoriesService from '@/app/services/categories';
 import { Product } from '@/app/types/product.types';
 import { Category } from '@/app/types/category.types';
-import Image from 'next/image';
 import { useCart } from '@/app/context/CartContext';
 import Cart from '@/app/components/Cart';
 import { FaShoppingCart, FaFilter } from 'react-icons/fa';
 import { debounce } from 'lodash';
 import { useRouter } from '@/i18n/routing';
 import ProductCard from '@/app/components/ProductCard';
+import Loader from '@/app/components/Loader';
 
 interface Filter {
     minPrice: number;
@@ -21,6 +21,9 @@ interface Filter {
 }
 
 export default function Shop() {
+    const [allProducts, setAllProducts] = useState<Product[]>([]);
+    const [hasMore, setHasMore] = useState(true);
+    const [loadingMore, setLoadingMore] = useState(false);
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
@@ -33,14 +36,14 @@ export default function Shop() {
         maxPrice: 10000,
         sortBy: 'newest'
     });
-    const [isCartOpen, setIsCartOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const ITEMS_PER_PAGE = 12;
+    const ITEMS_PER_PAGE = 9;
 
-    const { addToCart, itemCount } = useCart();
+    const { itemCount, isCartOpen, setIsCartOpen } = useCart();
     const t = useTranslations();
     const router = useRouter();
+    const loaderRef = useRef<HTMLDivElement>(null);
 
     const fetchCategories = async () => {
         try {
@@ -59,9 +62,18 @@ export default function Shop() {
         maxPrice: number;
         sortBy: string;
         page: number;
+        loadMore?: boolean;
     }) => {
         try {
-            setLoading(true);
+            if (!params.loadMore) {
+                setLoading(true);
+            } else {
+                setLoadingMore(true);
+            }
+            
+            // Add artificial delay for better UX
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
             const response = await ProductsService.search({
                 search: params.search,
                 minPrice: params.minPrice,
@@ -72,14 +84,24 @@ export default function Shop() {
                 sortBy: params.sortBy
             });
 
-            setProducts(response.products);
+            if (params.loadMore) {
+                setAllProducts(prev => [...prev, ...response.products]);
+            } else {
+                setAllProducts(response.products);
+            }
+            
+            setHasMore(response.products.length === ITEMS_PER_PAGE);
             setTotalPages(response.totalPages);
             setError(null);
         } catch (err) {
             console.error('Failed to search products:', err);
             setError(t('shop.errorFetchingProducts'));
         } finally {
-            setLoading(false);
+            if (!params.loadMore) {
+                setLoading(false);
+            } else {
+                setLoadingMore(false);
+            }
         }
     };
 
@@ -111,6 +133,7 @@ export default function Shop() {
         const updatedFilters = { ...filters, ...newFilters };
         setFilters(updatedFilters);
         setCurrentPage(1); // Reset to first page when filters change
+        setHasMore(true);
         
         searchProducts({
             search: searchTerm,
@@ -151,6 +174,48 @@ export default function Shop() {
         });
     };
 
+    // Load more products
+    const loadMore = () => {
+        if (loadingMore || !hasMore) return;
+        
+        const nextPage = currentPage + 1;
+        setCurrentPage(nextPage);
+        
+        searchProducts({
+            search: searchTerm,
+            categoryId: selectedCategory,
+            minPrice: filters.minPrice,
+            maxPrice: filters.maxPrice,
+            sortBy: filters.sortBy,
+            page: nextPage,
+            loadMore: true
+        });
+    };
+
+    // Intersection Observer setup
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const first = entries[0];
+                if (first.isIntersecting && hasMore && !loadingMore && !loading) {
+                    loadMore();
+                }
+            },
+            { threshold: 1.0 }
+        );
+
+        const currentLoader = loaderRef.current;
+        if (currentLoader) {
+            observer.observe(currentLoader);
+        }
+
+        return () => {
+            if (currentLoader) {
+                observer.unobserve(currentLoader);
+            }
+        };
+    }, [hasMore, loadingMore, loading, currentPage]);
+
     // Fetch categories on mount
     useEffect(() => {
         fetchCategories();
@@ -170,22 +235,6 @@ export default function Shop() {
 
     return (
         <div className="container mx-auto px-4 pt-32 pb-20">
-            {/* Header with Cart Button */}
-            <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-darkGray">{t('shop.title')}</h1>
-                <button
-                    onClick={() => setIsCartOpen(true)}
-                    className="relative bg-primary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
-                >
-                    <FaShoppingCart />
-                    <span>{t('cart.title')}</span>
-                    {itemCount > 0 && (
-                        <span className="absolute -top-2 -right-2 bg-white border text-primary rounded-full w-6 h-6 flex items-center justify-center text-xs">
-                            {itemCount}
-                        </span>
-                    )}
-                </button>
-            </div>
 
             <div className="flex flex-col lg:flex-row gap-8">
                 {/* Mobile Filters Button */}
@@ -284,50 +333,31 @@ export default function Shop() {
                 {/* Product Grid */}
                 <div className="flex-1">
                     {loading ? (
-                        <div className="text-center py-12">
-                            <p className="text-darkGray">{t('shop.loading')}</p>
-                        </div>
+                        <Loader loaderRef={loaderRef} />
                     ) : error ? (
                         <div className="text-center py-12">
                             <p className="text-red-500">{error}</p>
                         </div>
-                    ) : products.length === 0 ? (
+                    ) : allProducts.length === 0 ? (
                         <div className="text-center py-12">
                             <p className="text-darkGray">{t('shop.noProducts')}</p>
                         </div>
                     ) : (
                         <>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {products.map((product) => (
+                                {allProducts.map((product) => (
                                     <ProductCard key={product.id} product={product} />
                                 ))}
                             </div>
 
-                            {/* Pagination */}
-                            {totalPages > 1 && (
-                                <div className="flex justify-center mt-8 gap-2">
-                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                                        <button
-                                            key={page}
-                                            onClick={() => handlePageChange(page)}
-                                            className={`px-4 py-2 rounded-lg ${
-                                                currentPage === page
-                                                    ? 'bg-primary text-white'
-                                                    : 'bg-gray-200 hover:bg-gray-300'
-                                            }`}
-                                        >
-                                            {page}
-                                        </button>
-                                    ))}
-                                </div>
+                            {/* Infinite Scroll Loader */}
+                            {hasMore && (<Loader loaderRef={loaderRef} />
                             )}
                         </>
                     )}
                 </div>
             </div>
 
-            {/* Cart Sidebar */}
-            <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
         </div>
     );
 }

@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import OrdersService, { Order } from '@/app/services/orders';
 import { useRouter } from '@/i18n/routing';
+import Loader from '@/app/components/Loader';
 
 export default function OrderConfirmation() {
   const t = useTranslations();
@@ -34,17 +35,15 @@ export default function OrderConfirmation() {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center">
-          <p className="text-gray-600">{t('orderConfirmation.loading')}</p>
-        </div>
+      <div className="container flex items-center justify-center h-screen mx-auto px-4 pt-32 pb-20">
+        <Loader />
       </div>
     );
   }
 
   if (error || !order) {
     return (
-      <div className="container mx-auto px-4 py-20">
+      <div className="container flex items-center justify-center h-screen mx-auto px-4 pt-32 pb-20">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-red-500 mb-4">
             {t('orderConfirmation.error')}
@@ -59,6 +58,18 @@ export default function OrderConfirmation() {
         </div>
       </div>
     );
+  }
+
+  const paymentMethod: { [key: string]: string } = {
+    "paypal": "PayPal",
+    "card": "Credit Card",
+    "bank_transfer": "Bank Transfer",
+    "cash_on_delivery": "Cash on Delivery",
+  }
+
+  const shippingMethod: { [key: string]: string } = {
+    "local": "Local Delivery (Kosovo)",
+    "international": "International Delivery",
   }
 
   return (
@@ -115,13 +126,13 @@ export default function OrderConfirmation() {
               {t('orderConfirmation.shippingAddress')}
             </h3>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <p>{order.shippingAddress.fullName}</p>
-              <p>{order.shippingAddress.address}</p>
-              <p>
+              <p className="capitalize">{order.shippingAddress.fullName}</p>
+              <p className="capitalize">{order.shippingAddress.address}</p>
+              <p className="capitalize">
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
               </p>
-              <p>{order.shippingAddress.country}</p>
-              <p>{order.shippingAddress.phone}</p>
+              <p className="capitalize">{order.shippingAddress.country}</p>
+              <p className="capitalize">{order.shippingAddress.phone}</p>
             </div>
           </div>
 
@@ -132,10 +143,10 @@ export default function OrderConfirmation() {
             </h3>
             <div className="bg-gray-50 p-4 rounded-lg">
               <p>
-                {t('orderConfirmation.method')}: {order.paymentMethod}
+                {t('orderConfirmation.method')}: {paymentMethod[order.paymentMethod]}
               </p>
               <p>
-                {t('orderConfirmation.shipping')}: {order.shippingMethod}
+                {t('orderConfirmation.shipping')}: {shippingMethod[order.shippingMethod]}
               </p>
             </div>
           </div>
@@ -148,15 +159,15 @@ export default function OrderConfirmation() {
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span>{t('orderConfirmation.subtotal')}</span>
-                <span>€{order.subtotal.toFixed(2)}</span>
+                <span>€{order.subtotal}</span>
               </div>
               <div className="flex justify-between">
                 <span>{t('orderConfirmation.shipping')}</span>
-                <span>€{order.shippingCost.toFixed(2)}</span>
+                <span>€{order.shippingCost}</span>
               </div>
               <div className="flex justify-between font-bold text-lg pt-2 border-t">
                 <span>{t('orderConfirmation.total')}</span>
-                <span>€{order.total.toFixed(2)}</span>
+                <span>€{order.total}</span>
               </div>
             </div>
           </div>
