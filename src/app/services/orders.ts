@@ -11,16 +11,24 @@ export interface ShippingAddress {
 }
 
 export interface OrderItem {
-  productId: string;
+  productId: string | undefined;
   quantity: number;
   price: number;
+  total?: string;
+  id?: string;
+  product?: {
+    id: string;
+    name: string;
+  }
 }
 
 export interface CreateOrderRequest {
   email: string;
   items: OrderItem[];
   shippingAddress: ShippingAddress;
-  paymentMethod: 'paypal' | 'card' | 'bank_transfer' | 'cash_on_delivery';
+  paymentMethod: 'paypal' | 'card' | 
+//   'bank_transfer' |
+   'cash_on_delivery';
   shippingMethod: 'local' | 'international';
 }
 
@@ -41,12 +49,32 @@ export interface Order {
 
 const OrdersService = {
   calculateShippingCost(shippingMethod: string, country: string): number {
-    if (shippingMethod === 'local' && country.toLowerCase() === 'kosovo') {
-      return 2; // 2 EUR for Kosovo
+    const countryLower = country.toLowerCase().trim();
+    const shippingMethodLower = shippingMethod.toLowerCase().trim();
+
+    if (shippingMethodLower === 'local' && 
+        (countryLower === 'kosovo' || countryLower === 'kosova' || countryLower === 'kosovë' || 
+         countryLower === 'albania' || countryLower === 'shqiperi' || countryLower === 'shqipëri')) {
+      return 2;
     }
-    // For international shipping, we could implement a more complex calculation
-    // based on country and weight/size, but for now returning a fixed rate
-    return 15; // 15 EUR for international
+
+    // International shipping rates based on regions
+    if (shippingMethodLower === 'international') {
+      // European countries
+    //   const europeanCountries = [
+    //     'germany', 'deutschland', 'france', 'italia', 'italy', 'spain', 'españa',
+    //     'switzerland', 'schweiz', 'austria', 'österreich', 'belgium', 'netherlands',
+    //     'sweden', 'norway', 'denmark', 'finland', 'greece'
+    //   ];
+      
+    //   if (europeanCountries.includes(countryLower)) {
+    //     return 15; // 15 EUR for European countries
+    //   }
+      
+      return 25;
+    }
+
+    return 2;
   },
 
   async createOrder(orderData: CreateOrderRequest): Promise<Order> {

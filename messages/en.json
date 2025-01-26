@@ -1,6 +1,6 @@
 {
     "navbar": {
-        "about": "About us",
+        "about": "About Us",
         "rings": "Rings",
         "jewelery": "Jewelry",
         "services": "Services",
@@ -11,18 +11,18 @@
         "title": "INVEST GOLD",
         "subtitle": "We are always close to those who swear in front of love",
         "secondSubtitle": "Engagement Rings, Wedding Rings, Gold Bracelets and Chains in Kosovo",
-        "seeMore": "view more",
-        "video": "video"
+        "seeMore": "View More",
+        "video": "Video"
     },
     "about": {
-        "title": "About us",
+        "title": "About Us",
         "subtitle": "Invest Gold Gjokaj is your premier destination for engagement rings, wedding rings, gold bracelets, and gold chains in Kosovo. We create unforgettable moments with our curated collection of gold jewelry, including modern engagement rings, classic wedding bands, custom gold bracelets, and quality gold chains. Each piece is crafted with expertise to immortalize your special moments."
     },
     "rings": {
         "rings": "Rings",
         "title": "Ring",
         "subtitle": "Choose the perfect engagement or wedding ring from our curated collection. Discover unique gold bracelets and chains designed for every special moment in your life. Our gold craftsmanship ensures lasting quality and timeless style.",
-        "seeMore": "view more",
+        "seeMore": "View More",
         "shop": "Shop",
         "width": "Width",
         "height": "Height",
@@ -30,8 +30,8 @@
         "whiteGold": "White Gold",
         "roseGold": "Rose Gold",
         "twoColorGold": "Two-color Gold",
-        "multiColorGold": "MultiColored Gold",
-        "prev": "Prev",
+        "multiColorGold": "Multi-colored Gold",
+        "prev": "Previous",
         "next": "Next"
     },
     "services": {
@@ -106,22 +106,29 @@
         "priceRange": "Price Range",
         "min": "Min",
         "max": "Max",
-        "apply": "Apply",
-        "reset": "Reset",
-        "sort": "Sort by",
-        "sortOptions": {
-            "newest": "Newest",
-            "priceAsc": "Price: Low to High",
-            "priceDesc": "Price: High to Low",
-            "nameAsc": "Name: A to Z",
-            "nameDesc": "Name: Z to A"
-        }
+        "sortBy": "Sort By",
+        "newest": "Newest",
+        "priceLowToHigh": "Price: Low to High",
+        "priceHighToLow": "Price: High to Low",
+        "addToCart": "Add to Cart",
+        "loading": "Loading...",
+        "noProducts": "No products found",
+        "outOfStock": "Out of Stock",
+        "errorFetchingProducts": "Error loading products",
+        "errorFetchingCategories": "Error loading categories",
+        "categoryAll": "All",
+        "categoryRings": "Rings",
+        "categoryBracelets": "Bracelets",
+        "categoryNecklaces": "Necklaces",
+        "categoryCustom": "Custom",
+        "allCategories": "All Categories",
+        "inStock": "In Stock"
     },
     "cart": {
         "title": "Shopping Cart",
         "close": "Close",
         "emptyCart": "Your cart is empty",
-        "startShopping": "Start shopping by adding some items to your cart",
+        "startShopping": "Start shopping by adding items to your cart",
         "continueShopping": "Continue Shopping",
         "subtotal": "Subtotal",
         "shippingNote": "Shipping and taxes calculated at checkout",
@@ -153,6 +160,9 @@
         "creditCard": "Credit Card",
         "bankTransfer": "Bank Transfer",
         "cashOnDelivery": "Cash on Delivery",
+        "payWithPaypal": "Pay securely with PayPal",
+        "payWithCard": "Pay with credit or debit card",
+        "payOnDelivery": "Pay with cash when your order arrives",
         "orderSummary": "Order Summary",
         "quantity": "Quantity",
         "subtotal": "Subtotal",
@@ -164,7 +174,7 @@
     },
     "orderConfirmation": {
         "loading": "Loading order details...",
-        "error": "Error Loading Order",
+        "error": "Error Loading",
         "errorLoading": "Unable to load order details",
         "backToShop": "Back to Shop",
         "thankYou": "Thank You for Your Order!",
@@ -183,7 +193,7 @@
         "continueShopping": "Continue Shopping"
     },
     "product": {
-        "loading": "Loading product details...",
+        "loading": "Loading product...",
         "error": "Error loading product",
         "notFound": "Product not found",
         "backToShop": "Back to Shop",

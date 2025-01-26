@@ -23,14 +23,25 @@ export const useCart = () => {
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [cart, setCart] = useState<Cart>(initialCart);
+    const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const t = useTranslations();
 
     // Load cart from localStorage on mount
     useEffect(() => {
-        const savedCart = localStorage.getItem('cart');
-        if (savedCart) {
-            setCart(JSON.parse(savedCart));
-        }
+        const loadCart = async () => {
+            try {
+                const savedCart = localStorage.getItem('cart');
+                if (savedCart) {
+                    setCart(JSON.parse(savedCart));
+                }
+            } catch (error) {
+                console.error('Error loading cart:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadCart();
     }, []);
 
     // Save cart to localStorage whenever it changes
@@ -148,7 +159,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             removeFromCart,
             updateQuantity,
             clearCart,
-            itemCount
+            itemCount,
+            isCartOpen,
+            setIsCartOpen,
+            isLoading
         }}>
             {children}
         </CartContext.Provider>

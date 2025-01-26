@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useCart } from '@/app/context/CartContext';
 import OrdersService from '@/app/services/orders';
 import { PayPalButtons } from '@paypal/react-paypal-js';
 import { useRouter } from '@/i18n/routing';
+import Loader from '@/app/components/Loader';
+import { countries, kosovoMunicipalities } from '@/app/data/locations';
 
 interface CheckoutForm {
   email: string;
@@ -15,22 +17,24 @@ interface CheckoutForm {
   country: string;
   postalCode: string;
   phone: string;
-  paymentMethod: 'paypal' | 'card' | 'bank_transfer' | 'cash_on_delivery';
+  paymentMethod: 'paypal' | 'card' | 
+  // 'bank_transfer' |
+   'cash_on_delivery';
   shippingMethod: 'local' | 'international';
 }
 
 export default function Checkout() {
   const t = useTranslations();
   const router = useRouter();
-  const { cart, clearCart } = useCart();
+  const { cart, clearCart, isLoading } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<CheckoutForm>({
     email: '',
     fullName: '',
     address: '',
-    city: '',
-    country: '',
+    city: 'Prishtina',  // Default city for Kosovo
+    country: 'Kosovo',   // Default to Kosovo
     postalCode: '',
     phone: '',
     paymentMethod: 'paypal',
@@ -38,23 +42,45 @@ export default function Checkout() {
   });
 
   const [orderSummary, setOrderSummary] = useState({
-    subtotal: cart.total,
+    subtotal: 0,
     shippingCost: 2,
-    total: cart.total,
+    total: 0,
   });
 
+  // Initialize order summary with useEffect to ensure cart is loaded
+  useEffect(() => {
+    setOrderSummary({
+      subtotal: cart.total,
+      shippingCost: 2, // Default shipping cost
+      total: cart.total + 2,
+    });
+  }, [cart.total]);
+
+  useEffect(() => {
+    if (formData.country.toLowerCase() === 'kosovo') {
+      // If city is not in Kosovo municipalities, reset it
+      if (!kosovoMunicipalities.includes(formData.city)) {
+        setFormData(prev => ({ ...prev, city: kosovoMunicipalities[0] }));
+      } else {
+        setFormData(prev => ({ ...prev, city: '' }));
+      }
+    }
+  }, [formData.country]);
+
   // Update shipping cost when shipping method or country changes
-  const updateShippingCost = () => {
+  const updateShippingCost = (shippingMethod: string, country: string) => {
     const shippingCost = OrdersService.calculateShippingCost(
-      formData.shippingMethod,
-      formData.country
+      shippingMethod,
+      country
     );
+    console.log(shippingCost, "shipping cost");
     setOrderSummary({
       subtotal: cart.total,
       shippingCost,
       total: cart.total + shippingCost,
     });
   };
+  console.log(formData, "form data");
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -62,8 +88,10 @@ export default function Checkout() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    if (name === 'shippingMethod' || name === 'country') {
-      updateShippingCost();
+    if (name === 'shippingMethod') {
+      updateShippingCost(value, formData.country);
+    } else if (name === 'country') {
+      updateShippingCost(formData.shippingMethod, value);
     }
   };
 
@@ -78,22 +106,22 @@ export default function Checkout() {
         quantity: item.quantity,
         price: item.product.price,
       }));
-      console.log(orderItems,"order items");
+      console.log(orderItems, "order items");
 
-      // const order = await OrdersService.createOrder({
-      //   email: formData.email,
-      //   items: orderItems,
-      //   shippingAddress: {
-      //     fullName: formData.fullName,
-      //     address: formData.address,
-      //     city: formData.city,
-      //     country: formData.country,
-      //     postalCode: formData.postalCode,
-      //     phone: formData.phone,
-      //   },
-      //   paymentMethod: formData.paymentMethod,
-      //   shippingMethod: formData.shippingMethod,
-      // });
+      const order = await OrdersService.createOrder({
+        email: formData.email,
+        items: orderItems,
+        shippingAddress: {
+          fullName: formData.fullName,
+          address: formData.address,
+          city: formData.city,
+          country: formData.country,
+          postalCode: formData.postalCode,
+          phone: formData.phone,
+        },
+        paymentMethod: formData.paymentMethod,
+        shippingMethod: formData.shippingMethod,
+      });
 
       if (formData.paymentMethod === 'paypal') {
         // PayPal payment will be handled by PayPal buttons
@@ -102,7 +130,7 @@ export default function Checkout() {
 
       // For other payment methods, redirect to confirmation
       clearCart();
-      // router.push(`/order-confirmation/${order.id}`);
+      router.push(`/order-confirmation/${order.id}`);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : t('checkout.errorProcessingOrder')
@@ -111,6 +139,14 @@ export default function Checkout() {
       setLoading(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="container flex items-center justify-center h-screen mx-auto px-4 pt-32 pb-20">
+        <Loader />
+      </div>
+    );
+  }
 
   if (cart.items?.length === 0) {
     return (
@@ -177,24 +213,44 @@ export default function Checkout() {
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                 />
                 <div className="grid grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    placeholder={t('checkout.city')}
-                    required
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
-                  />
-                  <input
-                    type="text"
+                  {formData.country.toLowerCase() === 'kosovo' ? (
+                    <select
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
+                    >
+                      {kosovoMunicipalities.map((city) => (
+                        <option key={city} value={city}>
+                          {city}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input
+                      type="text"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      placeholder={t('checkout.city')}
+                      required
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
+                    />
+                  )}
+                  <select
                     name="country"
                     value={formData.country}
                     onChange={handleInputChange}
-                    placeholder={t('checkout.country')}
                     required
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
-                  />
+                  >
+                    {countries.map((country) => (
+                      <option key={country} value={country}>
+                        {country}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <input
@@ -243,51 +299,96 @@ export default function Checkout() {
               <h2 className="text-xl font-semibold mb-4">
                 {t('checkout.paymentMethod')}
               </h2>
-              <div className="space-y-2">
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="paypal"
-                    checked={formData.paymentMethod === 'paypal'}
-                    onChange={handleInputChange}
-                    className="text-primary"
-                  />
-                  <span>PayPal</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="card"
-                    checked={formData.paymentMethod === 'card'}
-                    onChange={handleInputChange}
-                    className="text-primary"
-                  />
-                  <span>{t('checkout.creditCard')}</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="bank_transfer"
-                    checked={formData.paymentMethod === 'bank_transfer'}
-                    onChange={handleInputChange}
-                    className="text-primary"
-                  />
-                  <span>{t('checkout.bankTransfer')}</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="cash_on_delivery"
-                    checked={formData.paymentMethod === 'cash_on_delivery'}
-                    onChange={handleInputChange}
-                    className="text-primary"
-                  />
-                  <span>{t('checkout.cashOnDelivery')}</span>
-                </label>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div
+                  className={`border rounded-lg p-4 cursor-pointer transition-all duration-200 ${
+                    formData.paymentMethod === 'paypal'
+                      ? 'border-primary bg-primary/5 shadow-md'
+                      : 'border-gray-200 hover:border-primary/50'
+                  }`}
+                  onClick={() =>
+                    handleInputChange({
+                      target: { name: 'paymentMethod', value: 'paypal' },
+                    } as any)
+                  }
+                >
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="paypal"
+                      checked={formData.paymentMethod === 'paypal'}
+                      onChange={() => {}}
+                      className="text-primary w-4 h-4"
+                    />
+                    <div className="flex flex-col">
+                      <span className="font-medium">PayPal</span>
+                      <span className="text-sm text-gray-500">
+                        {t('checkout.payWithPaypal')}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  className={`border rounded-lg p-4 cursor-pointer transition-all duration-200 ${
+                    formData.paymentMethod === 'card'
+                      ? 'border-primary bg-primary/5 shadow-md'
+                      : 'border-gray-200 hover:border-primary/50'
+                  }`}
+                  onClick={() =>
+                    handleInputChange({
+                      target: { name: 'paymentMethod', value: 'card' },
+                    } as any)
+                  }
+                >
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="card"
+                      checked={formData.paymentMethod === 'card'}
+                      onChange={() => {}}
+                      className="text-primary w-4 h-4"
+                    />
+                    <div className="flex flex-col">
+                      <span className="font-medium">{t('checkout.creditCard')}</span>
+                      <span className="text-sm text-gray-500">
+                        {t('checkout.payWithCard')}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  className={`border rounded-lg p-4 cursor-pointer transition-all duration-200 ${
+                    formData.paymentMethod === 'cash_on_delivery'
+                      ? 'border-primary bg-primary/5 shadow-md'
+                      : 'border-gray-200 hover:border-primary/50'
+                  }`}
+                  onClick={() =>
+                    handleInputChange({
+                      target: { name: 'paymentMethod', value: 'cash_on_delivery' },
+                    } as any)
+                  }
+                >
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value="cash_on_delivery"
+                      checked={formData.paymentMethod === 'cash_on_delivery'}
+                      onChange={() => {}}
+                      className="text-primary w-4 h-4"
+                    />
+                    <div className="flex flex-col">
+                      <span className="font-medium">{t('checkout.cashOnDelivery')}</span>
+                      <span className="text-sm text-gray-500">
+                        {t('checkout.payOnDelivery')}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -297,18 +398,38 @@ export default function Checkout() {
               </div>
             )}
 
-            {/* {formData.paymentMethod === 'paypal' ? (
+            {formData.paymentMethod === 'paypal' ? (
               <PayPalButtons
                 createOrder={(data, actions) => {
                   return actions.order.create({
                     purchase_units: [
                       {
+                        description: "Order from GoldGjokaj",
                         amount: {
-                          value: orderSummary.total.toString(),
+                          value: orderSummary.total.toFixed(2), // Ensure 2 decimal places
                           currency_code: 'EUR',
+                          breakdown: {
+                            item_total: {
+                              value: orderSummary.subtotal.toFixed(2),
+                              currency_code: 'EUR'
+                            },
+                            shipping: {
+                              value: orderSummary.shippingCost.toFixed(2),
+                              currency_code: 'EUR'
+                            }
+                          }
                         },
-                      },
+                        items: cart.items.map(item => ({
+                          name: item.product.name,
+                          unit_amount: {
+                            value: item.product.price.toFixed(2),
+                            currency_code: 'EUR'
+                          },
+                          quantity: item.quantity.toString()
+                        }))
+                      }
                     ],
+                    intent: 'CAPTURE'
                   });
                 }}
                 onApprove={async (data, actions) => {
@@ -333,7 +454,7 @@ export default function Checkout() {
                   ? t('checkout.processing')
                   : t('checkout.placeOrder')}
               </button>
-            )} */}
+            )}
           </form>
         </div>
 
