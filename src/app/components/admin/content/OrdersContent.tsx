@@ -1,16 +1,17 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import OrdersService from '@/app/services/orders';
+import OrdersService, { OrderStatus } from '@/app/services/orders';
 import { format } from 'date-fns';
 import { Order } from '@/app/services/orders';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { toast } from 'react-hot-toast';
 
 export default function OrdersContent() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [expandedRows, setExpandedRows] = useState<{ [key: string]: boolean }>({});
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [status, setStatus] = useState<OrderStatus>(OrderStatus.PROCESSING);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -27,10 +28,6 @@ export default function OrdersContent() {
     }));
   };
 
-  const openModal = (order: Order) => {
-    setSelectedOrder(order);
-    setIsModalOpen(true);
-  };
 
   const statusColors: { [key: string]: string } = {
     pending: 'bg-yellow-100 text-yellow-800',
@@ -54,16 +51,25 @@ export default function OrdersContent() {
   };
 
 
-    const handleStatusUpdate = async (id: string, status: Order['status']) => {
-        try {
-            // await OrdersService.updateStatus(id, status);
-            // fetchOrders(); // Refresh the list
-            // setError(null);
-        } catch (err) {
-            // setError('Ndrrimi i statusit deshtoi');
-            console.error(err);
-        }
-    };
+  const handleStatusUpdate = async (orderId: string, newStatus: OrderStatus) => {
+    setIsLoading(true);
+    try {
+      const updatedOrder = await OrdersService.updateOrderStatus(orderId, newStatus);
+      setStatus(updatedOrder.status);
+      // Update the order in the orders list
+      setOrders(prevOrders => 
+        prevOrders.map(order => 
+          order.id === orderId ? { ...order, status: updatedOrder.status } : order
+        )
+      );
+      toast.success('Statusi u përditësua me sukses!');
+    } catch (error) {
+      console.error('Error updating order status:', error);
+      toast.error('Ndodhi një gabim gjatë përditësimit të statusit.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
 
   return (
@@ -72,24 +78,18 @@ export default function OrdersContent() {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider"></th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Numri porosise</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Klienti</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Totali</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Statusi</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Data</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Veprimet</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider"></th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {orders.map((order) => (
               <React.Fragment key={order.id}>
                 <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <button onClick={() => toggleRow(order.id)} className="text-darkGray hover:text-gray-700">
-                      {expandedRows[order.id] ? <FaChevronUp /> : <FaChevronDown />}
-                    </button>
-                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-darkGray">
                     {order.id.slice(0, 8)}...
                   </td>
@@ -101,24 +101,35 @@ export default function OrdersContent() {
                     €{Number(order.total).toFixed(2)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColors[order.status]}`}>
-                      {order.status}
-                    </span>
+                    <div className="relative inline-block">
+                      <select
+                        value={order.status}
+                        onChange={(e) => handleStatusUpdate(order.id!, e.target.value as OrderStatus)}
+                        className={`pl-3 pr-8 py-1 text-sm font-semibold rounded-full border-2 focus:outline-none focus:ring-2 focus:ring-offset-2 ${statusColors[order.status]} border-transparent`}
+                        disabled={isLoading}
+                      >
+                        <option value={OrderStatus.PENDING}>Në pritje</option>
+                        <option value={OrderStatus.PROCESSING}>Procesuar</option>
+                        <option value={OrderStatus.SHIPPED}>Dërguar</option>
+                        <option value={OrderStatus.DELIVERED}>Dorëzuar</option>
+                        <option value={OrderStatus.CANCELLED}>Anulluar</option>
+                      </select>
+                      {isLoading && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 rounded-full">
+                          <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                      )}
+                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-darkGray">
                     {format(new Date(order.createdAt), 'MMM dd, yyyy')}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <select
-                        value={order.status}
-                        onChange={(e) => handleStatusUpdate(order.id!, e.target.value as Order['status'])}
-                        className="text-sm rounded-md text-darkGray border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    >
-                        <option value="pending">Në pritje</option>
-                        <option value="processing">Procesuar</option>
-                        <option value="completed">Kompletuar</option>
-                        <option value="cancelled">Anulluar</option>
-                    </select>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <button onClick={() => toggleRow(order.id)} className="text-darkGray hover:text-gray-700">
+                      {expandedRows[order.id] ? <FaChevronUp /> : <FaChevronDown />}
+                    </button>
                   </td>
                 </tr>
                 {expandedRows[order.id] && (
