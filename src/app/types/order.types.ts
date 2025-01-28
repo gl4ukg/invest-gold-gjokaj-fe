@@ -1,3 +1,5 @@
+import { OrderStatus } from "../services/orders";
+
 export interface OrderItem {
     productId: string;
     quantity: number;
@@ -9,7 +11,7 @@ export interface Order {
     userId?: string;
     items: OrderItem[];
     total: number;
-    status: 'pending' | 'processing' | 'completed' | 'cancelled';
+    status: OrderStatus;
     shippingAddress: {
         street: string;
         city: string;

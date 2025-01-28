@@ -31,7 +31,13 @@ export interface CreateOrderRequest {
    'cash_on_delivery';
   shippingMethod: 'local' | 'international';
 }
-
+export enum OrderStatus {
+  PENDING = 'pending',
+  PROCESSING = 'processing',
+  SHIPPED = 'shipped',
+  DELIVERED = 'delivered',
+  CANCELLED = 'cancelled'
+}
 export interface Order {
   id: string;
   email: string;
@@ -42,7 +48,7 @@ export interface Order {
   subtotal: number;
   shippingCost: number;
   total: number;
-  status: 'pending' | 'paid' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  status: OrderStatus;
   createdAt: string;
   updatedAt: string;
 }
@@ -147,6 +153,17 @@ const OrdersService = {
       throw error;
     }
   },
+  async updateOrderStatus(orderId: string, status: OrderStatus): Promise<Order> {
+    try {
+      const { data: updatedOrder } = await axiosInstance.patch(`/orders/${orderId}/status`, {
+        status,
+      });
+      return updatedOrder;
+    } catch (error) {
+      console.error('Error updating order status:', error);
+      throw error;
+    }
+  }
 };
 
 export default OrdersService;

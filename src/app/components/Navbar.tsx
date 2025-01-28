@@ -139,7 +139,7 @@ const Navbar = () => {
         </ul>
         <button
             onClick={() => setIsCartOpen(true)}
-            className="relative bg-primary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
+            className="relative bg-primary text-white mx-auto my-2 px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
         >
             <FaShoppingCart />
             {itemCount > 0 && (
