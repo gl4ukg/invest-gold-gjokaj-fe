@@ -69,7 +69,7 @@ export default function ProductDetail() {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-20 h-screen flex justify-center items-center">
         <div className="text-center">
           <p className="text-darkGray">{t('product.loading')}</p>
         </div>
@@ -114,7 +114,7 @@ export default function ProductDetail() {
           <h1 className="text-3xl font-bold text-darkGray">{product.name}</h1>
           
           <div className="text-2xl font-bold text-primary">
-            €{product.price}
+            {product.weight} gr.
           </div>
 
           <div>

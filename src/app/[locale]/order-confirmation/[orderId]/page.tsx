@@ -73,7 +73,7 @@ export default function OrderConfirmation() {
   }
 
   return (
-    <div className="container mx-auto px-4 pt-32 pb-20 text-darkGray">
+    <div className="container mx-auto px-4 pt-32 pb-20 h-screen text-darkGray">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-green-600 mb-4">

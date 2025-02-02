@@ -1,57 +1,68 @@
 'use client';
 
-import { Link } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
+import { Link, usePathname, useRouter } from '@/i18n/routing';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 
-// Define Navbar Links
 const NAV_LINKS = [
   { href: '#about', key: 'about' },
   { href: '#rings', key: 'rings' },
-  { href: '#jewelry', key: 'jewelery' },
+  { href: '#jewelry', key: 'jewelry' },
   { href: '#services', key: 'services' },
   { href: '#contact', key: 'contact' },
-  { href: '/shop', key: 'shop' },
+  { href: '/shop', key: 'shop' }, // External Page
 ];
 
-// Define Language Links
 const LANGUAGE_LINKS = [
-  { href: 'sq', label: 'sq/' },
-  { href: 'en', label: 'en/' },
-  { href: 'de', label: 'de' },
+  { code: 'sq', label: 'SQ' },
+  { code: 'en', label: 'EN' },
+  { code: 'de', label: 'DE' },
 ];
 
 const Navbar = () => {
   const t = useTranslations('navbar');
   const { itemCount, setIsCartOpen } = useCart();
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale()
+  
+  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const homePath = `${locale}`;
+    const fullPath = `${locale}#${sectionId}`;
+    
 
-  // Handle Scroll Event
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
+    if (pathname === homePath) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        window.scrollTo({ top: section.offsetTop - 70, behavior: 'smooth' });
+      }
+    } else {
+      if(pathname === "/shop"){
+        window.location.replace(`/${fullPath}`);
+      } else {
+        router.push(fullPath);
+      }
+    }
+  };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const changeLocale = (newLocale: string) => {
+    if(pathname === "/shop"){
+      window.location.replace(`/${newLocale}/shop`);
+    } else {
+      router.push(`${newLocale}`);
+    }
+  };
 
   return (
-    <nav
-    className={`fixed top-0 w-full z-50 transition-colors duration-300 z-[99999] bg-black/70 shadow-md
-    `}
-      // className={`fixed top-0 w-full z-50 transition-colors duration-300 z-[99999] ${
-      //   isScrolled ? 'bg-black/70 shadow-md' : 'bg-black/70 lg:bg-transparent'
-      // }
-      // `}
-    >
-      <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+    <nav className="fixed top-0 w-full z-[9999] bg-black/70 shadow-md transition-colors duration-300">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="text-white text-xl font-bold flex-shrink-0">
+        <Link href={'/'} className="text-white text-xl font-bold flex-shrink-0">
           <Image src="/images/logo-01.svg" alt="logo" width={220} height={50} priority />
         </Link>
 
@@ -59,95 +70,108 @@ const Navbar = () => {
         <ul className="hidden lg:flex space-x-6 mx-auto">
           {NAV_LINKS.map((link) => (
             <li key={link.key}>
-              <Link href={link.href} className="text-white hover:text-gray-400">
-                {t(link.key)}
-              </Link>
+              {link.href.startsWith('#') ? (
+                <a
+                  href={`/${locale}${link.href}`}
+                  onClick={(e) => handleSectionClick(e, link.href.substring(1))}
+                  className="text-white hover:text-gray-400 transition"
+                >
+                  {t(link.key)}
+                </a>
+              ) : (
+                <Link href={link.href} locale={locale} className="text-white hover:text-gray-400">
+                  {t(link.key)}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
 
-        {/* Language Links */}
-        <div className='flex items-center'>
-          <ul className="hidden lg:flex space-x-0 ml-auto">
+        {/* Language & Cart */}
+        <div className="flex items-center">
+          {/* Language Switcher */}
+          <ul className="hidden lg:flex space-x-3">
             {LANGUAGE_LINKS.map((lang) => (
-              <li key={lang.href}>
-                <Link href={lang.href} className="text-white hover:text-gray-400">
+              <li key={lang.code}>
+                <button
+                  onClick={() => changeLocale(lang.code)}
+                  className={`text-white hover:text-gray-400 transition ${
+                    locale === lang.code ? 'font-bold underline' : ''
+                  }`}
+                >
                   {lang.label}
-                </Link>
+                </button>
               </li>
             ))}
           </ul>
-          {itemCount > 0 && <button
+
+          {/* Cart Button */}
+          {itemCount > 0 && (
+            <button
               onClick={() => setIsCartOpen(true)}
-              className="hidden lg:flex ms-3 relative bg-primary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
-          >
+              className="hidden lg:flex ml-3 relative bg-primary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
+            >
               <FaShoppingCart />
-              {itemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-white border text-primary rounded-full w-6 h-6 flex items-center justify-center text-xs">
-                      {itemCount}
-                  </span>
-              )}
-          </button>}
+              <span className="absolute -top-2 -right-2 bg-white text-primary rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                {itemCount}
+              </span>
+            </button>
+          )}
         </div>
+
         {/* Mobile Toggle Button */}
         <button
           className="text-white cursor-pointer lg:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation"
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed top-17 left-0 w-full bg-black/70 overflow-hidden transition-all duration-500 ease-in-out pb-2 ${
-          isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+        className={`lg:hidden fixed top-16 left-0 w-full bg-black/80 transition-all duration-500 ${
+          isOpen ? 'max-h-screen opacity-100 py-4' : 'max-h-0 opacity-0'
         }`}
       >
-        <ul className="space-y-4 p-4 text-center">
+        <ul className="text-center space-y-4">
           {NAV_LINKS.map((link) => (
             <li key={link.key}>
-              <Link href={link.href} className="text-white hover:text-gray-400">
-                {t(link.key)}
-              </Link>
+              {link.href.startsWith('#') ? (
+                <a
+                  href={`/${locale}${link.href}`}
+                  onClick={(e) => handleSectionClick(e, link.href.substring(1))}
+                  className="text-white hover:text-gray-400 transition"
+                >
+                  {t(link.key)}
+                </a>
+              ) : (
+                <Link href={link.href} locale={locale} className="text-white hover:text-gray-400">
+                  {t(link.key)}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
-        <hr className="w-full border-gray-600 my-1" />
-        <ul className="flex justify-center p-2">
+        <hr className="border-gray-600 my-2" />
+        {/* Mobile Language Switcher */}
+        <ul className="flex justify-center space-x-3">
           {LANGUAGE_LINKS.map((lang) => (
-            <li key={lang.href}>
-              <Link href={lang.href} className="text-white hover:text-gray-400">
+            <li key={lang.code}>
+              <button
+                onClick={() => changeLocale(lang.code)}
+                className={`text-white hover:text-gray-400 transition ${
+                  locale === lang.code ? 'font-bold underline' : ''
+                }`}
+              >
                 {lang.label}
-              </Link>
+              </button>
             </li>
           ))}
         </ul>
-        <button
-            onClick={() => setIsCartOpen(true)}
-            className="relative bg-primary text-white mx-auto my-2 px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
-        >
-            <FaShoppingCart />
-            {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-white border text-primary rounded-full w-6 h-6 flex items-center justify-center text-xs">
-                    {itemCount}
-                </span>
-            )}
-        </button>
       </div>
     </nav>
   );

@@ -104,7 +104,7 @@ export default function Checkout() {
       const orderItems = cart.items.map((item) => ({
         productId: item.product.id,
         quantity: item.quantity,
-        price: item.product.price,
+        price: Number(item.product.price),
       }));
       console.log(orderItems, "order items");
 
@@ -150,7 +150,7 @@ export default function Checkout() {
 
   if (cart.items?.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 py-20 h-screen flex justify-center items-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">{t('checkout.emptyCart')}</h1>
           <button
@@ -165,7 +165,7 @@ export default function Checkout() {
   }
 
   return (
-    <div className="container mx-auto px-4 pt-32 pb-20 text-darkGray">
+    <div className="container mx-auto px-4 pt-32 pb-20 h-screen text-darkGray">
       <h1 className="text-3xl font-bold mb-8">{t('checkout.title')}</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -299,36 +299,8 @@ export default function Checkout() {
               <h2 className="text-xl font-semibold mb-4">
                 {t('checkout.paymentMethod')}
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div
-                  className={`border rounded-lg p-4 cursor-pointer transition-all duration-200 ${
-                    formData.paymentMethod === 'paypal'
-                      ? 'border-primary bg-primary/5 shadow-md'
-                      : 'border-gray-200 hover:border-primary/50'
-                  }`}
-                  onClick={() =>
-                    handleInputChange({
-                      target: { name: 'paymentMethod', value: 'paypal' },
-                    } as any)
-                  }
-                >
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      value="paypal"
-                      checked={formData.paymentMethod === 'paypal'}
-                      onChange={() => {}}
-                      className="text-primary w-4 h-4"
-                    />
-                    <div className="flex flex-col">
-                      <span className="font-medium">PayPal</span>
-                      <span className="text-sm text-gray-500">
-                        {t('checkout.payWithPaypal')}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+     
 
                 <div
                   className={`border rounded-lg p-4 cursor-pointer transition-all duration-200 ${
@@ -398,63 +370,15 @@ export default function Checkout() {
               </div>
             )}
 
-            {formData.paymentMethod === 'paypal' ? (
-              <PayPalButtons
-                createOrder={(data, actions) => {
-                  return actions.order.create({
-                    purchase_units: [
-                      {
-                        description: "Order from GoldGjokaj",
-                        amount: {
-                          value: orderSummary.total.toFixed(2), // Ensure 2 decimal places
-                          currency_code: 'EUR',
-                          breakdown: {
-                            item_total: {
-                              value: orderSummary.subtotal.toFixed(2),
-                              currency_code: 'EUR'
-                            },
-                            shipping: {
-                              value: orderSummary.shippingCost.toFixed(2),
-                              currency_code: 'EUR'
-                            }
-                          }
-                        },
-                        items: cart.items.map(item => ({
-                          name: item.product.name,
-                          unit_amount: {
-                            value: item.product.price.toFixed(2),
-                            currency_code: 'EUR'
-                          },
-                          quantity: item.quantity.toString()
-                        }))
-                      }
-                    ],
-                    intent: 'CAPTURE'
-                  });
-                }}
-                onApprove={async (data, actions) => {
-                  if (!actions.order) return;
-                  
-                  const details = await actions.order.capture();
-                  try {
-                    await handleSubmit(new Event('submit') as any);
-                    // Additional PayPal success handling
-                  } catch (err) {
-                    console.error('PayPal payment error:', err);
-                  }
-                }}
-              />
-            ) : (
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
-              >
-                {loading
-                  ? t('checkout.processing')
-                  : t('checkout.placeOrder')}
-              </button>
-            )}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
+            >
+              {loading
+                ? t('checkout.processing')
+                : t('checkout.placeOrder')}
+            </button>
           </form>
         </div>
 
@@ -471,12 +395,12 @@ export default function Checkout() {
                   className="flex justify-between items-center py-2 border-b"
                 >
                   <div>
-                    <h3 className="font-medium">{item.product.name}</h3>
+                    <h3 className="font-medium">{t('checkout.product')}: {item.product.name}</h3>
                     <p className="text-sm text-gray-600">
                       {t('checkout.quantity')}: {item.quantity}
                     </p>
                   </div>
-                  <span>€{(item.product.price * item.quantity)}</span>
+                  <span>€{(Number(item.product.price) * item.quantity)}</span>
                 </div>
               ))}
               <div className="space-y-2 pt-4">

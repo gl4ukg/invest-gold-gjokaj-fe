@@ -2,7 +2,7 @@
     "navbar": {
         "about": "About Us",
         "rings": "Rings",
-        "jewelery": "Jewelry",
+        "jewelry": "Jewelry",
         "services": "Services",
         "contact": "Contact",
         "shop": "Shop"
@@ -84,8 +84,8 @@
         "saturday": "Saturday",
         "sunday": "Sunday",
         "hours": {
-            "weekdays": "09:00 - 20:00",
-            "saturday": "09:00 - 18:00",
+            "weekdays": "08:00 - 17:00",
+            "saturday": "Closed",
             "sunday": "Closed"
         },
         "form": {
@@ -108,6 +108,7 @@
         "max": "Max",
         "sortBy": "Sort By",
         "newest": "Newest",
+        "oldest": "Oldest",
         "priceLowToHigh": "Price: Low to High",
         "priceHighToLow": "Price: High to Low",
         "addToCart": "Add to Cart",
@@ -164,6 +165,7 @@
         "payWithCard": "Pay with credit or debit card",
         "payOnDelivery": "Pay with cash when your order arrives",
         "orderSummary": "Order Summary",
+        "product": "Product",
         "quantity": "Quantity",
         "subtotal": "Subtotal",
         "shipping": "Shipping",
@@ -213,5 +215,8 @@
         "productRemoved": "Product removed from cart",
         "cartUpdated": "Cart updated successfully",
         "error": "An error occurred"
+    },
+    "jewelry": {
+        "description": "We offer our clients the opportunity to discover the unique, elegant, and precious world of jewelry."
     }
 }

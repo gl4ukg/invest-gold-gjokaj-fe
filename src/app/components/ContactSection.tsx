@@ -286,8 +286,8 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-darkGray mb-1">{t('email')}</h3>
-                    <a href="mailto:info@investgoldgjokaj.com" className="text-lg text-primary hover:text-primary/80 transition-colors">
-                      info@investgoldgjokaj.com
+                    <a href="mailto:investgold_2017@hotmail.com" className="text-lg text-primary hover:text-primary/80 transition-colors">
+                      investgold_2017@hotmail.com
                     </a>
                   </div>
                 </motion.div>

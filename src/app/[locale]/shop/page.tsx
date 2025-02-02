@@ -17,7 +17,7 @@ import Loader from '@/app/components/Loader';
 interface Filter {
     minPrice: number;
     maxPrice: number;
-    sortBy: 'price_asc' | 'price_desc' | 'newest';
+    sortBy: 'price_asc' | 'price_desc' | 'newest' | 'oldest';
 }
 
 export default function Shop() {
@@ -234,7 +234,7 @@ export default function Shop() {
     }, []);
 
     return (
-        <div className="container mx-auto px-4 pt-32 pb-20">
+        <div className="container mx-auto px-4 pt-32 pb-20 h-screen">
 
             <div className="flex flex-col lg:flex-row gap-8">
                 {/* Mobile Filters Button */}
@@ -290,7 +290,7 @@ export default function Shop() {
                         </div>
 
                         {/* Price Range */}
-                        <div className="mb-6">
+                        {/* <div className="mb-6">
                             <h3 className="text-lg font-semibold mb-3 text-darkGray">{t('shop.priceRange')}</h3>
                             <div className="flex gap-4">
                                 <div>
@@ -312,7 +312,7 @@ export default function Shop() {
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Sort */}
                         <div>
@@ -323,8 +323,9 @@ export default function Shop() {
                                 className="w-full px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary  text-lightGray"
                             >
                                 <option value="newest">{t('shop.newest')}</option>
-                                <option value="price_asc">{t('shop.priceLowToHigh')}</option>
-                                <option value="price_desc">{t('shop.priceHighToLow')}</option>
+                                <option value="oldest">{t('shop.oldest')}</option>
+                                {/* <option value="price_asc">{t('shop.priceLowToHigh')}</option>
+                                <option value="price_desc">{t('shop.priceHighToLow')}</option> */}
                             </select>
                         </div>
                     </div>

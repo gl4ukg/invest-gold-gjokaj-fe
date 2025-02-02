@@ -77,7 +77,7 @@ const OrdersService = {
     //     return 15; // 15 EUR for European countries
     //   }
       
-      return 25;
+      return 50;
     }
 
     return 2;
