@@ -5,8 +5,6 @@ import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from '../context/CartContext';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
-import PayPalProvider from "../components/PayPalProvider";
 import NavigationWrapper from "../components/NavigationWrapper";
 import FooterWrapper from "../components/FooterWrapper";
 
@@ -111,15 +109,11 @@ export const metadata: Metadata = {
     'business:contact_data:locality': 'Gjakove',
     'business:contact_data:postal_code': '50000',
     'business:contact_data:country_name': 'Kosovo',
-    'business:contact_data:email': 'info@investgoldgjokaj.com',
+    'business:contact_data:email': 'investgold_2017@hotmail.com',
     'business:contact_data:phone_number': '+383 43 666 236'
   }
 };
-const initialOptions = {
-  clientId: "your_paypal_client_id",
-  currency: "EUR",
-  intent: "capture"
-};
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -139,14 +133,12 @@ export default async function RootLayout({
         className={`${poppins.variable} antialiased bg-white`}
         >
         <NextIntlClientProvider messages={messages}>
-          <PayPalProvider>
             <CartProvider>
               <NavigationWrapper />
               {children}
               <FooterWrapper />
               <Toaster position="bottom-right" />
             </CartProvider>
-          </PayPalProvider>
         </NextIntlClientProvider>
       </body>
     </html>

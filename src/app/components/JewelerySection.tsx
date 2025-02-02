@@ -1,9 +1,11 @@
 "use client";
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 const JewelrySection: React.FC = () => {
   // Refs for scroll detection
+  const t = useTranslations('jewelry')
   const firstSectionRef = useRef(null);
   const secondSectionRef = useRef(null);
   const isFirstSectionInView = useInView(firstSectionRef, { once: true, amount: 0.3 });
@@ -81,8 +83,7 @@ const JewelrySection: React.FC = () => {
                 className="text-[#907C33] font-medium italic text-3xl md:text-4xl"
                 variants={itemVariants}
               >
-                We offer our clients the opportunity to discover the unique,
-                elegant, and precious world of jewelry.
+                {t('description')}
               </motion.p>
             </motion.div>
           </motion.div>

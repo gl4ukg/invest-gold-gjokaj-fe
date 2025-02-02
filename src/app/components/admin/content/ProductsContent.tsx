@@ -20,7 +20,7 @@ const ProductsContent: React.FC = () => {
     const [formData, setFormData] = useState<Omit<Product, 'id' | 'createdAt' | 'updatedAt'>>({
         name: '',
         description: '',
-        price: 0,
+        weight: '2-3',
         category: { id: '', name: '' },
         stock: 0,
         image: ''
@@ -40,11 +40,13 @@ const ProductsContent: React.FC = () => {
                 ProductsService.getAll(),
                 CategoriesService.getAll()
             ]);
-            setProducts(productsData);
+            const sortedProducts = productsData.sort((a, b) => new Date(String(b?.createdAt)).getTime() - new Date(String(a?.createdAt)).getTime());
+
+            setProducts(sortedProducts);
             setCategories(categoriesData);
             setError(null);
         } catch (err) {
-            setError('Marrja e të dhënave dështoi');
+            setError('Marrja e té dhênave dështoi');
             console.error(err);
         } finally {
             setLoading(false);
@@ -96,8 +98,8 @@ const ProductsContent: React.FC = () => {
             toast.error('Përshkrimi i produktit është bosh');
             return false;
         }
-        if (formData.price <= 0) {
-            toast.error('Çmimi duhet të jetë më i madh se 0');
+        if (formData.weight <= '0') {
+            toast.error('Pesha duhet të jetë ose një numër i vetëm (p.sh., "2") ose një varge (p.sh., "2-3")');
             return false;
         }
         if (formData.stock < 0) {
@@ -115,7 +117,7 @@ const ProductsContent: React.FC = () => {
         setFormData({
             name: '',
             description: '',
-            price: 0,
+            weight: '2-3',
             category: { id: '', name: '' },
             stock: 0,
             image: ''
@@ -135,7 +137,7 @@ const ProductsContent: React.FC = () => {
             setFormData({
                 name: productData.name,
                 description: productData.description,
-                price: productData.price,
+                weight: productData.weight,
                 category: productData.category,
                 stock: productData.stock,
                 image: productData.image || ''
@@ -178,7 +180,7 @@ const ProductsContent: React.FC = () => {
             const newProduct = {
                 name: formData.name.trim(),
                 description: formData.description.trim(),
-                price: Number(formData.price),
+                weight: formData.weight,
                 category: formData.category,
                 stock: Number(formData.stock),
                 image: base64Image || formData.image
@@ -293,7 +295,7 @@ const ProductsContent: React.FC = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-darkGray">
-                                Emri
+                                Emri/Kodi unazes
                             </label>
                             <input
                                 type="text"
@@ -349,22 +351,21 @@ const ProductsContent: React.FC = () => {
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div>
-                            <label htmlFor="price" className="block text-sm font-medium text-darkGray">
-                                Qmimi
+                            <label htmlFor="weight" className="block text-sm font-medium text-darkGray">
+                                Pesha/gr
                             </label>
                             <div className="mt-1 relative rounded-md shadow-sm">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <span className="text-darkGray sm:text-sm">€</span>
-                                </div>
+                                {/* <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span className="text-darkGray sm:text-sm">gr</span>
+                                </div> */}
                                 <input
-                                    type="number"
-                                    id="price"
-                                    value={formData.price}
-                                    onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-                                    className="pl-7 h-[40px] border text-lightGray block w-full rounded-md border-gray-300 shadow-sm"
+                                    type="string"
+                                    id="weight"
+                                    value={formData.weight}
+                                    onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+                                    className="pl-3 h-[40px] border text-lightGray block w-full rounded-md border-gray-300 shadow-sm"
                                     required
-                                    min="0"
-                                    step="0.01"
+                                    placeholder='2-3'
                                 />
                             </div>
                         </div>
@@ -426,7 +427,7 @@ const ProductsContent: React.FC = () => {
                                     Përshkrimi
                                 </th>
                                 <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
-                                    Qmimi
+                                    Pesha
                                 </th>
                                 <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Stoku
@@ -459,7 +460,7 @@ const ProductsContent: React.FC = () => {
                                         <div className="text-sm text-darkGray line-clamp-2">{product.description}</div>
                                     </td>
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm text-darkGray">€{product.price}</div>
+                                        <div className="text-sm text-darkGray">{product.weight}</div>
                                     </td>
                                     <td className="hidden lg:table-cell px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-darkGray">{product.stock}</div>

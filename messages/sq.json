@@ -1,59 +1,59 @@
 {
     "navbar": {
-        "about": "Historia",
-        "rings": "Unazat",
-        "jewelery": "Bizhuteri",
+        "about": "Rreth Nesh",
+        "rings": "Unaza",
+        "jewelry": "Stoli",
         "services": "Shërbimet",
-        "contact": "Kontakti",
-        "shop": "Dyqani Online"
+        "contact": "Kontakt",
+        "shop": "Dyqan"
     },
     "header": {
         "title": "INVEST GOLD",
-        "subtitle": "Ne jemi gjithmonë të afërt me ata që betohen në frontin e dashurisë",
-        "secondSubtitle": "Unaza Fejese, Unaza Martese, Rrathe Ari dhe Zinxhirë Ari në Kosovë",
+        "subtitle": "Ne jemi gjithmonë pranë atyre që betohen përpara dashurisë",
+        "secondSubtitle": "Unaza Fejese, Unaza Martese, Byzylykë dhe Zinxhirë Ari në Kosovë",
         "seeMore": "Shiko më shumë",
-        "video": "video"
+        "video": "Video"
     },
     "about": {
-        "title": "Historia jonë",
-        "subtitle": "Invest Gold Gjokaj është dyqani juaj i specializuar për unaza fejese, unaza martese, rrathe ari dhe zinxhirë ari në Kosovë. Krijojmë momente të paharrueshme me koleksionin tonë të zgjedhur të stolive të arit, duke përfshirë unaza fejese moderne, unaza martese klasike, rrathe ari të personalizuara dhe zinxhirë ari cilësor. Çdo stoli është krijuar me mjeshtëri për të përjetësuar momentet tuaja më të veçanta."
+        "title": "Rreth Nesh",
+        "subtitle": "Invest Gold Gjokaj është destinacioni juaj kryesor për unaza fejese, unaza martese, byzylykë ari dhe zinxhirë ari në Kosovë. Ne krijojmë momente të paharrueshme me koleksionin tonë të kujdesshëm të stolive të arit, duke përfshirë unaza fejese moderne, unaza martese klasike, byzylykë ari të personalizuar dhe zinxhirë ari cilësor. Çdo pjesë është punuar me ekspertizë për të përjetësuar momentet tuaja të veçanta."
     },
     "rings": {
-        "rings": "Unazat",
-        "title": "Unaza",
-        "subtitle": "Zgjidhni unazën perfekte të fejesës apo martesës nga koleksioni ynë i zgjedhur. Rrathe ari dhe zinxhirë ari me dizajne unike për çdo moment special në jetën tuaj. Mjeshtëria jonë në punimin e arit garanton cilësi të lartë dhe stil të përhershëm.",
+        "rings": "Unaza",
+        "title": "Unazë",
+        "subtitle": "Zgjidhni unazën perfekte të fejesës ose martesës nga koleksioni ynë i kujdesshëm. Zbuloni byzylykë dhe zinxhirë unikë ari të dizajnuar për çdo moment të veçantë në jetën tuaj. Mjeshtëria jonë e arit siguron cilësi të qëndrueshme dhe stil të përjetshëm.",
         "seeMore": "Shiko më shumë",
-        "shop": "Dyqani Online",
+        "shop": "Blej",
         "width": "Gjerësia",
-        "height": "Gjatësia",
-        "yellowGold": "Ari i verdhe",
-        "whiteGold": "Ari i bardhe",
-        "roseGold": "Ari i rozë",
-        "twoColorGold": "Ari dy ngjyresh",
-        "multiColorGold": "Ari shumëngjyrësh",
-        "prev": "Para",
-        "next": "Pas"
+        "height": "Lartësia",
+        "yellowGold": "Ari i Verdhë",
+        "whiteGold": "Ari i Bardhë",
+        "roseGold": "Ari Rozë",
+        "twoColorGold": "Ari Dy-ngjyrësh",
+        "multiColorGold": "Ari Shumëngjyrësh",
+        "prev": "Prapa",
+        "next": "Para"
     },
     "services": {
         "title": "Shërbimet Tona",
-        "subtitle": "Zbuloni koleksionin tonë të zgjedhur të stolive të arit dhe shërbimeve profesionale",
-        "seoDescription": "Shërbime profesionale për stoli ari në Kosovë, duke përfshirë unaza fejese, unaza martese, rrathe ari dhe zinxhirë ari të personalizuar",
+        "subtitle": "Zbuloni koleksionin tonë të kujdesshëm të stolive të arit dhe shërbimeve profesionale",
+        "seoDescription": "Shërbime profesionale të stolive të arit në Kosovë, përfshirë unaza fejese, unaza martese, byzylykë ari dhe zinxhirë ari të personalizuar",
         "items": {
             "rings": {
-                "title": "Unaza Fejese dhe Martese",
-                "description": "Koleksion i veçantë unazash fejese dhe martese, të punuara me mjeshtëri nga arti më i pastër. Dizajne moderne dhe klasike për momentet tuaja më të rëndësishme."
+                "title": "Unaza Fejese & Martese",
+                "description": "Koleksion ekskluziv i unazave të fejesës dhe martesës, të punuara mjeshtërisht nga ari më i pastër. Dizajne moderne dhe klasike për momentet tuaja më të rëndësishme."
             },
             "bracelets": {
-                "title": "Rrathe dhe Bylyzyk Ari",
-                "description": "Rrathe dhe bylyzyk ari të personalizuara, të krijuara me detaje të hollësishme për çdo stil dhe rast. Zgjidhni nga koleksioni ynë i gjerë i dizajneve unike."
+                "title": "Byzylykë & Rrathë Ari",
+                "description": "Byzylykë dhe rrathë ari të personalizuar, të krijuar me detaje të hollësishme për çdo stil dhe rast. Zgjidhni nga koleksioni ynë i gjerë i dizajneve unike."
             },
             "necklaces": {
-                "title": "Zinxhirë dhe Qafore Ari",
-                "description": "Zinxhirë dhe qafore ari me dizajne të ndryshme, nga klasike deri tek moderne. Të gjitha të punuara me ar të pastër për të garantuar cilësi të lartë."
+                "title": "Zinxhirë & Varëse Ari",
+                "description": "Zinxhirë dhe varëse ari në dizajne të ndryshme, nga klasike në moderne. Të gjitha të punuara me ar të pastër për të siguruar cilësi premium."
             },
             "custom": {
                 "title": "Stoli të Personalizuara",
-                "description": "Krijojmë stoli të personalizuara sipas dëshirës suaj. Nga dizajni deri tek realizimi, çdo detaj përshtatet me preferencat tuaja."
+                "description": "Ne krijojmë stoli të personalizuara sipas preferencave tuaja. Nga dizajni deri në realizim, çdo detaj është i përshtatur sipas specifikimeve tuaja."
             },
             "repair": {
                 "title": "Riparim Profesional",
@@ -61,89 +61,90 @@
             },
             "express": {
                 "title": "Shërbim i Shpejtë",
-                "description": "Realizim i shpejtë i porosive tuaja, me të njëjtën cilësi të lartë që na karakterizon."
+                "description": "Përmbushje e shpejtë e porosive tuaja, duke ruajtur standardet tona të larta të cilësisë."
             },
             "delivery": {
                 "title": "Dërgesa në Shtëpi",
-                "description": "Shërbim i sigurt transporti për produktet tuaja deri në derën e shtëpisë."
+                "description": "Shërbim i sigurt transporti për produktet tuaja deri në derën tuaj."
             },
             "guarantee": {
                 "title": "Garanci e Plotë",
-                "description": "Ofrojmë garanci të plotë për të gjitha produktet tona, duke garantuar cilësinë më të lartë."
+                "description": "Ne ofrojmë garanci të plotë për të gjitha produktet tona, duke siguruar standardet më të larta të cilësisë."
             }
         }
     },
-    "shop": {
-        "title": "Dyqani",
-        "filters": "Filtrat",
-        "search": "Kërko",
-        "searchPlaceholder": "Kërko produkte...",
-        "categories": "Kategoritë",
-        "priceRange": "Intervali i Çmimit",
-        "min": "Min",
-        "max": "Max",
-        "sortBy": "Rendit sipas",
-        "newest": "Më të rejat",
-        "priceLowToHigh": "Çmimi: I ulët në të lartë",
-        "priceHighToLow": "Çmimi: I lartë në të ulët",
-        "addToCart": "Shto në shportë",
-        "loading": "Duke u ngarkuar...",
-        "noProducts": "Nuk u gjetën produkte",
-        "outOfStock": "Nuk ka në stok",
-        "errorFetchingProducts": "Gabim gjatë ngarkimit të produkteve",
-        "errorFetchingCategories": "Gabim gjatë ngarkimit të kategorive",
-        "categoryAll": "Të gjitha",
-        "categoryRings": "Unaza",
-        "categoryBracelets": "Rrathe",
-        "categoryNecklaces": "Zinxhirë",
-        "categoryCustom": "Të personalizuara",
-        "allCategories": "Të gjitha kategorite",
-        "inStock": "Ne stok"
-    },
-    "cart": {
-        "title": "Shporta",
-        "close": "Mbyll",
-        "emptyCart": "Shporta juaj është bosh",
-        "startShopping": "Filloni të blini duke shtuar disa produkte në shportën tuaj",
-        "continueShopping": "Vazhdo blerjet",
-        "subtotal": "Nëntotali",
-        "shippingNote": "Transporti dhe taksat do të llogariten në checkout",
-        "checkout": "Vazhdo në pagesë",
-        "or": "ose",
-        "addToCart": "Shto në shportë",
-        "outOfStock": "Nuk ka në stok",
-        "itemAdded": "Produkti u shtua në shportë",
-        "itemRemoved": "Produkti u hoq nga shporta",
-        "quantityUpdated": "Sasia u përditësua"
-    },
     "contact": {
-        "title": "Kontakti",
-        "informationContact": "Informacionet e Kontaktit",
+        "title": "Kontakt",
+        "informationContact": "Informacione Kontakti",
         "openingHours": "Orari i Punës",
         "address": "Adresa",
-        "phone": "Telefoni",
+        "phone": "Telefon",
         "email": "Email",
         "weekdays": "E Hënë - E Premte",
         "saturday": "E Shtunë",
         "sunday": "E Diel",
         "hours": {
-            "weekdays": "09:00 - 20:00",
-            "saturday": "09:00 - 18:00",
+            "weekdays": "08:00 - 17:00",
+            "saturday": "Mbyllur",
             "sunday": "Mbyllur"
         },
         "form": {
             "firstName": "Emri",
             "lastName": "Mbiemri",
             "email": "Email",
-            "phone": "Telefoni",
+            "phone": "Telefon",
             "message": "Mesazhi",
             "send": "Dërgo"
         }
     },
+    "shop": {
+        "title": "Dyqan",
+        "filters": "Filtrat",
+        "search": "Kërko",
+        "searchPlaceholder": "Kërko produkte...",
+        "categories": "Kategoritë",
+        "priceRange": "Gama e Çmimit",
+        "min": "Min",
+        "max": "Max",
+        "sortBy": "Rendit Sipas",
+        "newest": "Më të Rejat",
+        "oldest": "Më të Vjetrat",
+        "priceLowToHigh": "Çmimi: Ulët në të Lartë",
+        "priceHighToLow": "Çmimi: Lartë në të Ulët",
+        "addToCart": "Shto në Shportë",
+        "loading": "Duke u ngarkuar...",
+        "noProducts": "Nuk u gjetën produkte",
+        "outOfStock": "Nuk ka në Stok",
+        "errorFetchingProducts": "Gabim në ngarkimin e produkteve",
+        "errorFetchingCategories": "Gabim në ngarkimin e kategorive",
+        "categoryAll": "Të Gjitha",
+        "categoryRings": "Unaza",
+        "categoryBracelets": "Byzylykë",
+        "categoryNecklaces": "Varëse",
+        "categoryCustom": "Të Personalizuara",
+        "allCategories": "Të Gjitha Kategoritë",
+        "inStock": "Në Stok"
+    },
+    "cart": {
+        "title": "Shporta e Blerjeve",
+        "close": "Mbyll",
+        "emptyCart": "Shporta juaj është bosh",
+        "startShopping": "Filloni blerjet duke shtuar artikuj në shportën tuaj",
+        "continueShopping": "Vazhdo Blerjet",
+        "subtotal": "Nëntotali",
+        "shippingNote": "Transporti dhe taksat llogariten në checkout",
+        "checkout": "Vazhdo në Checkout",
+        "or": "ose",
+        "addToCart": "Shto në Shportë",
+        "outOfStock": "Nuk ka në Stok",
+        "itemAdded": "Artikulli u shtua në shportë",
+        "itemRemoved": "Artikulli u hoq nga shporta",
+        "quantityUpdated": "Sasia u përditësua"
+    },
     "checkout": {
-        "title": "Blerja",
-        "emptyCart": "Shporta juaj është e zbrazët",
-        "continueShopping": "Vazhdoni Blerjen",
+        "title": "Checkout",
+        "emptyCart": "Shporta juaj është bosh",
+        "continueShopping": "Vazhdo Blerjet",
         "contactInformation": "Informacioni i Kontaktit",
         "email": "Email",
         "shippingAddress": "Adresa e Dërgesës",
@@ -152,7 +153,7 @@
         "city": "Qyteti",
         "country": "Shteti",
         "postalCode": "Kodi Postar",
-        "phone": "Telefoni",
+        "phone": "Telefon",
         "shippingMethod": "Metoda e Dërgesës",
         "localDelivery": "Dërgesa Lokale (Kosovë)",
         "internationalDelivery": "Dërgesa Ndërkombëtare",
@@ -160,18 +161,22 @@
         "creditCard": "Kartë Krediti",
         "bankTransfer": "Transfertë Bankare",
         "cashOnDelivery": "Para në Dorëzim",
+        "payWithPaypal": "Paguaj në mënyrë të sigurt me PayPal",
+        "payWithCard": "Paguaj me kartë krediti ose debiti",
+        "payOnDelivery": "Paguaj me para në dorë kur porosia juaj mbërrin",
         "orderSummary": "Përmbledhja e Porosisë",
+        "product": "Artikulli",
         "quantity": "Sasia",
         "subtotal": "Nëntotali",
         "shipping": "Transporti",
         "total": "Totali",
-        "placeOrder": "Bëj Porosinë",
-        "processing": "Duke procesuar...",
-        "errorProcessingOrder": "Gabim në procesimin e porosisë. Ju lutemi provoni përsëri."
+        "placeOrder": "Vendos Porosinë",
+        "processing": "Duke u procesuar...",
+        "errorProcessingOrder": "Gabim në procesimin e porosisë suaj. Ju lutemi provoni përsëri."
     },
     "orderConfirmation": {
         "loading": "Duke ngarkuar detajet e porosisë...",
-        "error": "Gabim në Ngarkimin e Porosisë",
+        "error": "Gabim në Ngarkim",
         "errorLoading": "Nuk mund të ngarkohen detajet e porosisë",
         "backToShop": "Kthehu në Dyqan",
         "thankYou": "Faleminderit për Porosinë Tuaj!",
@@ -187,10 +192,10 @@
         "orderSummary": "Përmbledhja e Porosisë",
         "subtotal": "Nëntotali",
         "total": "Totali",
-        "continueShopping": "Vazhdoni Blerjen"
+        "continueShopping": "Vazhdo Blerjet"
     },
     "product": {
-        "loading": "Duke ngarkuar detajet e produktit...",
+        "loading": "Duke ngarkuar produktin...",
         "error": "Gabim në ngarkimin e produktit",
         "notFound": "Produkti nuk u gjet",
         "backToShop": "Kthehu në Dyqan",
@@ -210,5 +215,8 @@
         "productRemoved": "Produkti u hoq nga shporta",
         "cartUpdated": "Shporta u përditësua me sukses",
         "error": "Ndodhi një gabim"
+    },
+    "jewelry": {
+        "description": "Ne u ofrojmë klientëve tanë mundësinë për të zbuluar botën unike, elegante dhe të çmuar të stolive."
     }
 }

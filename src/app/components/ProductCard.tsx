@@ -46,8 +46,14 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
         >
           {product.name}
         </h3>
+        <h6
+          className="text-base font-normal mb-2 cursor-pointer text-darkGray"
+          onClick={handleClick}
+        >
+          {product.description.split(' ').slice(0, 11).join(' ').concat('...')}
+        </h6>
         <div className="flex justify-between items-center">
-          <span className="text-xl font-bold text-lightGray">€{product.price}</span>
+          <span className="text-xl font-bold text-lightGray">{product.weight} gr.</span>
           {showAddToCart && (
             product.stock > 0 ? (
               <button

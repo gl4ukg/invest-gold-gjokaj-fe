@@ -50,7 +50,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }, [cart]);
 
     const calculateTotal = (items: CartItem[]) => {
-        return items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+        // return items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
+        // we need to calculate based on weight
+        return 0;
     };
 
     const addToCart = (product: Product, quantity: number = 1) => {

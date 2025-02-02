@@ -82,7 +82,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                                 <div>
                                                     <div className="flex justify-between text-base font-medium text-darkGray">
                                                         <h3>{item.product.name}</h3>
-                                                        <p className="ml-4">€{(item.product.price * item.quantity).toFixed(2)}</p>
+                                                        <p className="ml-4">{item.product.weight} gr.</p>
                                                     </div>
                                                     <p className="mt-1 text-sm text-darkGray line-clamp-2">
                                                         {item.product.description}

@@ -1,28 +1,28 @@
 {
     "navbar": {
-        "about": "Über uns",
+        "about": "Über Uns",
         "rings": "Ringe",
-        "jewelery": "Schmuck",
+        "jewelry": "Schmuck",
         "services": "Dienstleistungen",
         "contact": "Kontakt",
         "shop": "Shop"
     },
     "header": {
         "title": "INVEST GOLD",
-        "subtitle": "Wir sind immer nah an denen, die vor der Liebe schwören",
-        "secondSubtitle": "Verlobungsringe, Eheringe, Goldarmreifen und Goldketten in Kosovo",
-        "seeMore": "Mehr sehen",
+        "subtitle": "Wir sind immer nah bei denen, die sich der Liebe verschreiben",
+        "secondSubtitle": "Verlobungsringe, Eheringe, Goldarmbänder und Ketten im Kosovo",
+        "seeMore": "Mehr Sehen",
         "video": "Video"
     },
     "about": {
-        "title": "Über uns",
-        "subtitle": "Invest Gold Gjokaj ist Ihre erste Adresse für Verlobungsringe, Eheringe, Goldarmreifen und Goldketten im Kosovo. Wir schaffen unvergessliche Momente mit unserer ausgewählten Kollektion von Goldschmuck, einschließlich moderner Verlobungsringe, klassischer Eheringe, maßgefertigter Goldarmreifen und hochwertiger Goldketten. Jedes Stück wird mit Expertise gefertigt, um Ihre besonderen Momente zu verewigen."
+        "title": "Über Uns",
+        "subtitle": "Invest Gold Gjokaj ist Ihre erste Adresse für Verlobungsringe, Eheringe, Goldarmbänder und Goldketten im Kosovo. Wir schaffen unvergessliche Momente mit unserer sorgfältig kuratierten Kollektion von Goldschmuck, einschließlich moderner Verlobungsringe, klassischer Eheringe, maßgefertigter Goldarmbänder und hochwertiger Goldketten. Jedes Stück wird mit Expertise gefertigt, um Ihre besonderen Momente zu verewigen."
     },
     "rings": {
         "rings": "Ringe",
         "title": "Ring",
-        "subtitle": "Wählen Sie den perfekten Verlobungs- oder Ehering aus unserer kuratierten Kollektion. Entdecken Sie einzigartige Goldarmreifen und Ketten, die für jeden besonderen Moment in Ihrem Leben gestaltet sind. Unsere Goldschmiedekunst garantiert dauerhafte Qualität und zeitlosen Stil.",
-        "seeMore": "Mehr sehen",
+        "subtitle": "Wählen Sie den perfekten Verlobungs- oder Ehering aus unserer kuratierten Kollektion. Entdecken Sie einzigartige Goldarmbänder und Ketten, die für jeden besonderen Moment in Ihrem Leben gestaltet wurden. Unsere Goldschmiedekunst garantiert dauerhafte Qualität und zeitlosen Stil.",
+        "seeMore": "Mehr Sehen",
         "shop": "Shop",
         "width": "Breite",
         "height": "Höhe",
@@ -37,7 +37,7 @@
     "services": {
         "title": "Unsere Dienstleistungen",
         "subtitle": "Entdecken Sie unsere kuratierte Kollektion von Goldschmuck und professionellen Dienstleistungen",
-        "seoDescription": "Professionelle Goldschmuckdienstleistungen im Kosovo, einschließlich Verlobungsringe, Eheringe, Goldarmbänder und maßgefertigte Goldketten",
+        "seoDescription": "Professionelle Goldschmuck-Dienstleistungen im Kosovo, einschließlich Verlobungsringe, Eheringe, Goldarmbänder und maßgefertigte Goldketten",
         "items": {
             "rings": {
                 "title": "Verlobungs- & Eheringe",
@@ -45,15 +45,15 @@
             },
             "bracelets": {
                 "title": "Goldarmbänder & Armreifen",
-                "description": "Maßgefertigte Goldarmbänder und Armreifen, mit feinen Details für jeden Stil und Anlass. Wählen Sie aus unserer umfangreichen Kollektion einzigartiger Designs."
+                "description": "Maßgefertigte Goldarmbänder und Armreifen, geschaffen mit feinen Details für jeden Stil und Anlass. Wählen Sie aus unserer umfangreichen Kollektion einzigartiger Designs."
             },
             "necklaces": {
-                "title": "Goldketten & Halsketten",
-                "description": "Goldketten und Halsketten in verschiedenen Designs, von klassisch bis modern. Alle aus reinem Gold gefertigt für höchste Qualität."
+                "title": "Goldketten & Anhänger",
+                "description": "Goldketten und Anhänger in verschiedenen Designs, von klassisch bis modern. Alle aus reinem Gold gefertigt, um Premium-Qualität zu gewährleisten."
             },
             "custom": {
                 "title": "Maßgefertigter Schmuck",
-                "description": "Wir fertigen individuellen Schmuck nach Ihren Wünschen. Vom Design bis zur Umsetzung wird jedes Detail nach Ihren Vorstellungen gestaltet."
+                "description": "Wir fertigen maßgeschneiderten Schmuck nach Ihren Wünschen. Vom Design bis zur Umsetzung ist jedes Detail auf Ihre Vorgaben abgestimmt."
             },
             "repair": {
                 "title": "Professionelle Reparatur",
@@ -64,8 +64,8 @@
                 "description": "Schnelle Erfüllung Ihrer Bestellungen unter Beibehaltung unserer hohen Qualitätsstandards."
             },
             "delivery": {
-                "title": "Heimlieferung",
-                "description": "Sicherer Transportservice für Ihre Produkte bis zu Ihrer Haustür."
+                "title": "Hauslieferung",
+                "description": "Sicherer Transportservice für Ihre Produkte direkt zu Ihnen nach Hause."
             },
             "guarantee": {
                 "title": "Volle Garantie",
@@ -84,8 +84,8 @@
         "saturday": "Samstag",
         "sunday": "Sonntag",
         "hours": {
-            "weekdays": "09:00 - 20:00",
-            "saturday": "09:00 - 18:00",
+            "weekdays": "08:00 - 17:00",
+            "saturday": "Geschlossen",
             "sunday": "Geschlossen"
         },
         "form": {
@@ -106,12 +106,13 @@
         "priceRange": "Preisbereich",
         "min": "Min",
         "max": "Max",
-        "sortBy": "Sortieren nach",
+        "sortBy": "Sortieren Nach",
         "newest": "Neueste",
+        "oldest": "Älteste",
         "priceLowToHigh": "Preis: Niedrig zu Hoch",
         "priceHighToLow": "Preis: Hoch zu Niedrig",
         "addToCart": "In den Warenkorb",
-        "loading": "Wird geladen...",
+        "loading": "Lädt...",
         "noProducts": "Keine Produkte gefunden",
         "outOfStock": "Nicht auf Lager",
         "errorFetchingProducts": "Fehler beim Laden der Produkte",
@@ -129,7 +130,7 @@
         "close": "Schließen",
         "emptyCart": "Ihr Warenkorb ist leer",
         "startShopping": "Beginnen Sie mit dem Einkaufen, indem Sie Artikel in Ihren Warenkorb legen",
-        "continueShopping": "Weiter einkaufen",
+        "continueShopping": "Weiter Einkaufen",
         "subtotal": "Zwischensumme",
         "shippingNote": "Versand und Steuern werden beim Checkout berechnet",
         "checkout": "Zur Kasse",
@@ -143,7 +144,7 @@
     "checkout": {
         "title": "Kasse",
         "emptyCart": "Ihr Warenkorb ist leer",
-        "continueShopping": "Weiter einkaufen",
+        "continueShopping": "Weiter Einkaufen",
         "contactInformation": "Kontaktinformationen",
         "email": "E-Mail",
         "shippingAddress": "Lieferadresse",
@@ -160,7 +161,11 @@
         "creditCard": "Kreditkarte",
         "bankTransfer": "Banküberweisung",
         "cashOnDelivery": "Nachnahme",
+        "payWithPaypal": "Sicher mit PayPal bezahlen",
+        "payWithCard": "Mit Kredit- oder Debitkarte bezahlen",
+        "payOnDelivery": "Zahlen Sie bar bei Lieferung Ihrer Bestellung",
         "orderSummary": "Bestellübersicht",
+        "product": "Produkt",
         "quantity": "Menge",
         "subtotal": "Zwischensumme",
         "shipping": "Versand",
@@ -171,7 +176,7 @@
     },
     "orderConfirmation": {
         "loading": "Bestelldetails werden geladen...",
-        "error": "Fehler beim Laden",
+        "error": "Ladefehler",
         "errorLoading": "Bestelldetails können nicht geladen werden",
         "backToShop": "Zurück zum Shop",
         "thankYou": "Vielen Dank für Ihre Bestellung!",
@@ -187,7 +192,7 @@
         "orderSummary": "Bestellübersicht",
         "subtotal": "Zwischensumme",
         "total": "Gesamtsumme",
-        "continueShopping": "Weiter einkaufen"
+        "continueShopping": "Weiter Einkaufen"
     },
     "product": {
         "loading": "Produkt wird geladen...",
@@ -210,5 +215,8 @@
         "productRemoved": "Produkt aus dem Warenkorb entfernt",
         "cartUpdated": "Warenkorb erfolgreich aktualisiert",
         "error": "Ein Fehler ist aufgetreten"
+    },
+    "jewelry": {
+        "description": "Wir bieten unseren Kunden die Möglichkeit, die einzigartige, elegante und kostbare Welt des Schmucks zu entdecken."
     }
 }

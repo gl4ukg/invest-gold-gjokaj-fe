@@ -3,7 +3,6 @@ import Footer from "../components/Footer";
 import AboutSection from "../components/AboutSection";
 import Header from "../components/Header";
 import RingsSection from "../components/Rings";
-import { ringData } from "../data/ringData";
 import JewelrySection from "../components/JewelerySection";
 import ServicesSection from "../components/ServicesSection";
 import ContactSection from "../components/ContactSection";
@@ -23,7 +22,7 @@ export default function Home() {
         imageSrc="/images/gold-story-01.png"
         imageAlt={t("title")}
       />
-      <RingsSection categories={ringData} />
+      <RingsSection />
       <JewelrySection/>
       <ServicesSection />
       <ContactSection />
