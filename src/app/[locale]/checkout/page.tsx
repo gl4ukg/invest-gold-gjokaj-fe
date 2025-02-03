@@ -389,7 +389,7 @@ export default function Checkout() {
               {t('checkout.orderSummary')}
             </h2>
             <div className="space-y-4">
-              {cart.items??.map((item) => (
+              {cart.items?.map((item) => (
                 <div
                   key={item.product.id}
                   className="flex justify-between items-center py-2 border-b"
