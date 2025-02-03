@@ -326,7 +326,7 @@ const ProductsContent: React.FC = () => {
                                 required
                             >
                                 <option value="">Zgjidh kategori</option>
-                                {categories.map((category) => (
+                                {categories?.map((category) => (
                                     <option key={category.id} value={category.id}>
                                         {category.name}
                                     </option>
@@ -441,7 +441,7 @@ const ProductsContent: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {currentItems.map((product) => (
+                            {currentItems?.map((product) => (
                                 <tr key={product.id}>
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="w-12 h-12 relative rounded-lg overflow-hidden">

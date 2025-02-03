@@ -274,7 +274,7 @@ export default function Shop() {
                                     />
                                     <span className="text-darkGray">{t('shop.allCategories')}</span>
                                 </label>
-                                {categories.map((category) => (
+                                {categories?.map((category) => (
                                     <label key={category.id} className="flex items-center text-darkGray gap-2">
                                         <input
                                             type="radio"
@@ -346,7 +346,7 @@ export default function Shop() {
                     ) : (
                         <>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {allProducts.map((product) => (
+                                {allProducts?.map((product) => (
                                     <ProductCard key={product.id} product={product} />
                                 ))}
                             </div>

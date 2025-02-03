@@ -32,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, onPageChange }) => {
                 <Image className='mb-6' src="/images/logo-01.svg" alt="logo" width={220} height={50} priority />
                 <nav>
                     <ul className="space-y-2">
-                        {menuItems.map((item) => (
+                        {menuItems?.map((item) => (
                             <li key={item.id}>
                                 <button 
                                     onClick={() => onPageChange(item.id)}

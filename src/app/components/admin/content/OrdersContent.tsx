@@ -58,7 +58,7 @@ export default function OrdersContent() {
       setStatus(updatedOrder.status);
       // Update the order in the orders list
       setOrders(prevOrders => 
-        prevOrders.map(order => 
+        prevOrders?.map(order => 
           order.id === orderId ? { ...order, status: updatedOrder.status } : order
         )
       );
@@ -87,7 +87,7 @@ export default function OrdersContent() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {orders.map((order) => (
+            {orders?.map((order) => (
               <React.Fragment key={order.id}>
                 <tr className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-darkGray">
@@ -161,7 +161,7 @@ export default function OrdersContent() {
                         <div>
                           <h4 className="font-medium text-darkGray mb-2">Items</h4>
                           <div className="space-y-2">
-                            {order.items.map((item) => (
+                            {order.items?.map((item) => (
                               <div key={item?.id} className="flex justify-between items-center text-sm">
                                 <div className='flex flex-col'>
                                     <span>Produkti: {item?.product?.name}</span>

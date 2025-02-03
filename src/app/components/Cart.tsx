@@ -67,7 +67,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                         ) : (
                             <div className="flow-root">
                                 <ul className="-my-6 divide-y divide-gray-200">
-                                    {cart.items.map((item) => (
+                                    {cart.items?.map((item) => (
                                         <li key={item.product.id} className="flex py-6">
                                             <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                                 <Image

@@ -18,7 +18,7 @@ export const ProfileSelector: React.FC<ProfileSelectorProps> = ({
 }) => {
     return (
         <div className="grid grid-cols-4 gap-4">
-            {profiles.map((profile) => (
+            {profiles?.map((profile) => (
                 <button
                     key={profile.id}
                     onClick={() => onSelectProfile(profile.id)}

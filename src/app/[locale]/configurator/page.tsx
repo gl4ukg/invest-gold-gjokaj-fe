@@ -110,7 +110,7 @@ export default function ConfiguratorPage() {
     };
 
     const renderColorInfo = (preciousMetal: PreciousMetal) => {
-        return preciousMetal.colors.map((color, index) => (
+        return preciousMetal.colors?.map((color, index) => (
             <div key={index} className="space-y-1">
                 <p className="text-darkGray">
                     {index === 0 ? 'Primary' : index === 1 ? 'Secondary' : 'Tertiary'} Color:
@@ -130,7 +130,7 @@ export default function ConfiguratorPage() {
                     {/* Steps */}
                     <div className="mb-8">
                         <ul className="space-y-2 d-flex">
-                            {steps.map((step) => (
+                            {steps?.map((step) => (
                                 <li
                                     key={step.id}
                                     className={`flex p-4 rounded-lg cursor-pointer ${

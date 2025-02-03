@@ -103,7 +103,7 @@ export default function OrderConfirmation() {
           <div className="mb-6">
             <h3 className="font-medium mb-3">{t('orderConfirmation.items')}</h3>
             <div className="space-y-3">
-              {order.items.map((item, index) => (
+              {order.items?.map((item, index) => (
                 <div
                   key={index}
                   className="flex justify-between items-center py-2 border-b"

@@ -18,7 +18,7 @@ const Map = () => {
     });
 
     // Initialize map
-    const map = L.map('map').setView([42.4318694, 20.4214281], 15);
+    const map = L?.map('map').setView([42.4318694, 20.4214281], 15);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

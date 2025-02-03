@@ -72,7 +72,7 @@ const Navbar = () => {
 
         {/* Desktop Navbar Links */}
         <ul className="hidden lg:flex space-x-6 mx-auto">
-          {NAV_LINKS.map((link) => (
+          {NAV_LINKS?.map((link) => (
             <li key={link.key}>
               {link.href.startsWith('#') ? (
                 <a
@@ -95,7 +95,7 @@ const Navbar = () => {
         <div className="flex items-center">
           {/* Language Switcher */}
           <ul className="hidden lg:flex space-x-3">
-            {LANGUAGE_LINKS.map((lang) => (
+            {LANGUAGE_LINKS?.map((lang) => (
               <li key={lang.code}>
                 <button
                   onClick={() => changeLocale(lang.code)}
@@ -142,7 +142,7 @@ const Navbar = () => {
         }`}
       >
         <ul className="text-center space-y-4">
-          {NAV_LINKS.map((link) => (
+          {NAV_LINKS?.map((link) => (
             <li key={link.key}>
               {link.href.startsWith('#') ? (
                 <a
@@ -163,7 +163,7 @@ const Navbar = () => {
         <hr className="border-gray-600 my-2" />
         {/* Mobile Language Switcher */}
         <ul className="flex justify-center space-x-3">
-          {LANGUAGE_LINKS.map((lang) => (
+          {LANGUAGE_LINKS?.map((lang) => (
             <li key={lang.code}>
               <button
                 onClick={() => changeLocale(lang.code)}

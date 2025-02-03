@@ -101,7 +101,7 @@ export default function Checkout() {
     setError(null);
 
     try {
-      const orderItems = cart.items.map((item) => ({
+      const orderItems = cart.items?.map((item) => ({
         productId: item.product.id,
         quantity: item.quantity,
         price: Number(item.product.price),
@@ -221,7 +221,7 @@ export default function Checkout() {
                       required
                       className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                     >
-                      {kosovoMunicipalities.map((city) => (
+                      {kosovoMunicipalities?.map((city) => (
                         <option key={city} value={city}>
                           {city}
                         </option>
@@ -245,7 +245,7 @@ export default function Checkout() {
                     required
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                   >
-                    {countries.map((country) => (
+                    {countries?.map((country) => (
                       <option key={country} value={country}>
                         {country}
                       </option>
@@ -389,7 +389,7 @@ export default function Checkout() {
               {t('checkout.orderSummary')}
             </h2>
             <div className="space-y-4">
-              {cart.items?.map((item) => (
+              {cart.items??.map((item) => (
                 <div
                   key={item.product.id}
                   className="flex justify-between items-center py-2 border-b"

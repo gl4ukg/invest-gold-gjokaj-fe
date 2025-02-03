@@ -87,7 +87,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
             <div>
                 <h3 className="text-darkGray text-lg font-medium mb-4">Select Color Type</h3>
                 <div className="grid grid-cols-3 gap-4">
-                    {(['single', 'two', 'three'] as const).map((type) => (
+                    {(['single', 'two', 'three'] as const)?.map((type) => (
                         <button
                             key={type}
                             onClick={() => handleColorTypeChange(type)}
@@ -110,7 +110,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                 <div>
                     <h3 className="text-darkGray text-lg font-medium mb-4">Select Shape</h3>
                     <div className="grid grid-cols-4 gap-4">
-                        {(preciousMetal.colorType === 'two' ? twoColorShapes : threeColorShapes).map((shape) => (
+                        {(preciousMetal.colorType === 'two' ? twoColorShapes : threeColorShapes)?.map((shape) => (
                             <button
                                 key={shape.id}
                                 onClick={() => handleShapeSelect(shape.id)}
@@ -133,7 +133,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
             )}
 
             {/* Color Configuration */}
-            {preciousMetal.colors.map((color, index) => (
+            {preciousMetal.colors?.map((color, index) => (
                 <div key={index} className="space-y-4">
                     <h3 className="text-darkGray text-lg font-medium">
                         {index === 0 ? 'Primary' : index === 1 ? 'Secondary' : 'Tertiary'} Color
@@ -147,7 +147,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                             onChange={(e) => handleColorConfigUpdate(index, { metalColor: e.target.value as MetalColor })}
                             className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                         >
-                            {metalColors.map((color) => (
+                            {metalColors?.map((color) => (
                                 <option key={color} value={color}>
                                     {color}
                                 </option>
@@ -163,7 +163,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                             onChange={(e) => handleColorConfigUpdate(index, { polishType: e.target.value as PolishType })}
                             className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                         >
-                            {polishTypes.map((type) => (
+                            {polishTypes?.map((type) => (
                                 <option key={type} value={type}>
                                     {type}
                                 </option>
@@ -179,7 +179,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                             onChange={(e) => handleColorConfigUpdate(index, { fineness: e.target.value as Fineness })}
                             className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                         >
-                            {finenessOptions.map((option) => (
+                            {finenessOptions?.map((option) => (
                                 <option key={option} value={option}>
                                     {option}
                                 </option>

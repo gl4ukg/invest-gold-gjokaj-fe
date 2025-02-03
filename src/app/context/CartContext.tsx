@@ -75,7 +75,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
                     return currentCart;
                 }
 
-                const newItems = currentCart.items.map(item =>
+                const newItems = currentCart.items?.map(item =>
                     item.product.id === product.id
                         ? { ...item, quantity: newQuantity }
                         : item
@@ -130,7 +130,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 return currentCart;
             }
 
-            const newItems = currentCart.items.map(item =>
+            const newItems = currentCart.items?.map(item =>
                 item.product.id === productId
                     ? { ...item, quantity }
                     : item

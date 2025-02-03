@@ -258,7 +258,7 @@ const RingsSection: React.FC = () => {
             initial="hidden"
             animate={isCategoryInView ? "visible" : "hidden"}
           >
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <motion.button
                 key={category.id}
                 onClick={() => setSelectedCategory(category?.id)}
@@ -291,7 +291,7 @@ const RingsSection: React.FC = () => {
             animate={isCarouselInView ? "visible" : "hidden"}
           >
             <Slider {...sliderSettings}>
-              {products.map((ring) => (
+              {products?.map((ring) => (
                 <motion.div 
                   key={ring.id} 
                   className="p-4"
