@@ -170,7 +170,7 @@ const ServicesSection = () => {
           initial="hidden"
           animate={isCardsInView ? "visible" : "hidden"}
         >
-          {services.map((service) => (
+          {services?.map((service) => (
             <motion.article
               key={service.id}
               className="service-item h-full"
@@ -204,7 +204,7 @@ const ServicesSection = () => {
           initial="hidden"
           animate={isAdditionalServicesInView ? "visible" : "hidden"}
         >
-          {additionalServices.map((service) => (
+          {additionalServices?.map((service) => (
             <motion.div
               key={service.id}
               className="flex flex-col items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center"

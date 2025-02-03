@@ -16,7 +16,7 @@ const ringSizeOptions: Record<RingSizeSystem, (string | number)[]> = {
         'P', 'P½', 'Q', 'Q½', 'R', 'R½', 'S', 'S½', 'T', 'T½',
         'U', 'U½', 'V', 'V½', 'W', 'W½', 'X', 'X½', 'Y', 'Y½', 'Z'
     ],
-    USA: Array.from({ length: 27 }, (_, i) => (i * 0.5 + 2).toFixed(1)).map(size => 
+    USA: Array.from({ length: 27 }, (_, i) => (i * 0.5 + 2).toFixed(1))?.map(size => 
         size.endsWith('.0') ? parseInt(size) : parseFloat(size)
     ) // 2 to 15 with half sizes
 };
@@ -68,7 +68,7 @@ export const DimensionsSelector: React.FC<DimensionsSelectorProps> = ({
                     }
                     className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                 >
-                    {[2, 2.5, 3, 3.5, 4, 4.5, 5].map((width) => (
+                    {[2, 2.5, 3, 3.5, 4, 4.5, 5]?.map((width) => (
                         <option key={width} value={width}>
                             {width.toFixed(2)} mm
                         </option>
@@ -87,7 +87,7 @@ export const DimensionsSelector: React.FC<DimensionsSelectorProps> = ({
                     }
                     className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                 >
-                    {[1, 1.25, 1.5, 1.75, 2].map((height) => (
+                    {[1, 1.25, 1.5, 1.75, 2]?.map((height) => (
                         <option key={height} value={height}>
                             {height.toFixed(2)} mm
                         </option>
@@ -104,7 +104,7 @@ export const DimensionsSelector: React.FC<DimensionsSelectorProps> = ({
                     }
                     className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                 >
-                    {(['Universal', 'UK', 'USA'] as const).map((system) => (
+                    {(['Universal', 'UK', 'USA'] as const)?.map((system) => (
                         <option key={system} value={system}>
                             {system}
                         </option>
@@ -124,7 +124,7 @@ export const DimensionsSelector: React.FC<DimensionsSelectorProps> = ({
                     }}
                     className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                 >
-                    {ringSizeOptions[dimensions.ringSizeSystem].map((size) => (
+                    {ringSizeOptions[dimensions.ringSizeSystem]?.map((size) => (
                         <option key={size} value={size}>
                             {size}
                         </option>

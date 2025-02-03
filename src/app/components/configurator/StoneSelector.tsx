@@ -48,7 +48,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
             <div>
                 <h3 className="text-darkGray text-lg font-medium mb-4">Stone Setting Type</h3>
                 <div className="grid grid-cols-4 gap-4">
-                    {stoneSettingTypes.map((type) => (
+                    {stoneSettingTypes?.map((type) => (
                         <button
                             key={type}
                             onClick={() => handleChange('settingType', type)}
@@ -79,7 +79,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                             onChange={(e) => handleChange('stoneType', e.target.value as StoneType)}
                             className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                         >
-                            {stoneTypes.map((type) => (
+                            {stoneTypes?.map((type) => (
                                 <option key={type} value={type}>
                                     {type}
                                 </option>
@@ -95,7 +95,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                             onChange={(e) => handleChange('stoneSize', e.target.value as StoneSize)}
                             className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                         >
-                            {stoneSizes.map((size) => (
+                            {stoneSizes?.map((size) => (
                                 <option key={size} value={size}>
                                     {size}
                                 </option>
@@ -111,7 +111,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                             onChange={(e) => handleChange('stoneQuality', e.target.value as StoneQuality)}
                             className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                         >
-                            {stoneQualities.map((quality) => (
+                            {stoneQualities?.map((quality) => (
                                 <option key={quality} value={quality}>
                                     {quality}
                                 </option>
@@ -127,7 +127,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                             onChange={(e) => handleChange('numberOfStones', Number(e.target.value))}
                             className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                         >
-                            {[1, 3, 5, 7, 15, 30].map((num) => (
+                            {[1, 3, 5, 7, 15, 30]?.map((num) => (
                                 <option key={num} value={num}>
                                     {num === 30 ? 'Full Eternity Ring (30)' : num}
                                 </option>
@@ -143,7 +143,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                             onChange={(e) => handleChange('spacing', e.target.value as StoneSpacing)}
                             className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                         >
-                            {stoneSpacings.map((spacing) => (
+                            {stoneSpacings?.map((spacing) => (
                                 <option key={spacing} value={spacing}>
                                     {spacing}
                                 </option>
@@ -159,7 +159,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                             onChange={(e) => handleChange('position', e.target.value as StonePosition)}
                             className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                         >
-                            {stonePositions.map((position) => (
+                            {stonePositions?.map((position) => (
                                 <option key={position} value={position}>
                                     {position}
                                 </option>

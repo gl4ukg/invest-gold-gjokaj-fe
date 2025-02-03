@@ -44,7 +44,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
                 </>
             )}
 
-            {visiblePages.map((page) => (
+            {visiblePages?.map((page) => (
                 <button
                     key={page}
                     onClick={() => onPageChange(page)}

@@ -62,7 +62,7 @@ export const EngravingSelector: React.FC<EngravingSelectorProps> = ({
             <div className="space-y-4">
                 <h4 className="text-darkGray text-lg font-medium">Symbols</h4>
                 <div className="grid grid-cols-8 gap-2">
-                    {engravingSymbols.map((item) => (
+                    {engravingSymbols?.map((item) => (
                         <button
                             key={item.id}
                             onClick={() => handleInsertSymbol(item.symbol)}
@@ -78,7 +78,7 @@ export const EngravingSelector: React.FC<EngravingSelectorProps> = ({
             <div className="space-y-4">
                 <h4 className="text-darkGray text-lg font-medium">Font Style</h4>
                 <div className="space-y-2">
-                    {fontFamilies.map((font) => (
+                    {fontFamilies?.map((font) => (
                         <button
                             key={font}
                             onClick={() => onUpdateEngraving({ ...engraving, fontFamily: font })}

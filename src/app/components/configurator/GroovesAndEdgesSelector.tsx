@@ -43,7 +43,7 @@ const EdgeSettingsForm: React.FC<{
                 }}
                 className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
             >
-                {edgeTypes.map((type) => (
+                {edgeTypes?.map((type) => (
                     <option key={type} value={type}>
                         {type.charAt(0).toUpperCase() + type.slice(1)}
                     </option>
@@ -84,7 +84,7 @@ const EdgeSettingsForm: React.FC<{
                         onChange={(e) => onChange({ ...edge, surface: e.target.value as SurfaceType })}
                         className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                     >
-                        {surfaceTypes.map((type) => (
+                        {surfaceTypes?.map((type) => (
                             <option key={type} value={type}>
                                 {type}
                             </option>
@@ -129,7 +129,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                 <div>
                     <label className="block text-darkGray text-sm font-medium mb-2">Groove Type</label>
                     <div className="grid grid-cols-3 gap-4">
-                        {grooveTypes.map((type) => (
+                        {grooveTypes?.map((type) => (
                             <button
                                 key={type}
                                 onClick={() => handleGrooveChange('grooveType', type)}
@@ -181,7 +181,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                         onChange={(e) => handleGrooveChange('surface', e.target.value as SurfaceType)}
                         className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                     >
-                        {surfaceTypes.map((type) => (
+                        {surfaceTypes?.map((type) => (
                             <option key={type} value={type}>
                                 {type}
                             </option>
@@ -196,7 +196,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                         onChange={(e) => handleGrooveChange('alignment', e.target.value as GrooveAlignment)}
                         className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
                     >
-                        {alignments.map((alignment) => (
+                        {alignments?.map((alignment) => (
                             <option key={alignment} value={alignment}>
                                 {alignment.charAt(0).toUpperCase() + alignment.slice(1)}
                             </option>

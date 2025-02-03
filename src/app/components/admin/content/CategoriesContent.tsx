@@ -292,7 +292,7 @@ export default function CategoriesContent() {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                            {currentItems.map((category) => (
+                            {currentItems?.map((category) => (
                                 <tr key={category.id}>
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-darkGray">{category.name}</div>
