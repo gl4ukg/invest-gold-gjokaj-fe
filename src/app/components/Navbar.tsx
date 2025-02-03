@@ -42,7 +42,7 @@ const Navbar = () => {
         window.scrollTo({ top: section.offsetTop - 70, behavior: 'smooth' });
       }
     } else {
-      if(pathname === "/shop"){
+      if(pathname === "/shop" || pathname === "/configurator"  || pathname === "/checkout"){
         window.location.replace(`/${fullPath}`);
       } else {
         router.push(fullPath);
@@ -53,6 +53,10 @@ const Navbar = () => {
   const changeLocale = (newLocale: string) => {
     if(pathname === "/shop"){
       window.location.replace(`/${newLocale}/shop`);
+    } else if (pathname === "/configurator"){
+      window.location.replace(`/${newLocale}/configurator`);
+    } else if (pathname === "/checkout"){
+      window.location.replace(`/${newLocale}/checkout`);
     } else {
       router.push(`${newLocale}`);
     }
