@@ -15,7 +15,7 @@ export interface Cart {
 
 export interface CartContextType {
     cart: Cart;
-    addToCart: (product: Product, configuration?: ConfiguratorState, quantity?: number) => void;
+    addToCart: (product: Product, quantity?: number, configuration?: ConfiguratorState) => void;
     removeFromCart: (productId: string) => void;
     updateQuantity: (productId: string, quantity: number) => void;
     updateConfiguration: (productId: string, configuration: ConfiguratorState) => void;
