@@ -212,10 +212,14 @@
         "quantity": "Menge"
     },
     "notifications": {
-        "productAdded": "Produkt zum Warenkorb hinzugefügt",
+        "error": "Ein Fehler ist aufgetreten", 
+        "outOfStock": "Dieses Produkt ist nicht auf Lager",
+        "exceedsStock": "Die angeforderte Menge übersteigt den verfügbaren Bestand",
+        "productAdded": "Produkt in den Warenkorb gelegt",
         "productRemoved": "Produkt aus dem Warenkorb entfernt",
-        "cartUpdated": "Warenkorb erfolgreich aktualisiert",
-        "error": "Ein Fehler ist aufgetreten"
+        "cartUpdated": "Warenkorbmenge aktualisiert",
+        "configurationUpdated": "Produktkonfiguration aktualisiert",
+        "cartCleared": "Warenkorb wurde geleert"
     },
     "jewelry": {
         "description": "Wir bieten unseren Kunden die Möglichkeit, die einzigartige, elegante und kostbare Welt des Schmucks zu entdecken."

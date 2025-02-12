@@ -17,24 +17,24 @@ export const ProfileSelector: React.FC<ProfileSelectorProps> = ({
     onSelectProfile,
 }) => {
     return (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-2">
             {profiles?.map((profile) => (
                 <button
                     key={profile.id}
                     onClick={() => onSelectProfile(profile.id)}
-                    className={`p-3 border rounded-lg ${
+                    className={`p-2 border rounded-lg ${
                         selectedProfile === profile.id
                             ? 'border-primary bg-primary/10'
                             : 'border-darkGray'
                     }`}
                 >
-                    <div className="aspect-square bg-gray-100 rounded-lg mb-2">
+                    <div className="aspect-square relative bg-gray-100 rounded-lg mb-1">
                         <div 
-                            className="w-full h-full flex items-center justify-center text-darkGray bg-[url('/images/profile.svg')] bg-no-repeat bg-bottom">
+                            className="w-full h-full flex items-center justify-center text-darkGray relative bg-[url('/images/profile.svg')] bg-no-repeat bg-bottom">
                             {profileSvg[profile.id]}
                         </div>
                     </div>
-                    <p className="text-sm text-darkGray text-center">{profile.name}</p>
+                    <p className="text-xs text-darkGray text-center">{profile.name}</p>
                 </button>
             ))}
         </div>
