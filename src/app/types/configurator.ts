@@ -14,6 +14,17 @@ export interface Dimensions {
 }
 
 export type ColorType = 'single' | 'two' | 'three';
+
+export type ShapeCategory = 'vertical' | 'sine' | 'diagonal' | 'segment' | 'horizontal';
+export type WaveCount = 2 | 3 | 4;
+export type HeightPercentage = 30 | 50 | 70;
+
+export interface ShapeConfig {
+    category: ShapeCategory;
+    variant: string;
+    waveCount?: WaveCount;
+    heightPercentage?: HeightPercentage;
+}
 export type MetalColor = 
     | 'yellow gold'
     | 'white gold'
@@ -54,7 +65,7 @@ export interface ColorConfig {
 
 export interface PreciousMetal {
     colorType: ColorType;
-    shapeId?: number; // For two/three colors
+    shape?: ShapeConfig; // For two/three colors
     colors: ColorConfig[];
 }
 

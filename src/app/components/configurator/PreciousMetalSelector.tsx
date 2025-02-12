@@ -1,5 +1,5 @@
 import React from 'react';
-import { PreciousMetal, ColorType, MetalColor, PolishType, Fineness, ColorConfig } from '@/app/types/configurator';
+import { PreciousMetal, ColorType, MetalColor, PolishType, Fineness, ColorConfig, ShapeCategory, ShapeConfig, WaveCount, HeightPercentage } from '@/app/types/configurator';
 
 interface PreciousMetalSelectorProps {
     preciousMetal: PreciousMetal;
@@ -40,15 +40,40 @@ const polishTypes: PolishType[] = [
 
 const finenessOptions: Fineness[] = ['8K', '9K', '10K', '14K', '18K', '21K', '22K'];
 
-const twoColorShapes = Array.from({ length: 9 }, (_, i) => ({
-    id: i + 1,
-    image: `/images/two-color-${i + 1}.jpg` // You'll need to add these images
-}));
+const twoColorShapes: { category: ShapeCategory; variant: string }[] = [
+    { category: 'vertical', variant: '1-1' },
+    { category: 'vertical', variant: '1-2' },
+    { category: 'vertical', variant: '2-1' },
+    { category: 'vertical', variant: '3-1' },
+    { category: 'vertical', variant: '4-1' },
+    { category: 'sine', variant: '1-1' },
+    { category: 'diagonal', variant: '1-1' },
+    { category: 'segment', variant: '1-1' },
+    { category: 'horizontal', variant: '1-1' },
+];
 
-const threeColorShapes = Array.from({ length: 17 }, (_, i) => ({
-    id: i + 1,
-    image: `/images/three-color-${i + 1}.jpg` // You'll need to add these images
-}));
+const threeColorShapes: { category: ShapeCategory; variant: string }[] = [
+    { category: 'vertical', variant: '1-1-1' },
+    { category: 'vertical', variant: '2-1-2' },
+    { category: 'vertical', variant: '1-2-2' },
+    { category: 'vertical', variant: '2-2-1' },
+    { category: 'vertical', variant: '1-2-1' },
+    { category: 'vertical', variant: '3-1-3' },
+    { category: 'vertical', variant: '1-3-1' },
+    { category: 'vertical', variant: '1-4-1' },
+    { category: 'vertical', variant: '4-1-1' },
+    { category: 'vertical', variant: '3-1-1' },
+    { category: 'vertical', variant: '2-1-1' },
+    { category: 'diagonal', variant: '1-1-1' },
+    { category: 'diagonal', variant: '1-2-1' },
+    { category: 'vertical', variant: '2-1-2' },
+    { category: 'sine', variant: '1-1-1' },
+    { category: 'sine', variant: '1-2-1' },
+    { category: 'sine', variant: '2-1-2' },
+];
+
+const waveCountOptions: WaveCount[] = [2, 3, 4];
+const heightPercentageOptions: HeightPercentage[] = [30, 50, 70];
 
 export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
     preciousMetal,
@@ -65,11 +90,40 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
         });
     };
 
-    const handleShapeSelect = (shapeId: number) => {
+    const handleShapeSelect = (category: ShapeCategory, variant: string) => {
         onUpdatePreciousMetal({
             ...preciousMetal,
-            shapeId,
+            shape: {
+                category,
+                variant,
+                ...(category === 'sine' ? { waveCount: 2, heightPercentage: 50 } : {}),
+                ...(category === 'diagonal' ? { heightPercentage: 50 } : {}),
+            },
         });
+    };
+
+    const handleWaveCountChange = (waveCount: WaveCount) => {
+        if (preciousMetal.shape?.category === 'sine') {
+            onUpdatePreciousMetal({
+                ...preciousMetal,
+                shape: {
+                    ...preciousMetal.shape,
+                    waveCount,
+                },
+            });
+        }
+    };
+
+    const handleHeightPercentageChange = (heightPercentage: HeightPercentage) => {
+        if (preciousMetal.shape?.category === 'sine' || preciousMetal.shape?.category === 'diagonal') {
+            onUpdatePreciousMetal({
+                ...preciousMetal,
+                shape: {
+                    ...preciousMetal.shape,
+                    heightPercentage,
+                },
+            });
+        }
     };
 
     const handleColorConfigUpdate = (index: number, updates: Partial<ColorConfig>) => {
@@ -107,28 +161,89 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
 
             {/* Shape Selection for Two/Three Colors */}
             {(preciousMetal.colorType === 'two' || preciousMetal.colorType === 'three') && (
-                <div>
-                    <h3 className="text-darkGray text-lg font-medium mb-4">Select Shape</h3>
-                    <div className="grid grid-cols-4 gap-4">
-                        {(preciousMetal.colorType === 'two' ? twoColorShapes : threeColorShapes)?.map((shape) => (
-                            <button
-                                key={shape.id}
-                                onClick={() => handleShapeSelect(shape.id)}
-                                className={`p-2 border rounded-lg ${
-                                    preciousMetal.shapeId === shape.id
-                                        ? 'border-primary bg-primary/10'
-                                        : 'border-darkGray'
-                                }`}
-                            >
-                                <div className="aspect-square bg-gray-100 rounded-lg mb-2">
-                                    {/* Replace with actual image */}
-                                    <div className="w-full h-full flex items-center justify-center text-darkGray">
-                                        Shape {shape.id}
+                <div className="space-y-6">
+                    <div>
+                        <h3 className="text-darkGray text-lg font-medium mb-4">Select Shape</h3>
+                        <div className="grid grid-cols-4 gap-4">
+                            {(preciousMetal.colorType === 'two' ? twoColorShapes : threeColorShapes)?.map((shape) => (
+                                <button
+                                    key={`${shape.category}-${shape.variant}`}
+                                    onClick={() => handleShapeSelect(shape.category, shape.variant)}
+                                    className={`p-2 border rounded-lg ${
+                                        preciousMetal.shape?.category === shape.category &&
+                                        preciousMetal.shape?.variant === shape.variant
+                                            ? 'border-primary bg-primary/10'
+                                            : 'border-darkGray'
+                                    }`}
+                                >
+                                    <div className="aspect-square bg-gray-100 rounded-lg mb-2">
+                                        <img
+                                            src={`/images/shapes/${preciousMetal.colorType}colors/${shape.category}-${shape.variant}.png`}
+                                            alt={`${shape.category} ${shape.variant}`}
+                                            className="w-full h-full object-contain"
+                                        />
                                     </div>
-                                </div>
-                            </button>
-                        ))}
+                                    <p className="text-sm text-darkGray text-center">
+                                        {shape.category} {shape.variant}
+                                    </p>
+                                </button>
+                            ))}
+                        </div>
                     </div>
+
+                    {/* Additional Configuration for Sine Waves */}
+                    {preciousMetal.shape?.category === 'sine' && (
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-darkGray text-sm font-medium mb-2">Wave Count</label>
+                                <select
+                                    value={preciousMetal.shape.waveCount}
+                                    onChange={(e) => handleWaveCountChange(Number(e.target.value) as WaveCount)}
+                                    className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
+                                >
+                                    {waveCountOptions.map((count) => (
+                                        <option key={count} value={count}>
+                                            {count} Waves
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-darkGray text-sm font-medium mb-2">Wave Height</label>
+                                <select
+                                    value={preciousMetal.shape.heightPercentage}
+                                    onChange={(e) =>
+                                        handleHeightPercentageChange(Number(e.target.value) as HeightPercentage)
+                                    }
+                                    className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
+                                >
+                                    {heightPercentageOptions.map((height) => (
+                                        <option key={height} value={height}>
+                                            {height}%
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Additional Configuration for Diagonal */}
+                    {preciousMetal.shape?.category === 'diagonal' && (
+                        <div>
+                            <label className="block text-darkGray text-sm font-medium mb-2">Diagonal Height</label>
+                            <select
+                                value={preciousMetal.shape.heightPercentage}
+                                onChange={(e) => handleHeightPercentageChange(Number(e.target.value) as HeightPercentage)}
+                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
+                            >
+                                {heightPercentageOptions.map((height) => (
+                                    <option key={height} value={height}>
+                                        {height}%
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
                 </div>
             )}
 

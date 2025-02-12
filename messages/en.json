@@ -134,6 +134,7 @@
         "subtotal": "Subtotal",
         "shippingNote": "Shipping and taxes calculated at checkout",
         "checkout": "Proceed to Checkout",
+        "configurator": "Proceed to Configurator",
         "or": "or",
         "addToCart": "Add to Cart",
         "outOfStock": "Out of Stock",
