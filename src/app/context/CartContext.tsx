@@ -57,7 +57,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return 0;
     };
 
-    const addToCart = (product: Product, configuration?: ConfiguratorState, quantity: number = 1) => {
+    const addToCart = (product: Product, quantity: number = 1, configuration?: ConfiguratorState) => {
         if (product.stock === 0) {
             toast.error(t('notifications.outOfStock'));
             return;
