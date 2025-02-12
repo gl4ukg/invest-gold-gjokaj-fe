@@ -134,6 +134,7 @@
         "subtotal": "Zwischensumme",
         "shippingNote": "Versand und Steuern werden beim Checkout berechnet",
         "checkout": "Zur Kasse",
+        "configurator": "Zur Konfigurator",
         "or": "oder",
         "addToCart": "In den Warenkorb",
         "outOfStock": "Nicht auf Lager",

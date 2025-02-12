@@ -133,11 +133,11 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                             <p className="mt-0.5 text-sm text-darkGray">{t('shippingNote')}</p>
                             <div className="mt-6">
                                 <Link
-                                    href="/checkout"
+                                    href="/configurator"
                                     className="flex items-center justify-center rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-dark"
                                     onClick={onClose}
                                 >
-                                    {t('checkout')}
+                                    {t('configurator')}
                                 </Link>
                             </div>
                             <div className="mt-6 flex justify-center text-center text-sm text-darkGray">

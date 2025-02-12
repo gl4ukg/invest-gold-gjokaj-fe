@@ -3,12 +3,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Cart, CartContextType, CartItem } from '../types/cart.types';
 import { Product } from '../types/product.types';
+import { ConfiguratorState } from '../types/configurator';
 import { toast } from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
 
 const initialCart: Cart = {
     items: [],
-    total: 0
+    total: 0,
+    selectedItemId: undefined
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -55,7 +57,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return 0;
     };
 
-    const addToCart = (product: Product, quantity: number = 1) => {
+    const addToCart = (product: Product, configuration?: ConfiguratorState, quantity: number = 1) => {
         if (product.stock === 0) {
             toast.error(t('notifications.outOfStock'));
             return;
@@ -64,7 +66,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         let shouldShowToast = true;
 
         setCart(currentCart => {
-            const existingItem = currentCart.items.find(item => item.product.id === product.id);
+            const existingItem = currentCart.items.find(item => 
+                item.product.id === product.id && 
+                JSON.stringify(item.configuration) === JSON.stringify(configuration)
+            );
 
             if (existingItem) {
                 // Check if adding more would exceed stock
@@ -92,7 +97,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
                     return currentCart;
                 }
 
-                const newItems = [...currentCart.items, { product, quantity }];
+                const newItems = [...currentCart.items, { product, configuration, quantity }];
                 return {
                     items: newItems,
                     total: calculateTotal(newItems)
@@ -147,6 +152,30 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     };
 
+    const updateConfiguration = (productId: string, configuration: ConfiguratorState) => {
+        setCart(currentCart => {
+            const newItems = currentCart.items.map(item =>
+                item.product.id === productId
+                    ? { ...item, configuration }
+                    : item
+            );
+
+            return {
+                ...currentCart,
+                items: newItems,
+                total: calculateTotal(newItems)
+            };
+        });
+        toast.success(t('notifications.configurationUpdated'));
+    };
+
+    const selectCartItem = (productId: string | undefined) => {
+        setCart(prev => ({
+            ...prev,
+            selectedItemId: productId
+        }));
+    };
+
     const clearCart = () => {
         setCart(initialCart);
         toast.success(t('notifications.cartCleared'));
@@ -164,7 +193,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             itemCount,
             isCartOpen,
             setIsCartOpen,
-            isLoading
+            isLoading,
+            updateConfiguration,
+            selectCartItem
         }}>
             {children}
         </CartContext.Provider>
