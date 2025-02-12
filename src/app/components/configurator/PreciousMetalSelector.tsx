@@ -164,7 +164,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                 <div className="space-y-6">
                     <div>
                         <h3 className="text-darkGray text-lg font-medium mb-4">Select Shape</h3>
-                        <div className="grid grid-cols-4 gap-4">
+                        <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4">
                             {(preciousMetal.colorType === 'two' ? twoColorShapes : threeColorShapes)?.map((shape) => (
                                 <button
                                     key={`${shape.category}-${shape.variant}`}
@@ -253,39 +253,41 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                     <h3 className="text-darkGray text-lg font-medium">
                         {index === 0 ? 'Primary' : index === 1 ? 'Secondary' : 'Tertiary'} Color
                     </h3>
-                    
-                    {/* Metal Color */}
-                    <div>
-                        <label className="block text-darkGray text-sm font-medium mb-2">Metal Color</label>
-                        <select
-                            value={color.metalColor}
-                            onChange={(e) => handleColorConfigUpdate(index, { metalColor: e.target.value as MetalColor })}
-                            className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                        >
-                            {metalColors?.map((color) => (
-                                <option key={color} value={color}>
-                                    {color}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                    <div className='grid grid-cols-2 gap-4'>
 
-                    {/* Polish Type */}
-                    <div>
-                        <label className="block text-darkGray text-sm font-medium mb-2">Polish Type</label>
-                        <select
-                            value={color.polishType}
-                            onChange={(e) => handleColorConfigUpdate(index, { polishType: e.target.value as PolishType })}
-                            className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                        >
-                            {polishTypes?.map((type) => (
-                                <option key={type} value={type}>
-                                    {type}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                        {/* Metal Color */}
+                        <div>
+                            <label className="block text-darkGray text-sm font-medium mb-2">Metal Color</label>
+                            <select
+                                value={color.metalColor}
+                                onChange={(e) => handleColorConfigUpdate(index, { metalColor: e.target.value as MetalColor })}
+                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
+                            >
+                                {metalColors?.map((color) => (
+                                    <option key={color} value={color}>
+                                        {color}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
 
+                        {/* Polish Type */}
+                        <div>
+                            <label className="block text-darkGray text-sm font-medium mb-2">Polish Type</label>
+                            <select
+                                value={color.polishType}
+                                onChange={(e) => handleColorConfigUpdate(index, { polishType: e.target.value as PolishType })}
+                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
+                            >
+                                {polishTypes?.map((type) => (
+                                    <option key={type} value={type}>
+                                        {type}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                    </div>
                     {/* Fineness */}
                     <div>
                         <label className="block text-darkGray text-sm font-medium mb-2">Fineness</label>

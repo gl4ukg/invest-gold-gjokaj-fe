@@ -28,27 +28,47 @@ const EdgeSettingsForm: React.FC<{
         <h4 className="text-darkGray text-lg font-medium">{label}</h4>
         <div>
             <label className="block text-darkGray text-sm font-medium mb-2">Type</label>
-            <select
-                value={edge.type}
-                onChange={(e) => {
-                    const type = e.target.value as EdgeType;
-                    onChange({
-                        type,
-                        ...(type !== 'none' && {
-                            width: edge.width || 0.45,
-                            depth: edge.depth || 0.10,
-                            surface: edge.surface || 'Polished'
-                        })
-                    });
-                }}
-                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-            >
+            <div className="grid grid-cols-4 gap-4">
                 {edgeTypes?.map((type) => (
-                    <option key={type} value={type}>
-                        {type.charAt(0).toUpperCase() + type.slice(1)}
-                    </option>
+                    <div key={type} className="relative">
+                        <input
+                            type="radio"
+                            id={`${label}-${type}`}
+                            name={`${label}-type`}
+                            value={type}
+                            checked={edge.type === type}
+                            onChange={() => {
+                                onChange({
+                                    type,
+                                    ...(type !== 'none' && {
+                                        width: edge.width || 0.45,
+                                        depth: edge.depth || 0.10,
+                                        surface: edge.surface || 'Polished'
+                                    })
+                                });
+                            }}
+                            className="sr-only"
+                        />
+                        <label
+                            htmlFor={`${label}-${type}`}
+                            className={`block cursor-pointer ${edge.type === type ? 'ring-2 ring-primary ring-offset-2' : 'border border-darkGray'} rounded-lg p-2`}
+                        >
+                            <div className="space-y-2">
+                                <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                                    <img
+                                        src={`/images/edges/${type.toLowerCase()}.png`}
+                                        alt={type}
+                                        className="w-full h-full object-contain p-2"
+                                    />
+                                </div>
+                                <p className="text-sm text-center text-darkGray font-medium capitalize">
+                                    {type}
+                                </p>
+                            </div>
+                        </label>
+                    </div>
                 ))}
-            </select>
+            </div>
         </div>
 
         {edge.type !== 'none' && (
@@ -120,9 +140,30 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
         });
     };
 
+    const [activeTab, setActiveTab] = React.useState<'grooves' | 'edges'>('grooves');
+
     return (
         <div className="space-y-8">
+            {/* Tab Switch */}
+            <div className="flex justify-center mb-6">
+                <div className="inline-flex rounded-lg p-1 bg-gray-100">
+                    <button
+                        onClick={() => setActiveTab('grooves')}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'grooves' ? 'bg-white text-darkGray shadow-sm' : 'text-gray-500 hover:text-darkGray'}`}
+                    >
+                        Grooves
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('edges')}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'edges' ? 'bg-white text-darkGray shadow-sm' : 'text-gray-500 hover:text-darkGray'}`}
+                    >
+                        Edges
+                    </button>
+                </div>
+            </div>
+
             {/* Groove Settings */}
+            {activeTab === 'grooves' && (
             <div className="space-y-6">
                 <h3 className="text-darkGray text-xl font-medium">Groove Settings</h3>
                 
@@ -139,11 +180,22 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                                         : 'border-darkGray'
                                 }`}
                             >
-                                <div className="aspect-square bg-gray-100 rounded-lg mb-2">
-                                    {/* Replace with actual image */}
-                                    <div className="w-full h-full flex items-center justify-center text-darkGray">
-                                        {type}
+                                <div className="space-y-2">
+                                    <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                                        <img
+                                            src={`/images/grooves/${type
+                                                .toLowerCase()
+                                                .replace('v-groove (110°)', 'v-groove-110')
+                                                .replace('u-groove', 'u-groove')
+                                                .replace('convex', 'convex-v-groove')
+                                                .replace('square groove', 'square-groove')
+                                                .replace('carbon-groove', 'carbon')
+                                                .replace('milgrain', 'perlage')}.png`}
+                                            alt={type}
+                                            className="w-full h-full object-contain p-2"
+                                        />
                                     </div>
+                                    <p className="text-sm text-center text-darkGray font-medium line-clamp-2">{type}</p>
                                 </div>
                             </button>
                         ))}
@@ -204,8 +256,10 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                     </select>
                 </div>
             </div>
+            )}
 
             {/* Edge Settings */}
+            {activeTab === 'edges' && (
             <div className="space-y-8">
                 <h3 className="text-darkGray text-xl font-medium">Edge Settings</h3>
                 
@@ -221,6 +275,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                     label="Right Edge"
                 />
             </div>
+            )}
         </div>
     );
 };

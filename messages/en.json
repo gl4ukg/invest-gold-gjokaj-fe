@@ -97,6 +97,16 @@
             "send": "Send"
         }
     },
+    "configurator": {
+        "validation": {
+            "selectProfile": "Please select a profile to continue",
+            "enterDimensions": "Please enter all required dimensions",
+            "selectMetal": "Please select a precious metal",
+            "selectStoneSettings": "Please complete stone settings",
+            "completeGroovesAndEdges": "Please complete grooves and edges settings",
+            "enterEngraving": "Please enter engraving text"
+        }
+    },
     "shop": {
         "title": "Shop",
         "filters": "Filters",
@@ -212,10 +222,14 @@
         "quantity": "Quantity"
     },
     "notifications": {
+        "error": "An error occurred",   
+        "outOfStock": "This product is out of stock",
+        "exceedsStock": "Requested quantity exceeds available stock",
         "productAdded": "Product added to cart",
         "productRemoved": "Product removed from cart",
-        "cartUpdated": "Cart updated successfully",
-        "error": "An error occurred"
+        "cartUpdated": "Cart quantity updated",
+        "configurationUpdated": "Product configuration updated",
+        "cartCleared": "Cart has been cleared"
     },
     "jewelry": {
         "description": "We offer our clients the opportunity to discover the unique, elegant, and precious world of jewelry."

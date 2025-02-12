@@ -91,7 +91,7 @@ export type StoneType = 'Brillant' | 'Princess' | 'Baguette' | 'Emerald';
 export type StoneSize = '0.01 ct.' | '0.02 ct.' | '0.03 ct.' | '0.05 ct.' | '0.10 ct.';
 export type StoneQuality = 'G-H/VS-SI' | 'F-G/VVS' | 'D-E/IF-VVS1';
 export type StoneSpacing = 'Together' | 'Small Gap' | 'Medium Gap' | 'Large Gap';
-export type StonePosition = 'Left' | 'Center' | 'Right';
+export type StonePosition = 'Left' | 'Center' | 'Right' | 'Free';
 
 export interface StoneSettings {
     settingType: StoneSettingType;
@@ -101,6 +101,7 @@ export interface StoneSettings {
     numberOfStones: number;
     spacing: StoneSpacing;
     position: StonePosition;
+    offset?: number; // Percentage offset from center (-50 to 50) when position is 'Free'
 }
 
 export type GrooveType = 

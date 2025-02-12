@@ -97,6 +97,16 @@
             "send": "Dërgo"
         }
     },
+    "configurator": {
+        "validation": {
+            "selectProfile": "Ju lutemi zgjidhni një profil për të vazhduar",
+            "enterDimensions": "Ju lutemi plotësoni të gjitha dimensionet e kërkuara",
+            "selectMetal": "Ju lutemi zgjidhni një metal të çmuar",
+            "selectStoneSettings": "Ju lutemi plotësoni parametrat e gurit",
+            "completeGroovesAndEdges": "Ju lutemi plotësoni parametrat e kanaleve dhe skajeve",
+            "enterEngraving": "Ju lutemi shkruani tekstin e gdhendjes"
+        }
+    },
     "shop": {
         "title": "Dyqan",
         "filters": "Filtrat",
@@ -212,12 +222,16 @@
         "quantity": "Sasia"
     },
     "notifications": {
-        "productAdded": "Produkti u shtua në shportë",
+        "error": "Ndodhi një gabim",
+        "outOfStock": "Nuk ka ne stok",
+        "exceedsStock": "Sasia e këruar tejkalon stokun e disponueshëm",
+        "productAdded": "Produkti u shtua shportë",
         "productRemoved": "Produkti u hoq nga shporta",
         "cartUpdated": "Shporta u përditësua me sukses",
-        "error": "Ndodhi një gabim"
+        "configurationUpdated": "Konfigurimi u përditësua me sukses",
+        "cartCleared": "Shporta u pastrua me sukses"
     },
     "jewelry": {
-        "description": "Ne u ofrojmë klientëve tanë mundësinë për të zbuluar botën unike, elegante dhe të çmuar të stolive."
+        "description": "Ne u ofrojmë klientëve tanë mundësinë để te zbuluar botë unike, elegante dhe te çmuar te stolive."
     }
 }
