@@ -291,17 +291,23 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                     {/* Fineness */}
                     <div>
                         <label className="block text-darkGray text-sm font-medium mb-2">Fineness</label>
-                        <select
-                            value={color.fineness}
-                            onChange={(e) => handleColorConfigUpdate(index, { fineness: e.target.value as Fineness })}
-                            className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                        >
+                        <div className="grid grid-cols-4 gap-2">
                             {finenessOptions?.map((option) => (
-                                <option key={option} value={option}>
+                                <button
+                                    key={option}
+                                    onClick={() => handleColorConfigUpdate(index, { fineness: option })}
+                                    className={`
+                                        px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                                        ${color.fineness === option
+                                            ? 'bg-primary text-white shadow-md transform scale-105'
+                                            : 'border-2 border-primary/20 hover:border-primary/40 text-darkGray hover:bg-primary/5'
+                                        }
+                                    `}
+                                >
                                     {option}
-                                </option>
+                                </button>
                             ))}
-                        </select>
+                        </div>
                     </div>
                 </div>
             ))}

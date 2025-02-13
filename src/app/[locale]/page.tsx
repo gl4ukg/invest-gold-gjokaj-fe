@@ -22,7 +22,7 @@ export default function Home() {
         imageSrc="/images/gold-story-01.png"
         imageAlt={t("title")}
       />
-      {/* <RingsSection /> */}
+      <RingsSection />
       <JewelrySection/>
       <ServicesSection />
       <ContactSection />
