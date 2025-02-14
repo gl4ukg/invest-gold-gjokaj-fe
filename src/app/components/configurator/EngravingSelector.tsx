@@ -1,5 +1,11 @@
 import React, { useRef } from 'react';
 import { useTranslations } from 'next-intl';
+import { Nanum_Brush_Script } from 'next/font/google';
+
+const nanumBrush = Nanum_Brush_Script({
+    weight: '400',
+    subsets: ['latin'],
+});
 import { EngravingSettings, FontFamily, engravingSymbols } from '@/app/types/configurator';
 
 interface EngravingSelectorProps {
@@ -7,7 +13,13 @@ interface EngravingSelectorProps {
     onUpdateEngraving: (settings: EngravingSettings) => void;
 }
 
-const fontFamilies: FontFamily[] = ['Arial', 'Corsiva', 'Lucida', 'Times New Roman', 'Nanum Brush'];
+export const fontFamilies: { id: FontFamily; name: string; className?: string }[] = [
+    { id: 'Arial', name: 'Arial' },
+    { id: 'Corsiva', name: 'Monotype Corsiva' },
+    { id: 'Lucida', name: 'Lucida Handwriting' },
+    { id: 'Times New Roman', name: 'Times New Roman' },
+    { id: 'Nanum Brush', name: 'Nanum Brush Script', className: nanumBrush.className }
+];
 
 export const EngravingSelector: React.FC<EngravingSelectorProps> = ({
     engraving,
@@ -49,8 +61,8 @@ export const EngravingSelector: React.FC<EngravingSelectorProps> = ({
                     type="text"
                     value={engraving.text}
                     onChange={(e) => onUpdateEngraving({ ...engraving, text: e.target.value })}
-                    className="w-full p-4 border border-darkGray text-darkGray rounded-lg text-2xl"
-                    style={{ fontFamily: engraving.fontFamily }}
+                    className={`w-full p-4 border border-darkGray text-darkGray rounded-lg text-2xl ${fontFamilies.find(f => f.id === engraving.fontFamily)?.className || ''}`}
+                    style={{ fontFamily: fontFamilies.find(f => f.id === engraving.fontFamily)?.className ? undefined : fontFamilies.find(f => f.id === engraving.fontFamily)?.name }}
                     placeholder={t('configurator.engraving.inputPlaceholder')}
                 />
 
@@ -63,7 +75,7 @@ export const EngravingSelector: React.FC<EngravingSelectorProps> = ({
             {/* Symbols */}
             <div className="space-y-4">
                 <h4 className="text-darkGray text-lg font-medium">{t('configurator.engraving.symbols')}</h4>
-                <div className="grid grid-cols-8 gap-2">
+                <div className="flex flex-wrap gap-4">
                     {engravingSymbols?.map((item) => (
                         <button
                             key={item.id}
@@ -82,16 +94,16 @@ export const EngravingSelector: React.FC<EngravingSelectorProps> = ({
                 <div className="space-y-2">
                     {fontFamilies?.map((font) => (
                         <button
-                            key={font}
-                            onClick={() => onUpdateEngraving({ ...engraving, fontFamily: font })}
+                            key={font.id}
+                            onClick={() => onUpdateEngraving({ ...engraving, fontFamily: font.id })}
                             className={`w-full p-4 text-left border rounded-lg transition-colors ${
-                                engraving.fontFamily === font
+                                engraving.fontFamily === font.id
                                     ? 'border-primary bg-primary/10'
                                     : 'border-darkGray hover:bg-gray-50'
                             }`}
                         >
-                            <span className="text-darkGray" style={{ fontFamily: font }}>
-                                {font}
+                            <span className={`text-darkGray ${font.className || ''}`} style={{ fontFamily: font.className ? undefined : font.name }}>
+                                {font.name}
                             </span>
                         </button>
                     ))}
@@ -103,8 +115,8 @@ export const EngravingSelector: React.FC<EngravingSelectorProps> = ({
                 <h4 className="text-darkGray text-lg font-medium">{t('configurator.engraving.preview')}</h4>
                 <div className="p-6 border border-darkGray rounded-lg">
                     <p
-                        className="text-2xl text-darkGray text-center break-words"
-                        style={{ fontFamily: engraving.fontFamily }}
+                        className={`text-2xl text-darkGray text-center break-words ${fontFamilies.find(f => f.id === engraving.fontFamily)?.className || ''}`}
+                        style={{ fontFamily: fontFamilies.find(f => f.id === engraving.fontFamily)?.className ? undefined : fontFamilies.find(f => f.id === engraving.fontFamily)?.name }}
                     >
                         {engraving.text || t('configurator.engraving.placeholder')}
                     </p>

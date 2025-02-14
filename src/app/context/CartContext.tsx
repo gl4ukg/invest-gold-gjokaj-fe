@@ -35,7 +35,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             try {
                 const savedCart = localStorage.getItem('cart');
                 if (savedCart) {
-                    setCart(JSON.parse(savedCart));
+                    const parsedCart = JSON.parse(savedCart);
+                    // If there are items but none is selected, select the first one
+                    if (parsedCart.items.length > 0 && !parsedCart.selectedItemId) {
+                        parsedCart.selectedItemId = parsedCart.items[0].id;
+                    }
+                    setCart(parsedCart);
                 }
             } catch (error) {
                 console.error('Error loading cart:', error);
@@ -97,10 +102,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
                     return currentCart;
                 }
 
-                const newItems = [...currentCart.items, { product, configuration, quantity }];
+                const newItem = { product, configuration, quantity };
+                const newItems = [...currentCart.items, newItem];
                 return {
                     items: newItems,
-                    total: calculateTotal(newItems)
+                    total: calculateTotal(newItems),
+                    selectedItemId: currentCart.items.length === 0 ? newItem.product.id : currentCart.selectedItemId
                 };
             }
         });
@@ -113,9 +120,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const removeFromCart = (productId: string) => {
         setCart(currentCart => {
             const newItems = currentCart.items.filter(item => item.product.id !== productId);
+            // If the removed item was selected, select the first remaining item
+            const wasSelectedItem = currentCart.selectedItemId && currentCart.items.find(item => item.product.id === productId)?.id === currentCart.selectedItemId;
             return {
                 items: newItems,
-                total: calculateTotal(newItems)
+                total: calculateTotal(newItems),
+                selectedItemId: wasSelectedItem ? (newItems[0]?.id || undefined) : currentCart.selectedItemId
             };
         });
         toast.success(t('notifications.productRemoved'));
