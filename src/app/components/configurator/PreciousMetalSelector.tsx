@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from 'next/image';
+import { SelectInput } from '../ui/SelectInput';
 import { PreciousMetal, ColorType, MetalColor, PolishType, Fineness, ColorConfig, ShapeCategory, ShapeConfig, WaveCount, HeightPercentage } from '@/app/types/configurator';
 
 interface PreciousMetalSelectorProps {
@@ -12,9 +14,9 @@ const metalColors: MetalColor[] = [
     'red gold',
     'rose gold',
     'white gold with palladium',
-    'Silver / Rhodium plated',
-    'Silver / Yellow Gold plated',
-    'Silver / red Gold plated',
+    'silver/ rhodium plated',
+    'silver/ yellow gold plated',
+    'silver/ red gold plated',
     'zirconium (black)',
     'zirconium (grey)',
 ];
@@ -194,54 +196,39 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                     {/* Additional Configuration for Sine Waves */}
                     {preciousMetal.shape?.category === 'sine' && (
                         <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-darkGray text-sm font-medium mb-2">Wave Count</label>
-                                <select
-                                    value={preciousMetal.shape.waveCount}
-                                    onChange={(e) => handleWaveCountChange(Number(e.target.value) as WaveCount)}
-                                    className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                                >
-                                    {waveCountOptions.map((count) => (
-                                        <option key={count} value={count}>
-                                            {count} Waves
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div>
-                                <label className="block text-darkGray text-sm font-medium mb-2">Wave Height</label>
-                                <select
-                                    value={preciousMetal.shape.heightPercentage}
-                                    onChange={(e) =>
-                                        handleHeightPercentageChange(Number(e.target.value) as HeightPercentage)
-                                    }
-                                    className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                                >
-                                    {heightPercentageOptions.map((height) => (
-                                        <option key={height} value={height}>
-                                            {height}%
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
+                            <SelectInput
+                                label="Wave Count"
+                                value={preciousMetal?.shape?.waveCount?.toString() || '2'}
+                                onChange={(value) => handleWaveCountChange(Number(value) as WaveCount)}
+                                options={waveCountOptions.map((count) => ({
+                                    value: count.toString(),
+                                    label: `${count} Waves`
+                                }))}
+                            />
+                            <SelectInput
+                                label="Wave Height"
+                                value={preciousMetal?.shape?.heightPercentage?.toString() || '50'}
+                                onChange={(value) => handleHeightPercentageChange(Number(value) as HeightPercentage)}
+                                options={heightPercentageOptions.map((height) => ({
+                                    value: height.toString(),
+                                    label: `${height}%`
+                                }))}
+                            />
                         </div>
                     )}
 
                     {/* Additional Configuration for Diagonal */}
                     {preciousMetal.shape?.category === 'diagonal' && (
                         <div>
-                            <label className="block text-darkGray text-sm font-medium mb-2">Diagonal Height</label>
-                            <select
-                                value={preciousMetal.shape.heightPercentage}
-                                onChange={(e) => handleHeightPercentageChange(Number(e.target.value) as HeightPercentage)}
-                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                            >
-                                {heightPercentageOptions.map((height) => (
-                                    <option key={height} value={height}>
-                                        {height}%
-                                    </option>
-                                ))}
-                            </select>
+                            <SelectInput
+                                label="Diagonal Height"
+                                value={preciousMetal?.shape?.heightPercentage?.toString() || '50'}
+                                onChange={(value) => handleHeightPercentageChange(Number(value) as HeightPercentage)}
+                                options={heightPercentageOptions.map((height) => ({
+                                    value: height.toString(),
+                                    label: `${height}%`
+                                }))}
+                            />
                         </div>
                     )}
                 </div>
@@ -256,36 +243,64 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                     <div className='grid grid-cols-2 gap-4'>
 
                         {/* Metal Color */}
-                        <div>
-                            <label className="block text-darkGray text-sm font-medium mb-2">Metal Color</label>
-                            <select
-                                value={color.metalColor}
-                                onChange={(e) => handleColorConfigUpdate(index, { metalColor: e.target.value as MetalColor })}
-                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                            >
-                                {metalColors?.map((color) => (
-                                    <option key={color} value={color}>
-                                        {color}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <SelectInput
+                            label="Metal Color"
+                            value={color.metalColor}
+                            onChange={(value) => handleColorConfigUpdate(index, { metalColor: value as MetalColor })}
+                            options={metalColors.map(color => {
+                                // Handle special cases for metal colors
+                                const imageNameMap: { [key: string]: string } = {
+                                    'white gold with palladium': 'white-gold with palladium',
+                                    'silver/ rhodium plated': 'silver-rhodium-plated',
+                                    'silver/ yellow gold plated': 'silver-yellow-gold-plated',
+                                    'silver/ red gold plated': 'silver-red-gold-plated',
+                                    'zirconium (black)': 'zirconium-black',
+                                    'zirconium (grey)': 'zirconium-grey'
+                                };
+                                
+                                const imageName = imageNameMap[color.toLowerCase()] || color.toLowerCase().replace(/ /g, '-');
+                                console.log('Color:', color, 'Image:', imageName);
+                                
+                                return ({
+                                    value: color,
+                                    label: color,
+                                    image: `/images/colors/${imageName}.png`
+                                });
+                            })}
+                            imageClassName="w-8 h-8 bg-gray-100 overflow-hidden"
+                        />
 
                         {/* Polish Type */}
-                        <div>
-                            <label className="block text-darkGray text-sm font-medium mb-2">Polish Type</label>
-                            <select
-                                value={color.polishType}
-                                onChange={(e) => handleColorConfigUpdate(index, { polishType: e.target.value as PolishType })}
-                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                            >
-                                {polishTypes?.map((type) => (
-                                    <option key={type} value={type}>
-                                        {type}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <SelectInput
+                            label="Polish Type"
+                            value={color.polishType}
+                            onChange={(value) => handleColorConfigUpdate(index, { polishType: value as PolishType })}
+                            options={polishTypes.map(type => {
+                                // Map polish types to actual image names
+                                const imageNameMap: { [key: string]: string } = {
+                                    'Polished': 'polished',
+                                    'Ice matte': 'ice-matte',
+                                    'Sandblasted': 'sandblasted',
+                                    'Vertical matte': 'vertical-matte',
+                                    'Horizontal matte': 'horizontal-matte',
+                                    'Crossed matte': 'crossed-matte',
+                                    'Double crossed': 'double-crossed',
+                                    'Bark cross': 'bark-cross',
+                                    'Wave': 'wave',
+                                    'Honeycomb': 'honeycomb',
+                                    'Hammered wide': 'hammered-wide',
+                                    'Hammered tight': 'hammered-tight',
+                                    'Hammered wide (polished)': 'hammered-wide-(polished)',
+                                    'Hammered tight (polished)': 'hammered-tight-(polished)',
+                                };
+                                return ({
+                                    value: type,
+                                    label: type,
+                                    image: `/images/surface/${imageNameMap[type] || type.toLowerCase().replace(/ /g, '-')}.png`
+                                });
+                            })}
+                            imageClassName="w-8 h-8 bg-gray-100 rounded-lg overflow-hidden"
+                        />
 
                     </div>
                     {/* Fineness */}

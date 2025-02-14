@@ -1,4 +1,5 @@
 import React from 'react';
+import { SelectInput } from '../ui/SelectInput';
 import { Dimensions, RingSizeSystem } from '@/app/types/configurator';
 import { profileSvg } from './profileSvgs';
 
@@ -58,80 +59,54 @@ export const DimensionsSelector: React.FC<DimensionsSelectorProps> = ({
             )}
 
             <div className='grid grid-cols-2 gap-4'>
-                <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">
-                        Profile Width (mm)
-                    </label>
-                    <select
-                        value={dimensions.profileWidth}
-                        onChange={(e) =>
-                            handleChange('profileWidth', Number(e.target.value))
-                        }
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                    >
-                        {[2, 2.5, 3, 3.5, 4, 4.5, 5]?.map((width) => (
-                            <option key={width} value={width}>
-                                {width.toFixed(2)} mm
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <SelectInput
+                    label="Profile Width (mm)"
+                    value={dimensions.profileWidth.toString()}
+                    onChange={(value) => handleChange('profileWidth', Number(value))}
+                    options={[2, 2.5, 3, 3.5, 4, 4.5, 5].map((width) => ({
+                        value: width.toString(),
+                        label: `${width.toFixed(2)} mm`
+                    }))}
+                />
 
-                <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">
-                        Profile Height (mm)
-                    </label>
-                    <select
-                        value={dimensions.profileHeight}
-                        onChange={(e) =>
-                            handleChange('profileHeight', Number(e.target.value))
-                        }
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                    >
-                        {[1, 1.25, 1.5, 1.75, 2]?.map((height) => (
-                            <option key={height} value={height}>
-                                {height.toFixed(2)} mm
-                            </option>
-                        ))}
-                    </select>
-                </div>
 
-                <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Ring Size System</label>
-                    <select
-                        value={dimensions.ringSizeSystem}
-                        onChange={(e) =>
-                            handleChange('ringSizeSystem', e.target.value as RingSizeSystem)
-                        }
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                    >
-                        {(['Universal', 'UK', 'USA'] as const)?.map((system) => (
-                            <option key={system} value={system}>
-                                {system}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <SelectInput
+                    label="Profile Height (mm)"
+                    value={dimensions.profileHeight.toString()}
+                    onChange={(value) => handleChange('profileHeight', Number(value))}
+                    options={[1, 1.25, 1.5, 1.75, 2].map((height) => ({
+                        value: height.toString(),
+                        label: `${height.toFixed(2)} mm`
+                    }))}
+                />
 
-                <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Ring Size</label>
-                    <select
-                        value={dimensions.ringSize}
-                        onChange={(e) => {
-                            const value = dimensions.ringSizeSystem === 'Universal' 
-                                ? Number(e.target.value)
-                                : e.target.value;
-                            handleChange('ringSize', value);
-                        }}
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                    >
-                        {ringSizeOptions[dimensions.ringSizeSystem]?.map((size) => (
-                            <option key={size} value={size}>
-                                {size}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+
+                <SelectInput
+                    label="Ring Size System"
+                    value={dimensions.ringSizeSystem}
+                    onChange={(value) => handleChange('ringSizeSystem', value as RingSizeSystem)}
+                    options={(['Universal', 'UK', 'USA'] as const).map((system) => ({
+                        value: system,
+                        label: system
+                    }))}
+                />
+
+
+                <SelectInput
+                    label="Ring Size"
+                    value={dimensions.ringSize.toString()}
+                    onChange={(value) => {
+                        const parsedValue = dimensions.ringSizeSystem === 'Universal' 
+                            ? Number(value)
+                            : value;
+                        handleChange('ringSize', parsedValue);
+                    }}
+                    options={ringSizeOptions[dimensions.ringSizeSystem].map((size) => ({
+                        value: size.toString(),
+                        label: size.toString()
+                    }))}
+                />
+
             </div>
         </div>
     );

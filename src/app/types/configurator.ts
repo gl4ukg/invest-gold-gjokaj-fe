@@ -31,9 +31,9 @@ export type MetalColor =
     | 'red gold'
     | 'rose gold'
     | 'white gold with palladium'
-    | 'Silver / Rhodium plated'
-    | 'Silver / Yellow Gold plated'
-    | 'Silver / red Gold plated'
+    | 'silver/ rhodium plated'
+    | 'silver/ yellow gold plated'
+    | 'silver/ red gold plated'
     | 'zirconium (black)'
     | 'zirconium (grey)';
 
@@ -114,7 +114,7 @@ export type GrooveType =
 
 export type EdgeType = 'none' | 'step' | 'carbon' | 'milgrain';
 export type GrooveAlignment = 'left' | 'center' | 'right';
-export type SurfaceType = 'Polished' | 'Matte' | 'Brushed';
+export type SurfaceType = 'Polished' | 'Sandblasted';
 
 export interface GrooveSettings {
     grooveType: GrooveType;

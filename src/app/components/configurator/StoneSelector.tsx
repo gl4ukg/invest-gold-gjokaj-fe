@@ -1,5 +1,6 @@
 import React from 'react';
 import { StoneSettings, StoneSettingType, StoneType, StoneSize, StoneQuality, StoneSpacing, StonePosition } from '@/app/types/configurator';
+import { SelectInput } from '../ui/SelectInput';
 
 interface StoneSelectorProps {
     stoneSettings: StoneSettings;
@@ -58,7 +59,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
             {/* Stone Setting Type Selection */}
             <div>
                 <h3 className="text-darkGray text-lg font-medium mb-4">Stone Setting Type</h3>
-                <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4">
+                <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-3 gap-4">
                     {stoneSettingTypes?.map((type) => (
                         <button
                             key={type}
@@ -88,92 +89,67 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                 <>
                     <div className="grid grid-cols-2 gap-4">
                         {/* Stone Type */}
-                        <div>
-                            <label className="block text-darkGray text-sm font-medium mb-2">Stone Type</label>
-                            <select
-                                value={stoneSettings.stoneType}
-                                onChange={(e) => handleChange('stoneType', e.target.value as StoneType)}
-                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                            >
-                                {stoneTypes?.map((type) => (
-                                    <option key={type} value={type}>
-                                        {type}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <SelectInput
+                            label="Stone Type"
+                            value={stoneSettings.stoneType}
+                            onChange={(value) => handleChange('stoneType', value as StoneType)}
+                            options={stoneTypes.map((type) => ({
+                                value: type,
+                                label: type
+                            }))}
+                        />
 
 
                         {/* Stone Size */}
-                        <div>
-                            <label className="block text-darkGray text-sm font-medium mb-2">Stone Size</label>
-                            <select
-                                value={stoneSettings.stoneSize}
-                                onChange={(e) => handleChange('stoneSize', e.target.value as StoneSize)}
-                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                            >
-                                {stoneSizes?.map((size) => (
-                                    <option key={size} value={size}>
-                                        {size}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <SelectInput
+                            label="Stone Size"
+                            value={stoneSettings.stoneSize}
+                            onChange={(value) => handleChange('stoneSize', value as StoneSize)}
+                            options={stoneSizes.map((size) => ({
+                                value: size,
+                                label: size
+                            }))}
+                        />
 
                         {/* Stone Quality */}
-                        <div>
-                            <label className="block text-darkGray text-sm font-medium mb-2">Stone Quality</label>
-                            <select
-                                value={stoneSettings.stoneQuality}
-                                onChange={(e) => handleChange('stoneQuality', e.target.value as StoneQuality)}
-                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                            >
-                                {stoneQualities?.map((quality) => (
-                                    <option key={quality} value={quality}>
-                                        {quality}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <SelectInput
+                            label="Stone Quality"
+                            value={stoneSettings.stoneQuality}
+                            onChange={(value) => handleChange('stoneQuality', value as StoneQuality)}
+                            options={stoneQualities.map((quality) => ({
+                                value: quality,
+                                label: quality
+                            }))}
+                        />
 
                         {/* Number of Stones */}
-                        <div>
-                            <label className="block text-darkGray text-sm font-medium mb-2">Number of Stones</label>
-                            <select
-                                value={stoneSettings.numberOfStones}
-                                onChange={(e) => handleChange('numberOfStones', Number(e.target.value))}
-                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                            >
-                                {[1, 3, 5, 7, 15, 30]?.map((num) => (
-                                    <option key={num} value={num}>
-                                        {num === 30 ? 'Full Eternity Ring (30)' : num}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <SelectInput
+                            label="Number of Stones"
+                            value={stoneSettings.numberOfStones.toString()}
+                            onChange={(value) => handleChange('numberOfStones', Number(value))}
+                            options={[1, 3, 5, 7, 15, 30].map((num) => ({
+                                value: num.toString(),
+                                label: num === 30 ? 'Full Eternity Ring (30)' : num.toString()
+                            }))}
+                        />
 
                         {/* Stone Spacing */}
-                        <div>
-                            <label className="block text-darkGray text-sm font-medium mb-2">Stone Spacing</label>
-                            <select
-                                value={stoneSettings.spacing}
-                                onChange={(e) => handleChange('spacing', e.target.value as StoneSpacing)}
-                                className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                            >
-                                {stoneSpacings?.map((spacing) => (
-                                    <option key={spacing} value={spacing}>
-                                        {spacing}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <SelectInput
+                            label="Stone Spacing"
+                            value={stoneSettings.spacing}
+                            onChange={(value) => handleChange('spacing', value as StoneSpacing)}
+                            options={stoneSpacings.map((spacing) => ({
+                                value: spacing,
+                                label: spacing
+                            }))}
+                        />
 
                     </div>
                     {/* Stone Position */}
                     <div className="space-y-6">
                         <div>
                             <h3 className="text-darkGray text-lg font-medium mb-4">Stone Position</h3>
-                            <div className="grid grid-cols-4 gap-4">
+                            <div className="grid grid-cols-6 gap-4">
                                 {stonePositions.map((position) => (
                                     <label
                                         key={position}
@@ -208,7 +184,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
 
                         {/* Free Position Slider */}
                         {stoneSettings.position === 'Free' && (
-                            <div className="space-y-4">
+                            <div className="space-y-4 w-[400px]">
                                 <div className="flex justify-between items-center">
                                     <label className="text-sm font-medium text-darkGray">Stone Position</label>
                                     <span className="text-sm font-medium" style={{ color: stoneSettings.offset === 0 ? '#4B5563' : '#B7A44C' }}>
