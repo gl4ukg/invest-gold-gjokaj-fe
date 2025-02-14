@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { SelectInput } from '../ui/SelectInput';
 import { PreciousMetal, ColorType, MetalColor, PolishType, Fineness, ColorConfig, ShapeCategory, ShapeConfig, WaveCount, HeightPercentage } from '@/app/types/configurator';
@@ -81,6 +82,8 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
     preciousMetal,
     onUpdatePreciousMetal,
 }) => {
+
+    const t = useTranslations();
     const handleColorTypeChange = (colorType: ColorType) => {
         onUpdatePreciousMetal({
             colorType,
@@ -141,7 +144,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
         <div className="space-y-8">
             {/* Color Type Selection */}
             <div>
-                <h3 className="text-darkGray text-lg font-medium mb-4">Select Color Type</h3>
+                <h3 className="text-darkGray text-lg font-medium mb-4">{t('configurator.preciousMetal.selectColorType')}</h3>
                 <div className="grid grid-cols-3 gap-4">
                     {(['single', 'two', 'three'] as const)?.map((type) => (
                         <button
@@ -154,7 +157,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                             }`}
                         >
                             <span className="text-darkGray">
-                                {type === 'single' ? 'Single Color' : type === 'two' ? 'Two Colors' : 'Three Colors'}
+                                {t(`configurator.preciousMetal.colorTypes.${type}`)}
                             </span>
                         </button>
                     ))}
@@ -165,7 +168,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
             {(preciousMetal.colorType === 'two' || preciousMetal.colorType === 'three') && (
                 <div className="space-y-6">
                     <div>
-                        <h3 className="text-darkGray text-lg font-medium mb-4">Select Shape</h3>
+                        <h3 className="text-darkGray text-lg font-medium mb-4">{t('configurator.preciousMetal.selectShape')}</h3>
                         <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4">
                             {(preciousMetal.colorType === 'two' ? twoColorShapes : threeColorShapes)?.map((shape) => (
                                 <button
@@ -197,7 +200,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                     {preciousMetal.shape?.category === 'sine' && (
                         <div className="grid grid-cols-2 gap-4">
                             <SelectInput
-                                label="Wave Count"
+                                label={t('configurator.preciousMetal.waveCount')}
                                 value={preciousMetal?.shape?.waveCount?.toString() || '2'}
                                 onChange={(value) => handleWaveCountChange(Number(value) as WaveCount)}
                                 options={waveCountOptions.map((count) => ({
@@ -206,7 +209,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                                 }))}
                             />
                             <SelectInput
-                                label="Wave Height"
+                                label={t('configurator.preciousMetal.waveHeight')}
                                 value={preciousMetal?.shape?.heightPercentage?.toString() || '50'}
                                 onChange={(value) => handleHeightPercentageChange(Number(value) as HeightPercentage)}
                                 options={heightPercentageOptions.map((height) => ({
@@ -221,7 +224,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                     {preciousMetal.shape?.category === 'diagonal' && (
                         <div>
                             <SelectInput
-                                label="Diagonal Height"
+                                label={t('configurator.preciousMetal.diagonalHeight')}
                                 value={preciousMetal?.shape?.heightPercentage?.toString() || '50'}
                                 onChange={(value) => handleHeightPercentageChange(Number(value) as HeightPercentage)}
                                 options={heightPercentageOptions.map((height) => ({
@@ -238,13 +241,13 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
             {preciousMetal.colors?.map((color, index) => (
                 <div key={index} className="space-y-4">
                     <h3 className="text-darkGray text-lg font-medium">
-                        {index === 0 ? 'Primary' : index === 1 ? 'Secondary' : 'Tertiary'} Color
+                        {t(`configurator.colors.${index === 0 ? 'primary' : index === 1 ? 'secondary' : 'tertiary'}`)} {t('configurator.colors.colorLabel')}
                     </h3>
                     <div className='grid grid-cols-2 gap-4'>
 
                         {/* Metal Color */}
                         <SelectInput
-                            label="Metal Color"
+                            label={t('configurator.preciousMetal.metalColor')}
                             value={color.metalColor}
                             onChange={(value) => handleColorConfigUpdate(index, { metalColor: value as MetalColor })}
                             options={metalColors.map(color => {
@@ -272,7 +275,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
 
                         {/* Polish Type */}
                         <SelectInput
-                            label="Polish Type"
+                            label={t('configurator.preciousMetal.polishType')}
                             value={color.polishType}
                             onChange={(value) => handleColorConfigUpdate(index, { polishType: value as PolishType })}
                             options={polishTypes.map(type => {
@@ -305,7 +308,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                     </div>
                     {/* Fineness */}
                     <div>
-                        <label className="block text-darkGray text-sm font-medium mb-2">Fineness</label>
+                        <label className="block text-darkGray text-sm font-medium mb-2">{t('configurator.preciousMetal.fineness')}</label>
                         <div className="grid grid-cols-4 gap-2">
                             {finenessOptions?.map((option) => (
                                 <button
