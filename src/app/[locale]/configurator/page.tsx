@@ -9,7 +9,7 @@ import { DimensionsSelector } from '@/app/components/configurator/DimensionsSele
 import { PreciousMetalSelector } from '@/app/components/configurator/PreciousMetalSelector';
 import { StoneSelector } from '@/app/components/configurator/StoneSelector';
 import { GroovesAndEdgesSelector } from '@/app/components/configurator/GroovesAndEdgesSelector';
-import { EngravingSelector } from '@/app/components/configurator/EngravingSelector';
+import { EngravingSelector, fontFamilies } from '@/app/components/configurator/EngravingSelector';
 import { WeightSelector } from '@/app/components/configurator/WeightSelector';
 import { ConfiguratorState, PreciousMetal, StoneSettings, GroovesAndEdges, EngravingSettings } from '@/app/types/configurator';
 import Image from 'next/image';
@@ -507,12 +507,20 @@ export default function ConfiguratorPage() {
                                             <p className="text-darkGray">Engraving:</p>
                                             <div className="ml-2">
                                                 <p className="text-darkGray">• Font: {configuratorState.engraving.fontFamily}</p>
-                                                <p 
-                                                    className="text-darkGray"
-                                                    style={{ fontFamily: configuratorState.engraving.fontFamily }}
-                                                >
-                                                    • Text: {configuratorState.engraving.text}
-                                                </p>
+                                                <div className='flex'>
+                                                    <p 
+                                                        className="text-darkGray me-3"
+                                                        style={{ fontFamily: configuratorState.engraving.fontFamily }}
+                                                    >
+                                                        • Text: 
+                                                    </p>
+                                                    <p  
+                                                        className={` text-darkGray text-center break-words ${fontFamilies.find(f => f.id === configuratorState.engraving.fontFamily)?.className || ''}`}
+                                                        style={{ fontFamily: fontFamilies.find(f => f.id === configuratorState.engraving.fontFamily)?.className ? undefined : fontFamilies.find(f => f.id === configuratorState.engraving.fontFamily)?.name }}
+                                                    >
+                                                        {configuratorState.engraving.text}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     )}

@@ -1,0 +1,10 @@
+/* Font Face Declarations */
+@font-face {
+    font-family: 'Monotype Corsiva';
+    src: url('/fonts/MTCORSVA.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lucida Handwriting';
+    src: url('/fonts/LHANDW.TTF') format('truetype');
+}
