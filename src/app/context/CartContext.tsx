@@ -121,11 +121,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setCart(currentCart => {
             const newItems = currentCart.items.filter(item => item.product.id !== productId);
             // If the removed item was selected, select the first remaining item
-            const wasSelectedItem = currentCart.selectedItemId && currentCart.items.find(item => item.product.id === productId)?.id === currentCart.selectedItemId;
+            const wasSelectedItem = currentCart.selectedItemId && currentCart.items.find(item => item.product.id === productId)?.product.id === currentCart.selectedItemId;
             return {
                 items: newItems,
                 total: calculateTotal(newItems),
-                selectedItemId: wasSelectedItem ? (newItems[0]?.id || undefined) : currentCart.selectedItemId
+                selectedItemId: wasSelectedItem ? (newItems[0]?.product.id || undefined) : currentCart.selectedItemId
             };
         });
         toast.success(t('notifications.productRemoved'));
