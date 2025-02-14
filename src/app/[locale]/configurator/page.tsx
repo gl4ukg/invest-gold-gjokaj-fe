@@ -10,21 +10,24 @@ import { PreciousMetalSelector } from '@/app/components/configurator/PreciousMet
 import { StoneSelector } from '@/app/components/configurator/StoneSelector';
 import { GroovesAndEdgesSelector } from '@/app/components/configurator/GroovesAndEdgesSelector';
 import { EngravingSelector } from '@/app/components/configurator/EngravingSelector';
+import { WeightSelector } from '@/app/components/configurator/WeightSelector';
 import { ConfiguratorState, PreciousMetal, StoneSettings, GroovesAndEdges, EngravingSettings } from '@/app/types/configurator';
 import Image from 'next/image';
 
-const steps = [
-    { id: 1, name: 'Profiles' },
-    { id: 2, name: 'Dimensions' },
-    { id: 3, name: 'Precious Metal' },
-    { id: 4, name: 'Stones' },
-    { id: 5, name: 'Grooves / Edges' },
-    { id: 6, name: 'Engraving' },
-];
-
 export default function ConfiguratorPage() {
-    const t = useTranslations();
+    const t = useTranslations('configurator');
     const tConfig = useTranslations('configurator.validation');
+
+    const steps = [
+        { id: 1, name: t('steps.profiles') },
+        { id: 2, name: t('steps.dimensions') },
+        { id: 3, name: t('steps.preciousMetal') },
+        { id: 4, name: t('steps.stones') },
+        { id: 5, name: t('steps.groovesAndEdges') },
+        { id: 6, name: t('steps.engraving') },
+        { id: 7, name: t('steps.weight') },
+    ];
+
     const [currentStep, setCurrentStep] = useState(1);
     const { cart, selectCartItem, updateConfiguration } = useCart();
     const [configuratorState, setConfiguratorState] = useState<ConfiguratorState>({
@@ -70,9 +73,12 @@ export default function ConfiguratorPage() {
         engraving: {
             text: '',
             fontFamily: 'Times New Roman'
-        }
+        },
+        weight: 0
     });
 
+    console.log(cart,"cart")
+console.log(configuratorState,"configuratorState")
     const handleProfileSelect = (profileId: string) => {
         const newState = {
             ...configuratorState,
@@ -231,6 +237,8 @@ export default function ConfiguratorPage() {
                 return true; // Can proceed with any groove/edge settings
             case 6:
                 return true; // Can proceed with or without engraving
+            case 7:
+                return true; // Can proceed with any weight
             default:
                 return false;
         }
@@ -241,14 +249,14 @@ export default function ConfiguratorPage() {
             <h1 className="text-2xl text-primary font-bold mb-6">{tConfig('configurator')}</h1>
             <div className="flex flex-col">
                 <div className="py-6 px-6 ">
-                    <ul className=" flex">
+                    <ul className="flex flex-wrap gap-3">
                         {steps?.map((step) => (
                             <li
                                 key={step.id}
-                                className={`flex p-3 rounded-lg cursor-pointer border me-3 font-medium ${
+                                className={`flex p-3 rounded-lg cursor-pointer border font-medium ${
                                     currentStep === step.id
                                         ? 'bg-gold text-primary'
-                                        : 'bg-gray-100 text-darkGray '
+                                        : 'bg-gray-100 text-darkGray hover:bg-gray-200'
                                 }`}
                                 onClick={() => setCurrentStep(step.id)}
                             >
@@ -300,6 +308,35 @@ export default function ConfiguratorPage() {
                                     engraving={configuratorState.engraving}
                                     onUpdateEngraving={handleEngravingUpdate}
                                 />
+                            )}
+                            {currentStep === 7 && cart.selectedItemId && (
+                                <>
+                                    {(() => {
+                                        const selectedProduct = cart.items.find(item => item.product.id === cart.selectedItemId);
+                                        if (!selectedProduct) return null;
+                                        
+                                        const weightRange = selectedProduct.product.weight.split('-').map(Number);
+                                        const [minWeight, maxWeight] = weightRange;
+                                        
+                                        return (
+                                            <WeightSelector
+                                                minWeight={minWeight}
+                                                maxWeight={maxWeight}
+                                                selectedWeight={configuratorState.weight}
+                                                onChange={(weight) => {
+                                                    const newState = {
+                                                        ...configuratorState,
+                                                        weight
+                                                    };
+                                                    setConfiguratorState(newState);
+                                                    if (cart.selectedItemId) {
+                                                        updateConfiguration(cart.selectedItemId, newState);
+                                                    }
+                                                }}
+                                            />
+                                        );
+                                    })()} 
+                                </>
                             )}
                         </div>
 

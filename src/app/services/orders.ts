@@ -19,6 +19,7 @@ export interface OrderItem {
   product?: {
     id: string;
     name: string;
+    image: string;
   }
 }
 

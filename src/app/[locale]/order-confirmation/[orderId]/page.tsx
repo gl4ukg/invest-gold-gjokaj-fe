@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import OrdersService, { Order } from '@/app/services/orders';
 import { useRouter } from '@/i18n/routing';
 import Loader from '@/app/components/Loader';
+import Image from 'next/image';
 
 export default function OrderConfirmation() {
   const t = useTranslations();
@@ -60,20 +61,21 @@ export default function OrderConfirmation() {
     );
   }
 
+
   const paymentMethod: { [key: string]: string } = {
     "paypal": "PayPal",
     "card": "Credit Card",
-    "bank_transfer": "Bank Transfer",
-    "cash_on_delivery": "Cash on Delivery",
+    "bank_transfer": t('orderConfirmation.paymentMethods.bank_transfer'),
+    "cash_on_delivery": t('orderConfirmation.paymentMethods.cash_on_delivery'),
   }
 
   const shippingMethod: { [key: string]: string } = {
-    "local": "Local Delivery (Kosovo)",
-    "international": "International Delivery",
+    "local": t('orderConfirmation.shippingMethods.local'),
+    "international": t('orderConfirmation.shippingMethods.international'),
   }
 
   return (
-    <div className="container mx-auto px-4 pt-32 pb-20 h-screen text-darkGray">
+    <div className="container mx-auto px-4 pt-32 pb-20 min-h-screen text-darkGray">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-green-600 mb-4">
@@ -108,11 +110,15 @@ export default function OrderConfirmation() {
                   key={index}
                   className="flex justify-between items-center py-2 border-b"
                 >
-                  <div>
-                    <p className="font-medium">Product ID: {item.productId}</p>
-                    <p className="text-sm text-gray-600">
-                      {t('orderConfirmation.quantity')}: {item.quantity}
-                    </p>
+                  <div className='flex align-items-center'>
+                    <Image src={String(item?.product?.image)} alt={String(item?.product?.name)} width={75} height={75} />
+                    <div className='flex flex-col ms-3'>
+                      <p className="font-medium">{t('orderConfirmation.productId')}: {item.productId}</p>
+                      <p className="font-medium">{t('orderConfirmation.productName')}: {item?.product?.name}</p>
+                      <p className="text-sm text-gray-600">
+                        {t('orderConfirmation.quantity')}: {item.quantity}
+                      </p>
+                    </div>
                   </div>
                   <span>€{(item.price * item.quantity).toFixed(2)}</span>
                 </div>
@@ -126,13 +132,13 @@ export default function OrderConfirmation() {
               {t('orderConfirmation.shippingAddress')}
             </h3>
             <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="capitalize">{order.shippingAddress.fullName}</p>
-              <p className="capitalize">{order.shippingAddress.address}</p>
+              <p className="capitalize">{t('orderConfirmation.addressLabels.name')}: {order.shippingAddress.fullName}</p>
+              <p className="capitalize">{t('orderConfirmation.addressLabels.address')}: {order.shippingAddress.address}</p>
               <p className="capitalize">
-                {order.shippingAddress.city}, {order.shippingAddress.postalCode}
+                {t('orderConfirmation.addressLabels.city')}: {order.shippingAddress.city}, {order.shippingAddress.postalCode}
               </p>
-              <p className="capitalize">{order.shippingAddress.country}</p>
-              <p className="capitalize">{order.shippingAddress.phone}</p>
+              <p className="capitalize">{t('orderConfirmation.addressLabels.country')}: {order.shippingAddress.country}</p>
+              <p className="capitalize">{t('orderConfirmation.addressLabels.phone')}: {order.shippingAddress.phone}</p>
             </div>
           </div>
 

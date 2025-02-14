@@ -8,6 +8,7 @@ import { PayPalButtons } from '@paypal/react-paypal-js';
 import { useRouter } from '@/i18n/routing';
 import Loader from '@/app/components/Loader';
 import { countries, kosovoMunicipalities } from '@/app/data/locations';
+import Image from 'next/image';
 
 interface CheckoutForm {
   email: string;
@@ -165,7 +166,7 @@ export default function Checkout() {
   }
 
   return (
-    <div className="container mx-auto px-4 pt-32 pb-20 h-screen text-darkGray">
+    <div className="container mx-auto px-4 pt-32 pb-20 min-h-screen text-darkGray">
       <h1 className="text-3xl font-bold mb-8">{t('checkout.title')}</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -394,13 +395,23 @@ export default function Checkout() {
                   key={item.product.id}
                   className="flex justify-between items-center py-2 border-b"
                 >
-                  <div>
-                    <h3 className="font-medium">{t('checkout.product')}: {item.product.name}</h3>
-                    <p className="text-sm text-gray-600">
-                      {t('checkout.quantity')}: {item.quantity}
-                    </p>
+                  <div className='flex items-center gap-3 justify-between w-full'>
+                    <div className='flex items-center gap-3 '>
+                      <Image
+                        src={String(item?.product?.image)}
+                        alt={item?.product?.name}
+                        width={50}
+                        height={50}
+                      />
+                      <div className='flex flex-col'>
+                        <h3 className="font-medium">{t('checkout.product')}: {item?.product?.name}</h3>
+                        <p className="text-sm text-gray-600">
+                          {t('checkout.quantity')}: {item.quantity}
+                        </p>
+                      </div>
+                    </div>
+                    <span>€{(Number(item.product.price) * item.quantity)}</span>
                   </div>
-                  <span>€{(Number(item.product.price) * item.quantity)}</span>
                 </div>
               ))}
               <div className="space-y-2 pt-4">
