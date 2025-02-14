@@ -134,6 +134,78 @@
         "backToShop": "Zurück zum Shop"
     },
     "configurator": {
+        "dimensions": {
+            "selectedProfile": "Ausgewähltes Profil",
+            "profileWidth": "Profilbreite (mm)",
+            "profileHeight": "Profilhöhe (mm)",
+            "ringSizeSystem": "Ringgrößensystem",
+            "ringSize": "Ringgröße"
+        },
+        "engraving": {
+            "engravingText": "Gravurtext",
+            "charactersCount": "{count} / 25 Zeichen",
+            "symbols": "Symbole",
+            "fontStyle": "Schriftart",
+            "preview": "Vorschau",
+            "inputPlaceholder": "Geben Sie Ihren Gravurtext ein...",
+            "placeholder": "Ihr Text erscheint hier"
+        },
+        "groovesAndEdges": {
+            "type": "Typ",
+            "edges": "Kanten",
+            "grooves": "Rillen",
+            "width": "Breite (mm)",
+            "depth": "Tiefe (mm)",
+            "surface": "Oberfläche",
+            "grooveSettings": "Rilleneinstellungen",
+            "grooveType": "Rillentyp",
+            "grooveDepth": "Rillentiefe (mm)",
+            "grooveAlignment": "Rillenausrichtung",
+            "edgeSettings": "Kanteneinstellungen",
+            "leftEdge": "Linke Kante",
+            "rightEdge": "Rechte Kante"
+        },
+        "preciousMetal": {
+            "selectColorType": "Farbtyp auswählen",
+            "selectShape": "Form auswählen",
+            "colorTypes": {
+                "single": "Einfarbig",
+                "two": "Zweifarbig",
+                "three": "Dreifarbig"
+            },
+            "waveCount": "Wellenanzahl",
+            "waveHeight": "Wellenhöhe",
+            "diagonalHeight": "Diagonalhöhe",
+            "metalColor": "Metallfarbe",
+            "polishType": "Politurart",
+            "fineness": "Feingehalt"
+        },
+        "weight": {
+            "title": "Gewicht wählen (g)"
+        },
+        "stones": {
+            "settingType": "Steinfassungsart",
+            "stoneType": "Steinart",
+            "stoneSize": "Steingröße",
+            "stoneQuality": "Steinqualität",
+            "numberOfStones": "Anzahl der Steine",
+            "stoneSpacing": "Steinabstand",
+            "stonePosition": "Steinposition"
+        },
+        "navigation": {
+            "previousStep": "Vorheriger Schritt",
+            "nextStep": "Nächster Schritt",
+            "complete": "Abschließen"
+        },
+        "colors": {
+            "primary": "Primär",
+            "secondary": "Sekundär",
+            "tertiary": "Tertiär",
+            "colorLabel": "Farbe"
+        },
+        "cart": {
+            "ringsInCart": "Ringe im Warenkorb"
+        },
         "steps": {
             "profiles": "Profile",
             "dimensions": "Abmessungen",

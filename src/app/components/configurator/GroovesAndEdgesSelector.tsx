@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import { GroovesAndEdges, GrooveType, EdgeType, GrooveAlignment, SurfaceType, EdgeSettings } from '@/app/types/configurator';
 import { RiLineHeight, RiRoundedCorner } from 'react-icons/ri';
 import { SelectInput } from '@/app/components/ui/SelectInput';
@@ -25,11 +26,13 @@ const EdgeSettingsForm: React.FC<{
     edge: EdgeSettings;
     onChange: (edge: EdgeSettings) => void;
     label: string;
-}> = ({ edge, onChange, label }) => (
+}> = ({ edge, onChange, label }) => {
+    const t = useTranslations();
+    return (
     <div className="space-y-4">
         <h4 className="text-darkGray text-lg font-medium">{label}</h4>
         <div>
-            <label className="block text-darkGray text-sm font-medium mb-2">Type</label>
+            <label className="block text-darkGray text-sm font-medium mb-2">{t('configurator.groovesAndEdges.type')}</label>
             <div className="grid grid-cols-8 gap-4">
                 {edgeTypes?.map((type) => (
                     <div key={type} className="relative">
@@ -77,7 +80,7 @@ const EdgeSettingsForm: React.FC<{
             <div className="grid grid-cols-2 gap-4">
                 <div>
                     <SelectInput
-                        label="Width (mm)"
+                        label={t('configurator.groovesAndEdges.width')}
                         value={edge?.width?.toFixed(2)}
                         onChange={(value) => onChange({ ...edge, width: parseFloat(value) })}
                         options={[
@@ -94,7 +97,7 @@ const EdgeSettingsForm: React.FC<{
 
                 <div>
                     <SelectInput
-                        label="Depth (mm)"
+                        label={t('configurator.groovesAndEdges.depth')}
                         value={edge?.depth?.toFixed(2)}
                         onChange={(value) => onChange({ ...edge, depth: parseFloat(value) })}
                         options={[
@@ -106,7 +109,7 @@ const EdgeSettingsForm: React.FC<{
 
                 <div>
                     <SelectInput
-                        label="Surface"
+                        label={t('configurator.groovesAndEdges.surface')}
                         value={edge.surface}
                         onChange={(value) => onChange({ ...edge, surface: value as SurfaceType })}
                         options={[
@@ -118,12 +121,14 @@ const EdgeSettingsForm: React.FC<{
             </div>
         )}
     </div>
-);
+    );
+};
 
 export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = ({
     groovesAndEdges,
     onUpdateGroovesAndEdges,
 }) => {
+    const t = useTranslations();
     const handleGrooveChange = <T extends keyof GroovesAndEdges['groove']>(
         field: T,
         value: GroovesAndEdges['groove'][T]
@@ -163,7 +168,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                         `}
                     >
                         <RiLineHeight className="text-lg" />
-                        <span>Grooves</span>
+                        <span>{t('configurator.groovesAndEdges.grooves')}</span>
                     </button>
                     <button
                         onClick={() => setActiveTab('edges')}
@@ -177,7 +182,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                         `}
                     >
                         <RiRoundedCorner className="text-lg" />
-                        <span>Edges</span>
+                        <span>{t('configurator.groovesAndEdges.edges')}</span>
                     </button>
                 </div>
             </div>
@@ -185,10 +190,10 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
             {/* Groove Settings */}
             {activeTab === 'grooves' && (
             <div className="space-y-6">
-                <h3 className="text-darkGray text-xl font-medium">Groove Settings</h3>
+                <h3 className="text-darkGray text-xl font-medium">{t('configurator.groovesAndEdges.grooveSettings')}</h3>
                 
                 <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Groove Type</label>
+                    <label className="block text-darkGray text-sm font-medium mb-2">{t('configurator.groovesAndEdges.grooveType')}</label>
                     <div className="grid grid-cols-6 gap-4">
                         {grooveTypes?.map((type) => (
                             <button
@@ -225,7 +230,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <SelectInput
-                            label="Width (mm)"
+                            label={t('configurator.groovesAndEdges.width')}
                             value={groovesAndEdges.groove.width.toFixed(2)}
                             onChange={(value) => handleGrooveChange('width', parseFloat(value))}
                             options={[
@@ -239,7 +244,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
 
                     <div>
                         <SelectInput
-                            label="Groove Depth (mm)"
+                            label={t('configurator.groovesAndEdges.grooveDepth')}
                             value={groovesAndEdges.groove.depth.toFixed(2)}
                             onChange={(value) => handleGrooveChange('depth', parseFloat(value))}
                             options={[
@@ -252,7 +257,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
 
                     <div>
                         <SelectInput
-                            label="Surface"
+                            label={t('configurator.groovesAndEdges.surface')}
                             value={groovesAndEdges.groove.surface}
                             onChange={(value) => handleGrooveChange('surface', value as SurfaceType)}
                             options={surfaceTypes.map(type => ({
@@ -264,7 +269,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                     </div>
 
                     <div>
-                        <label className="block text-darkGray text-sm font-medium mb-2">Groove Alignment</label>
+                        <label className="block text-darkGray text-sm font-medium mb-2">{t('configurator.groovesAndEdges.grooveAlignment')}</label>
                         <select
                             value={groovesAndEdges.groove.alignment}
                             onChange={(e) => handleGrooveChange('alignment', e.target.value as GrooveAlignment)}
@@ -284,18 +289,18 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
             {/* Edge Settings */}
             {activeTab === 'edges' && (
             <div className="space-y-8">
-                <h3 className="text-darkGray text-xl font-medium">Edge Settings</h3>
+                <h3 className="text-darkGray text-xl font-medium">{t('configurator.groovesAndEdges.edgeSettings')}</h3>
                 
                 <EdgeSettingsForm
                     edge={groovesAndEdges.leftEdge}
                     onChange={(edge) => handleEdgeChange('leftEdge', edge)}
-                    label="Left Edge"
+                    label={t('configurator.groovesAndEdges.leftEdge')}
                 />
 
                 <EdgeSettingsForm
                     edge={groovesAndEdges.rightEdge}
                     onChange={(edge) => handleEdgeChange('rightEdge', edge)}
-                    label="Right Edge"
+                    label={t('configurator.groovesAndEdges.rightEdge')}
                 />
             </div>
             )}

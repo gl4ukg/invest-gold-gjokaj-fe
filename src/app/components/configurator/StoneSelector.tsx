@@ -1,6 +1,7 @@
 import React from 'react';
 import { StoneSettings, StoneSettingType, StoneType, StoneSize, StoneQuality, StoneSpacing, StonePosition } from '@/app/types/configurator';
 import { SelectInput } from '../ui/SelectInput';
+import { useTranslations } from 'next-intl';
 
 interface StoneSelectorProps {
     stoneSettings: StoneSettings;
@@ -36,6 +37,8 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
     stoneSettings,
     onUpdateStoneSettings,
 }) => {
+    const t = useTranslations();
+
     const handleChange = <T extends keyof StoneSettings>(field: T, value: StoneSettings[T]) => {
         const newSettings = {
             ...stoneSettings,
@@ -58,7 +61,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
         <div className="space-y-8">
             {/* Stone Setting Type Selection */}
             <div>
-                <h3 className="text-darkGray text-lg font-medium mb-4">Stone Setting Type</h3>
+                <h3 className="text-darkGray text-lg font-medium mb-4">{t('configurator.stones.settingType')}</h3>
                 <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-3 gap-4">
                     {stoneSettingTypes?.map((type) => (
                         <button
@@ -90,7 +93,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                     <div className="grid grid-cols-2 gap-4">
                         {/* Stone Type */}
                         <SelectInput
-                            label="Stone Type"
+                            label={t('configurator.stones.stoneType')}
                             value={stoneSettings.stoneType}
                             onChange={(value) => handleChange('stoneType', value as StoneType)}
                             options={stoneTypes.map((type) => ({
@@ -102,7 +105,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
 
                         {/* Stone Size */}
                         <SelectInput
-                            label="Stone Size"
+                            label={t('configurator.stones.stoneSize')}
                             value={stoneSettings.stoneSize}
                             onChange={(value) => handleChange('stoneSize', value as StoneSize)}
                             options={stoneSizes.map((size) => ({
@@ -113,7 +116,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
 
                         {/* Stone Quality */}
                         <SelectInput
-                            label="Stone Quality"
+                            label={t('configurator.stones.stoneQuality')}
                             value={stoneSettings.stoneQuality}
                             onChange={(value) => handleChange('stoneQuality', value as StoneQuality)}
                             options={stoneQualities.map((quality) => ({
@@ -124,7 +127,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
 
                         {/* Number of Stones */}
                         <SelectInput
-                            label="Number of Stones"
+                            label={t('configurator.stones.numberOfStones')}
                             value={stoneSettings.numberOfStones.toString()}
                             onChange={(value) => handleChange('numberOfStones', Number(value))}
                             options={[1, 3, 5, 7, 15, 30].map((num) => ({
@@ -135,7 +138,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
 
                         {/* Stone Spacing */}
                         <SelectInput
-                            label="Stone Spacing"
+                            label={t('configurator.stones.stoneSpacing')}
                             value={stoneSettings.spacing}
                             onChange={(value) => handleChange('spacing', value as StoneSpacing)}
                             options={stoneSpacings.map((spacing) => ({
@@ -148,7 +151,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                     {/* Stone Position */}
                     <div className="space-y-6">
                         <div>
-                            <h3 className="text-darkGray text-lg font-medium mb-4">Stone Position</h3>
+                            <h3 className="text-darkGray text-lg font-medium mb-4">{t('configurator.stones.stonePosition')}</h3>
                             <div className="grid grid-cols-6 gap-4">
                                 {stonePositions.map((position) => (
                                     <label
@@ -176,7 +179,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                                                 className="w-full h-full object-contain"
                                             />
                                         </div>
-                                        <span className="text-sm text-darkGray">{position}</span>
+                                        {/* <span className="text-sm text-darkGray">{position}</span> */}
                                     </label>
                                 ))}
                             </div>
@@ -186,7 +189,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                         {stoneSettings.position === 'Free' && (
                             <div className="space-y-4 w-[400px]">
                                 <div className="flex justify-between items-center">
-                                    <label className="text-sm font-medium text-darkGray">Stone Position</label>
+                                    <label className="text-sm font-medium text-darkGray">{t('configurator.stones.stonePosition')}</label>
                                     <span className="text-sm font-medium" style={{ color: stoneSettings.offset === 0 ? '#4B5563' : '#B7A44C' }}>
                                         {stoneSettings.offset === 0
                                             ? 'Center'

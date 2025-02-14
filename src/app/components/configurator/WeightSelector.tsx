@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import React from 'react';
 
 interface WeightSelectorProps {
@@ -13,6 +14,7 @@ export const WeightSelector: React.FC<WeightSelectorProps> = ({
     selectedWeight,
     onChange
 }) => {
+    const t  = useTranslations();
     // Generate weight options from min to max
     const weightOptions = Array.from(
         { length: maxWeight - minWeight + 1 },
@@ -21,7 +23,7 @@ export const WeightSelector: React.FC<WeightSelectorProps> = ({
 
     return (
         <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-darkGray">Select Weight (g)</h2>
+            <h2 className="text-xl font-semibold text-darkGray">{t('configurator.weight.title')}</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {weightOptions.map((weight) => (
                     <label

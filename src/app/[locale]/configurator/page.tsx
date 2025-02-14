@@ -77,8 +77,6 @@ export default function ConfiguratorPage() {
         weight: 0
     });
 
-    console.log(cart,"cart")
-console.log(configuratorState,"configuratorState")
     const handleProfileSelect = (profileId: string) => {
         const newState = {
             ...configuratorState,
@@ -156,7 +154,7 @@ console.log(configuratorState,"configuratorState")
         return preciousMetal.colors?.map((color, index) => (
             <div key={index} className="space-y-1">
                 <p className="text-darkGray">
-                    {index === 0 ? 'Primary' : index === 1 ? 'Secondary' : 'Tertiary'} Color:
+                    {t(`colors.${index === 0 ? 'primary' : index === 1 ? 'secondary' : 'tertiary'}`)} {t('colors.colorLabel')}:
                 </p>
                 <p className="text-darkGray ml-2">• {color.metalColor}</p>
                 <p className="text-darkGray ml-2">• {color.polishType}</p>
@@ -313,6 +311,7 @@ console.log(configuratorState,"configuratorState")
                                 <>
                                     {(() => {
                                         const selectedProduct = cart.items.find(item => item.product.id === cart.selectedItemId);
+                                        console.log(selectedProduct,"selected")
                                         if (!selectedProduct) return null;
                                         
                                         const weightRange = selectedProduct.product.weight.split('-').map(Number);
@@ -351,7 +350,7 @@ console.log(configuratorState,"configuratorState")
                                 }`}
                                 disabled={currentStep === 1}
                             >
-                                Previous Step
+                                {t('navigation.previousStep')}
                             </button>
 
                             <button
@@ -363,7 +362,7 @@ console.log(configuratorState,"configuratorState")
                                 }`}
                                 disabled={currentStep === steps.length || !canProceedToNext()}
                             >
-                                {currentStep === steps.length ? 'Complete' : 'Next Step'}
+                                {currentStep === steps.length ? t('navigation.complete') : t('navigation.nextStep')}
                             </button>
                         </div>
                     </div>
@@ -375,7 +374,7 @@ console.log(configuratorState,"configuratorState")
                                 <div className="space-y-4">
                                     {/* Cart Items Preview */}
                                     <div className="bg-white overflow-y-auto h-96 px-3">
-                                        <h3 className="text-lg font-medium text-darkGray mb-4">Rings in Cart</h3>
+                                        <h3 className="text-lg font-medium text-darkGray mb-4">{t('cart.ringsInCart')}</h3>
                                         <div className="space-y-4">
                                             {cart.items.map((item, index) => (
                                                 <div 

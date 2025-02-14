@@ -134,6 +134,78 @@
         "backToShop": "Kthehu në Dyqan"
     },
     "configurator": {
+        "dimensions": {
+            "selectedProfile": "Profili i Zgjedhur",
+            "profileWidth": "Gjerësia e Profilit (mm)",
+            "profileHeight": "Lartësia e Profilit (mm)",
+            "ringSizeSystem": "Sistemi i Madhësisë së Unazës",
+            "ringSize": "Madhësia e Unazës"
+        },
+        "engraving": {
+            "engravingText": "Teksti për gravim",
+            "charactersCount": "{count} / 25 karaktere",
+            "symbols": "Simbolet",
+            "fontStyle": "Stili i Shkrimit",
+            "preview": "Pamja Paraprake",
+            "inputPlaceholder": "Shkruani tekstin për gravim...",
+            "placeholder": "Teksti juaj do të shfaqet këtu"
+        },
+        "groovesAndEdges": {
+            "type": "Lloji",
+            "edges": "Skajet",
+            "grooves": "Kanalet",
+            "width": "Gjerësia (mm)",
+            "depth": "Thellësia (mm)",
+            "surface": "Sipërfaqja",
+            "grooveSettings": "Cilësimet e Kanalit",
+            "grooveType": "Lloji i Kanalit",
+            "grooveDepth": "Thellësia e Kanalit (mm)",
+            "grooveAlignment": "Rreshtimi i Kanalit",
+            "edgeSettings": "Cilësimet e Skajeve",
+            "leftEdge": "Skaji i Majtë",
+            "rightEdge": "Skaji i Djathtë"
+        },
+        "preciousMetal": {
+            "selectColorType": "Zgjidh Llojin e Ngjyrës",
+            "selectShape": "Zgjidh Formën",
+            "colorTypes": {
+                "single": "Një Ngjyrë",
+                "two": "Dy Ngjyra",
+                "three": "Tre Ngjyra"
+            },
+            "waveCount": "Numri i Valëve",
+            "waveHeight": "Lartësia e Valëve",
+            "diagonalHeight": "Lartësia Diagonale",
+            "metalColor": "Ngjyra e Metalit",
+            "polishType": "Lloji i Llustrimit",
+            "fineness": "Pastertësia"
+        },
+        "weight": {
+            "title": "Zgjidh Peshën (g)"
+        },
+        "stones": {
+            "settingType": "Lloji i Vendosjes së Gurit",
+            "stoneType": "Lloji i Gurit",
+            "stoneSize": "Përmasat e Gurit",
+            "stoneQuality": "Cilësia e Gurit",
+            "numberOfStones": "Numri i Gurëve",
+            "stoneSpacing": "Hapësira e Gurëve",
+            "stonePosition": "Pozicioni i Gurit"
+        },
+        "navigation": {
+            "previousStep": "Hapi i Mëparshëm",
+            "nextStep": "Hapi Tjetër",
+            "complete": "Përfundo"
+        },
+        "colors": {
+            "primary": "Parësor",
+            "secondary": "Dytësor",
+            "tertiary": "Tretësor",
+            "colorLabel": "Ngjyra"
+        },
+        "cart": {
+            "ringsInCart": "Unëzat në Shportë"
+        },
         "steps": {
             "profiles": "Profilet",
             "dimensions": "Dimensionet",
