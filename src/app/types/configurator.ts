@@ -172,4 +172,5 @@ export interface ConfiguratorState {
     stoneSettings: StoneSettings;
     groovesAndEdges: GroovesAndEdges;
     engraving: EngravingSettings;
+    weight: number;
 }

@@ -97,7 +97,52 @@
             "send": "Dërgo"
         }
     },
+    "orderConfirmation": {
+        "paymentMethods": {
+            "bank_transfer": "Banküberweisung",
+            "cash_on_delivery": "Nachnahme"
+        },
+        "shippingMethods": {
+            "local": "Lokale Lieferung (Kosovo)",
+            "international": "Internationale Lieferung"
+        },
+        "productId": "Produkt-ID",
+        "productName": "Produktname",
+        "addressLabels": {
+            "name": "Name",
+            "address": "Adresse",
+            "city": "Stadt",
+            "country": "Land",
+            "phone": "Telefon"
+        },
+        "thankYou": "Vielen Dank für Ihre Bestellung!",
+        "orderNumber": "Bestellnummer",
+        "orderDetails": "Bestelldetails",
+        "status": "Bestellstatus",
+        "items": "Artikel",
+        "quantity": "Menge",
+        "shippingAddress": "Lieferadresse",
+        "paymentInformation": "Zahlungsinformationen",
+        "method": "Zahlungsmethode",
+        "shipping": "Versandart",
+        "orderSummary": "Bestellzusammenfassung",
+        "subtotal": "Zwischensumme",
+        "total": "Gesamtsumme",
+        "continueShopping": "Weiter Einkaufen",
+        "error": "Fehler",
+        "errorLoading": "Fehler beim Laden der Bestellung",
+        "backToShop": "Zurück zum Shop"
+    },
     "configurator": {
+        "steps": {
+            "profiles": "Profile",
+            "dimensions": "Abmessungen",
+            "preciousMetal": "Edelmetall",
+            "stones": "Steine",
+            "groovesAndEdges": "Rillen / Kanten",
+            "engraving": "Gravur",
+            "weight": "Gewicht"
+        },
         "validation": {
             "configurator": "Konfiguratori",
             "selectProfile": "Ju lutemi zgjidhni një profil për të vazhduar",
@@ -185,26 +230,6 @@
         "placeOrder": "Vendos Porosinë",
         "processing": "Duke u procesuar...",
         "errorProcessingOrder": "Gabim në procesimin e porosisë suaj. Ju lutemi provoni përsëri."
-    },
-    "orderConfirmation": {
-        "loading": "Duke ngarkuar detajet e porosisë...",
-        "error": "Gabim në Ngarkim",
-        "errorLoading": "Nuk mund të ngarkohen detajet e porosisë",
-        "backToShop": "Kthehu në Dyqan",
-        "thankYou": "Faleminderit për Porosinë Tuaj!",
-        "orderNumber": "Numri i Porosisë",
-        "orderDetails": "Detajet e Porosisë",
-        "status": "Statusi",
-        "items": "Artikujt",
-        "quantity": "Sasia",
-        "shippingAddress": "Adresa e Dërgesës",
-        "paymentInformation": "Informacioni i Pagesës",
-        "method": "Metoda e Pagesës",
-        "shipping": "Metoda e Dërgesës",
-        "orderSummary": "Përmbledhja e Porosisë",
-        "subtotal": "Nëntotali",
-        "total": "Totali",
-        "continueShopping": "Vazhdo Blerjet"
     },
     "product": {
         "loading": "Duke ngarkuar produktin...",

@@ -80,28 +80,28 @@ const ServicesSection = () => {
   const services = [
     {
       id: 'rings',
-      icon: <FaRing className="w-10 h-10 text-primary mb-4" />,
+      icon: <FaRing className="w-8 h-8 text-primary mb-4" />,
       name: t('items.rings.title'),
       description: t('items.rings.description'),
       keywords: "unaza fejese, unaza martese, engagement rings, wedding rings"
     },
     {
       id: 'bracelets',
-      icon: <FaLink className="w-10 h-10 text-primary mb-4" />,
+      icon: <FaLink className="w-8 h-8 text-primary mb-4" />,
       name: t('items.bracelets.title'),
       description: t('items.bracelets.description'),
       keywords: "rrathe ari, bylyzyk ari, gold bracelets, gold bangles"
     },
     {
       id: 'necklaces',
-      icon: <FaGem className="w-10 h-10 text-primary mb-4" />,
+      icon: <FaGem className="w-8 h-8 text-primary mb-4" />,
       name: t('items.necklaces.title'),
       description: t('items.necklaces.description'),
       keywords: "zinxhirë ari, qafore ari, gold chains, gold necklaces"
     },
     {
       id: 'custom',
-      icon: <FaMagic className="w-10 h-10 text-primary mb-4" />,
+      icon: <FaMagic className="w-8 h-8 text-primary mb-4" />,
       name: t('items.custom.title'),
       description: t('items.custom.description'),
       keywords: "stoli të personalizuara, custom jewelry, custom gold"
@@ -164,7 +164,7 @@ const ServicesSection = () => {
 
         {/* Main Services */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8"
           ref={cardsRef}
           variants={containerVariants}
           initial="hidden"
@@ -198,7 +198,7 @@ const ServicesSection = () => {
 
         {/* Additional Services */}
         <motion.div 
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8"
           ref={additionalServicesRef}
           variants={containerVariants}
           initial="hidden"

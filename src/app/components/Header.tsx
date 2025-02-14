@@ -43,12 +43,12 @@ const Header = () => {
         style={{ backgroundImage: "url('/images/header-01.png')" }}
         >
 
-            <div className="container mx-auto h-full flex items-center py-4">
+            <div className="container mx-auto px-4 h-full flex items-center py-4">
                 <div
                 className="text-left animate-zoomIn"
                 >
                 <motion.h1 
-                    className="text-6xl font-bold text-white font-[Poppins]" 
+                    className="md:text-6xl text-5xl font-bold text-white font-[Poppins]" 
                     itemProp="name"
                     variants={textVariants}
                     initial="hidden"
@@ -57,7 +57,7 @@ const Header = () => {
                     {t('title')}
                 </motion.h1>
                 <motion.h2 
-                    className="text-2xl text-white font-[Poppins] mt-4" 
+                    className="md:text-2xl text-lg font-[Poppins] mt-4" 
                     itemProp="description"
                     variants={textVariants}
                     initial="hidden"
@@ -68,7 +68,7 @@ const Header = () => {
                 </motion.h2>
                 {/* Product categories as h3 for SEO */}
                 <motion.h3 
-                    className="text-lg text-white font-[Poppins] mt-4" 
+                    className="md:text-lg text-base font-[Poppins] mt-4" 
                     itemProp="offers"
                     variants={textVariants}
                     initial="hidden"
@@ -79,7 +79,7 @@ const Header = () => {
                 </motion.h3>
 
                 <motion.div
-                    className="mt-6 flex space-x-4"
+                    className="mt-6 flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0"
                     variants={fadeIn}
                     initial="hidden"
                     animate="visible"

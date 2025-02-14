@@ -125,7 +125,7 @@ const ContactSection: React.FC = () => {
         animate={isSectionInView ? "visible" : "hidden"}
       >
         <motion.div
-          className="text-center mb-16"
+          className="text-center"
           ref={titleRef}
           variants={titleVariants}
           initial="hidden"
@@ -219,14 +219,14 @@ const ContactSection: React.FC = () => {
           </motion.div>
 
           {/* Contact Info and Map */}
-          <div className="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
+          <div className="flex lg:flex-row flex-col lg:space-x-6 space-y-6 lg:space-y-0">
             {/* Contact Information */}
             <motion.div
               ref={infoRef}
               variants={infoVariants}
               initial="hidden"
               animate={isInfoInView ? "visible" : "hidden"}
-              className="w-full md:w-1/2 bg-white rounded-2xl shadow-lg p-8"
+              className="w-full lg:w-1/2 bg-white rounded-2xl shadow-lg p-8"
             >
               <motion.h2 
                 className="text-3xl font-bold text-primary mb-8 border-b pb-4"
@@ -238,7 +238,7 @@ const ContactSection: React.FC = () => {
               <div className="space-y-6">
                 {/* Address */}
                 <motion.div 
-                  className="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-300"
+                  className="flex items-start space-x-4 rounded-xl hover:bg-gray-50 transition-colors duration-300"
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
@@ -250,13 +250,13 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-darkGray mb-1">{t('address')}</h3>
-                    <p className="text-lg text-primary">Pjeter Mazreku</p>
+                    <p className="lg:text-lg text-primary">Pjeter Mazreku</p>
                   </div>
                 </motion.div>
 
                 {/* Phone */}
                 <motion.div 
-                  className="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-300"
+                  className="flex items-start space-x-4 rounded-xl hover:bg-gray-50 transition-colors duration-300"
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
@@ -267,7 +267,7 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-darkGray mb-1">{t('phone')}</h3>
-                    <Link href="tel:+38343666236" className="text-lg text-primary hover:text-primary/80 transition-colors">
+                    <Link href="tel:+38343666236" className="lg:text-lg text-primary hover:text-primary/80 transition-colors">
                       +383 43 666 236
                     </Link>
                   </div>
@@ -275,7 +275,7 @@ const ContactSection: React.FC = () => {
 
                 {/* Email */}
                 <motion.div 
-                  className="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-300"
+                  className="flex items-start space-x-4 rounded-xl hover:bg-gray-50 transition-colors duration-300"
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
                 >
@@ -286,7 +286,7 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-darkGray mb-1">{t('email')}</h3>
-                    <a href="mailto:investgold_2017@hotmail.com" className="text-lg text-primary hover:text-primary/80 transition-colors">
+                    <a href="mailto:investgold_2017@hotmail.com" className="lg:text-lg text-primary hover:text-primary/80 transition-colors">
                       investgold_2017@hotmail.com
                     </a>
                   </div>
@@ -294,7 +294,7 @@ const ContactSection: React.FC = () => {
 
                 {/* Opening Hours Section */}
                 <motion.div 
-                  className="mt-8 bg-gray-50 p-6 rounded-xl"
+                  className="mt-8 bg-gray-50 py-4 rounded-xl"
                   variants={itemVariants}
                 >
                   <h3 className="text-2xl font-bold text-primary mb-6 flex items-center space-x-3">
@@ -306,7 +306,7 @@ const ContactSection: React.FC = () => {
 
                   <div className="space-y-4">
                     <motion.div 
-                      className="flex justify-between items-center p-3 bg-white rounded-lg shadow-sm"
+                      className="flex justify-between items-center py-3 bg-white shadow-sm"
                       variants={itemVariants}
                     >
                       <span className="font-medium text-darkGray">{t('weekdays')}</span>
@@ -314,7 +314,7 @@ const ContactSection: React.FC = () => {
                     </motion.div>
 
                     <motion.div 
-                      className="flex justify-between items-center p-3 bg-white rounded-lg shadow-sm"
+                      className="flex justify-between items-center py-3 bg-white shadow-sm"
                       variants={itemVariants}
                     >
                       <span className="font-medium text-darkGray">{t('saturday')}</span>
@@ -322,7 +322,7 @@ const ContactSection: React.FC = () => {
                     </motion.div>
 
                     <motion.div 
-                      className="flex justify-between items-center p-3 bg-white rounded-lg shadow-sm"
+                      className="flex justify-between items-center py-3 bg-white shadow-sm"
                       variants={itemVariants}
                     >
                       <span className="font-medium text-darkGray">{t('sunday')}</span>
@@ -357,7 +357,7 @@ const ContactSection: React.FC = () => {
               variants={mapVariants}
               initial="hidden"
               animate={isMapInView ? "visible" : "hidden"}
-              className="w-full md:w-1/2 rounded-2xl overflow-hidden shadow-lg"
+              className="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-lg"
             >
               <Map />
             </motion.div>

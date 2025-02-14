@@ -63,7 +63,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-[9999] bg-black/70 shadow-md transition-colors duration-300">
+    <nav className={`fixed top-0 w-full z-[9999] bg-black/70  transition-colors duration-300 
+          ${isOpen ? '' : 'shadow-md'}`}>
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href={'/'} className="text-white text-xl font-bold flex-shrink-0">
@@ -137,8 +138,8 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed top-16 left-0 w-full bg-black/80 transition-all duration-500 ${
-          isOpen ? 'max-h-screen opacity-100 py-4' : 'max-h-0 opacity-0'
+        className={` fixed top-18 left-0 w-full bg-black/70 transition-all duration-500 ${
+          isOpen ? ' max-h-screen opacity-100 block pb-4' : 'block max-h-0 opacity-0 hidden'
         }`}
       >
         <ul className="text-center space-y-4">
@@ -160,9 +161,9 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <hr className="border-gray-600 my-2" />
+        <hr className="text-white/30 my-2 " />
         {/* Mobile Language Switcher */}
-        <ul className="flex justify-center space-x-3">
+        <ul className="flex justify-center mt-4 space-x-3">
           {LANGUAGE_LINKS?.map((lang) => (
             <li key={lang.code}>
               <button
@@ -176,6 +177,18 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+          {/* Cart Button */}
+          {itemCount > 0 && (
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="mx-auto mt-4 flex relative bg-primary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-dark transition-colors"
+            >
+              <FaShoppingCart />
+              <span className="absolute -top-2 -right-2 bg-white text-primary rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                {itemCount}
+              </span>
+            </button>
+          )}
       </div>
     </nav>
   );
