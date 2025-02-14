@@ -1,5 +1,7 @@
 import React from 'react';
 import { GroovesAndEdges, GrooveType, EdgeType, GrooveAlignment, SurfaceType, EdgeSettings } from '@/app/types/configurator';
+import { RiLineHeight, RiRoundedCorner } from 'react-icons/ri';
+import { SelectInput } from '@/app/components/ui/SelectInput';
 
 interface GroovesAndEdgesSelectorProps {
     groovesAndEdges: GroovesAndEdges;
@@ -17,7 +19,7 @@ const grooveTypes: GrooveType[] = [
 
 const edgeTypes: EdgeType[] = ['none', 'step', 'carbon', 'milgrain'];
 const alignments: GrooveAlignment[] = ['left', 'center', 'right'];
-const surfaceTypes: SurfaceType[] = ['Polished', 'Matte', 'Brushed'];
+const surfaceTypes: SurfaceType[] = ['Polished', 'Sandblasted'];
 
 const EdgeSettingsForm: React.FC<{
     edge: EdgeSettings;
@@ -28,7 +30,7 @@ const EdgeSettingsForm: React.FC<{
         <h4 className="text-darkGray text-lg font-medium">{label}</h4>
         <div>
             <label className="block text-darkGray text-sm font-medium mb-2">Type</label>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-8 gap-4">
                 {edgeTypes?.map((type) => (
                     <div key={type} className="relative">
                         <input
@@ -72,46 +74,48 @@ const EdgeSettingsForm: React.FC<{
         </div>
 
         {edge.type !== 'none' && (
-            <>
+            <div className="grid grid-cols-2 gap-4">
                 <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Width (mm)</label>
-                    <input
-                        type="number"
-                        value={edge.width}
-                        onChange={(e) => onChange({ ...edge, width: parseFloat(e.target.value) })}
-                        step="0.01"
-                        min="0"
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
+                    <SelectInput
+                        label="Width (mm)"
+                        value={edge?.width?.toFixed(2)}
+                        onChange={(value) => onChange({ ...edge, width: parseFloat(value) })}
+                        options={[
+                            { value: '0.30', label: '0.30 mm' },
+                            { value: '0.50', label: '0.50 mm' },
+                            { value: '1.00', label: '1.00 mm' },
+                            { value: '1.50', label: '1.50 mm' },
+                            { value: '2.00', label: '2.00 mm' },
+                            { value: '2.50', label: '2.50 mm' }
+                        ]}
+                        className="w-full"
                     />
                 </div>
 
                 <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Depth (mm)</label>
-                    <input
-                        type="number"
-                        value={edge.depth}
-                        onChange={(e) => onChange({ ...edge, depth: parseFloat(e.target.value) })}
-                        step="0.01"
-                        min="0"
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
+                    <SelectInput
+                        label="Depth (mm)"
+                        value={edge?.depth?.toFixed(2)}
+                        onChange={(value) => onChange({ ...edge, depth: parseFloat(value) })}
+                        options={[
+                            { value: '0.30', label: '0.30 mm' }
+                        ]}
+                        className="w-full"
                     />
                 </div>
 
                 <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Surface</label>
-                    <select
+                    <SelectInput
+                        label="Surface"
                         value={edge.surface}
-                        onChange={(e) => onChange({ ...edge, surface: e.target.value as SurfaceType })}
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                    >
-                        {surfaceTypes?.map((type) => (
-                            <option key={type} value={type}>
-                                {type}
-                            </option>
-                        ))}
-                    </select>
+                        onChange={(value) => onChange({ ...edge, surface: value as SurfaceType })}
+                        options={[
+                            { value: 'Polished', label: 'Polished' }
+                        ]}
+                        className="w-full"
+                    />
                 </div>
-            </>
+            </div>
         )}
     </div>
 );
@@ -145,19 +149,35 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
     return (
         <div className="space-y-8">
             {/* Tab Switch */}
-            <div className="flex justify-center mb-6">
-                <div className="inline-flex rounded-lg p-1 bg-gray-100">
+            <div className="flex justify-center mb-8">
+                <div className="inline-flex rounded-xl p-1.5 bg-gray-100 space-x-4">
                     <button
                         onClick={() => setActiveTab('grooves')}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'grooves' ? 'bg-white text-darkGray shadow-sm' : 'text-gray-500 hover:text-darkGray'}`}
+                        className={`
+                            flex items-center gap-2 px-6 py-2.5 border rounded-lg text-sm font-medium
+                            transition-all duration-200 ease-in-out
+                            ${activeTab === 'grooves'
+                                ? 'bg-white text-primary shadow-lg transform scale-105'
+                                : 'text-darkGray hover:text-primary hover:bg-white/50'
+                            }
+                        `}
                     >
-                        Grooves
+                        <RiLineHeight className="text-lg" />
+                        <span>Grooves</span>
                     </button>
                     <button
                         onClick={() => setActiveTab('edges')}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'edges' ? 'bg-white text-darkGray shadow-sm' : 'text-gray-500 hover:text-darkGray'}`}
+                        className={`
+                            flex items-center gap-2 px-6 py-2.5 border rounded-lg text-sm font-medium
+                            transition-all duration-200 ease-in-out
+                            ${activeTab === 'edges'
+                                ? 'bg-white text-primary shadow-lg transform scale-105'
+                                : 'text-darkGray hover:text-primary hover:bg-white/50'
+                            }
+                        `}
                     >
-                        Edges
+                        <RiRoundedCorner className="text-lg" />
+                        <span>Edges</span>
                     </button>
                 </div>
             </div>
@@ -169,7 +189,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                 
                 <div>
                     <label className="block text-darkGray text-sm font-medium mb-2">Groove Type</label>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-6 gap-4">
                         {grooveTypes?.map((type) => (
                             <button
                                 key={type}
@@ -202,58 +222,61 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                     </div>
                 </div>
 
-                <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Width (mm)</label>
-                    <input
-                        type="number"
-                        value={groovesAndEdges.groove.width}
-                        onChange={(e) => handleGrooveChange('width', parseFloat(e.target.value))}
-                        step="0.01"
-                        min="0"
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                    />
-                </div>
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <SelectInput
+                            label="Width (mm)"
+                            value={groovesAndEdges.groove.width.toFixed(2)}
+                            onChange={(value) => handleGrooveChange('width', parseFloat(value))}
+                            options={[
+                                { value: '0.14', label: '0.14 mm' },
+                                { value: '0.29', label: '0.29 mm' },
+                                { value: '0.43', label: '0.43 mm' }
+                            ]}
+                            className="w-full"
+                        />
+                    </div>
 
-                <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Groove Depth (mm)</label>
-                    <input
-                        type="number"
-                        value={groovesAndEdges.groove.depth}
-                        onChange={(e) => handleGrooveChange('depth', parseFloat(e.target.value))}
-                        step="0.01"
-                        min="0"
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                    />
-                </div>
+                    <div>
+                        <SelectInput
+                            label="Groove Depth (mm)"
+                            value={groovesAndEdges.groove.depth.toFixed(2)}
+                            onChange={(value) => handleGrooveChange('depth', parseFloat(value))}
+                            options={[
+                                { value: '0.05', label: '0.05 mm' },
+                                { value: '0.10', label: '0.10 mm' }
+                            ]}
+                            className="w-full"
+                        />
+                    </div>
 
-                <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Surface</label>
-                    <select
-                        value={groovesAndEdges.groove.surface}
-                        onChange={(e) => handleGrooveChange('surface', e.target.value as SurfaceType)}
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                    >
-                        {surfaceTypes?.map((type) => (
-                            <option key={type} value={type}>
-                                {type}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                    <div>
+                        <SelectInput
+                            label="Surface"
+                            value={groovesAndEdges.groove.surface}
+                            onChange={(value) => handleGrooveChange('surface', value as SurfaceType)}
+                            options={surfaceTypes.map(type => ({
+                                value: type,
+                                label: type,
+                            }))}
+                            className="w-full"
+                        />
+                    </div>
 
-                <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">Groove Alignment</label>
-                    <select
-                        value={groovesAndEdges.groove.alignment}
-                        onChange={(e) => handleGrooveChange('alignment', e.target.value as GrooveAlignment)}
-                        className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
-                    >
-                        {alignments?.map((alignment) => (
-                            <option key={alignment} value={alignment}>
-                                {alignment.charAt(0).toUpperCase() + alignment.slice(1)}
-                            </option>
-                        ))}
-                    </select>
+                    <div>
+                        <label className="block text-darkGray text-sm font-medium mb-2">Groove Alignment</label>
+                        <select
+                            value={groovesAndEdges.groove.alignment}
+                            onChange={(e) => handleGrooveChange('alignment', e.target.value as GrooveAlignment)}
+                            className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
+                        >
+                            {alignments?.map((alignment) => (
+                                <option key={alignment} value={alignment}>
+                                    {alignment.charAt(0).toUpperCase() + alignment.slice(1)}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
             </div>
             )}

@@ -237,7 +237,8 @@ export default function ConfiguratorPage() {
     };
 
     return (
-        <div className="container mx-auto px-4 pt-32 pb-8">
+        <div className="container mx-auto h-min-screen px-4 pt-32 pb-8">
+            <h1 className="text-2xl text-primary font-bold mb-6">{tConfig('configurator')}</h1>
             <div className="flex flex-col">
                 <div className="py-6 px-6 ">
                     <ul className=" flex">
@@ -262,7 +263,7 @@ export default function ConfiguratorPage() {
                         {/* Steps */}
 
                         {/* Configuration Area */}
-                        <div className="flex-1 bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div className="flex-1 bg-white p-6 rounded-lg shadow-lg mb-8">
                             {currentStep === 1 && (
                                 <ProfileSelector
                                     selectedProfile={configuratorState.selectedProfile}
@@ -333,16 +334,16 @@ export default function ConfiguratorPage() {
                     {/* Right side - Ring Preview */}
                     <div className="w-1/3">
                         <div className="sticky top-4">
-                            <div className="bg-white p-6 rounded-lg shadow-sm">
+                            <div className="bg-white py-6 px-3 rounded-lg shadow-lg">
                                 <div className="space-y-4">
                                     {/* Cart Items Preview */}
-                                    <div className="bg-white rounded-lg shadow-sm">
+                                    <div className="bg-white overflow-y-auto h-96 px-3">
                                         <h3 className="text-lg font-medium text-darkGray mb-4">Rings in Cart</h3>
                                         <div className="space-y-4">
                                             {cart.items.map((item, index) => (
                                                 <div 
                                                     key={`${item.product.id}-${index}`}
-                                                    className={`p-4 rounded-lg cursor-pointer transition-all ${cart.selectedItemId === item.product.id ? 'bg-gold/10 border-2 border-gold shadow-lg scale-105' : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'}`}
+                                                    className={`p-4 rounded-lg cursor-pointer transition-all ${cart.selectedItemId === item.product.id ? ' border-2 border-gold shadow-lg scale-105' : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'}`}
                                                     onClick={() => {
                                                         if (cart.selectedItemId === item.product.id) {
                                                             selectCartItem(undefined);
@@ -355,25 +356,22 @@ export default function ConfiguratorPage() {
                                                     }}
                                                 >
                                                     <div className="flex items-center space-x-4 relative">
-                                                        {cart.selectedItemId === item.product.id && (
-                                                            <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-8 bg-gold rounded-r-full"></div>
-                                                        )}
-                                                        <div className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center transition-all ${cart.selectedItemId === item.product.id ? 'ring-2 ring-gold ring-offset-2' : ''}`}>
+                                                        <div className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center transition-all ${cart.selectedItemId === item.product.id ? 'ring-2 ring-primary ring-offset-2 rounded-lg' : ''}`}>
                                                             <Image
                                                                 src={String(item?.product.image)}
                                                                 alt={item.product.name}
                                                                 width={100}
                                                                 height={100}
-                                                                className="w-full h-full object-contain"
+                                                                className="w-full h-full object-contain rounded-lg"
                                                             />
                                                         </div>
                                                         <div className="flex-1 space-y-1">
-                                                            <p className="font-medium text-darkGray">{item.product.name}</p>
-                                                            <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
+                                                            <p className="font-medium text-darkGray capitalize">{item.product.name}</p>
+                                                            <p className="text-sm text-primary  capitalize">Quantity: {item.quantity}</p>
                                                             {cart.selectedItemId === item.product.id && (
                                                                 <div className="flex items-center space-x-2">
-                                                                    <div className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse"></div>
-                                                                    <p className="text-sm text-gold font-medium">Configuring: {steps[currentStep - 1].name}</p>
+                                                                    <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></div>
+                                                                    <p className="text-sm text-primary font-medium">Configuring: {steps[currentStep - 1].name}</p>
                                                                 </div>
                                                             )}
                                                         </div>
@@ -386,12 +384,10 @@ export default function ConfiguratorPage() {
                                 <div className="space-y-4 mt-4">
                                     <h3 className="font-semibold text-darkGray">Selected Options:</h3>
                                     
-                                    {/* Profile */}
                                     <div className="space-y-1">
                                         <p className="text-darkGray">Profile: {configuratorState.selectedProfile ? `PR ${configuratorState.selectedProfile}` : 'Not selected'}</p>
                                     </div>
 
-                                    {/* Dimensions */}
                                     <div className="space-y-1">
                                         <p className="text-darkGray">Dimensions:</p>
                                         <p className="text-darkGray ml-2">• Width: {configuratorState.dimensions.profileWidth} mm</p>
@@ -399,7 +395,6 @@ export default function ConfiguratorPage() {
                                         <p className="text-darkGray ml-2">• Ring Size: {configuratorState.dimensions.ringSize} ({configuratorState.dimensions.ringSizeSystem})</p>
                                     </div>
 
-                                    {/* Precious Metal */}
                                     <div className="space-y-1">
                                         <p className="text-darkGray">Precious Metal:</p>
                                         <p className="text-darkGray ml-2">• Type: {
@@ -418,7 +413,6 @@ export default function ConfiguratorPage() {
                                         {renderColorInfo(configuratorState.preciousMetal)}
                                     </div>
 
-                                    {/* Stone Settings */}
                                     <div className="space-y-1">
                                         <p className="text-darkGray">Stone Settings:</p>
                                         <p className="text-darkGray ml-2">• Setting Type: {configuratorState.stoneSettings.settingType}</p>
@@ -434,15 +428,14 @@ export default function ConfiguratorPage() {
                                         )}
                                     </div>
 
-                                    {/* Grooves and Edges */}
                                     <div className="space-y-1">
                                         <p className="text-darkGray">Grooves and Edges:</p>
                                         <div className="ml-2 space-y-2">
                                             <div>
                                                 <p className="text-darkGray font-medium">Groove</p>
                                                 <p className="text-darkGray">• Type: {configuratorState.groovesAndEdges.groove.grooveType}</p>
-                                                <p className="text-darkGray">• Width: {configuratorState.groovesAndEdges.groove.width} mm</p>
-                                                <p className="text-darkGray">• Depth: {configuratorState.groovesAndEdges.groove.depth} mm</p>
+                                                <p className="text-darkGray">• Width: {configuratorState.groovesAndEdges.groove.width.toFixed(2)} mm</p>
+                                                <p className="text-darkGray">• Depth: {configuratorState.groovesAndEdges.groove.depth.toFixed(2)} mm</p>
                                                 <p className="text-darkGray">• Surface: {configuratorState.groovesAndEdges.groove.surface}</p>
                                                 <p className="text-darkGray">• Alignment: {configuratorState.groovesAndEdges.groove.alignment}</p>
                                             </div>
@@ -473,7 +466,6 @@ export default function ConfiguratorPage() {
                                         </div>
                                     </div>
 
-                                    {/* Engraving */}
                                     {configuratorState.engraving.text && (
                                         <div className="space-y-1">
                                             <p className="text-darkGray">Engraving:</p>

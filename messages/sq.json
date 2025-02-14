@@ -99,6 +99,7 @@
     },
     "configurator": {
         "validation": {
+            "configurator": "Konfiguratori",
             "selectProfile": "Ju lutemi zgjidhni një profil për të vazhduar",
             "enterDimensions": "Ju lutemi plotësoni të gjitha dimensionet e kërkuara",
             "selectMetal": "Ju lutemi zgjidhni një metal të çmuar",
@@ -232,6 +233,6 @@
         "cartCleared": "Shporta u pastrua me sukses"
     },
     "jewelry": {
-        "description": "Ne u ofrojmë klientëve tanë mundësinë để te zbuluar botë unike, elegante dhe te çmuar te stolive."
+        "description": "Ne u ofrojmë klientëve tanë mundësinë per te zbuluar botë unike, elegante dhe te çmuar te stolive."
     }
 }
