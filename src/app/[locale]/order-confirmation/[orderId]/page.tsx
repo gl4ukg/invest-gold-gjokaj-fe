@@ -115,9 +115,6 @@ export default function OrderConfirmation() {
                     <div className='flex flex-col ms-3'>
                       <p className="font-medium">{t('orderConfirmation.productId')}: {item.productId}</p>
                       <p className="font-medium">{t('orderConfirmation.productName')}: {item?.product?.name}</p>
-                      <p className="text-sm text-gray-600">
-                        {t('orderConfirmation.quantity')}: {item.quantity}
-                      </p>
                     </div>
                   </div>
                   <span>€{(item.price * item.quantity).toFixed(2)}</span>

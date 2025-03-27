@@ -68,7 +68,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                             <div className="flow-root">
                                 <ul className="-my-6 divide-y divide-gray-200">
                                     {cart.items?.map((item) => (
-                                        <li key={item.product.id} className="flex py-6">
+                                        <li key={item.id} className="flex py-6">
                                             <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                                 <Image
                                                     src={item.product.image || '/images/placeholder.jpg'}
@@ -89,27 +89,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                                     </p>
                                                 </div>
                                                 <div className="flex flex-1 items-end justify-between text-sm">
-                                                    <div className="flex items-center space-x-2">
-                                                        <button
-                                                            onClick={() => updateQuantity(item.product.id!, item.quantity - 1)}
-                                                            className="text-darkGray hover:text-gray-700"
-                                                        >
-                                                            <FaMinus size={12} />
-                                                        </button>
-                                                        <span className="text-darkGray">
-                                                            {item.quantity}
-                                                        </span>
-                                                        <button
-                                                            onClick={() => updateQuantity(item.product.id!, item.quantity + 1)}
-                                                            className="text-darkGray hover:text-gray-700"
-                                                        >
-                                                            <FaPlus size={12} />
-                                                        </button>
-                                                    </div>
-
                                                     <button
                                                         type="button"
-                                                        onClick={() => removeFromCart(item.product.id!)}
+                                                        onClick={() => removeFromCart(item.id!)}
                                                         className="font-medium text-red-600 hover:text-red-500"
                                                     >
                                                         <FaTrash />

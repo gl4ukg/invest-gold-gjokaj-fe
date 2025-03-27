@@ -262,28 +262,40 @@ export default function Shop() {
 
                         {/* Categories */}
                         <div className="mb-6">
-                            <h3 className="text-lg font-semibold mb-3 text-darkGray">{t('shop.categories')}</h3>
-                            <div className="space-y-2">
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="radio"
-                                        name="category"
-                                        checked={selectedCategory === ''}
-                                        onChange={() => handleCategoryChange('')}
-                                        className=" text-lightGray"
-                                    />
-                                    <span className="text-darkGray">{t('shop.allCategories')}</span>
-                                </label>
-                                {categories?.map((category) => (
-                                    <label key={category.id} className="flex items-center text-darkGray gap-2">
+                            <h3 className="text-lg font-semibold mb-4 text-darkGray">{t('shop.categories')}</h3>
+                            <div className="space-y-3">
+                                <label className="flex items-center gap-3 cursor-pointer group">
+                                    <div className="relative">
                                         <input
                                             type="radio"
                                             name="category"
-                                            checked={selectedCategory === category.id}
-                                            onChange={() => handleCategoryChange(category.id!)}
-                                            className="text-lightGray"
+                                            checked={selectedCategory === ''}
+                                            onChange={() => handleCategoryChange('')}
+                                            className="appearance-none w-3 h-3 rounded-full border-2 border-darkGray 
+                                                     checked:border-primary checked:border-6 transition-all duration-200 
+                                                     cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20"
                                         />
-                                        <span className="text-darkGray">{category.name}</span>
+                                    </div>
+                                    <span className="text-darkGray group-hover:text-primary transition-colors duration-200">
+                                        {t('shop.allCategories')}
+                                    </span>
+                                </label>
+                                {categories?.map((category) => (
+                                    <label key={category.id} className="flex items-center gap-3 cursor-pointer group">
+                                        <div className="relative">
+                                            <input
+                                                type="radio"
+                                                name="category"
+                                                checked={selectedCategory === category.id}
+                                                onChange={() => handleCategoryChange(category.id!)}
+                                                className="appearance-none w-3 h-3 rounded-full border-2 border-darkGray 
+                                                         checked:border-primary checked:border-6 transition-all duration-200 
+                                                         cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                            />
+                                        </div>
+                                        <span className="text-darkGray group-hover:text-primary transition-colors duration-200">
+                                            {category.name}
+                                        </span>
                                     </label>
                                 ))}
                             </div>

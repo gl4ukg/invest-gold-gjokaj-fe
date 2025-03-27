@@ -28,6 +28,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const t = useTranslations();
+    console.log(cart,"cart")
 
     // Load cart from localStorage on mount
     useEffect(() => {
@@ -57,9 +58,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }, [cart]);
 
     const calculateTotal = (items: CartItem[]) => {
-        // return items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
-        // we need to calculate based on weight
-        return 0;
+        return items.reduce((total, item) => {
+            // If item has configuration with weight, use weight × 70€
+            if (item.configuration?.weight) {
+                return total + (item.configuration.weight * 70 * item.quantity);
+            }
+            // Fallback to product price if no weight configuration
+            return 0;
+        }, 0);
     };
 
     const addToCart = (product: Product, quantity: number = 1, configuration?: ConfiguratorState) => {
@@ -68,64 +74,42 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             return;
         }
 
-        let shouldShowToast = true;
+        // Check if adding would exceed stock
+        const currentQuantityInCart = cart.items.filter(item => item.product.id === product.id).length;
+        if (currentQuantityInCart + 1 > product.stock) {
+            toast.error(t('notifications.exceedsStock'));
+            return;
+        }
 
         setCart(currentCart => {
-            const existingItem = currentCart.items.find(item => 
-                item.product.id === product.id && 
-                JSON.stringify(item.configuration) === JSON.stringify(configuration)
-            );
-
-            if (existingItem) {
-                // Check if adding more would exceed stock
-                const newQuantity = existingItem.quantity + quantity;
-                if (newQuantity > product.stock) {
-                    shouldShowToast = false;
-                    toast.error(t('notifications.exceedsStock'));
-                    return currentCart;
-                }
-
-                const newItems = currentCart.items?.map(item =>
-                    item.product.id === product.id
-                        ? { ...item, quantity: newQuantity }
-                        : item
-                );
-                return {
-                    items: newItems,
-                    total: calculateTotal(newItems)
-                };
-            } else {
-                // Check if initial quantity exceeds stock
-                if (quantity > product.stock) {
-                    shouldShowToast = false;
-                    toast.error(t('notifications.exceedsStock'));
-                    return currentCart;
-                }
-
-                const newItem = { product, configuration, quantity };
-                const newItems = [...currentCart.items, newItem];
-                return {
-                    items: newItems,
-                    total: calculateTotal(newItems),
-                    selectedItemId: currentCart.items.length === 0 ? newItem.product.id : currentCart.selectedItemId
-                };
-            }
+            // Always add as a new item with unique ID
+            const newItem = {
+                id: Date.now().toString(), // Unique ID for each item
+                product,
+                configuration,
+                quantity: 1 // Always 1 since we're adding separate items
+            };
+            const newItems = [...currentCart.items, newItem];
+            
+            return {
+                items: newItems,
+                total: calculateTotal(newItems),
+                selectedItemId: currentCart.items.length === 0 ? newItem.id : currentCart.selectedItemId
+            };
         });
 
-        if (shouldShowToast) {
-            toast.success(t('notifications.productAdded'));
-        }
+        toast.success(t('notifications.productAdded'));
     };
 
     const removeFromCart = (productId: string) => {
         setCart(currentCart => {
-            const newItems = currentCart.items.filter(item => item.product.id !== productId);
+            const newItems = currentCart.items.filter(item => item.id !== productId);
             // If the removed item was selected, select the first remaining item
-            const wasSelectedItem = currentCart.selectedItemId && currentCart.items.find(item => item.product.id === productId)?.product.id === currentCart.selectedItemId;
+            const wasSelectedItem = currentCart.selectedItemId && currentCart.items.find(item => item.id === productId)?.id === currentCart.selectedItemId;
             return {
                 items: newItems,
                 total: calculateTotal(newItems),
-                selectedItemId: wasSelectedItem ? (newItems[0]?.product.id || undefined) : currentCart.selectedItemId
+                selectedItemId: wasSelectedItem ? (newItems[0]?.id || undefined) : currentCart.selectedItemId
             };
         });
         toast.success(t('notifications.productRemoved'));
@@ -165,7 +149,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const updateConfiguration = (productId: string, configuration: ConfiguratorState) => {
         setCart(currentCart => {
             const newItems = currentCart.items.map(item =>
-                item.product.id === productId
+                item.id === productId
                     ? { ...item, configuration }
                     : item
             );

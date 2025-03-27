@@ -103,7 +103,7 @@ export default function Checkout() {
 
     try {
       const orderItems = cart.items?.map((item) => ({
-        productId: item.product.id,
+        productId: String(item.product.id),
         quantity: item.quantity,
         price: Number(item.product.price),
       }));

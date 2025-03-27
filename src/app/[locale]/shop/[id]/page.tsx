@@ -144,25 +144,6 @@ export default function ProductDetail() {
 
           {product.stock > 0 && (
             <div className="space-y-4">
-              <div className="flex items-center space-x-4 text-lightGray">
-                <span className="font-medium">{t('product.quantity')}:</span>
-                <div className="flex items-center space-x-2">
-                  <button
-                    onClick={() => handleQuantityChange(quantity - 1)}
-                    className="p-2 rounded-full bg-gray-100 hover:bg-gray-200"
-                  >
-                    <FaMinus className="w-4 h-4" />
-                  </button>
-                  <span className="w-12 text-center">{quantity}</span>
-                  <button
-                    onClick={() => handleQuantityChange(quantity + 1)}
-                    className="p-2 rounded-full bg-gray-100 hover:bg-gray-200"
-                  >
-                    <FaPlus className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
               <button
                 onClick={handleAddToCart}
                 className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition-colors flex items-center justify-center space-x-2"

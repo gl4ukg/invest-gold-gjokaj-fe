@@ -6,7 +6,7 @@ export interface ConfiguredProduct extends Product {
 }
 
 export interface Product {
-    id?: string;
+    id?: string | number;
     name: string;
     description: string;
     price?: number;

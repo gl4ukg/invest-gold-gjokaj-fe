@@ -19,13 +19,13 @@ export default function ConfiguratorPage() {
     const tConfig = useTranslations('configurator.validation');
 
     const steps = [
-        { id: 1, name: t('steps.profiles') },
-        { id: 2, name: t('steps.dimensions') },
-        { id: 3, name: t('steps.preciousMetal') },
-        { id: 4, name: t('steps.stones') },
-        { id: 5, name: t('steps.groovesAndEdges') },
-        { id: 6, name: t('steps.engraving') },
-        { id: 7, name: t('steps.weight') },
+        { id: 1, name: t('steps.weight') },
+        { id: 2, name: t('steps.profiles') },
+        { id: 3, name: t('steps.dimensions') },
+        { id: 4, name: t('steps.preciousMetal') },
+        { id: 5, name: t('steps.stones') },
+        { id: 6, name: t('steps.groovesAndEdges') },
+        { id: 7, name: t('steps.engraving') },
     ];
 
     const [currentStep, setCurrentStep] = useState(1);
@@ -83,6 +83,7 @@ export default function ConfiguratorPage() {
             selectedProfile: profileId,
         };
         setConfiguratorState(newState);
+        console.log(newState,"qokla")
         
         // If a cart item is selected, update its configuration
         if (cart.selectedItemId) {
@@ -241,7 +242,7 @@ export default function ConfiguratorPage() {
                 return false;
         }
     };
-
+    
     return (
         <div className="container mx-auto h-min-screen px-4 pt-32 pb-8">
             <h1 className="text-2xl text-primary font-bold mb-6">{tConfig('configurator')}</h1>
@@ -271,46 +272,9 @@ export default function ConfiguratorPage() {
                         {/* Configuration Area */}
                         <div className="flex-1 bg-white p-6 rounded-lg shadow-lg mb-8">
                             {currentStep === 1 && (
-                                <ProfileSelector
-                                    selectedProfile={configuratorState.selectedProfile}
-                                    onSelectProfile={handleProfileSelect}
-                                />
-                            )}
-                            {currentStep === 2 && (
-                                <DimensionsSelector
-                                    dimensions={configuratorState.dimensions}
-                                    onUpdateDimensions={handleDimensionsUpdate}
-                                    selectedProfile={configuratorState.selectedProfile}
-                                />
-                            )}
-                            {currentStep === 3 && (
-                                <PreciousMetalSelector
-                                    preciousMetal={configuratorState.preciousMetal}
-                                    onUpdatePreciousMetal={handlePreciousMetalUpdate}
-                                />
-                            )}
-                            {currentStep === 4 && (
-                                <StoneSelector
-                                    stoneSettings={configuratorState.stoneSettings}
-                                    onUpdateStoneSettings={handleStoneSettingsUpdate}
-                                />
-                            )}
-                            {currentStep === 5 && (
-                                <GroovesAndEdgesSelector
-                                    groovesAndEdges={configuratorState.groovesAndEdges}
-                                    onUpdateGroovesAndEdges={handleGroovesAndEdgesUpdate}
-                                />
-                            )}
-                            {currentStep === 6 && (
-                                <EngravingSelector
-                                    engraving={configuratorState.engraving}
-                                    onUpdateEngraving={handleEngravingUpdate}
-                                />
-                            )}
-                            {currentStep === 7 && cart.selectedItemId && (
                                 <>
                                     {(() => {
-                                        const selectedProduct = cart.items.find(item => item.product.id === cart.selectedItemId);
+                                        const selectedProduct = cart.items.find(item => item.id === cart.selectedItemId);
                                         console.log(selectedProduct,"selected")
                                         if (!selectedProduct) return null;
                                         
@@ -336,6 +300,43 @@ export default function ConfiguratorPage() {
                                         );
                                     })()} 
                                 </>
+                            )}
+                            {currentStep === 2 && (
+                                <ProfileSelector
+                                    selectedProfile={configuratorState.selectedProfile}
+                                    onSelectProfile={handleProfileSelect}
+                                />
+                            )}
+                            {currentStep === 3 && (
+                                <DimensionsSelector
+                                    dimensions={configuratorState.dimensions}
+                                    onUpdateDimensions={handleDimensionsUpdate}
+                                    selectedProfile={configuratorState.selectedProfile}
+                                />
+                            )}
+                            {currentStep === 4 && (
+                                <PreciousMetalSelector
+                                    preciousMetal={configuratorState.preciousMetal}
+                                    onUpdatePreciousMetal={handlePreciousMetalUpdate}
+                                />
+                            )}
+                            {currentStep === 5 && (
+                                <StoneSelector
+                                    stoneSettings={configuratorState.stoneSettings}
+                                    onUpdateStoneSettings={handleStoneSettingsUpdate}
+                                />
+                            )}
+                            {currentStep === 6 && (
+                                <GroovesAndEdgesSelector
+                                    groovesAndEdges={configuratorState.groovesAndEdges}
+                                    onUpdateGroovesAndEdges={handleGroovesAndEdgesUpdate}
+                                />
+                            )}
+                            {currentStep === 7 && (
+                                <EngravingSelector
+                                    engraving={configuratorState.engraving}
+                                    onUpdateEngraving={handleEngravingUpdate}
+                                />
                             )}
                         </div>
 
@@ -378,13 +379,14 @@ export default function ConfiguratorPage() {
                                         <div className="space-y-4">
                                             {cart.items.map((item, index) => (
                                                 <div 
-                                                    key={`${item.product.id}-${index}`}
-                                                    className={`p-4 rounded-lg cursor-pointer transition-all ${cart.selectedItemId === item.product.id ? ' border-2 border-gold shadow-lg scale-105' : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'}`}
+                                                    key={`${item?.id}-${index}`}
+                                                    className={`p-4 rounded-lg cursor-pointer transition-all ${cart.selectedItemId === item.id ? ' border-2 border-gold shadow-lg scale-105' : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'}`}
                                                     onClick={() => {
-                                                        if (cart.selectedItemId === item.product.id) {
+                                                        if (cart.selectedItemId === item.id) {
                                                             selectCartItem(undefined);
                                                         } else {
-                                                            selectCartItem(item.product.id);
+                                                            console.log(item, "item id");
+                                                            selectCartItem(item?.id);
                                                             if (item.configuration) {
                                                                 setConfiguratorState(item.configuration);
                                                             }
@@ -392,7 +394,7 @@ export default function ConfiguratorPage() {
                                                     }}
                                                 >
                                                     <div className="flex items-center space-x-4 relative">
-                                                        <div className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center transition-all ${cart.selectedItemId === item.product.id ? 'ring-2 ring-primary ring-offset-2 rounded-lg' : ''}`}>
+                                                        <div className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center transition-all ${cart.selectedItemId === item.id ? 'ring-2 ring-primary ring-offset-2 rounded-lg' : ''}`}>
                                                             <Image
                                                                 src={String(item?.product.image)}
                                                                 alt={item.product.name}
@@ -403,8 +405,7 @@ export default function ConfiguratorPage() {
                                                         </div>
                                                         <div className="flex-1 space-y-1">
                                                             <p className="font-medium text-darkGray capitalize">{item.product.name}</p>
-                                                            <p className="text-sm text-primary  capitalize">Quantity: {item.quantity}</p>
-                                                            {cart.selectedItemId === item.product.id && (
+                                                            {cart.selectedItemId === item.id && (
                                                                 <div className="flex items-center space-x-2">
                                                                     <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></div>
                                                                     <p className="text-sm text-primary font-medium">Configuring: {steps[currentStep - 1].name}</p>

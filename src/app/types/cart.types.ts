@@ -2,6 +2,7 @@ import { ConfiguredProduct, Product } from './product.types';
 import { ConfiguratorState } from './configurator';
 
 export interface CartItem {
+    id?: string;
     product: Product;
     configuration?: ConfiguratorState;
     quantity: number;
