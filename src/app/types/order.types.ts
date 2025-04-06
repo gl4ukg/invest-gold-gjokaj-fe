@@ -1,6 +1,6 @@
 import { OrderStatus } from "../services/orders";
 
-export interface OrderItem {
+export interface IOrderItem {
     productId: string;
     quantity: number;
     price: number;
@@ -9,7 +9,7 @@ export interface OrderItem {
 export interface Order {
     id?: string;
     userId?: string;
-    items: OrderItem[];
+    items: IOrderItem[];
     total: number;
     status: OrderStatus;
     shippingAddress: {

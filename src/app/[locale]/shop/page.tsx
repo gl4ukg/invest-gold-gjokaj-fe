@@ -264,39 +264,69 @@ export default function Shop() {
                         <div className="mb-6">
                             <h3 className="text-lg font-semibold mb-4 text-darkGray">{t('shop.categories')}</h3>
                             <div className="space-y-3">
-                                <label className="flex items-center gap-3 cursor-pointer group">
-                                    <div className="relative">
-                                        <input
-                                            type="radio"
-                                            name="category"
-                                            checked={selectedCategory === ''}
-                                            onChange={() => handleCategoryChange('')}
-                                            className="appearance-none w-3 h-3 rounded-full border-2 border-darkGray 
-                                                     checked:border-primary checked:border-6 transition-all duration-200 
-                                                     cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20"
-                                        />
-                                    </div>
-                                    <span className="text-darkGray group-hover:text-primary transition-colors duration-200">
-                                        {t('shop.allCategories')}
-                                    </span>
-                                </label>
-                                {categories?.map((category) => (
-                                    <label key={category.id} className="flex items-center gap-3 cursor-pointer group">
-                                        <div className="relative">
+                                <div className={`p-2 rounded-lg transition-all duration-200 ${
+                                    selectedCategory === '' 
+                                    ? 'bg-primary/10 shadow-md' 
+                                    : 'bg-white hover:bg-gray-50'
+                                }`}>
+                                    <label className="flex items-center gap-4 cursor-pointer group">
+                                        <div className="relative flex items-center justify-center w-6 h-6">
                                             <input
                                                 type="radio"
                                                 name="category"
-                                                checked={selectedCategory === category.id}
-                                                onChange={() => handleCategoryChange(category.id!)}
-                                                className="appearance-none w-3 h-3 rounded-full border-2 border-darkGray 
-                                                         checked:border-primary checked:border-6 transition-all duration-200 
-                                                         cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                                checked={selectedCategory === ''}
+                                                onChange={() => handleCategoryChange('')}
+                                                className="appearance-none w-4 h-4 rounded-full border-2 border-darkGray 
+                                                         checked:border-primary checked:bg-primary checked:border-0
+                                                         transition-all duration-200 cursor-pointer 
+                                                         focus:outline-none focus:ring-2 focus:ring-primary/20"
                                             />
+                                            <div className={`absolute inset-0 rounded-full transition-transform duration-200 
+                                                ${selectedCategory === '' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
+                                                <div className="absolute inset-0 rounded-full bg-primary/10 animate-pulse"></div>
+                                            </div>
                                         </div>
-                                        <span className="text-darkGray group-hover:text-primary transition-colors duration-200">
-                                            {category.name}
+                                        <span className={`font-medium transition-colors duration-200 ${
+                                            selectedCategory === '' 
+                                            ? 'text-primary' 
+                                            : 'text-darkGray group-hover:text-primary'
+                                        }`}>
+                                            {t('shop.allCategories')}
                                         </span>
                                     </label>
+                                </div>
+                                {categories?.map((category) => (
+                                    <div key={category.id} className={`p-2 rounded-lg transition-all duration-200 ${
+                                        selectedCategory === category.id 
+                                        ? 'bg-primary/10 shadow-md' 
+                                        : 'bg-white hover:bg-gray-50'
+                                    }`}>
+                                        <label className="flex items-center gap-4 cursor-pointer group">
+                                            <div className="relative flex items-center justify-center w-6 h-6">
+                                                <input
+                                                    type="radio"
+                                                    name="category"
+                                                    checked={selectedCategory === category.id}
+                                                    onChange={() => handleCategoryChange(category.id!)}
+                                                    className="appearance-none w-4 h-4 rounded-full border-2 border-darkGray 
+                                                             checked:border-primary checked:bg-primary checked:border-0
+                                                             transition-all duration-200 cursor-pointer 
+                                                             focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                                />
+                                                <div className={`absolute inset-0 rounded-full transition-transform duration-200 
+                                                    ${selectedCategory === category.id ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
+                                                    <div className="absolute inset-0 rounded-full bg-primary/10 animate-pulse"></div>
+                                                </div>
+                                            </div>
+                                            <span className={`font-medium transition-colors duration-200 ${
+                                                selectedCategory === category.id 
+                                                ? 'text-primary' 
+                                                : 'text-darkGray group-hover:text-primary'
+                                            }`}>
+                                                {category.name}
+                                            </span>
+                                        </label>
+                                    </div>
                                 ))}
                             </div>
                         </div>

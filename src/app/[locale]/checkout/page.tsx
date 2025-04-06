@@ -18,7 +18,7 @@ interface CheckoutForm {
   country: string;
   postalCode: string;
   phone: string;
-  paymentMethod: 'paypal' | 'card' | 
+  paymentMethod: '' | 'paypal' | 'card' | 
   // 'bank_transfer' |
    'cash_on_delivery';
   shippingMethod: 'local' | 'international';
@@ -38,7 +38,7 @@ export default function Checkout() {
     country: 'Kosovo',   // Default to Kosovo
     postalCode: '',
     phone: '',
-    paymentMethod: 'paypal',
+    paymentMethod: '',
     shippingMethod: 'local',
   });
 
@@ -98,46 +98,55 @@ export default function Checkout() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
+    if(formData.paymentMethod !== '') {
 
-    try {
-      const orderItems = cart.items?.map((item) => ({
-        productId: String(item.product.id),
-        quantity: item.quantity,
-        price: Number(item.product.price),
+      setLoading(true);
+      setError(null);
+  
+      try {
+        const orderItems = cart.items.map((item) => ({
+          id: String(item.id),
+          configuration: item?.configuration,
+          product: item.product,
+          price: Number(item?.configuration?.weight) * 70,
+          image: String(item.product.image),
+          
       }));
-      console.log(orderItems, "order items");
-
-      const order = await OrdersService.createOrder({
-        email: formData.email,
-        items: orderItems,
-        shippingAddress: {
-          fullName: formData.fullName,
-          address: formData.address,
-          city: formData.city,
-          country: formData.country,
-          postalCode: formData.postalCode,
-          phone: formData.phone,
-        },
-        paymentMethod: formData.paymentMethod,
-        shippingMethod: formData.shippingMethod,
-      });
-
-      if (formData.paymentMethod === 'paypal') {
-        // PayPal payment will be handled by PayPal buttons
-        return;
+        console.log(orderItems, "order items");
+  
+        const order = await OrdersService.createOrder({
+          email: formData.email,
+          items: orderItems,
+          shippingAddress: {
+            fullName: formData.fullName,
+            address: formData.address,
+            city: formData.city,
+            country: formData.country,
+            postalCode: formData.postalCode,
+            phone: formData.phone,
+          },
+          paymentMethod: formData.paymentMethod,
+          shippingMethod: formData.shippingMethod,
+          subtotal: cart.total,
+        });
+  
+        if (formData.paymentMethod === 'paypal') {
+          // PayPal payment will be handled by PayPal buttons
+          return;
+        }
+  
+        // For other payment methods, redirect to confirmation
+        clearCart();
+        router.push(`/order-confirmation/${order.id}`);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : t('checkout.errorProcessingOrder')
+        );
+      } finally {
+        setLoading(false);
       }
-
-      // For other payment methods, redirect to confirmation
-      clearCart();
-      router.push(`/order-confirmation/${order.id}`);
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : t('checkout.errorProcessingOrder')
-      );
-    } finally {
-      setLoading(false);
+    } else {
+      setError(t('checkout.choosePaymentMethod'));
     }
   };
 
@@ -410,7 +419,7 @@ export default function Checkout() {
                         </p>
                       </div>
                     </div>
-                    <span>€{(Number(item.product.price) * item.quantity)}</span>
+                    <span>€{(Number(item?.configuration?.weight) * 70)}</span>
                   </div>
                 </div>
               ))}

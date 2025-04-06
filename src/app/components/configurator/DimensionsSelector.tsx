@@ -11,6 +11,7 @@ interface DimensionsSelectorProps {
 }
 
 const ringSizeOptions: Record<RingSizeSystem, (string | number)[]> = {
+    '': [],
     Universal: Array.from({ length: 31 }, (_, i) => i + 45), // 45 to 75
     UK: [
         'F', 'F½', 'G', 'G½', 'H', 'H½', 'I', 'I½', 'J', 'J½',

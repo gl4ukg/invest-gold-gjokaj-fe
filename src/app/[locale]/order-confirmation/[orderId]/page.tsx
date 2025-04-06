@@ -113,11 +113,10 @@ export default function OrderConfirmation() {
                   <div className='flex align-items-center'>
                     <Image src={String(item?.product?.image)} alt={String(item?.product?.name)} width={75} height={75} />
                     <div className='flex flex-col ms-3'>
-                      <p className="font-medium">{t('orderConfirmation.productId')}: {item.productId}</p>
                       <p className="font-medium">{t('orderConfirmation.productName')}: {item?.product?.name}</p>
+                      <span>{t('orderConfirmation.price')}: €{item.price}</span>
                     </div>
                   </div>
-                  <span>€{(item.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))}
             </div>

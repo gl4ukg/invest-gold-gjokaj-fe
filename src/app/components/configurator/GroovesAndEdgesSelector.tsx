@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { GroovesAndEdges, GrooveType, EdgeType, GrooveAlignment, SurfaceType, EdgeSettings } from '@/app/types/configurator';
 import { RiLineHeight, RiRoundedCorner } from 'react-icons/ri';
 import { SelectInput } from '@/app/components/ui/SelectInput';
+import { useCart } from '@/app/context/CartContext';
 
 interface GroovesAndEdgesSelectorProps {
     groovesAndEdges: GroovesAndEdges;
@@ -19,7 +20,7 @@ const grooveTypes: GrooveType[] = [
 ];
 
 const edgeTypes: EdgeType[] = ['none', 'step', 'carbon', 'milgrain'];
-const alignments: GrooveAlignment[] = ['left', 'center', 'right'];
+const alignments: GrooveAlignment[] = ['', 'left', 'center', 'right'];
 const surfaceTypes: SurfaceType[] = ['Polished', 'Sandblasted'];
 
 const EdgeSettingsForm: React.FC<{
@@ -128,6 +129,9 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
     groovesAndEdges,
     onUpdateGroovesAndEdges,
 }) => {
+
+
+    const { activeTab, setActiveTab } = useCart();
     const t = useTranslations();
     const handleGrooveChange = <T extends keyof GroovesAndEdges['groove']>(
         field: T,
@@ -149,7 +153,6 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
         });
     };
 
-    const [activeTab, setActiveTab] = React.useState<'grooves' | 'edges'>('grooves');
 
     return (
         <div className="space-y-8">

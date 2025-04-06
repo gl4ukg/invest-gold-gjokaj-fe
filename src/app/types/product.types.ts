@@ -1,10 +1,6 @@
 import { Category } from "./category.types";
 import { ConfiguratorState } from "./configurator";
 
-export interface ConfiguredProduct extends Product {
-    configuration: ConfiguratorState;
-}
-
 export interface Product {
     id?: string | number;
     name: string;
@@ -16,6 +12,7 @@ export interface Product {
     stock: number;
     createdAt?: Date;
     updatedAt?: Date;
+    configuration: ConfiguratorState;
 }
 
 export interface CreateProduct {

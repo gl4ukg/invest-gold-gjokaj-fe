@@ -4,7 +4,7 @@ export interface Profile {
     image?: string;
 }
 
-export type RingSizeSystem = 'Universal' | 'UK' | 'USA';
+export type RingSizeSystem = '' | 'Universal' | 'UK' | 'USA';
 
 export interface Dimensions {
     profileWidth: number;
@@ -13,7 +13,7 @@ export interface Dimensions {
     ringSizeSystem: RingSizeSystem;
 }
 
-export type ColorType = 'single' | 'two' | 'three';
+export type ColorType = '' | 'single' | 'two' | 'three';
 
 export type ShapeCategory = 'vertical' | 'sine' | 'diagonal' | 'segment' | 'horizontal';
 export type WaveCount = 2 | 3 | 4;
@@ -26,6 +26,7 @@ export interface ShapeConfig {
     heightPercentage?: HeightPercentage;
 }
 export type MetalColor = 
+    | ''
     | 'yellow gold'
     | 'white gold'
     | 'red gold'
@@ -38,6 +39,7 @@ export type MetalColor =
     | 'zirconium (grey)';
 
 export type PolishType = 
+    | ''
     | 'Polished'
     | 'Vertical matte'
     | 'Horizontal matte'
@@ -55,7 +57,7 @@ export type PolishType =
     | 'Hammered tight (polished)'
     | 'Hammered wide (polished)';
 
-export type Fineness = '8K' | '9K' | '10K' | '14K' | '18K' | '21K' | '22K';
+export type Fineness = '' | '8K' | '9K' | '10K' | '14K' | '18K' | '21K' | '22K';
 
 export interface ColorConfig {
     metalColor: MetalColor;
@@ -70,6 +72,7 @@ export interface PreciousMetal {
 }
 
 export type StoneSettingType = 
+    | ''
     | 'No stone'
     | 'American'
     | 'Pave'
@@ -87,11 +90,11 @@ export type StoneSettingType =
     | 'Eye (horizontal)'
     | 'Eye (diagonal)';
 
-export type StoneType = 'Brillant' | 'Princess' | 'Baguette' | 'Emerald';
-export type StoneSize = '0.01 ct.' | '0.02 ct.' | '0.03 ct.' | '0.05 ct.' | '0.10 ct.';
-export type StoneQuality = 'G-H/VS-SI' | 'F-G/VVS' | 'D-E/IF-VVS1';
-export type StoneSpacing = 'Together' | 'Small Gap' | 'Medium Gap' | 'Large Gap';
-export type StonePosition = 'Left' | 'Center' | 'Right' | 'Free';
+export type StoneType = '' | 'Brillant' | 'Princess' | 'Baguette' | 'Emerald';
+export type StoneSize = '' | '0.01 ct.' | '0.02 ct.' | '0.03 ct.' | '0.05 ct.' | '0.10 ct.';
+export type StoneQuality = '' | 'G-H/VS-SI' | 'F-G/VVS' | 'D-E/IF-VVS1';
+export type StoneSpacing = '' | 'Together' | 'Small Gap' | 'Medium Gap' | 'Large Gap';
+export type StonePosition = '' | 'Left' | 'Center' | 'Right' | 'Free';
 
 export interface StoneSettings {
     settingType: StoneSettingType;
@@ -105,6 +108,7 @@ export interface StoneSettings {
 }
 
 export type GrooveType = 
+    | ''
     | 'V-groove (110°)'
     | 'U-groove'
     | 'Convex'
@@ -112,9 +116,9 @@ export type GrooveType =
     | 'Carbon-groove'
     | 'Milgrain';
 
-export type EdgeType = 'none' | 'step' | 'carbon' | 'milgrain';
-export type GrooveAlignment = 'left' | 'center' | 'right';
-export type SurfaceType = 'Polished' | 'Sandblasted';
+export type EdgeType = '' | 'none' | 'step' | 'carbon' | 'milgrain';
+export type GrooveAlignment = '' | 'left' | 'center' | 'right';
+export type SurfaceType = '' | 'Polished' | 'Sandblasted';
 
 export interface GrooveSettings {
     grooveType: GrooveType;
@@ -163,6 +167,7 @@ export const engravingSymbols: EngravingSymbol[] = [
 export interface EngravingSettings {
     text: string;
     fontFamily: FontFamily;
+    isTyping?: boolean;
 }
 
 export interface ConfiguratorState {

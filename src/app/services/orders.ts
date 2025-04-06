@@ -1,5 +1,8 @@
 import axios from 'axios';
 import axiosInstance from './api';
+import { CartItem } from '../types/cart.types';
+import { Product } from '../types/product.types';
+import { ConfiguratorState } from '../types/configurator';
 
 export interface ShippingAddress {
   fullName: string;
@@ -11,16 +14,11 @@ export interface ShippingAddress {
 }
 
 export interface OrderItem {
-  productId: string | undefined;
-  quantity: number;
-  price: number;
-  total?: string;
   id?: string;
-  product?: {
-    id: string;
-    name: string;
-    image: string;
-  }
+  product: Product;
+  configuration?: ConfiguratorState;
+  quantity?: number;
+  price: number
 }
 
 export interface CreateOrderRequest {
@@ -31,6 +29,7 @@ export interface CreateOrderRequest {
 //   'bank_transfer' |
    'cash_on_delivery';
   shippingMethod: 'local' | 'international';
+  subtotal: number;
 }
 export enum OrderStatus {
   PENDING = 'pending',
@@ -92,19 +91,21 @@ const OrdersService = {
         orderData.shippingAddress.country
       );
 
-      // Calculate subtotal
-      const subtotal = orderData.items.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      );
 
       // Add shipping cost to get total
-      const total = subtotal + shippingCost;
+      const total = orderData.subtotal + shippingCost;
+
+      console.log({
+        ...orderData,
+        shippingCost,
+        subtotal: orderData.subtotal,
+        total,
+      },"order data qokla")
 
       const response = await axiosInstance.post('/orders/guest', {
         ...orderData,
         shippingCost,
-        subtotal,
+        subtotal: orderData.subtotal,
         total,
       });
 

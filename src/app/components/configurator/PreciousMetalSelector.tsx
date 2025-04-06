@@ -69,7 +69,6 @@ const threeColorShapes: { category: ShapeCategory; variant: string }[] = [
     { category: 'vertical', variant: '2-1-1' },
     { category: 'diagonal', variant: '1-1-1' },
     { category: 'diagonal', variant: '1-2-1' },
-    { category: 'vertical', variant: '2-1-2' },
     { category: 'sine', variant: '1-1-1' },
     { category: 'sine', variant: '1-2-1' },
     { category: 'sine', variant: '2-1-2' },

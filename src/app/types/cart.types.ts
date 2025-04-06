@@ -1,29 +1,36 @@
-import { ConfiguredProduct, Product } from './product.types';
+import { Product } from './product.types';
 import { ConfiguratorState } from './configurator';
+import { Dispatch, SetStateAction } from 'react';
 
 export interface CartItem {
     id?: string;
     product: Product;
     configuration?: ConfiguratorState;
-    quantity: number;
+    quantity?: number;
 }
 
 export interface Cart {
     items: CartItem[];
     total: number;
-    selectedItemId?: string; // To track which item's configuration is being viewed/edited
+    selectedItemId?: string;
 }
+
+export type GroovesAndEdgesTab = 'grooves' | 'edges';
 
 export interface CartContextType {
     cart: Cart;
+    isCartOpen: boolean;
+    setIsCartOpen: Dispatch<SetStateAction<boolean>>
+    isLoading: boolean;
+    configuratorState: ConfiguratorState;
+    setConfiguratorState: (state: ConfiguratorState) => void;
     addToCart: (product: Product, quantity?: number, configuration?: ConfiguratorState) => void;
     removeFromCart: (productId: string) => void;
     updateQuantity: (productId: string, quantity: number) => void;
+    selectCartItem: (id?: string) => void;
     updateConfiguration: (productId: string, configuration: ConfiguratorState) => void;
-    selectCartItem: (productId: string | undefined) => void;
+    activeTab: GroovesAndEdgesTab;
+    setActiveTab: (tab: GroovesAndEdgesTab) => void;
     clearCart: () => void;
     itemCount: number;
-    isCartOpen: boolean;
-    setIsCartOpen: (isOpen: boolean) => void;
-    isLoading: boolean;
 }

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'react-hot-toast';
-import { useCart } from '@/app/context/CartContext';
+import { initialConfiguratorState, useCart } from '@/app/context/CartContext';
 import { ProfileSelector } from '@/app/components/configurator/ProfileSelector';
 import { DimensionsSelector } from '@/app/components/configurator/DimensionsSelector';
 import { PreciousMetalSelector } from '@/app/components/configurator/PreciousMetalSelector';
@@ -13,8 +13,11 @@ import { EngravingSelector, fontFamilies } from '@/app/components/configurator/E
 import { WeightSelector } from '@/app/components/configurator/WeightSelector';
 import { ConfiguratorState, PreciousMetal, StoneSettings, GroovesAndEdges, EngravingSettings } from '@/app/types/configurator';
 import Image from 'next/image';
+import { useRouter } from '@/i18n/routing';
 
 export default function ConfiguratorPage() {
+    const { cart, selectCartItem, updateConfiguration, configuratorState, setConfiguratorState, activeTab, setActiveTab } = useCart();
+    const router = useRouter();
     const t = useTranslations('configurator');
     const tConfig = useTranslations('configurator.validation');
 
@@ -28,54 +31,15 @@ export default function ConfiguratorPage() {
         { id: 7, name: t('steps.engraving') },
     ];
 
+
     const [currentStep, setCurrentStep] = useState(1);
-    const { cart, selectCartItem, updateConfiguration } = useCart();
-    const [configuratorState, setConfiguratorState] = useState<ConfiguratorState>({
-        selectedProfile: null,
-        dimensions: {
-            profileWidth: 4.0,
-            profileHeight: 1.5,
-            ringSize: 54,
-            ringSizeSystem: 'Universal',
-        },
-        preciousMetal: {
-            colorType: 'single',
-            colors: [{
-                metalColor: 'yellow gold',
-                polishType: 'Polished',
-                fineness: '18K'
-            }]
-        },
-        stoneSettings: {
-            settingType: 'No stone',
-            stoneType: 'Brillant',
-            stoneSize: '0.01 ct.',
-            stoneQuality: 'G-H/VS-SI',
-            numberOfStones: 1,
-            spacing: 'Together',
-            position: 'Center'
-        },
-        groovesAndEdges: {
-            groove: {
-                grooveType: 'V-groove (110°)',
-                width: 0.14,
-                depth: 0.05,
-                surface: 'Polished',
-                alignment: 'center'
-            },
-            leftEdge: {
-                type: 'none'
-            },
-            rightEdge: {
-                type: 'none'
-            }
-        },
-        engraving: {
-            text: '',
-            fontFamily: 'Times New Roman'
-        },
-        weight: 0
-    });
+    const [highestStepReached, setHighestStepReached] = useState(1);
+
+    useEffect(() => {
+        if (currentStep > highestStepReached) {
+            setHighestStepReached(currentStep);
+        }
+    }, [currentStep, highestStepReached]);
 
     const handleProfileSelect = (profileId: string) => {
         const newState = {
@@ -146,73 +110,47 @@ export default function ConfiguratorPage() {
         };
         setConfiguratorState(newState);
         
-        if (cart.selectedItemId) {
+        // Only update configuration and show toast when text input loses focus
+        if (!engraving.isTyping && cart.selectedItemId) {
             updateConfiguration(cart.selectedItemId, newState);
         }
     };
 
-    const renderColorInfo = (preciousMetal: PreciousMetal) => {
-        return preciousMetal.colors?.map((color, index) => (
-            <div key={index} className="space-y-1">
-                <p className="text-darkGray">
-                    {t(`colors.${index === 0 ? 'primary' : index === 1 ? 'secondary' : 'tertiary'}`)} {t('colors.colorLabel')}:
-                </p>
-                <p className="text-darkGray ml-2">• {color.metalColor}</p>
-                <p className="text-darkGray ml-2">• {color.polishType}</p>
-                <p className="text-darkGray ml-2">• {color.fineness}</p>
-            </div>
-        ));
-    };
-
-    const validateStep = (step: number): boolean => {
-        switch (step) {
-            case 1: // Profile
-                if (!configuratorState.selectedProfile) {
-                    toast.error(tConfig('selectProfile'));
-                    return false;
-                }
-                break;
-            case 2: // Dimensions
-                if (!configuratorState.dimensions.profileWidth || 
-                    !configuratorState.dimensions.profileHeight || 
-                    !configuratorState.dimensions.ringSize) {
-                    toast.error(tConfig('enterDimensions'));
-                    return false;
-                }
-                break;
-            case 3: // Precious Metal
-                if (!configuratorState.preciousMetal.colorType) {
-                    toast.error(tConfig('selectMetal'));
-                    return false;
-                }
-                break;
-            case 4: // Stone Settings
-                if (configuratorState.stoneSettings.settingType !== 'No stone' && 
-                    (!configuratorState.stoneSettings.stoneType || 
-                     !configuratorState.stoneSettings.stoneSize || 
-                     !configuratorState.stoneSettings.stoneQuality)) {
-                    toast.error(tConfig('selectStoneSettings'));
-                    return false;
-                }
-                break;
-            case 5: // Grooves and Edges
-                if (!configuratorState.groovesAndEdges.groove.grooveType) {
-                    toast.error(tConfig('completeGroovesAndEdges'));
-                    return false;
-                }
-                break;
-            case 6: // Engraving
-                // Optional step, no validation needed
-                break;
-        }
-        return true;
-    };
-
     const handleNextStep = () => {
-        if (currentStep < steps.length && canProceedToNext()) {
-            if (validateStep(currentStep)) {
-                setCurrentStep(currentStep + 1);
+        if (!canProceedToNext()) {
+            toast.error(t('completeStepBeforeProceeding'));
+            return;
+        }
+
+        // Handle grooves/edges tab switching in step 6
+        if (currentStep === 6 && activeTab === 'grooves') {
+            setActiveTab('edges');
+            return;
+        }
+
+        // If we're on the last step
+        if (currentStep === steps.length) {
+            // Check if this is the last item in cart
+            if (cart.selectedItemId === cart.items[cart.items.length - 1]?.id) {
+                router.push('/checkout');
+            } else {
+                // Find the next unconfigured item
+                const currentIndex = cart.items.findIndex(item => item.id === cart.selectedItemId);
+                if (currentIndex !== -1 && currentIndex < cart.items.length - 1) {
+                    // Reset everything for the next item
+                    setConfiguratorState(initialConfiguratorState);
+                    setCurrentStep(1);
+                    setHighestStepReached(1);
+                    setActiveTab('grooves'); // Reset tab state
+                    
+                    // Select next item
+                    const nextItem = cart.items[currentIndex + 1];
+                    selectCartItem(nextItem.id);
+                }
             }
+        } else {
+            // Move to next step
+            setCurrentStep(prev => prev + 1);
         }
     };
 
@@ -221,32 +159,68 @@ export default function ConfiguratorPage() {
             setCurrentStep(currentStep - 1);
         }
     };
-
+    
     const canProceedToNext = () => {
         switch (currentStep) {
             case 1:
-                return configuratorState.selectedProfile !== null;
+                return configuratorState.weight > 0;
             case 2:
-                return true; // Always can proceed from dimensions
+                return configuratorState.selectedProfile !== null;
             case 3:
-                return configuratorState.preciousMetal.colors.length > 0;
+                return configuratorState.dimensions.profileWidth > 0 && configuratorState.dimensions.profileHeight > 0 
+                && configuratorState.dimensions.ringSizeSystem !== null && configuratorState.dimensions.ringSize !== null;
             case 4:
-                return true; // Can proceed with or without stones
+                return configuratorState.preciousMetal.colorType !== '' && configuratorState.preciousMetal.colors.length > 0
+                && configuratorState.preciousMetal.shape !== null;
             case 5:
-                return true; // Can proceed with any groove/edge settings
+                return configuratorState.stoneSettings.settingType !== '' || configuratorState.stoneSettings.numberOfStones > 0 &&
+                configuratorState.stoneSettings.stoneType !== '' && configuratorState.stoneSettings.stoneSize !== '' &&
+                configuratorState.stoneSettings.stoneQuality !== '' && configuratorState.stoneSettings.spacing !== '' &&
+                configuratorState.stoneSettings.position !== '';
             case 6:
-                return true; // Can proceed with or without engraving
+                if (activeTab === 'grooves') {    
+                    return configuratorState.groovesAndEdges.groove.grooveType !== '' 
+                    && configuratorState.groovesAndEdges.groove.depth !== 0 && configuratorState.groovesAndEdges.groove.width !== 0
+                    && configuratorState.groovesAndEdges.groove.alignment !== '' && configuratorState.groovesAndEdges.groove.surface !== '';
+                }
+                else {
+                    return configuratorState.groovesAndEdges.leftEdge.type !== '' && configuratorState.groovesAndEdges.rightEdge.type !== ''
+                    && configuratorState.groovesAndEdges?.leftEdge?.depth !== 0 && configuratorState.groovesAndEdges?.rightEdge.depth !== 0
+                    && configuratorState.groovesAndEdges?.leftEdge?.width !== 0 && configuratorState.groovesAndEdges?.rightEdge.width !== 0
+                    && configuratorState.groovesAndEdges?.leftEdge?.surface !== '' && configuratorState.groovesAndEdges?.rightEdge.surface !== '';
+                }
+
             case 7:
-                return true; // Can proceed with any weight
+                return true;
             default:
                 return false;
         }
     };
+
+    const hanldeCellClick = (stepId: number) => {
+        if (stepId <= highestStepReached) {
+            // Allow navigation to any previously completed step
+            setCurrentStep(stepId);
+        } else if (stepId === currentStep + 1) {
+            // Allow moving forward only if the current step is complete
+            if (canProceedToNext()) {
+                setCurrentStep(stepId);
+            } else {
+                toast.error(t('completeStepBeforeProceeding'));
+            }
+        } else {
+            // If trying to jump forward to an uncompleted step, show an error
+            toast.error(t('completeStepBeforeProceeding'));
+        }
+    };
+
+      console.log(cart,"qokla cart")
+      console.log(configuratorState,"qokla configuratorState")
     
     return (
-        <div className="container mx-auto h-min-screen px-4 pt-32 pb-8">
+        <div className="container mx-auto min-h-screen px-4 pt-32 pb-8">
             <h1 className="text-2xl text-primary font-bold mb-6">{tConfig('configurator')}</h1>
-            <div className="flex flex-col">
+            {cart.items.length > 0 ? <div className="flex flex-col">
                 <div className="py-6 px-6 ">
                     <ul className="flex flex-wrap gap-3">
                         {steps?.map((step) => (
@@ -256,8 +230,8 @@ export default function ConfiguratorPage() {
                                     currentStep === step.id
                                         ? 'bg-gold text-primary'
                                         : 'bg-gray-100 text-darkGray hover:bg-gray-200'
-                                }`}
-                                onClick={() => setCurrentStep(step.id)}
+                                }`} 
+                                onClick={() => hanldeCellClick(step.id)}
                             >
                                 {step.name}
                             </li>
@@ -344,7 +318,7 @@ export default function ConfiguratorPage() {
                         <div className="flex justify-between items-center">
                             <button
                                 onClick={handlePrevStep}
-                                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                                className={`px-6 py-3 rounded-lg font-medium transition-colors border ${
                                     currentStep > 1
                                         ? 'bg-gray-100 text-darkGray hover:bg-gray-200'
                                         : 'bg-gray-50 text-gray-400 cursor-not-allowed'
@@ -356,14 +330,18 @@ export default function ConfiguratorPage() {
 
                             <button
                                 onClick={handleNextStep}
-                                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                                    currentStep < steps.length && canProceedToNext()
+                                className={`px-6 py-3 rounded-lg font-medium transition-colors border ${
+                                    (currentStep < steps.length && canProceedToNext()) || currentStep === steps.length
                                         ? 'bg-gold text-primary hover:bg-gold/90'
                                         : 'bg-gray-50 text-gray-400 cursor-not-allowed'
                                 }`}
-                                disabled={currentStep === steps.length || !canProceedToNext()}
+                                disabled={!canProceedToNext()}
                             >
-                                {currentStep === steps.length ? t('navigation.complete') : t('navigation.nextStep')}
+                                {currentStep < steps.length 
+                                    ? t('navigation.nextStep')
+                                    : cart.selectedItemId === cart.items[cart.items.length - 1]?.id
+                                        ? t('navigation.complete')
+                                        : t('navigation.nextRing')}
                             </button>
                         </div>
                     </div>
@@ -418,7 +396,7 @@ export default function ConfiguratorPage() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="space-y-4 mt-4">
+                                {/* <div className="space-y-4 mt-4">
                                     <h3 className="font-semibold text-darkGray">Selected Options:</h3>
                                     
                                     <div className="space-y-1">
@@ -525,12 +503,17 @@ export default function ConfiguratorPage() {
                                             </div>
                                         </div>
                                     )}
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            : <div className='flex h-[calc(100vh-280px)] flex-col justify-center items-center'>
+                <Image src="/images/no-items.jpg" alt="Empty Cart" width={300} height={300} />
+                <h1 className='text-lightGray text-xl'>{t('noProducts')}</h1>
+                <p className='text-lightGray mt-3'>{t('noProductsDescription')}</p>
+            </div>}
         </div>
     );
 }

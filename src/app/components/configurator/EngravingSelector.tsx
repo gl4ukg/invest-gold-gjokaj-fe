@@ -60,7 +60,8 @@ export const EngravingSelector: React.FC<EngravingSelectorProps> = ({
                     ref={inputRef}
                     type="text"
                     value={engraving.text}
-                    onChange={(e) => onUpdateEngraving({ ...engraving, text: e.target.value })}
+                    onChange={(e) => onUpdateEngraving({ ...engraving, text: e.target.value, isTyping: true })}
+                    onBlur={() => onUpdateEngraving({ ...engraving, isTyping: false })}
                     className={`w-full p-4 border border-darkGray text-darkGray rounded-lg text-2xl ${fontFamilies.find(f => f.id === engraving.fontFamily)?.className || ''}`}
                     style={{ fontFamily: fontFamilies.find(f => f.id === engraving.fontFamily)?.className ? undefined : fontFamilies.find(f => f.id === engraving.fontFamily)?.name }}
                     placeholder={t('configurator.engraving.inputPlaceholder')}

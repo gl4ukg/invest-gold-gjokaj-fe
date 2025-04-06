@@ -131,9 +131,13 @@
         "continueShopping": "Vazhdo Blerjet",
         "error": "Gabim",
         "errorLoading": "Gabim në ngarkimin e porosisë",
-        "backToShop": "Kthehu në Dyqan"
+        "backToShop": "Kthehu né Dyqan",
+        "price": "Cmimi"
     },
     "configurator": {
+        "noProducts": "Nuk ka produkte në shportë",
+        "noProductsDescription": "Ju lutem, se pari duhet te shtoni produkte ne shporte",
+        "completeStepBeforeProceeding": "Ju lutem plotsoni gjitha fushat para se te vazhdoni",
         "dimensions": {
             "selectedProfile": "Profili i Zgjedhur",
             "profileWidth": "Gjerësia e Profilit (mm)",
@@ -195,7 +199,8 @@
         "navigation": {
             "previousStep": "Hapi i Mëparshëm",
             "nextStep": "Hapi Tjetër",
-            "complete": "Përfundo"
+            "complete": "Përfundo",
+            "nextRing": "Unaza rradhes"
         },
         "colors": {
             "primary": "Parësor",
@@ -217,6 +222,8 @@
         },
         "validation": {
             "configurator": "Konfiguratori",
+            "weight": "Pesha",
+            "selectWeight": "Please choose weight",
             "selectProfile": "Ju lutemi zgjidhni një profil për të vazhduar",
             "enterDimensions": "Ju lutemi plotësoni të gjitha dimensionet e kërkuara",
             "selectMetal": "Ju lutemi zgjidhni një metal të çmuar",
@@ -260,7 +267,7 @@
         "startShopping": "Filloni blerjet duke shtuar artikuj në shportën tuaj",
         "continueShopping": "Vazhdo Blerjet",
         "subtotal": "Nëntotali",
-        "shippingNote": "Transporti dhe taksat llogariten në checkout",
+        "shippingNote": "Çmimi llogaritet pasi behet konfigurimi unazave.",
         "checkout": "Vazhdo në Checkout",
         "configurator": "Vazhdo te konfiguratori",
         "or": "ose",
@@ -301,7 +308,8 @@
         "total": "Totali",
         "placeOrder": "Vendos Porosinë",
         "processing": "Duke u procesuar...",
-        "errorProcessingOrder": "Gabim në procesimin e porosisë suaj. Ju lutemi provoni përsëri."
+        "errorProcessingOrder": "Gabim në procesimin e porosisë suaj. Ju lutemi provoni përsëri.",
+        "choosePaymentMethod": "Zgjedhni metoden e pagesës"
     },
     "product": {
         "loading": "Duke ngarkuar produktin...",

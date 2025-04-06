@@ -138,7 +138,7 @@ export default function OrdersContent() {
                       <div className="space-y-4 text-darkGray">
                         <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <h4 className="font-medium text-darkGray">Shipping Address</h4>
+                            <h4 className="font-medium text-darkGray">Adresa e Transportit</h4>
                             <div className="text-sm text-gray-600">
                               <p className='capitalize'>{order.shippingAddress.fullName}</p>
                               <p className='capitalize'>{order.shippingAddress.address}</p>
@@ -148,7 +148,7 @@ export default function OrdersContent() {
                             </div>
                           </div>
                           <div>
-                            <h4 className="font-medium text-darkGray">Order Details</h4>
+                            <h4 className="font-medium text-darkGray">Detajet e porosise</h4>
                             <div className="text-sm text-gray-600">
                               <p>Pagesa: {paymentMethod[order.paymentMethod]}</p>
                               <p>Transporti: {shippingMethod[order.shippingMethod]}</p>
@@ -159,15 +159,101 @@ export default function OrdersContent() {
                           </div>
                         </div>
                         <div>
-                          <h4 className="font-medium text-darkGray mb-2">Items</h4>
+                          <h4 className="font-medium text-darkGray mb-2">Produktet</h4>
                           <div className="space-y-2">
                             {order.items?.map((item) => (
-                              <div key={item?.id} className="flex justify-between items-center text-sm">
-                                <div className='flex flex-col'>
-                                    <span>Produkti: {item?.product?.name}</span>
-                                    <span>Sasia: {item?.quantity}</span>
+                              <div key={item?.id} className="flex border-b border-gray-200 p-2 justify-between items-center text-sm">
+                                <div className="flex flex-col gap-1">
+                                    <span><b>Produkti:</b> {item?.product?.name}</span>
+                                    <div className="overflow-x-auto bg-white rounded-lg shadow">
+                                        <div className="grid grid-cols-8 gap-4 p-4 text-sm">
+                                            <div className="space-y-1">
+                                                <div className="font-semibold text-gray-900">Pesha</div>
+                                                <div>{item?.configuration?.weight}g</div>
+                                            </div>
+
+                                            <div className="space-y-1">
+                                                <div className="font-semibold text-gray-900">Profili</div>
+                                                <div>{item?.configuration?.selectedProfile}</div>
+                                            </div>
+
+                                            <div className="space-y-1">
+                                                <div className="font-semibold text-gray-900">Dimensionet</div>
+                                                <div className="space-y-0.5">
+                                                    <div>{item?.configuration?.dimensions?.profileWidth}×{item?.configuration?.dimensions?.profileHeight}mm</div>
+                                                    <div>{item?.configuration?.dimensions?.ringSizeSystem} {item?.configuration?.dimensions?.ringSize}</div>
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-1">
+                                                <div className="font-semibold text-gray-900">Metali</div>
+                                                <div className="space-y-0.5">
+                                                    <div>{item?.configuration?.preciousMetal?.colorType}</div>
+                                                    {item?.configuration?.preciousMetal?.colors.map((color, idx) => (
+                                                        <div key={idx} className="text-gray-600">
+                                                            {color.metalColor} ({color.fineness})
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-1">
+                                                <div className="font-semibold text-gray-900">Guret</div>
+                                                {item?.configuration?.stoneSettings?.settingType !== "No stone" ? (
+                                                    <div className="space-y-0.5">
+                                                        <div>{item?.configuration?.stoneSettings?.numberOfStones} gure</div>
+                                                        <div>{item?.configuration?.stoneSettings?.stoneType}</div>
+                                                        <div>{item?.configuration?.stoneSettings?.stoneSize}</div>
+                                                    </div>
+                                                ) : (
+                                                    <div>Nuk ka gure</div>
+                                                )}
+                                            </div>
+
+                                            {item.configuration?.groovesAndEdges?.groove && (
+                                                <div className="space-y-1">
+                                                    <div className="font-semibold text-gray-900">Gravimi</div>
+                                                    <div className="space-y-0.5">
+                                                        <div>{item?.configuration?.groovesAndEdges?.groove?.grooveType}</div>
+                                                        <div>{item?.configuration?.groovesAndEdges?.groove?.depth}×{item?.configuration?.groovesAndEdges?.groove?.width}mm</div>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {(item.configuration?.groovesAndEdges?.leftEdge || item.configuration?.groovesAndEdges?.rightEdge) && (
+                                                <div className="space-y-1">
+                                                    <div className="font-semibold text-gray-900">Skajet</div>
+                                                    <div className="space-y-2">
+                                                        {item.configuration?.groovesAndEdges?.leftEdge && (
+                                                            <div className="space-y-0.5">
+                                                                <div className="text-gray-600">Majtas:</div>
+                                                                <div>{item?.configuration?.groovesAndEdges?.leftEdge?.type}</div>
+                                                                <div>{item?.configuration?.groovesAndEdges?.leftEdge?.depth}×{item?.configuration?.groovesAndEdges?.leftEdge?.width}mm</div>
+                                                            </div>
+                                                        )}
+                                                        {item.configuration?.groovesAndEdges?.rightEdge && (
+                                                            <div className="space-y-0.5">
+                                                                <div className="text-gray-600">Djathtas:</div>
+                                                                <div>{item?.configuration?.groovesAndEdges?.rightEdge?.type}</div>
+                                                                <div>{item?.configuration?.groovesAndEdges?.rightEdge?.depth}×{item?.configuration?.groovesAndEdges?.rightEdge?.width}mm</div>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {item.configuration?.engraving && (
+                                                <div className="space-y-1">
+                                                    <div className="font-semibold text-gray-900">Gravimi i tekstit</div>
+                                                    <div className="space-y-0.5">
+                                                        <div>"{item?.configuration?.engraving?.text}"</div>
+                                                        <div className="text-gray-600">{item?.configuration?.engraving?.fontFamily}</div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
-                                <span>€{Number(item?.total).toFixed(2)}</span>
                               </div>
                             ))}
                           </div>

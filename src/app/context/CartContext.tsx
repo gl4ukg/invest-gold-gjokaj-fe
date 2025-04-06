@@ -23,12 +23,62 @@ export const useCart = () => {
     return context;
 };
 
+export const initialConfiguratorState: ConfiguratorState = {
+    selectedProfile: null,
+    dimensions: {
+        profileWidth: 0,
+        profileHeight: 0,
+        ringSize: 0,
+        ringSizeSystem: '',
+    },
+    preciousMetal: {
+        colorType: '',
+        shape: undefined,
+        colors: [{
+            metalColor: '',
+            polishType: '',
+            fineness: ''
+        }]
+    },
+    stoneSettings: {
+        settingType: '',
+        stoneType: '',
+        stoneSize: '',
+        stoneQuality: '',
+        numberOfStones: 0,
+        spacing: '',
+        position: ''
+    },
+    groovesAndEdges: {
+        groove: {
+            grooveType: '',
+            width: 0,
+            depth: 0,
+            surface: '',
+            alignment: ''
+        },
+        leftEdge: {
+            type: ''
+        },
+        rightEdge: {
+            type: ''
+        }
+    },
+    engraving: {
+        text: '',
+        fontFamily: 'Times New Roman'
+    },
+    weight: 0
+}
+
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [cart, setCart] = useState<Cart>(initialCart);
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [configuratorState, setConfiguratorState] = useState<ConfiguratorState>(initialConfiguratorState);
+    const [activeTab, setActiveTab] = React.useState<'grooves' | 'edges'>('grooves');
+
     const t = useTranslations();
-    console.log(cart,"cart")
 
     // Load cart from localStorage on mount
     useEffect(() => {
@@ -61,7 +111,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return items.reduce((total, item) => {
             // If item has configuration with weight, use weight × 70€
             if (item.configuration?.weight) {
-                return total + (item.configuration.weight * 70 * item.quantity);
+                return total + (item.configuration.weight * 70 * Number(item?.quantity));
             }
             // Fallback to product price if no weight configuration
             return 0;
@@ -172,14 +222,63 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const clearCart = () => {
         setCart(initialCart);
+        setConfiguratorState({
+            selectedProfile: null,
+            dimensions: {
+                profileWidth: 0,
+                profileHeight: 0,
+                ringSize: 0,
+                ringSizeSystem: '',
+            },
+            preciousMetal: {
+                colorType: '',
+                shape: undefined,
+                colors: [{
+                    metalColor: '',
+                    polishType: '',
+                    fineness: ''
+                }]
+            },
+            stoneSettings: {
+                settingType: '',
+                stoneType: '',
+                stoneSize: '',
+                stoneQuality: '',
+                numberOfStones: 0,
+                spacing: '',
+                position: ''
+            },
+            groovesAndEdges: {
+                groove: {
+                    grooveType: '',
+                    width: 0,
+                    depth: 0,
+                    surface: '',
+                    alignment: ''
+                },
+                leftEdge: {
+                    type: ''
+                },
+                rightEdge: {
+                    type: ''
+                }
+            },
+            engraving: {
+                text: '',
+                fontFamily: 'Times New Roman'
+            },
+            weight: 0
+        })
         toast.success(t('notifications.cartCleared'));
     };
 
-    const itemCount = cart.items.reduce((count, item) => count + item.quantity, 0);
+    const itemCount = cart.items.reduce((count, item) => count + Number(item?.quantity), 0);
 
     return (
         <CartContext.Provider value={{
             cart,
+            configuratorState,
+            setConfiguratorState,
             addToCart,
             removeFromCart,
             updateQuantity,
@@ -189,7 +288,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setIsCartOpen,
             isLoading,
             updateConfiguration,
-            selectCartItem
+            selectCartItem,
+            activeTab,
+            setActiveTab
         }}>
             {children}
         </CartContext.Provider>

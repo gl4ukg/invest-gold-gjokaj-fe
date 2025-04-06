@@ -38,12 +38,23 @@ const Header = () => {
     };
 
     return (
-        <header
-        className="relative w-full h-screen bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/header-01.png')" }}
-        >
+        <header className="relative w-full h-screen overflow-hidden">
+            {/* Video Background */}
+            <div className="absolute inset-0 w-full h-full">
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                >
+                    <source src="/header-video.mp4" type="video/mp4" />
+                </video>
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+            </div>
 
-            <div className="container mx-auto px-4 h-full flex items-center py-4">
+            <div className="container mx-auto px-4 h-full flex items-center py-4 relative z-10">
                 <div
                 className="text-left animate-zoomIn"
                 >
