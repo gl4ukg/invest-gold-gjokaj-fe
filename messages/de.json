@@ -340,5 +340,130 @@
     },
     "jewelry": {
         "description": "Wir bieten unseren Kunden die Möglichkeit, eine einzigartige, elegante und kostbare Schmuckwelt zu entdecken."
+    },
+    "terms": {
+        "title": "Allgemeine Geschäftsbedingungen",
+        "introduction": {
+            "title": "Einführung",
+            "content": "Willkommen bei Invest Gold Gjokaj. Mit dem Zugriff und der Nutzung unserer Website erklären Sie sich mit diesen Allgemeinen Geschäftsbedingungen einverstanden."
+        },
+        "acceptance": {
+            "title": "Annahme der Bedingungen",
+            "content": "Mit dem Zugriff auf unsere Website und dem Tätigen von Einkäufen bestätigen Sie, dass Sie diese Allgemeinen Geschäftsbedingungen gelesen und verstanden haben und damit einverstanden sind."
+        },
+        "products": {
+            "title": "Produkte",
+            "content": "Wir bieten hochwertige Gold- und Edelmetallprodukte an. Während wir uns bemühen, genaue Produktinformationen anzuzeigen, behalten wir uns das Recht vor, Spezifikationen ohne vorherige Ankündigung zu ändern."
+        },
+        "pricing": {
+            "title": "Preise und Zahlung",
+            "content": "Alle Preise können ohne vorherige Ankündigung geändert werden. Die Preise für Edelmetalle basieren auf den aktuellen Marktkursen. Die Zahlung muss vollständig erfolgen, bevor die Bearbeitung der Bestellung beginnt."
+        },
+        "orders": {
+            "title": "Auftragsbearbeitung",
+            "content": "Bestellungen unterliegen der Verfügbarkeit und Bestätigung. Wir behalten uns das Recht vor, jede Bestellung aus beliebigem Grund abzulehnen oder zu stornieren, einschließlich Preisfehlern."
+        },
+        "shipping": {
+            "title": "Versand und Lieferung",
+            "content": "Wir versenden an ausgewählte Standorte. Die Lieferzeiten können je nach Standort und Produktverfügbarkeit variieren. Alle Sendungen sind vollständig versichert."
+        },
+        "returns": {
+            "title": "Rückgaben und Erstattungen",
+            "content": "Aufgrund der Beschaffenheit von Edelmetallen werden Rückgaben nur bei defekten Produkten akzeptiert. Bitte überprüfen Sie Ihre Artikel bei Lieferung."
+        },
+        "intellectual": {
+            "title": "Geistiges Eigentum",
+            "content": "Der gesamte Inhalt dieser Website ist unser Eigentum und durch Urheberrechts- und Gesetze zum geistigen Eigentum geschützt."
+        },
+        "liability": {
+            "title": "Haftungsbeschränkung",
+            "content": "Wir haften nicht für indirekte, zufällige, besondere oder Folgeschäden, die sich aus der Nutzung unserer Produkte oder Dienstleistungen ergeben."
+        },
+        "changes": {
+            "title": "Änderungen der Bedingungen",
+            "content": "Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Die weitere Nutzung unserer Website stellt die Annahme etwaiger Änderungen dar."
+        },
+        "contact": {
+            "title": "Kontakt",
+            "content": "Wenn Sie Fragen zu diesen Allgemeinen Geschäftsbedingungen haben, kontaktieren Sie uns bitte über die angegebenen Kontaktinformationen."
+        }
+    },
+    "privacy": {
+        "title": "Datenschutzerklärung",
+        "introduction": {
+            "title": "Einführung",
+            "content": "Bei Invest Gold Gjokaj nehmen wir Ihre Privatsphäre ernst. Diese Datenschutzerklärung erläutert, wie wir Ihre personenbezogenen Daten erfassen, verwenden und schützen."
+        },
+        "collection": {
+            "title": "Informationen, die wir sammeln",
+            "content": "Wir sammeln verschiedene Arten von Informationen, um unsere Dienste bereitzustellen und zu verbessern:",
+            "items": {
+                "personal": "Persönliche Informationen (Name, E-Mail, Adresse, Telefonnummer)",
+                "payment": "Zahlungsinformationen (sicher verarbeitet über unsere Zahlungsanbieter)",
+                "technical": "Technische Informationen (IP-Adresse, Browsertyp, Geräteinformationen)",
+                "usage": "Nutzungsdaten (wie Sie mit unserer Website interagieren)"
+            }
+        },
+        "usage": {
+            "title": "Wie wir Ihre Informationen verwenden",
+            "content": "Wir verwenden Ihre Informationen für folgende Zwecke:",
+            "items": {
+                "process": "Um Ihre Bestellungen zu verarbeiten und auszuführen",
+                "improve": "Um unsere Website und Dienstleistungen zu verbessern",
+                "communicate": "Um mit Ihnen über Ihre Bestellungen und unsere Dienstleistungen zu kommunizieren",
+                "legal": "Um rechtliche Verpflichtungen zu erfüllen"
+            }
+        },
+        "sharing": {
+            "title": "Informationsaustausch",
+            "content": "Wir verkaufen Ihre personenbezogenen Daten nicht. Wir teilen Ihre Informationen nur mit vertrauenswürdigen Partnern, die zur Erbringung unserer Dienstleistungen erforderlich sind, und wie gesetzlich vorgeschrieben."
+        },
+        "cookies": {
+            "title": "Cookies und Tracking",
+            "content": "Wir verwenden Cookies und ähnliche Technologien, um Ihr Browsing-Erlebnis zu verbessern und den Website-Verkehr zu analysieren."
+        },
+        "security": {
+            "title": "Datensicherheit",
+            "content": "Wir implementieren angemessene Sicherheitsmaßnahmen, um Ihre personenbezogenen Daten vor unbefugtem Zugriff, Änderung oder Offenlegung zu schützen."
+        },
+        "rights": {
+            "title": "Ihre Rechte",
+            "content": "Sie haben bestimmte Rechte bezüglich Ihrer personenbezogenen Daten:",
+            "items": {
+                "access": "Recht auf Zugriff auf Ihre personenbezogenen Daten",
+                "rectification": "Recht auf Berichtigung ungenauer Informationen",
+                "deletion": "Recht auf Löschung Ihrer Informationen",
+                "restriction": "Recht auf Einschränkung der Verarbeitung Ihrer Informationen",
+                "portability": "Recht auf Datenübertragbarkeit"
+            }
+        },
+        "updates": {
+            "title": "Aktualisierungen der Datenschutzerklärung",
+            "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Wir werden Sie über wesentliche Änderungen informieren."
+        },
+        "contact": {
+            "title": "Kontakt",
+            "content": "Wenn Sie Fragen zu unserer Datenschutzerklärung oder zum Umgang mit Ihren Informationen haben, kontaktieren Sie uns bitte."
+        }
+    },
+    "footer": {
+        "about": "Über Uns",
+        "description": "Invest Gold Gjokaj ist Ihr vertrauenswürdiger Partner für Edelmetallinvestitionen und maßgefertigte Schmuckdesigns.",
+        "quickLinks": "Schnellzugriff",
+        "followUs": "Folgen Sie uns",
+        "rights": "Alle Rechte vorbehalten.",
+        "contact": "Kontakt"
+    },
+    "metadata": {
+        "home": {
+            "title": "Invest Gold Gjokaj | Premium Gold & Schmuck Investment",
+            "description": "Entdecken Sie Premium-Goldinvestments und exquisiten Schmuck bei Invest Gold Gjokaj. Expertenwissen in Edelmetallinvestments und individuellem Schmuckdesign.",
+            "keywords": "Goldinvestment, Schmuck, Edelmetalle, maßgefertigter Schmuck, Goldbarren, Goldmünzen, Anlagegold, Kosovo Gold",
+            "ogTitle": "Invest Gold Gjokaj - Ihr vertrauenswürdiger Partner für Goldinvestments",
+            "ogDescription": "Expertenwissen in Goldinvestments und maßgefertigtem Schmuck. Entdecken Sie unsere Premium-Kollektion an Anlagegold und exquisiten Schmuckstücken.",
+            "ogImageAlt": "Invest Gold Gjokaj Präsentation",
+            "twitterTitle": "Invest Gold Gjokaj - Premium Gold & Schmuck",
+            "twitterDescription": "Ihr vertrauenswürdiger Partner für Goldinvestments und maßgefertigte Schmuckdesigns. Entdecken Sie unsere Kollektion an Premium-Gold und Edelmetallen."
+        }
     }
 }

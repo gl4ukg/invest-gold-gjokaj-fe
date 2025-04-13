@@ -2,6 +2,7 @@ import React from 'react';
 import { StoneSettings, StoneSettingType, StoneType, StoneSize, StoneQuality, StoneSpacing, StonePosition } from '@/app/types/configurator';
 import { SelectInput } from '../ui/SelectInput';
 import { useTranslations } from 'next-intl';
+import { RingStoneSpread } from './RingStoneSpread';
 
 interface StoneSelectorProps {
     stoneSettings: StoneSettings;
@@ -88,7 +89,16 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                 </div>
             </div>
 
-            {stoneSettings.settingType !== 'No stone' && (
+            {stoneSettings.settingType === 'Free Stone Spreading' ? (
+                <RingStoneSpread 
+                    onUpdateStones={(stones) => {
+                        onUpdateStoneSettings({
+                            ...stoneSettings,
+                            stones: stones
+                        });
+                    }} 
+                />
+            ) : stoneSettings.settingType !== 'No stone' && (
                 <>
                     <div className="grid grid-cols-2 gap-4">
                         {/* Stone Type */}
@@ -128,7 +138,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                         {/* Number of Stones */}
                         <SelectInput
                             label={t('configurator.stones.numberOfStones')}
-                            value={stoneSettings.numberOfStones.toString()}
+                            value={stoneSettings.numberOfStones?.toString()}
                             onChange={(value) => handleChange('numberOfStones', Number(value))}
                             options={[1, 3, 5, 7, 15, 30].map((num) => ({
                                 value: num.toString(),

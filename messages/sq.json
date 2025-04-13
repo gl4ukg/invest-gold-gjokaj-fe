@@ -339,5 +339,130 @@
     },
     "jewelry": {
         "description": "Ne u ofrojmë klientëve tanë mundësinë per te zbuluar botë unike, elegante dhe te çmuar te stolive."
+    },
+    "terms": {
+        "title": "Kushtet dhe Rregullat",
+        "introduction": {
+            "title": "Hyrje",
+            "content": "Mirë se vini në Invest Gold Gjokaj. Duke hyrë dhe përdorur faqen tonë të internetit, ju pranoni të jeni të lidhur me këto Kushte dhe Rregulla."
+        },
+        "acceptance": {
+            "title": "Pranimi i Kushteve",
+            "content": "Duke hyrë në faqen tonë të internetit dhe duke bërë blerje, ju pranoni se i keni lexuar, kuptuar dhe jeni dakord të lidheni me këto kushte dhe rregulla."
+        },
+        "products": {
+            "title": "Produktet",
+            "content": "Ne ofrojmë produkte të arit dhe metaleve të çmuara të cilësisë së lartë. Ndërsa përpiqemi të shfaqim informacion të saktë për produktet, ne ruajmë të drejtën për të modifikuar specifikimet pa njoftim paraprak."
+        },
+        "pricing": {
+            "title": "Çmimet dhe Pagesat",
+            "content": "Të gjitha çmimet mund të ndryshojnë pa njoftim. Çmimet për metalet e çmuara bazohen në kurset aktuale të tregut. Pagesa duhet të bëhet plotësisht përpara se të fillojë përpunimi i porosisë."
+        },
+        "orders": {
+            "title": "Përpunimi i Porosive",
+            "content": "Porositë varen nga disponueshmëria dhe konfirmimi. Ne ruajmë të drejtën të refuzojmë ose anulojmë çdo porosi për çdo arsye, përfshirë gabimet në çmime."
+        },
+        "shipping": {
+            "title": "Transporti dhe Dorëzimi",
+            "content": "Ne transportojmë në vendndodhje të zgjedhura. Kohët e dorëzimit mund të ndryshojnë bazuar në vendndodhjen dhe disponueshmërinë e produktit. Të gjitha dërgesat janë plotësisht të siguruara."
+        },
+        "returns": {
+            "title": "Kthimet dhe Rimbursimet",
+            "content": "Për shkak të natyrës së metaleve të çmuara, kthimet pranohen vetëm për produktet me defekt. Ju lutemi inspektoni artikujt tuaj në momentin e dorëzimit."
+        },
+        "intellectual": {
+            "title": "Pronësia Intelektuale",
+            "content": "I gjithë përmbajtja në këtë faqe interneti është pronë e jona dhe mbrohet nga ligjet e të drejtave të autorit dhe pronësisë intelektuale."
+        },
+        "liability": {
+            "title": "Kufizimi i Përgjegjësisë",
+            "content": "Ne nuk do të jemi përgjegjës për dëme të tërthorta, të rastësishme, të veçanta ose rrjedhimore që rezultojnë nga përdorimi i produkteve ose shërbimeve tona."
+        },
+        "changes": {
+            "title": "Ndryshimet në Kushte",
+            "content": "Ne ruajmë të drejtën për të modifikuar këto kushte në çdo kohë. Vazhdimi i përdorimit të faqes sonë të internetit përbën pranim të çdo ndryshimi."
+        },
+        "contact": {
+            "title": "Na Kontaktoni",
+            "content": "Nëse keni pyetje në lidhje me këto Kushte dhe Rregulla, ju lutemi na kontaktoni përmes informacionit të kontaktit të ofruar."
+        }
+    },
+    "privacy": {
+        "title": "Politika e Privatësisë",
+        "introduction": {
+            "title": "Hyrje",
+            "content": "Në Invest Gold Gjokaj, ne e marrim seriozisht privatësinë tuaj. Kjo Politikë e Privatësisë shpjegon se si mbledhim, përdorim dhe mbrojmë informacionin tuaj personal."
+        },
+        "collection": {
+            "title": "Informacioni që Mbledhim",
+            "content": "Ne mbledhim lloje të ndryshme informacioni për të ofruar dhe përmirësuar shërbimet tona:",
+            "items": {
+                "personal": "Informacion personal (emër, email, adresë, numër telefoni)",
+                "payment": "Informacion pagese (përpunuar në mënyrë të sigurt përmes ofruesve tanë të pagesave)",
+                "technical": "Informacion teknik (adresa IP, lloji i shfletuesit, informacioni i pajisjes)",
+                "usage": "Të dhëna përdorimi (si ndërveproni me faqen tonë të internetit)"
+            }
+        },
+        "usage": {
+            "title": "Si e Përdorim Informacionin Tuaj",
+            "content": "Ne e përdorim informacionin tuaj për qëllimet e mëposhtme:",
+            "items": {
+                "process": "Për të përpunuar dhe përmbushur porositë tuaja",
+                "improve": "Për të përmirësuar faqen tonë dhe shërbimet",
+                "communicate": "Për të komunikuar me ju rreth porosive dhe shërbimeve tona",
+                "legal": "Për të përmbushur detyrimet ligjore"
+            }
+        },
+        "sharing": {
+            "title": "Ndarja e Informacionit",
+            "content": "Ne nuk e shesim informacionin tuaj personal. Ne e ndajmë informacionin tuaj vetëm me partnerë të besuar të nevojshëm për të ofruar shërbimet tona dhe siç kërkohet me ligj."
+        },
+        "cookies": {
+            "title": "Cookies dhe Gjurmimi",
+            "content": "Ne përdorim cookies dhe teknologji të ngjashme për të përmirësuar përvojën tuaj të shfletimit dhe për të analizuar trafikun e faqes."
+        },
+        "security": {
+            "title": "Siguria e të Dhënave",
+            "content": "Ne zbatojmë masa të përshtatshme sigurie për të mbrojtur informacionin tuaj personal nga aksesi i paautorizuar, ndryshimi ose zbulimi."
+        },
+        "rights": {
+            "title": "Të Drejtat Tuaja",
+            "content": "Ju keni disa të drejta në lidhje me informacionin tuaj personal:",
+            "items": {
+                "access": "E drejta për të aksesuar informacionin tuaj personal",
+                "rectification": "E drejta për të korrigjuar informacionin e pasaktë",
+                "deletion": "E drejta për të kërkuar fshirjen e informacionit tuaj",
+                "restriction": "E drejta për të kufizuar përpunimin e informacionit tuaj",
+                "portability": "E drejta për bartjen e të dhënave"
+            }
+        },
+        "updates": {
+            "title": "Përditësimet e Politikës së Privatësisë",
+            "content": "Ne mund ta përditësojmë këtë Politikë Privatësie herë pas here. Do t'ju njoftojmë për çdo ndryshim të rëndësishëm."
+        },
+        "contact": {
+            "title": "Na Kontaktoni",
+            "content": "Nëse keni pyetje rreth Politikës sonë të Privatësisë ose se si e trajtojmë informacionin tuaj, ju lutemi na kontaktoni."
+        }
+    },
+    "footer": {
+        "about": "Rreth Nesh",
+        "description": "Invest Gold Gjokaj është partneri juaj i besuar për investime në metale të çmuara dhe dizajne të personalizuara të stolive.",
+        "quickLinks": "Lidhje të Shpejta",
+        "followUs": "Na Ndiqni",
+        "rights": "Të Gjitha të Drejtat të Rezervuara.",
+        "contact": "Na Kontaktoni"
+    },
+    "metadata": {
+        "home": {
+            "title": "Invest Gold Gjokaj | Investime Premium në Ar dhe Stoli",
+            "description": "Zbuloni investime premium në ar dhe stoli të mrekullueshme në Invest Gold Gjokaj. Udhëzime eksperte në investime në metale të çmuara dhe dizajn të personalizuar të stolive.",
+            "keywords": "investim në ar, stoli, metale të çmuara, stoli të personalizuara, shufra ari, monedha ari, ar për investim, ar në Kosovë",
+            "ogTitle": "Invest Gold Gjokaj - Partneri Juaj i Besuar për Investime në Ar",
+            "ogDescription": "Udhëzime eksperte në investime në ar dhe stoli të personalizuara. Zbuloni koleksionin tonë premium të arit për investim dhe stolive të mrekullueshme.",
+            "ogImageAlt": "Vitrina e Invest Gold Gjokaj",
+            "twitterTitle": "Invest Gold Gjokaj - Ar dhe Stoli Premium",
+            "twitterDescription": "Partneri juaj i besuar për investime në ar dhe dizajne të personalizuara të stolive. Eksploroni koleksionin tonë të arit premium dhe metaleve të çmuara."
+        }
     }
 }

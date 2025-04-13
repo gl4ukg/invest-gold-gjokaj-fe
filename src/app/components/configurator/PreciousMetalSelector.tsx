@@ -168,7 +168,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                 <div className="space-y-6">
                     <div>
                         <h3 className="text-darkGray text-lg font-medium mb-4">{t('configurator.preciousMetal.selectShape')}</h3>
-                        <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4">
+                        <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 grid-cols-2 gap-4">
                             {(preciousMetal.colorType === 'two' ? twoColorShapes : threeColorShapes)?.map((shape) => (
                                 <button
                                     key={`${shape.category}-${shape.variant}`}

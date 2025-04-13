@@ -42,7 +42,13 @@ const Navbar = () => {
         window.scrollTo({ top: section.offsetTop - 70, behavior: 'smooth' });
       }
     } else {
-      if(pathname === "/shop" || pathname === "/configurator"  || pathname === "/checkout"){
+      if(
+        pathname === "/shop" 
+        || pathname === "/configurator" 
+        || pathname === "/checkout" 
+        || pathname === "/terms" 
+        || pathname === "/privacy"
+      ){
         window.location.replace(`/${fullPath}`);
       } else {
         router.push(fullPath);
@@ -57,6 +63,10 @@ const Navbar = () => {
       window.location.replace(`/${newLocale}/configurator`);
     } else if (pathname === "/checkout"){
       window.location.replace(`/${newLocale}/checkout`);
+    } else if (pathname === "/terms"){
+      window.location.replace(`/${newLocale}/terms`);
+    } else if (pathname === "/privacy"){
+      window.location.replace(`/${newLocale}/privacy`);
     } else {
       router.push(`${newLocale}`);
     }
