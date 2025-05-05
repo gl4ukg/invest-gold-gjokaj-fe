@@ -173,7 +173,7 @@ export default function ConfiguratorPage() {
                 return configuratorState.preciousMetal.colorType !== '' && configuratorState.preciousMetal.colors.length > 0
                 && configuratorState.preciousMetal.shape !== null;
             case 5:
-                return configuratorState.stoneSettings.settingType !== '' || configuratorState.stoneSettings.numberOfStones > 0 &&
+                return configuratorState.stoneSettings.settingType !== '' || configuratorState?.stoneSettings?.numberOfStones > 0 &&
                 configuratorState.stoneSettings.stoneType !== '' && configuratorState.stoneSettings.stoneSize !== '' &&
                 configuratorState.stoneSettings.stoneQuality !== '' && configuratorState.stoneSettings.spacing !== '' &&
                 configuratorState.stoneSettings.position !== '';

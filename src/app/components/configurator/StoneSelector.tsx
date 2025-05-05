@@ -82,7 +82,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                                         className="w-full h-full object-contain p-2"
                                     />
                                 </div>
-                                <p className="text-sm text-center text-darkGray font-medium line-clamp-2">{type}</p>
+                                <p className="text-xs text-center text-darkGray font-medium line-clamp-2">{type}</p>
                             </div>
                         </button>
                     ))}

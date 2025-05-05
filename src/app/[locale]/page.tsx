@@ -14,10 +14,11 @@ type Props = {
   params: { locale: string }
 };
 
-export async function generateMetadata({ params: { locale } }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = await params?.locale || 'sq';
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
-  return {
+  const metadata: Metadata = {
     title: t('home.title'),
     description: t('home.description'),
     keywords: t('home.keywords'),
@@ -43,7 +44,7 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
       images: ['/images/og-image.jpg'],
     },
     alternates: {
-      canonical: `https://investgoldgjokaj.com/${locale}`,
+      canonical: new URL(`/${locale}`, 'https://investgoldgjokaj.com').toString(),
       languages: {
         'en': '/en',
         'de': '/de',
@@ -60,6 +61,8 @@ export async function generateMetadata({ params: { locale } }: Props): Promise<M
       },
     },
   };
+
+  return metadata;
 }
 
 export default async function Home({ params: { locale } }: Props) {
