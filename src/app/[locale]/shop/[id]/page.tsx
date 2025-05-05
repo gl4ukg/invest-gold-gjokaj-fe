@@ -10,6 +10,74 @@ import { Product } from '@/app/types/product.types';
 import { FaShoppingCart, FaMinus, FaPlus } from 'react-icons/fa';
 import {  useRouter } from '@/i18n/routing';
 import ProductCard from '@/app/components/ProductCard';
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+
+type Props = {
+  params: { locale: string; id: string }
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = await params?.locale || 'sq';
+  const t = await getTranslations({ locale, namespace: 'metadata' });
+  const productId = params.id;
+
+  try {
+    // Fetch the specific product data
+    const product = await ProductsService.getById(productId);
+
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
+    const metadata: Metadata = {
+      title: `${product.name} - ${t('product.title')}`,
+      description: product.description || t('product.description'),
+      keywords: `${t('product.keywords')}, ${product.name}, ${product.category?.name || ''}`,
+      openGraph: {
+        title: `${product.name} - ${t('product.ogTitle')}`,
+        description: product.description || t('product.ogDescription'),
+        images: [
+          {
+            url: product.image || '/images/product-og-image.jpg',
+            width: 1200,
+            height: 630,
+            alt: `${product.name} - ${t('product.ogImageAlt')}`,
+          },
+        ],
+        locale,
+        type: 'website',
+        siteName: 'Invest Gold Gjokaj - Product',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${product.name} - ${t('product.twitterTitle')}`,
+        description: product.description || t('product.twitterDescription'),
+        images: [product.image || '/images/product-og-image.jpg'],
+      },
+      alternates: {
+        canonical: new URL(`/${locale}/shop/${productId}`, 'https://investgoldgjokaj.com').toString(),
+        languages: {
+          'en': `/en/shop/${productId}`,
+          'de': `/de/shop/${productId}`,
+          'sq': `/sq/shop/${productId}`,
+        },
+      },
+    };
+
+    return metadata;
+  } catch (error) {
+    // Return a 404 metadata if product is not found
+    return {
+      title: t('product.notFound'),
+      description: t('product.notFoundDescription'),
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+}
 
 export default function ProductDetail() {
   const params = useParams();
