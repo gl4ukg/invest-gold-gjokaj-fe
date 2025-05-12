@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { GroovesAndEdges, GrooveType, EdgeType, GrooveAlignment, SurfaceType, EdgeSettings } from '@/app/types/configurator';
+import { GroovesAndEdges, GrooveType, EdgeType, SurfaceType, EdgeSettings, GrooveSettings, Direction } from '@/app/types/configurator';
 import { RiLineHeight, RiRoundedCorner } from 'react-icons/ri';
 import { SelectInput } from '@/app/components/ui/SelectInput';
 import { useCart } from '@/app/context/CartContext';
+
 
 interface GroovesAndEdgesSelectorProps {
     groovesAndEdges: GroovesAndEdges;
     onUpdateGroovesAndEdges: (settings: GroovesAndEdges) => void;
 }
+
+const surfaceTypes: SurfaceType[] = [
+    'Polished',
+    'Sandblasted'
+];
+
+const waveHeights = Array.from({ length: 19 }, (_, i) => (i + 1) * 5); // [5, 10, 15, ..., 95]
+
+const edgeTypes: EdgeType[] = ['none', 'step', 'carbon', 'milgrain'];
 
 const grooveTypes: GrooveType[] = [
     'V-groove (110°)',
@@ -16,12 +26,8 @@ const grooveTypes: GrooveType[] = [
     'Convex',
     'Square groove',
     'Carbon-groove',
-    'Milgrain',
+    'Milgrain'
 ];
-
-const edgeTypes: EdgeType[] = ['none', 'step', 'carbon', 'milgrain'];
-const alignments: GrooveAlignment[] = ['', 'left', 'center', 'right'];
-const surfaceTypes: SurfaceType[] = ['Polished', 'Sandblasted'];
 
 const EdgeSettingsForm: React.FC<{
     edge: EdgeSettings;
@@ -130,20 +136,83 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
     onUpdateGroovesAndEdges,
 }) => {
 
-
+    
     const { activeTab, setActiveTab } = useCart();
     const t = useTranslations();
-    const handleGrooveChange = <T extends keyof GroovesAndEdges['groove']>(
-        field: T,
-        value: GroovesAndEdges['groove'][T]
-    ) => {
+
+    const [grooves, setGrooves] = useState<GrooveSettings[]>([]);
+    const [selectedGrooveId, setSelectedGrooveId] = useState<number | null>(null);
+
+    const addGroove = () => {
+        if (grooves.length >= 5) return; // Maximum 5 grooves
+        const newGroove: GrooveSettings = {
+            id: Math.random(),
+            grooveType: 'V-groove (110°)', 
+            width: 0.14,
+            depth: 0.05,
+            surface: 'Polished',
+            direction: 'vertical',
+            position: 0,
+        };
+        const updatedGrooves = [...grooves, newGroove];
+        setGrooves(updatedGrooves);
+        setSelectedGrooveId(newGroove.id);
+        
+        // Update parent component
         onUpdateGroovesAndEdges({
             ...groovesAndEdges,
-            groove: {
-                ...groovesAndEdges.groove,
-                [field]: value,
-            },
+            groove: updatedGrooves
         });
+    };
+
+    const removeGroove = (id: number) => {
+        const updatedGrooves = grooves.filter(groove => groove.id !== id);
+        setGrooves(updatedGrooves);
+        if (selectedGrooveId === id) {
+            setSelectedGrooveId(null);
+        }
+        
+        // Update parent component
+        onUpdateGroovesAndEdges({
+            ...groovesAndEdges,
+            groove: updatedGrooves
+        });
+    };
+
+    const updateGroove = (id: number, updates: Partial<GrooveSettings>) => {
+        const updatedGrooves = grooves.map(groove => 
+            groove.id === id ? { ...groove, ...updates } : groove
+        );
+        setGrooves(updatedGrooves);
+        
+        // Update parent component
+        onUpdateGroovesAndEdges({
+            ...groovesAndEdges,
+            groove: updatedGrooves
+        });
+    };
+
+    const handleGrooveChange = <T extends keyof GrooveSettings>(
+        field: T,
+        value: GrooveSettings[T]
+    ) => {
+        if (selectedGrooveId) {
+            const updates: Partial<GrooveSettings> = { [field]: value };
+            
+            // If changing direction from wave to vertical, remove wave-specific properties
+            if (field === 'direction' && value === 'vertical') {
+                updates.numberOfWaves = undefined;
+                updates.waveHeight = undefined;
+            }
+            
+            // If changing direction to wave, set default wave properties
+            if (field === 'direction' && value === 'wave') {
+                updates.numberOfWaves = 1;
+                updates.waveHeight = 5;
+            }
+            
+            updateGroove(selectedGrooveId, updates);
+        }
     };
 
     const handleEdgeChange = (side: 'leftEdge' | 'rightEdge', edge: EdgeSettings) => {
@@ -153,9 +222,8 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
         });
     };
 
-
     return (
-        <div className="space-y-8">
+        <div className="space-y-6">
             {/* Tab Switch */}
             <div className="flex justify-center mb-8">
                 <div className="inline-flex rounded-xl p-1.5 bg-gray-100 space-x-4">
@@ -192,101 +260,228 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
 
             {/* Groove Settings */}
             {activeTab === 'grooves' && (
-            <div className="space-y-6">
-                <h3 className="text-darkGray text-xl font-medium">{t('configurator.groovesAndEdges.grooveSettings')}</h3>
-                
-                <div>
-                    <label className="block text-darkGray text-sm font-medium mb-2">{t('configurator.groovesAndEdges.grooveType')}</label>
-                    <div className="grid grid-cols-6 gap-4">
-                        {grooveTypes?.map((type) => (
-                            <button
-                                key={type}
-                                onClick={() => handleGrooveChange('grooveType', type)}
-                                className={`p-4 border rounded-lg ${
-                                    groovesAndEdges.groove.grooveType === type
-                                        ? 'border-primary bg-primary/10'
-                                        : 'border-darkGray'
-                                }`}
-                            >
-                                <div className="space-y-2">
-                                    <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                                        <img
-                                            src={`/images/grooves/${type
-                                                .toLowerCase()
-                                                .replace('v-groove (110°)', 'v-groove-110')
-                                                .replace('u-groove', 'u-groove')
-                                                .replace('convex', 'convex-v-groove')
-                                                .replace('square groove', 'square-groove')
-                                                .replace('carbon-groove', 'carbon')
-                                                .replace('milgrain', 'perlage')}.png`}
-                                            alt={type}
-                                            className="w-full h-full object-contain p-2"
-                                        />
-                                    </div>
-                                    <p className="text-xs text-center text-darkGray font-medium line-clamp-2">{type}</p>
-                                </div>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                    <div>
-                        <SelectInput
-                            label={t('configurator.groovesAndEdges.width')}
-                            value={groovesAndEdges.groove.width.toFixed(2)}
-                            onChange={(value) => handleGrooveChange('width', parseFloat(value))}
-                            options={[
-                                { value: '0.14', label: '0.14 mm' },
-                                { value: '0.29', label: '0.29 mm' },
-                                { value: '0.43', label: '0.43 mm' }
-                            ]}
-                            className="w-full"
-                        />
-                    </div>
-
-                    <div>
-                        <SelectInput
-                            label={t('configurator.groovesAndEdges.grooveDepth')}
-                            value={groovesAndEdges.groove.depth.toFixed(2)}
-                            onChange={(value) => handleGrooveChange('depth', parseFloat(value))}
-                            options={[
-                                { value: '0.05', label: '0.05 mm' },
-                                { value: '0.10', label: '0.10 mm' }
-                            ]}
-                            className="w-full"
-                        />
-                    </div>
-
-                    <div>
-                        <SelectInput
-                            label={t('configurator.groovesAndEdges.surface')}
-                            value={groovesAndEdges.groove.surface}
-                            onChange={(value) => handleGrooveChange('surface', value as SurfaceType)}
-                            options={surfaceTypes.map(type => ({
-                                value: type,
-                                label: type,
-                            }))}
-                            className="w-full"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-darkGray text-sm font-medium mb-2">{t('configurator.groovesAndEdges.grooveAlignment')}</label>
-                        <select
-                            value={groovesAndEdges.groove.alignment}
-                            onChange={(e) => handleGrooveChange('alignment', e.target.value as GrooveAlignment)}
-                            className="w-full p-2 border border-darkGray text-darkGray rounded-lg"
+                <div className="space-y-6">
+                    <div className="flex justify-between items-center">
+                        <h3 className="text-darkGray text-xl font-medium">{t('configurator.groovesAndEdges.grooveSettings')}</h3>
+                        <button 
+                            onClick={addGroove}
+                            disabled={grooves.length >= 5}
+                            className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50"
                         >
-                            {alignments?.map((alignment) => (
-                                <option key={alignment} value={alignment}>
-                                    {alignment.charAt(0).toUpperCase() + alignment.slice(1)}
-                                </option>
+                            Add Groove ({grooves.length}/5)
+                        </button>
+                    </div>
+
+                    {grooves.length > 0 && (
+                        <div className="flex space-x-2 overflow-x-auto pb-2">
+                            {grooves.map((groove, index) => (
+                                <button
+                                    key={groove.id}
+                                    onClick={() => setSelectedGrooveId(groove.id)}
+                                    className={`px-4 py-2 rounded-lg transition-all ${
+                                        selectedGrooveId === groove.id
+                                            ? 'bg-primary text-white'
+                                            : 'bg-gray-100 text-darkGray hover:bg-gray-200'
+                                    }`}
+                                >
+                                    Groove {index + 1}
+                                </button>
                             ))}
-                        </select>
+                        </div>
+                    )}
+                    
+                    <div className='grid grid-cols-6 gap-4'>
+                        <div className="col-span-1 relative w-[80px] h-[400px] bg-yellow-100 rounded-lg">
+                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[400px]">
+                                {/* Guide line */}
+                                <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-[#777] border-dashed" />
+                                
+                                {/* Position markers */}
+                                <div className="absolute top-0 -translate-y-1/2 left-0 text-[#777] text-xs">-5mm</div>
+                                <div className="absolute top-1/2 -translate-y-1/2 left-0 text-[#777] text-xs">0mm</div>
+                                <div className="absolute bottom-0 -translate-y-1/2 left-0 text-[#777] text-xs">+5mm</div>
+
+                                {/* Grooves */}
+                                {grooves.map((groove) => (
+                                    <div
+                                        key={groove.id}
+                                        onClick={() => setSelectedGrooveId(groove.id)}
+                                        className={`absolute h-full w-[2px] ${
+                                            selectedGrooveId === groove.id ? 'bg-primary' : 'bg-darkGray'
+                                        } cursor-pointer transition-all`}
+                                        style={{
+                                            left: `calc(50% + ${groove.position * 7}px)`,
+                                            transform: 'translateX(-50%)'
+                                        }}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className='col-span-5'>
+                            {selectedGrooveId ? (
+                                <div className="space-y-4">
+                                    <div className="flex justify-between items-center">
+                                        <h4 className="text-lg text-darkGray font-medium">Groove #{grooves.findIndex(g => g.id === selectedGrooveId) + 1} Settings</h4>
+                                        <button 
+                                            onClick={() => removeGroove(selectedGrooveId)}
+                                            className="px-3 py-1 text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                                        >
+                                            Remove Groove
+                                        </button>
+                                    </div>
+                                    <div className="mt-4 grid grid-cols-2 gap-4">
+                                        <div className="col-span-2">
+                                            <label className="block text-darkGray text-sm font-medium mb-2">{t('configurator.groovesAndEdges.grooveType')}</label>
+                                            <div className="grid grid-cols-6 gap-4">
+                                                {grooveTypes?.map((type) => (
+                                                    <button
+                                                        key={type}
+                                                        onClick={() => handleGrooveChange('grooveType', type)}
+                                                        className={`p-4 border rounded-lg ${
+                                                            grooves.find(g => g.id === selectedGrooveId)?.grooveType === type
+                                                                ? 'border-primary bg-primary/10'
+                                                                : 'border-darkGray'
+                                                        }`}
+                                                    >
+                                                        <div className="space-y-2">
+                                                            <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                                                                <img
+                                                                    src={`/images/grooves/${type
+                                                                        .toLowerCase()
+                                                                        .replace('v-groove (110°)', 'v-groove-110')
+                                                                        .replace('u-groove', 'u-groove')
+                                                                        .replace('convex', 'convex-v-groove')
+                                                                        .replace('square groove', 'square-groove')
+                                                                        .replace('carbon-groove', 'carbon')
+                                                                        .replace('milgrain', 'perlage')}.png`}
+                                                                    alt={type}
+                                                                    className="w-full h-full object-contain p-2"
+                                                                />
+                                                            </div>
+                                                            <p className="text-xs text-center text-darkGray font-medium line-clamp-2">{type}</p>
+                                                        </div>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <SelectInput
+                                                label={t('configurator.groovesAndEdges.width')}
+                                                value={grooves.find(g => g.id === selectedGrooveId)?.width.toFixed(2)}
+                                                onChange={(value) => handleGrooveChange('width', parseFloat(value))}
+                                                options={[
+                                                    { value: '0.14', label: '0.14 mm' },
+                                                    { value: '0.29', label: '0.29 mm' },
+                                                    { value: '0.43', label: '0.43 mm' }
+                                                ]}
+                                                className="w-full"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <SelectInput
+                                                label={t('configurator.groovesAndEdges.grooveDepth')}
+                                                value={grooves.find(g => g.id === selectedGrooveId)?.depth.toFixed(2)}
+                                                onChange={(value) => handleGrooveChange('depth', parseFloat(value))}
+                                                options={[
+                                                    { value: '0.05', label: '0.05 mm' },
+                                                    { value: '0.10', label: '0.10 mm' }
+                                                ]}
+                                                className="w-full"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <SelectInput
+                                                label={t('configurator.groovesAndEdges.surface')}
+                                                value={grooves.find(g => g.id === selectedGrooveId)?.surface}
+                                                onChange={(value) => handleGrooveChange('surface', value as SurfaceType)}
+                                                options={surfaceTypes.map(type => ({
+                                                    value: type,
+                                                    label: type,
+                                                }))}
+                                                className="w-full"
+                                            />
+                                        </div>
+                                        
+                                        <div>
+                                            <SelectInput
+                                                label="Direction"
+                                                value={grooves.find(g => g.id === selectedGrooveId)?.direction}
+                                                onChange={(value) => handleGrooveChange('direction', value as Direction)}
+                                                options={[
+                                                    { value: 'vertical', label: 'Vertical' },
+                                                    { value: 'wave', label: 'Wave' }
+                                                ]}
+                                                className="w-full"
+                                            />
+                                        </div>
+
+                                        {grooves.find(g => g.id === selectedGrooveId)?.direction === 'wave' && (
+                                            <>
+                                                <div>
+                                                    <SelectInput
+                                                        label="Number of Waves"
+                                                        value={grooves.find(g => g.id === selectedGrooveId)?.numberOfWaves?.toString()}
+                                                        onChange={(value) => handleGrooveChange('numberOfWaves', parseInt(value) as 1 | 2 | 3)}
+                                                        options={[
+                                                            { value: '1', label: '1 Wave' },
+                                                            { value: '2', label: '2 Waves' },
+                                                            { value: '3', label: '3 Waves' }
+                                                        ]}
+                                                        className="w-full"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <SelectInput
+                                                        label="Wave Height"
+                                                        value={grooves.find(g => g.id === selectedGrooveId)?.waveHeight?.toString()}
+                                                        onChange={(value) => handleGrooveChange('waveHeight', parseInt(value))}
+                                                        options={waveHeights.map(height => ({
+                                                            value: height.toString(),
+                                                            label: `${height}%`
+                                                        }))}
+                                                        className="w-full"
+                                                    />
+                                                </div>
+                                            </>
+                                        )}
+
+                                        <div className="col-span-2 p-4">
+                                            <label className="block text-darkGray text-sm font-semibold mb-3">Position</label>
+                                            <div className="flex items-center space-x-6">
+                                                <div className="relative flex-1">
+                                                    <input
+                                                        type="range"
+                                                        min="-5"
+                                                        max="5"
+                                                        step="0.1"
+                                                        value={grooves.find(g => g.id === selectedGrooveId)?.position || 0}
+                                                        onChange={(e) => handleGrooveChange('position', parseFloat(e.target.value))}
+                                                        className="w-full h-2 bg-gray rounded-lg appearance-none cursor-pointer accent-primary hover:bg-gray-300 transition-colors"
+                                                    />
+                                                    <div className="flex justify-between text-primary text-xs text-gray-500 mt-1">
+                                                        <span>-5mm</span>
+                                                        <span>5mm</span>
+                                                    </div>
+                                                </div>
+                                                <div className="bg-gray-100 rounded-lg px-4 py-2">
+                                                    <span className="text-sm font-medium text-darkGray">
+                                                        {(grooves.find(g => g.id === selectedGrooveId)?.position || 0).toFixed(1)}mm
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <p className="text-darkGray">{t('configurator.validation.selectGrooves')}</p>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
             )}
 
             {/* Edge Settings */}

@@ -71,7 +71,7 @@ export default function OrdersContent() {
     }
   };
 
-
+console.log(orders,"order items")
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="overflow-x-auto bg-white rounded-lg shadow">
@@ -166,7 +166,7 @@ export default function OrdersContent() {
                                 <div className="flex flex-col gap-1">
                                     <span><b>Produkti:</b> {item?.product?.name}</span>
                                     <div className="overflow-x-auto bg-white rounded-lg shadow">
-                                        <div className="grid grid-cols-8 gap-4 p-4 text-sm">
+                                        <div className="flex flex-wrap gap-4 p-4 text-sm">
                                             <div className="space-y-1">
                                                 <div className="font-semibold text-gray-900">Pesha</div>
                                                 <div>{item?.configuration?.weight}g</div>
@@ -199,26 +199,60 @@ export default function OrdersContent() {
 
                                             <div className="space-y-1">
                                                 <div className="font-semibold text-gray-900">Guret</div>
-                                                {item?.configuration?.stoneSettings?.settingType !== "No stone" ? (
-                                                    <div className="space-y-0.5">
-                                                        <div>{item?.configuration?.stoneSettings?.numberOfStones} gure</div>
-                                                        <div>{item?.configuration?.stoneSettings?.stoneType}</div>
-                                                        <div>{item?.configuration?.stoneSettings?.stoneSize}</div>
-                                                    </div>
-                                                ) : (
-                                                    <div>Nuk ka gure</div>
-                                                )}
+                                                {(() => {
+                                                    const settingType = item?.configuration?.stoneSettings?.settingType;
+                                                    if (settingType === "No stone") {
+                                                        return <div>Nuk ka gure</div>;
+                                                    } else if (settingType === "Free Stone Spreading") {
+                                                        return (
+                                                          <div className='space-y-0.5'>
+                                                            {item?.configuration?.stoneSettings.stones?.map((stone, idx) => (
+                                                              <>
+                                                                <div key={idx} className="text-gray-600">
+                                                                  <p>Guri: {idx+1}</p>
+                                                                  <p>Madhesia:{stone.size}</p>
+                                                                  <p>Qualiteti: {stone.quality}</p>
+                                                                  <p>Pozicioni: ({stone.x}, {stone.y})</p>
+                                                                </div>
+                                                                <br />
+                                                              </>
+                                                            ))}
+                                                          </div>
+                                                        )
+                                                    } else {
+                                                        return (
+                                                            <div className="space-y-0.5">
+                                                                <div>Lloji: {item?.configuration?.stoneSettings?.stoneType}</div>
+                                                                <div>Permasat: {item?.configuration?.stoneSettings?.stoneSize}</div>
+                                                                <div>Cilesia: {item?.configuration?.stoneSettings?.stoneQuality}</div>
+                                                                <div>Numri i gureve: {item?.configuration?.stoneSettings?.numberOfStones}</div>
+                                                                <div>Hapesira: {item?.configuration?.stoneSettings?.spacing}</div>
+                                                                <div>Pozicioni: {item?.configuration?.stoneSettings?.position}</div>
+                                                            </div>
+                                                        );
+                                                    }
+                                                })()}
                                             </div>
 
-                                            {item.configuration?.groovesAndEdges?.groove && (
-                                                <div className="space-y-1">
-                                                    <div className="font-semibold text-gray-900">Gravimi</div>
+                                            {item.configuration?.groovesAndEdges?.groove.map((groove, idx) => (
+                                                <div key={idx} className="space-y-1">
+                                                    <div className="font-semibold text-gray-900">Gravimi {idx+1}</div>
                                                     <div className="space-y-0.5">
-                                                        <div>{item?.configuration?.groovesAndEdges?.groove?.grooveType}</div>
-                                                        <div>{item?.configuration?.groovesAndEdges?.groove?.depth}×{item?.configuration?.groovesAndEdges?.groove?.width}mm</div>
+                                                        <div>{groove?.grooveType}</div>
+                                                        <div>{groove?.depth}×{groove?.width}mm</div>
+                                                        <div>Surface: {groove?.surface}</div>
+                                                        <div>Direction: {groove?.direction}</div>
+                                                        <div>Position: {groove?.position}</div>
+                                                        {groove?.direction === "wave" 
+                                                          ? <>
+                                                          <div>Number of waves: {groove?.numberOfWaves}</div>
+                                                          <div>Wave height: {groove?.waveHeight}</div> 
+                                                          </>
+                                                          : null
+                                                        }
                                                     </div>
                                                 </div>
-                                            )}
+                                            ))}
 
                                             {(item.configuration?.groovesAndEdges?.leftEdge || item.configuration?.groovesAndEdges?.rightEdge) && (
                                                 <div className="space-y-1">

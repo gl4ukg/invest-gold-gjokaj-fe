@@ -41,11 +41,22 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
     const t = useTranslations();
 
     const handleChange = <T extends keyof StoneSettings>(field: T, value: StoneSettings[T]) => {
-        const newSettings = {
-            ...stoneSettings,
-            [field]: value,
-        };
-
+        console.log(field,value,"qokla fieldd")
+      
+        let newSettings;
+        if(value === "Free Stone Spreading") {
+            newSettings = {
+                ...stoneSettings,
+                [field]: value,
+            };
+        }else  {
+            newSettings = {
+                ...stoneSettings,
+                [field]: value,
+                stones: [],
+            };
+        }
+        
         // If changing to Free position, ensure offset is set
         if (field === 'position' && value === 'Free') {
             newSettings.offset = 0;

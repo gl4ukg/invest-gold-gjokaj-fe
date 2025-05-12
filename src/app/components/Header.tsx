@@ -48,7 +48,7 @@ const Header = () => {
                     playsInline
                     className="absolute inset-0 w-full h-full object-cover"
                 >
-                    <source src="/header-video.mp4" type="video/mp4" />
+                    <source src="https://glaukthaqi.com/header-video.mp4" type="video/mp4" />
                 </video>
                 {/* Overlay for better text readability */}
                 <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -120,7 +120,7 @@ const Header = () => {
                 <div className="relative w-full h-[400px]">
                     <iframe
                         id="video"
-                        src={'video.mp4'}
+                        src={'https://glaukthaqi.com/header-video.mp4'}
                         title={'Video Modal'}
                         className="absolute top-0 left-0 w-full h-full rounded-md"
                         allowFullScreen

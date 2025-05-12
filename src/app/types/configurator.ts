@@ -145,12 +145,18 @@ export type EdgeType = "" | "none" | "step" | "carbon" | "milgrain";
 export type GrooveAlignment = "" | "left" | "center" | "right";
 export type SurfaceType = "" | "Polished" | "Sandblasted";
 
+export type Direction = 'vertical' | 'wave';
+
 export interface GrooveSettings {
+  id: number;
   grooveType: GrooveType;
-  width: number; // in mm
-  depth: number; // in mm
+  width: number;
+  depth: number;
   surface: SurfaceType;
-  alignment: GrooveAlignment;
+  direction: Direction;
+  position: number;
+  numberOfWaves?: 1 | 2 | 3;
+  waveHeight?: number; // 5-95
 }
 
 export interface EdgeSettings {
@@ -161,7 +167,7 @@ export interface EdgeSettings {
 }
 
 export interface GroovesAndEdges {
-  groove: GrooveSettings;
+  groove: GrooveSettings[];
   leftEdge: EdgeSettings;
   rightEdge: EdgeSettings;
 }

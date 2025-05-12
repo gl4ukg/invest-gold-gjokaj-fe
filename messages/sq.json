@@ -226,10 +226,13 @@
             "selectWeight": "Please choose weight",
             "selectProfile": "Ju lutemi zgjidhni një profil për të vazhduar",
             "enterDimensions": "Ju lutemi plotësoni të gjitha dimensionet e kërkuara",
-            "selectMetal": "Ju lutemi zgjidhni një metal të çmuar",
+            "selectMetal": "Ju lutem zgjidhni një metal të çmuar",
+            "selectStones": "Ju lutem zgjidheni nje gure",
+            "selectGrooves": "Ju lutem zgjedhini kanalet",
+            "selectEdges": "Ju lutem zgjidhini skajet",
+            "enterEngraving": "Please complete engraving settings",
             "selectStoneSettings": "Ju lutemi plotësoni parametrat e gurit",
-            "completeGroovesAndEdges": "Ju lutemi plotësoni parametrat e kanaleve dhe skajeve",
-            "enterEngraving": "Ju lutemi shkruani tekstin e gdhendjes"
+            "completeGroovesAndEdges": "Ju lutemi plotësoni parametrat e kanaleve dhe skajeve"
         }
     },
     "shop": {
