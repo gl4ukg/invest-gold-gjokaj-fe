@@ -19,7 +19,7 @@ import { getTranslations } from "next-intl/server";
 type Props = {
   params: { locale: string };
 };
-
+ 
 // export async function generateMetadata({ params }: Props): Promise<Metadata> {
 //   const locale = (await params?.locale) || "sq";
 //   const t = await getTranslations({ locale, namespace: "metadata" });
