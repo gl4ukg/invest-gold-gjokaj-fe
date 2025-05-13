@@ -125,7 +125,7 @@ export interface StoneSettings {
   stoneType?: StoneType;
   stoneSize?: StoneSize;
   stoneQuality?: StoneQuality;
-  numberOfStones?: number;
+  numberOfStones: number;
   spacing?: StoneSpacing;
   position?: StonePosition;
   offset?: number;
@@ -145,7 +145,7 @@ export type EdgeType = "" | "none" | "step" | "carbon" | "milgrain";
 export type GrooveAlignment = "" | "left" | "center" | "right";
 export type SurfaceType = "" | "Polished" | "Sandblasted";
 
-export type Direction = 'vertical' | 'wave';
+export type Direction = "vertical" | "wave";
 
 export interface GrooveSettings {
   id: number;
@@ -156,7 +156,7 @@ export interface GrooveSettings {
   direction: Direction;
   position: number;
   numberOfWaves?: 1 | 2 | 3;
-  waveHeight?: number; // 5-95
+  waveHeight?: number;
 }
 
 export interface EdgeSettings {

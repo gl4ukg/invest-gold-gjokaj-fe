@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useRef } from 'react';
-import { useTranslations } from 'next-intl';
-import { motion, useInView } from 'framer-motion';
-import { 
-  FaRing, 
-  FaLink, 
-  FaGem, 
+import React from "react";
+import { useRef } from "react";
+import { useTranslations } from "next-intl";
+import { motion, useInView } from "framer-motion";
+import {
+  FaRing,
+  FaLink,
+  FaGem,
   FaMagic,
   FaTools,
   FaClock,
   FaTruck,
-  FaHandshake 
-} from 'react-icons/fa';
+  FaHandshake,
+} from "react-icons/fa";
 
 const ServicesSection = () => {
-  const t = useTranslations('services');
+  const t = useTranslations("services");
 
   // Refs for scroll animations
   const sectionRef = useRef(null);
@@ -28,7 +28,10 @@ const ServicesSection = () => {
   const isSectionInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const isTitleInView = useInView(titleRef, { once: true, amount: 0.5 });
   const isCardsInView = useInView(cardsRef, { once: true, amount: 0.2 });
-  const isAdditionalServicesInView = useInView(additionalServicesRef, { once: true, amount: 0.2 });
+  const isAdditionalServicesInView = useInView(additionalServicesRef, {
+    once: true,
+    amount: 0.2,
+  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -36,9 +39,9 @@ const ServicesSection = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        staggerChildren: 0.15
-      }
-    }
+        staggerChildren: 0.15,
+      },
+    },
   };
 
   const titleVariants = {
@@ -48,9 +51,9 @@ const ServicesSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const cardVariants = {
@@ -60,9 +63,9 @@ const ServicesSection = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const additionalServiceVariants = {
@@ -72,67 +75,67 @@ const ServicesSection = () => {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const services = [
     {
-      id: 'rings',
+      id: "rings",
       icon: <FaRing className="w-8 h-8 text-primary mb-4" />,
-      name: t('items.rings.title'),
-      description: t('items.rings.description'),
-      keywords: "unaza fejese, unaza martese, engagement rings, wedding rings"
+      name: t("items.rings.title"),
+      description: t("items.rings.description"),
+      keywords: "unaza fejese, unaza martese, engagement rings, wedding rings",
     },
     {
-      id: 'bracelets',
+      id: "bracelets",
       icon: <FaLink className="w-8 h-8 text-primary mb-4" />,
-      name: t('items.bracelets.title'),
-      description: t('items.bracelets.description'),
-      keywords: "rrathe ari, bylyzyk ari, gold bracelets, gold bangles"
+      name: t("items.bracelets.title"),
+      description: t("items.bracelets.description"),
+      keywords: "rrathe ari, bylyzyk ari, gold bracelets, gold bangles",
     },
     {
-      id: 'necklaces',
+      id: "necklaces",
       icon: <FaGem className="w-8 h-8 text-primary mb-4" />,
-      name: t('items.necklaces.title'),
-      description: t('items.necklaces.description'),
-      keywords: "zinxhirë ari, qafore ari, gold chains, gold necklaces"
+      name: t("items.necklaces.title"),
+      description: t("items.necklaces.description"),
+      keywords: "zinxhirë ari, qafore ari, gold chains, gold necklaces",
     },
     {
-      id: 'custom',
+      id: "custom",
       icon: <FaMagic className="w-8 h-8 text-primary mb-4" />,
-      name: t('items.custom.title'),
-      description: t('items.custom.description'),
-      keywords: "stoli të personalizuara, custom jewelry, custom gold"
-    }
+      name: t("items.custom.title"),
+      description: t("items.custom.description"),
+      keywords: "stoli të personalizuara, custom jewelry, custom gold",
+    },
   ];
 
   const additionalServices = [
     {
-      id: 'repair',
+      id: "repair",
       icon: <FaTools className="w-8 h-8 text-primary" />,
-      name: t('items.repair.title'),
-      description: t('items.repair.description')
+      name: t("items.repair.title"),
+      description: t("items.repair.description"),
     },
     {
-      id: 'express',
+      id: "express",
       icon: <FaClock className="w-8 h-8 text-primary" />,
-      name: t('items.express.title'),
-      description: t('items.express.description')
+      name: t("items.express.title"),
+      description: t("items.express.description"),
     },
     {
-      id: 'delivery',
+      id: "delivery",
       icon: <FaTruck className="w-8 h-8 text-primary" />,
-      name: t('items.delivery.title'),
-      description: t('items.delivery.description')
+      name: t("items.delivery.title"),
+      description: t("items.delivery.description"),
     },
     {
-      id: 'guarantee',
+      id: "guarantee",
       icon: <FaHandshake className="w-8 h-8 text-primary" />,
-      name: t('items.guarantee.title'),
-      description: t('items.guarantee.description')
-    }
+      name: t("items.guarantee.title"),
+      description: t("items.guarantee.description"),
+    },
   ];
 
   return (
@@ -154,11 +157,17 @@ const ServicesSection = () => {
           initial="hidden"
           animate={isTitleInView ? "visible" : "hidden"}
         >
-          <h2 className="text-4xl md:text-5xl font-medium text-primary mb-6" itemProp="name">
-            {t('title')}
+          <h2
+            className="text-4xl md:text-5xl font-medium text-primary mb-6"
+            itemProp="name"
+          >
+            {t("title")}
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12" itemProp="description">
-            {t('subtitle')}
+          <p
+            className="text-lg text-gray-600 max-w-3xl mx-auto mb-12"
+            itemProp="description"
+          >
+            {t("subtitle")}
           </p>
         </motion.div>
 
@@ -175,18 +184,25 @@ const ServicesSection = () => {
               key={service.id}
               className="service-item h-full"
               variants={cardVariants}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.03,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                boxShadow:
+                  "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
               }}
               transition={{ duration: 0.2 }}
             >
               <div className="p-6 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg hover:shadow-xl transition-shadow text-center flex flex-col items-center h-full">
                 {service.icon}
-                <h3 className="text-xl font-semibold text-darkGray text-center mb-4" itemProp="name">
+                <h3
+                  className="text-xl font-semibold text-darkGray text-center mb-4"
+                  itemProp="name"
+                >
                   {service.name}
                 </h3>
-                <p className="text-lightGray text-center text-sm flex-grow" itemProp="description">
+                <p
+                  className="text-lightGray text-center text-sm flex-grow"
+                  itemProp="description"
+                >
                   {service.description}
                 </p>
                 <meta itemProp="keywords" content={service.keywords} />
@@ -197,7 +213,7 @@ const ServicesSection = () => {
         </motion.div>
 
         {/* Additional Services */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8"
           ref={additionalServicesRef}
           variants={containerVariants}
@@ -209,9 +225,10 @@ const ServicesSection = () => {
               key={service.id}
               className="flex flex-col items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center"
               variants={additionalServiceVariants}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                boxShadow:
+                  "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
               }}
               transition={{ duration: 0.2 }}
             >
@@ -227,11 +244,22 @@ const ServicesSection = () => {
         </motion.div>
 
         {/* SEO Metadata */}
-        <div itemScope itemType="https://schema.org/JewelryStore" className="hidden">
+        <div
+          itemScope
+          itemType="https://schema.org/JewelryStore"
+          className="hidden"
+        >
           <meta itemProp="name" content="Invest Gold Gjokaj" />
-          <meta itemProp="description" content={t('seoDescription')} />
-          <meta itemProp="keywords" content="unaza fejese, unaza martese, rrathe ari, zinxhir ari, stoli të personalizuara, engagement rings, wedding rings, gold bracelets, gold chains, custom jewelry" />
-          <div itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
+          <meta itemProp="description" content={t("seoDescription")} />
+          <meta
+            itemProp="keywords"
+            content="unaza fejese, unaza martese, rrathe ari, zinxhir ari, stoli të personalizuara, engagement rings, wedding rings, gold bracelets, gold chains, custom jewelry"
+          />
+          <div
+            itemProp="hasOfferCatalog"
+            itemScope
+            itemType="https://schema.org/OfferCatalog"
+          >
             <meta itemProp="name" content="Gold Jewelry Services" />
           </div>
         </div>

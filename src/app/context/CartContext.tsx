@@ -45,20 +45,26 @@ export const initialConfiguratorState: ConfiguratorState = {
   stoneSettings: {
     settingType: "",
     stoneType: "",
-    stoneSize: 0,
+    stoneSize: "",
     stoneQuality: "",
     numberOfStones: 0,
     spacing: "",
     position: "",
   },
   groovesAndEdges: {
-    groove: {
-      grooveType: "",
-      width: 0,
-      depth: 0,
-      surface: "",
-      alignment: "",
-    },
+    groove: [
+      {
+        id: 0,
+        grooveType: "",
+        width: 0,
+        depth: 0,
+        surface: "",
+        direction: "vertical",
+        position: 0,
+        numberOfWaves: 1,
+        waveHeight: 0,
+      }
+    ],
     leftEdge: {
       type: "",
     },
@@ -247,55 +253,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const clearCart = () => {
     setCart(initialCart);
-    setConfiguratorState({
-      selectedProfile: null,
-      dimensions: {
-        profileWidth: 0,
-        profileHeight: 0,
-        ringSize: 0,
-        ringSizeSystem: "",
-      },
-      preciousMetal: {
-        colorType: "",
-        shape: undefined,
-        colors: [
-          {
-            metalColor: "",
-            polishType: "",
-            fineness: "",
-          },
-        ],
-      },
-      stoneSettings: {
-        settingType: "",
-        stoneType: "",
-        stoneSize: "",
-        stoneQuality: "",
-        numberOfStones: 0,
-        spacing: "",
-        position: "",
-      },
-      groovesAndEdges: {
-        groove: {
-          grooveType: "",
-          width: 0,
-          depth: 0,
-          surface: "",
-          alignment: "",
-        },
-        leftEdge: {
-          type: "",
-        },
-        rightEdge: {
-          type: "",
-        },
-      },
-      engraving: {
-        text: "",
-        fontFamily: "Times New Roman",
-      },
-      weight: 0,
-    });
+    setConfiguratorState(initialConfiguratorState);
     toast.success(t("notifications.cartCleared"));
   };
 

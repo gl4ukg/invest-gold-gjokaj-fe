@@ -1,20 +1,20 @@
-import axios from 'axios';
+import axios from "axios";
 
 // Backend URL from the environment variables
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 // Create a new instance of axios
 const axiosInstance = axios.create({
-  baseURL,  // Base URL of your backend
+  baseURL, // Base URL of your backend
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
 // Add request interceptor to include auth token
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -31,10 +31,10 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Clear token and redirect to login if unauthorized
-      localStorage.removeItem('token');
-      window.location.href = '/sq/login';
+      localStorage.removeItem("token");
+      window.location.href = "/sq/login";
     }
-    console.error('API Error:', error);
+    console.error("API Error:", error);
     return Promise.reject(error);
   }
 );

@@ -23,7 +23,38 @@ const ProductsContent: React.FC = () => {
         weight: '2-3',
         category: { id: '', name: '' },
         stock: 0,
-        image: ''
+        image: '',
+        configuration: {
+            selectedProfile: null,
+            dimensions: {
+                profileWidth: 0,
+                profileHeight: 0,
+                ringSize: '',
+                ringSizeSystem: ''
+            },
+            preciousMetal: {
+                colorType: '',
+                colors: []
+            },
+            stoneSettings: {
+                settingType: '',
+                numberOfStones: 0
+            },
+            groovesAndEdges: {
+                groove: [],
+                leftEdge: {
+                    type: ''
+                },
+                rightEdge: {
+                    type: ''
+                }
+            },
+            engraving: {
+                text: '',
+                fontFamily: 'Arial',
+            },
+            weight: 0
+        }
     });
     const [isEditing, setIsEditing] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
@@ -46,7 +77,7 @@ const ProductsContent: React.FC = () => {
             setCategories(categoriesData);
             setError(null);
         } catch (err) {
-            setError('Marrja e té dhênave dështoi');
+            setError('Marrja e té dhënave dështoi');
             console.error(err);
         } finally {
             setLoading(false);
@@ -120,7 +151,38 @@ const ProductsContent: React.FC = () => {
             weight: '2-3',
             category: { id: '', name: '' },
             stock: 0,
-            image: ''
+            image: '',
+            configuration: {
+                selectedProfile: null,
+                dimensions: {
+                    profileWidth: 0,
+                    profileHeight: 0,
+                    ringSize: '',
+                    ringSizeSystem: ''
+                },
+                preciousMetal: {
+                    colorType: '',
+                    colors: []
+                },
+                stoneSettings: {
+                    settingType: '',
+                    numberOfStones: 0
+                },
+                groovesAndEdges: {
+                    groove: [],
+                    leftEdge: {
+                        type: ''
+                    },
+                    rightEdge: {
+                        type: ''
+                    }
+                },
+                engraving: {
+                    text: '',
+                    fontFamily: 'Arial',
+                },
+                weight: 0
+            }
         });
         setIsEditing(false);
         setSelectedProductId(null);
@@ -133,20 +195,21 @@ const ProductsContent: React.FC = () => {
 
     const handleEditClick = async (product: Product) => {
         try {
-            const productData = await ProductsService.getById(product.id!);
+            const productData = await ProductsService.getById(String(product.id));
             setFormData({
                 name: productData.name,
                 description: productData.description,
                 weight: productData.weight,
                 category: productData.category,
                 stock: productData.stock,
-                image: productData.image || ''
+                image: productData.image || '',
+                configuration: productData.configuration
             });
             // Set image preview if product has an image
             if (productData.image) {
                 setImagePreview(productData.image);
             }
-            setSelectedProductId(product.id!);
+            setSelectedProductId(String(product.id));
             setIsEditing(true);
             // Scroll to form
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -183,7 +246,8 @@ const ProductsContent: React.FC = () => {
                 weight: formData.weight,
                 category: formData.category,
                 stock: Number(formData.stock),
-                image: base64Image || formData.image
+                image: base64Image || formData.image,
+                configuration: formData.configuration
             };
 
             if (isEditing && selectedProductId) {
@@ -478,7 +542,7 @@ const ProductsContent: React.FC = () => {
                                             Ndrysho
                                         </button>
                                         <button
-                                            onClick={() => handleDelete(product.id!)}
+                                            onClick={() => handleDelete(String(product.id))}
                                             className="text-red-600 hover:text-red-900"
                                         >
                                             Fshij

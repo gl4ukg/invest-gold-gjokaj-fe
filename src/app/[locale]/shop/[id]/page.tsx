@@ -101,12 +101,12 @@ export default function ProductDetail() {
         // Fetch related products from the same category
         if (productData.category.id) {
           const related = await ProductsService.search({
-            categoryId: productData.category.id,
+            categoryIds: [productData.category.id ?? ''],
             page: 1,
             limit: 4,
           });
           setRelatedProducts(
-            related.products.filter((p) => p.id !== productData.id)
+            related.items.filter((p) => p.id !== productData.id)
           );
         }
       } catch (err) {

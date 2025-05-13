@@ -1,21 +1,19 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import Slider from 'react-slick';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import { motion, useInView } from 'framer-motion';
-import CategoriesService from '../services/categories';
-import { Category } from '../types/category.types';
-import ProductsService from '../services/products';
-import { Product } from '../types/product.types';
-import ProductCard from './ProductCard';
-
+import { useEffect, useRef, useState } from "react";
+import Slider from "react-slick";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { motion, useInView } from "framer-motion";
+import CategoriesService from "../services/categories";
+import { Category } from "../types/category.types";
+import ProductsService from "../services/products";
+import { Product } from "../types/product.types";
+import ProductCard from "./ProductCard";
 
 const RingsSection: React.FC = () => {
-
-  const t = useTranslations('rings')
+  const t = useTranslations("rings");
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>();
@@ -32,54 +30,50 @@ const RingsSection: React.FC = () => {
   const isCategoryInView = useInView(categoryRef, { once: true, amount: 0.3 });
   const isCarouselInView = useInView(carouselRef, { once: true, amount: 0.2 });
 
-  // const selectedRings = categories.find((cat) => cat.id === selectedCategory)?.rings || [];
-
   const fetchProducts = async () => {
     try {
-      const yellowRingId = categories.find((cat) => cat.name === 'Ari i Verdhë')?.id;
+      const categoryId = selectedCategory || categories.find(
+        (cat) => cat.name === "Ari i Verdhë"
+      )?.id;
+      
+      if (!categoryId) return;
+
       const related = await ProductsService.search({
-        categoryId: yellowRingId ?? selectedCategory?.toString(),
+        categoryIds: [selectedCategory ?? ''],
         page: 1,
         limit: 4,
       });
-      setProducts(related.products)
+      setProducts(related.items);
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   const fetchCategories = async () => {
     try {
-      const [categoriesData] = await Promise.all([
-          CategoriesService.getAll()
-      ]);
+      const [categoriesData] = await Promise.all([CategoriesService.getAll()]);
       setCategories(categoriesData);
       fetchProducts();
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchCategories()
-  }, [])
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
-    fetchProducts()
-  }, [selectedCategory])
+    fetchProducts();
+  }, [selectedCategory]);
 
-  
-
-
-  const ringsText: { [key: string]: string }  = {
-    "Ari i Verdhe": t('yellowGold'),
-    "Ari i Bardhë": t('whiteGold'),
-    "Ari Rozë": t('roseGold'),
-    "Ari me 2 Ngjyra": t('twoColorGold'),
-    "Ari Shumëngjyrësh": t('multiColorGold'),
-  }
-
-
+  const ringsText: { [key: string]: string } = {
+    "Ari i Verdhe": t("yellowGold"),
+    "Ari i Bardhë": t("whiteGold"),
+    "Ari Rozë": t("roseGold"),
+    "Ari me 2 Ngjyra": t("twoColorGold"),
+    "Ari Shumëngjyrësh": t("multiColorGold"),
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -87,9 +81,9 @@ const RingsSection: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        staggerChildren: 0.15
-      }
-    }
+        staggerChildren: 0.15,
+      },
+    },
   };
 
   const itemVariants = {
@@ -99,9 +93,9 @@ const RingsSection: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const imageVariants = {
@@ -111,9 +105,9 @@ const RingsSection: React.FC = () => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const buttonVariants = {
@@ -123,9 +117,9 @@ const RingsSection: React.FC = () => {
       x: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const PrevArrow = (props: any) => {
@@ -133,31 +127,31 @@ const RingsSection: React.FC = () => {
     return (
       <button
         className={`custom-prev-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[400px] left-1/2 transform -translate-x-1/2 mb-4`}
-        style={{ ...style, display: 'block' }}
+        style={{ ...style, display: "block" }}
         onClick={onClick}
       >
         <GrFormPrevious />
       </button>
     );
   };
-  
+
   const NextArrow = (props: any) => {
     const { style, onClick } = props;
     return (
       <button
         className={`custom-next-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[400px] left-1/2 transform -translate-x-1/2 mb-4 ml-16`}
-        style={{ ...style, display: 'block' }}
+        style={{ ...style, display: "block" }}
         onClick={onClick}
       >
         <GrFormNext />
       </button>
     );
   };
-  
+
   const sliderSettings = {
     dots: false,
     arrows: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
@@ -180,57 +174,58 @@ const RingsSection: React.FC = () => {
   };
 
   return (
-    <section 
-      id="rings" 
-      className="py-12 bg-white relative"
-      ref={sectionRef}
-    >
-      <motion.div 
+    <section id="rings" className="py-12 bg-white relative" ref={sectionRef}>
+      <motion.div
         className="container mx-auto px-4"
         variants={containerVariants}
         initial="hidden"
         animate={isSectionInView ? "visible" : "hidden"}
       >
-        <div 
+        <div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 items-center"
           ref={titleRef}
         >
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             animate={isTitleInView ? "visible" : "hidden"}
             initial="hidden"
           >
-            <h2 
-              className="text-4xl font-bold text-primary font-[Poppins]" 
+            <h2
+              className="text-4xl font-bold text-primary font-[Poppins]"
               itemProp="name"
             >
-            {t('title')}
-          </h2>
-          <article itemProp="description">
-            <p className="text-tertiary text-lg font-[Poppins] mt-4">
-              {t('subtitle')}
-            </p>
-            <div 
-              itemScope 
-              itemType="https://schema.org/CollectionPage" 
-              className="hidden"
-            >
-              <meta itemProp="name" content="Gold Rings Collection - Invest Gold Gjokaj" />
-              <meta itemProp="description" content={t('subtitle')} />
-              <meta itemProp="keywords" content="unaza fejese, unaza martese, rrathe ari, gold rings, engagement rings, wedding rings" />
-            </div>
-          </article>
-
+              {t("title")}
+            </h2>
+            <article itemProp="description">
+              <p className="text-tertiary text-lg font-[Poppins] mt-4">
+                {t("subtitle")}
+              </p>
+              <div
+                itemScope
+                itemType="https://schema.org/CollectionPage"
+                className="hidden"
+              >
+                <meta
+                  itemProp="name"
+                  content="Gold Rings Collection - Invest Gold Gjokaj"
+                />
+                <meta itemProp="description" content={t("subtitle")} />
+                <meta
+                  itemProp="keywords"
+                  content="unaza fejese, unaza martese, rrathe ari, gold rings, engagement rings, wedding rings"
+                />
+              </div>
+            </article>
           </motion.div>
           {/* Right: Featured Image */}
-          <motion.div 
+          <motion.div
             className="flex justify-center"
             variants={imageVariants}
             animate={isTitleInView ? "visible" : "hidden"}
             initial="hidden"
           >
             <Image
-              src={'/images/um6.png'}
+              src={"/images/um6.png"}
               alt="Rings"
               width={300}
               height={300}
@@ -239,19 +234,16 @@ const RingsSection: React.FC = () => {
         </div>
 
         {/* Bottom Row */}
-        <motion.div 
-          className="space-y-8 py-16"
-          variants={containerVariants}
-        >
-          <motion.p 
-            className='text-center text-primary text-4xl font-bold'
+        <motion.div className="space-y-8 py-16" variants={containerVariants}>
+          <motion.p
+            className="text-center text-primary text-4xl font-bold"
             variants={itemVariants}
           >
-            {t('rings')}
+            {t("rings")}
           </motion.p>
-          
+
           {/* Category Buttons */}
-          <motion.div 
+          <motion.div
             className="flex flex-wrap justify-center gap-4 mb-4"
             ref={categoryRef}
             variants={containerVariants}
@@ -264,26 +256,27 @@ const RingsSection: React.FC = () => {
                 onClick={() => setSelectedCategory(category?.id)}
                 className={`flex items-center px-4 py-2 rounded-md font-medium border-2 border-primary ${
                   selectedCategory === category?.id
-                    ? 'bg-primary text-white'
-                    : 'text-secondary'
+                    ? "bg-primary text-white"
+                    : "text-secondary"
                 } hover:bg-[#907C33] hover:text-white transition-all duration-300`}
                 variants={buttonVariants}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {ringsText[category.name]}
-                <Image 
-                    src={String(category?.image)} 
-                    alt={`${category.image}-category`}
-                    width={25}
-                    height={25}
-                    className='ml-2' />
+                {category.name}
+                <Image
+                  src={String(category?.image)}
+                  alt={`${category.image}-category`}
+                  width={25}
+                  height={25}
+                  className="ml-2"
+                />
               </motion.button>
             ))}
           </motion.div>
 
           {/* Rings Carousel */}
-          <motion.div 
+          <motion.div
             className="mt-12"
             ref={carouselRef}
             variants={containerVariants}
@@ -292,8 +285,8 @@ const RingsSection: React.FC = () => {
           >
             <Slider {...sliderSettings}>
               {products?.map((ring) => (
-                <motion.div 
-                  key={ring.id} 
+                <motion.div
+                  key={ring.id}
                   className="p-4"
                   variants={imageVariants}
                   whileHover={{ scale: 1.05 }}

@@ -11,10 +11,10 @@ export default {
       colors: {
         primary: "#907C33",
         secondary: "#907C33",
-        tertiary: '#212529',
+        tertiary: "#212529",
         darkGray: "#2a2e34",
-        gray: '#EAEAEA',
-        lightGray: '#9ca3af',
+        gray: "#EAEAEA",
+        lightGray: "#9ca3af",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

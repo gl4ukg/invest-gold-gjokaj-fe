@@ -1,8 +1,8 @@
-import axios from 'axios';
-import axiosInstance from './api'; 
-import { User } from '../types/auth.types';
+import axios from "axios";
+import axiosInstance from "./api";
+import { User } from "../types/auth.types";
 
-const STORAGE_KEY = 'questionnaire_state';
+const STORAGE_KEY = "questionnaire_state";
 
 const AuthService = {
   getUserFromSession: async (): Promise<any | null> => {
@@ -14,17 +14,17 @@ const AuthService = {
   },
 
   saveToken: (token: string): void => {
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
   },
 
   clearToken: (): void => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
   },
 
   register: async (userData: User): Promise<any> => {
     try {
-      const response = await axiosInstance.post('/auth/register', userData);
-      return response.data; 
+      const response = await axiosInstance.post("/auth/register", userData);
+      return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         throw error.response?.data;
@@ -35,27 +35,29 @@ const AuthService = {
 
   login: async (email: string, password: string): Promise<string> => {
     try {
-      const response = await axiosInstance.post('/auth/login', { email, password });
+      const response = await axiosInstance.post("/auth/login", {
+        email,
+        password,
+      });
       AuthService.saveToken(response.data.token);
-      return response.data; 
+      return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
-        throw error.response?.data; 
+        throw error.response?.data;
       }
-      throw error; 
+      throw error;
     }
   },
 
-
   getProfile: async (): Promise<any> => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (!token) {
         console.warn("No token found in localStorage");
         return null;
       }
 
-      const response = await axiosInstance.get('/auth/profile', {
+      const response = await axiosInstance.get("/auth/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -70,22 +72,22 @@ const AuthService = {
       console.error("Error fetching user profile:", error);
       // If unauthorized, clear token
       if (axios.isAxiosError(error) && error.response?.status === 401) {
-        localStorage.removeItem('token');
+        localStorage.removeItem("token");
       }
       return null;
     }
   },
 
   updateProfile: async (userData: User): Promise<any> => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) throw new Error("Token not found");
     try {
-      const response = await axiosInstance.put('/auth/profile', userData, {
+      const response = await axiosInstance.put("/auth/profile", userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      return response.data; 
+      return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         throw error.response?.data;

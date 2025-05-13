@@ -1,15 +1,21 @@
 "use client";
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const JewelrySection: React.FC = () => {
   // Refs for scroll detection
-  const t = useTranslations('jewelry')
+  const t = useTranslations("jewelry");
   const firstSectionRef = useRef(null);
   const secondSectionRef = useRef(null);
-  const isFirstSectionInView = useInView(firstSectionRef, { once: true, amount: 0.3 });
-  const isSecondSectionInView = useInView(secondSectionRef, { once: true, amount: 0.3 });
+  const isFirstSectionInView = useInView(firstSectionRef, {
+    once: true,
+    amount: 0.3,
+  });
+  const isSecondSectionInView = useInView(secondSectionRef, {
+    once: true,
+    amount: 0.3,
+  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -17,9 +23,9 @@ const JewelrySection: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        staggerChildren: 0.15
-      }
-    }
+        staggerChildren: 0.15,
+      },
+    },
   };
 
   const itemVariants = {
@@ -29,9 +35,9 @@ const JewelrySection: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const imageVariants = {
@@ -41,9 +47,9 @@ const JewelrySection: React.FC = () => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const buttonVariants = {
@@ -53,9 +59,9 @@ const JewelrySection: React.FC = () => {
       x: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -65,49 +71,43 @@ const JewelrySection: React.FC = () => {
         id="jewelry"
         className="bg-[url('/images/cover-01.png')] bg-cover bg-center bg-no-repeat py-24"
       >
-        <motion.div 
+        <motion.div
           className="container mx-auto px-4 py-12"
           variants={containerVariants}
           initial="hidden"
           animate={isFirstSectionInView ? "visible" : "hidden"}
         >
-          <motion.div 
-            className="flex justify-start"
-            variants={itemVariants}
-          >
+          <motion.div className="flex justify-start" variants={itemVariants}>
             <motion.div
               className="w-full md:w-7/12 animate-slideInRight"
               variants={imageVariants}
             >
-              <motion.p 
+              <motion.p
                 className="text-[#907C33] font-medium italic text-3xl md:text-4xl"
                 variants={itemVariants}
               >
-                {t('description')}
+                {t("description")}
               </motion.p>
             </motion.div>
           </motion.div>
         </motion.div>
       </section>
 
-      <section 
-        ref={secondSectionRef}
-        className="bg-white py-32 jewelryTwo"
-      >
-        <motion.div 
+      <section ref={secondSectionRef} className="bg-white py-32 jewelryTwo">
+        <motion.div
           className="container mx-auto px-4"
           variants={containerVariants}
           initial="hidden"
           animate={isSecondSectionInView ? "visible" : "hidden"}
         >
-          <motion.p 
+          <motion.p
             className="text-center text-primary text-5xl"
             variants={itemVariants}
           >
             Bizhuteri
           </motion.p>
-          <motion.p 
-            className='text-center text-tertiary text-2xl mt-8'
+          <motion.p
+            className="text-center text-tertiary text-2xl mt-8"
             variants={itemVariants}
           >
             Nuk janë të disponueshme për momentin

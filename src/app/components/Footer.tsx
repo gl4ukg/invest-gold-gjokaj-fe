@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   const t = useTranslations();
@@ -14,24 +14,32 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="text-center md:text-left">
-            <h3 className="text-lg font-semibold mb-4">{t('footer.about')}</h3>
+            <h3 className="text-lg font-semibold mb-4">{t("footer.about")}</h3>
             <p className="text-sm text-gray-300 mb-4">
-              {t('footer.description')}
+              {t("footer.description")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="text-center md:text-left">
-            <h3 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h3>
+            <h3 className="text-lg font-semibold mb-4">
+              {t("footer.quickLinks")}
+            </h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/terms" className="text-sm text-gray-300 hover:text-white transition-colors">
-                  {t('terms.title')}
+                <Link
+                  href="/terms"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  {t("terms.title")}
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-sm text-gray-300 hover:text-white transition-colors">
-                  {t('privacy.title')}
+                <Link
+                  href="/privacy"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  {t("privacy.title")}
                 </Link>
               </li>
             </ul>
@@ -39,7 +47,9 @@ const Footer = () => {
 
           {/* Social and Contact */}
           <div className="text-center md:text-left">
-            <h3 className="text-lg font-semibold mb-4">{t('footer.followUs')}</h3>
+            <h3 className="text-lg font-semibold mb-4">
+              {t("footer.followUs")}
+            </h3>
             <div className="flex justify-center md:justify-start space-x-6 mb-4">
               <Link
                 href="https://www.facebook.com/invest.goldGjokaj"
@@ -63,7 +73,9 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-300">
-          <p>&copy; {currentYear} Gold Invest. {t('footer.rights')}</p>
+          <p>
+            &copy; {currentYear} Gold Invest. {t("footer.rights")}
+          </p>
         </div>
       </div>
     </footer>

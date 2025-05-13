@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import Image from "next/image";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 interface AboutSectionProps {
   id: string;
@@ -31,9 +31,9 @@ const AboutSection: React.FC<AboutSectionProps> = ({
       opacity: 1,
       transition: {
         duration: 0.8,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -43,9 +43,9 @@ const AboutSection: React.FC<AboutSectionProps> = ({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const imageVariants = {
@@ -55,9 +55,9 @@ const AboutSection: React.FC<AboutSectionProps> = ({
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -74,7 +74,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
       >
         <div
           className={`flex flex-col md:flex-row ${
-            reverse ? 'md:flex-row-reverse' : ''
+            reverse ? "md:flex-row-reverse" : ""
           } items-center gap-8`}
         >
           {/* Image Section */}
