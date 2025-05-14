@@ -457,6 +457,29 @@
     "contact": "Na Kontaktoni"
   },
   "metadata": {
+    "product": {
+      "title": "Invest Gold Gjokaj | Premium Gold Jewelry",
+      "description": "Discover our exquisite collection of premium gold jewelry. Each piece is crafted with precision and care.",
+      "keywords": "gold jewelry, gold rings, gold bracelets, gold necklaces, custom jewelry",
+      "ogTitle": "Premium Gold Jewelry - Invest Gold Gjokaj",
+      "ogDescription": "Explore our collection of premium gold jewelry. Find unique pieces crafted with excellence.",
+      "ogImageAlt": "Product Image",
+      "twitterTitle": "Premium Gold Jewelry - Invest Gold Gjokaj",
+      "twitterDescription": "View our premium gold jewelry collection",
+      "notFound": "Product Not Found",
+      "notFoundDescription": "Sorry, the product you are looking for could not be found."
+    },
+    "shop": {
+      "title": "Shop - Invest Gold Gjokaj | Premium Gold Jewelry and Accessories",
+      "description": "Explore our premium collection of gold jewelry and accessories. Find unique pieces crafted with excellence.",
+      "keywords": "gold jewelry, gold rings, gold bracelets, gold necklaces, custom jewelry, jewelry shop",
+      "ogTitle": "Shop Premium Gold Jewelry - Invest Gold Gjokaj",
+      "ogDescription": "Discover our exquisite collection of premium gold jewelry. Each piece is crafted with precision and care.",
+      "ogImageAlt": "Invest Gold Gjokaj Shop Collection",
+      "twitterTitle": "Premium Gold Jewelry Shop - Invest Gold Gjokaj",
+      "twitterDescription": "Browse our collection of premium gold jewelry and accessories",
+      "featuring": "featuring"
+    },
     "home": {
       "title": "Invest Gold Gjokaj | Investime Premium në Ar dhe Stoli",
       "description": "Zbuloni investime premium në ar dhe stoli të mrekullueshme në Invest Gold Gjokaj. Udhëzime eksperte në investime në metale të çmuara dhe dizajn të personalizuar të stolive.",

@@ -1,18 +1,17 @@
 import axios from "axios";
 
-// Backend URL from the environment variables
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+// This file is for client-side requests only
+const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api';
 
-// Create a new instance of axios
-const axiosInstance = axios.create({
-  baseURL, // Base URL of your backend
+const axiosClient = axios.create({
+  baseURL: API_URL,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
-// Add request interceptor to include auth token
-axiosInstance.interceptors.request.use(
+// Add request interceptor to include auth token (client-side only)
+axiosClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -26,13 +25,13 @@ axiosInstance.interceptors.request.use(
 );
 
 // Response interceptor
-axiosInstance.interceptors.response.use(
+axiosClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Clear token and redirect to login if unauthorized
+      // Handle unauthorized access
       localStorage.removeItem("token");
-      window.location.href = "/sq/login";
+      window.location.href = "/login";
     }
     console.error("API Error:", error);
     return Promise.reject(error);
@@ -40,4 +39,4 @@ axiosInstance.interceptors.response.use(
 );
 
 // Export the singleton instance
-export default axiosInstance;
+export default axiosClient;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import axiosInstance from "./api";
+import axiosClient from "./api";
 import { User } from "../types/auth.types";
 
 const STORAGE_KEY = "questionnaire_state";
@@ -23,7 +23,7 @@ const AuthService = {
 
   register: async (userData: User): Promise<any> => {
     try {
-      const response = await axiosInstance.post("/auth/register", userData);
+      const response = await axiosClient.post("/auth/register", userData);
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -35,7 +35,7 @@ const AuthService = {
 
   login: async (email: string, password: string): Promise<string> => {
     try {
-      const response = await axiosInstance.post("/auth/login", {
+      const response = await axiosClient.post("/auth/login", {
         email,
         password,
       });
@@ -57,7 +57,7 @@ const AuthService = {
         return null;
       }
 
-      const response = await axiosInstance.get("/auth/profile", {
+      const response = await axiosClient.get("/auth/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -82,7 +82,7 @@ const AuthService = {
     const token = localStorage.getItem("token");
     if (!token) throw new Error("Token not found");
     try {
-      const response = await axiosInstance.put("/auth/profile", userData, {
+      const response = await axiosClient.put("/auth/profile", userData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -1,5 +1,6 @@
 import axios from "axios";
-import axiosInstance from "./api";
+import axiosClient from "./api";
+import axiosServer from "./axiosServer";
 import { CreateProduct, Product } from "../types/product.types";
 
 export interface SearchParam {
@@ -26,7 +27,8 @@ interface SearchResponse {
 const ProductsService = {
   getAll: async (): Promise<Product[]> => {
     try {
-      const response = await axiosInstance.get("/products");
+      const instance = typeof window === 'undefined' ? axiosServer : axiosClient;
+      const response = await instance.get("/products");
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -38,7 +40,8 @@ const ProductsService = {
 
   search: async (payload: SearchParam): Promise<SearchResponse> => {
     try {
-      const response = await axiosInstance.post(`/products/search`, payload, {
+      const instance = typeof window === 'undefined' ? axiosServer : axiosClient;
+      const response = await instance.post(`/products/search`, payload, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,7 +57,8 @@ const ProductsService = {
 
   getById: async (id: string): Promise<Product> => {
     try {
-      const response = await axiosInstance.get(`/products/${id}`);
+      const instance = typeof window === 'undefined' ? axiosServer : axiosClient;
+      const response = await instance.get(`/products/${id}`);
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -69,7 +73,7 @@ const ProductsService = {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Token not found");
 
-      const response = await axiosInstance.post("/products", productData, {
+      const response = await axiosClient.post("/products", productData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -91,7 +95,7 @@ const ProductsService = {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Token not found");
 
-      const response = await axiosInstance.post(
+      const response = await axiosClient.post(
         `/products/${id}`,
         productData,
         {
@@ -114,7 +118,7 @@ const ProductsService = {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Token not found");
 
-      await axiosInstance.post(
+      await axiosClient.post(
         `/products/${id}/delete`,
         {},
         {

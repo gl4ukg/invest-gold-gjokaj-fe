@@ -1,5 +1,6 @@
 import axios from 'axios';
-import axiosInstance from './api';
+import axiosClient from './api';
+import axiosServer from './axiosServer';
 import { CartItem } from '../types/cart.types';
 import { Product } from '../types/product.types';
 import { ConfiguratorState } from '../types/configurator';
@@ -102,7 +103,7 @@ const OrdersService = {
         total,
       },"order data qokla")
 
-      const response = await axiosInstance.post('/orders/guest', {
+      const response = await axiosClient.post('/orders/guest', {
         ...orderData,
         shippingCost,
         subtotal: orderData.subtotal,
@@ -120,7 +121,7 @@ const OrdersService = {
 
   async initiatePayment(orderId: string, paymentMethod: string): Promise<any> {
     try {
-      const response = await axiosInstance.post(`/orders/${orderId}/payment`, {
+      const response = await axiosClient.post(`/orders/${orderId}/payment`, {
         paymentMethod,
       });
       return response.data;
@@ -134,7 +135,8 @@ const OrdersService = {
 
   async getOrder(orderId: string): Promise<Order> {
     try {
-      const response = await axiosInstance.get(`/orders/${orderId}`);
+      const instance = typeof window === 'undefined' ? axiosServer : axiosClient;
+      const response = await instance.get(`/orders/${orderId}`);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -146,7 +148,8 @@ const OrdersService = {
 
   async getAll(): Promise<Order[]> {
     try {
-      const response = await axiosInstance.get(`/orders`);
+      const instance = typeof window === 'undefined' ? axiosServer : axiosClient;
+      const response = await instance.get(`/orders`);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -157,7 +160,7 @@ const OrdersService = {
   },
   async updateOrderStatus(orderId: string, status: OrderStatus): Promise<Order> {
     try {
-      const { data: updatedOrder } = await axiosInstance.patch(`/orders/${orderId}/status`, {
+      const { data: updatedOrder } = await axiosClient.patch(`/orders/${orderId}/status`, {
         status,
       });
       return updatedOrder;

@@ -457,6 +457,29 @@
     "contact": "Na Kontaktoni"
   },
   "metadata": {
+    "product": {
+      "title": "Invest Gold Gjokaj | Stoli të Çmuara në Ar",
+      "description": "Zbuloni koleksionin tonë të stolive të çmuara në ar. Çdo pjesë është punuar me precizion dhe kujdes.",
+      "keywords": "stoli ari, unaza ari, byzylykë ari, varëse ari, stoli të personalizuara",
+      "ogTitle": "Stoli të Çmuara në Ar - Invest Gold Gjokaj",
+      "ogDescription": "Eksploroni koleksionin tonë të stolive të çmuara në ar. Gjeni pjesë unike të punuara me përsosmëri.",
+      "ogImageAlt": "Imazhi i Produktit",
+      "twitterTitle": "Stoli të Çmuara në Ar - Invest Gold Gjokaj",
+      "twitterDescription": "Shikoni koleksionin tonë të stolive të çmuara në ar",
+      "notFound": "Produkti nuk u gjet",
+      "notFoundDescription": "Na vjen keq, produkti që po kërkoni nuk mund të gjendet."
+    },
+    "shop": {
+      "title": "Shop - Invest Gold Gjokaj | Premium Gold Jewelry and Accessories",
+      "description": "Explore our premium collection of gold jewelry and accessories. Find unique pieces crafted with excellence.",
+      "keywords": "gold jewelry, gold rings, gold bracelets, gold necklaces, custom jewelry, jewelry shop",
+      "ogTitle": "Shop Premium Gold Jewelry - Invest Gold Gjokaj",
+      "ogDescription": "Discover our exquisite collection of premium gold jewelry. Each piece is crafted with precision and care.",
+      "ogImageAlt": "Invest Gold Gjokaj Shop Collection",
+      "twitterTitle": "Premium Gold Jewelry Shop - Invest Gold Gjokaj",
+      "twitterDescription": "Browse our collection of premium gold jewelry and accessories",
+      "featuring": "featuring"
+    },
     "home": {
       "title": "Invest Gold Gjokaj | Investime Premium në Ar dhe Stoli",
       "description": "Zbuloni investime premium në ar dhe stoli të mrekullueshme në Invest Gold Gjokaj. Udhëzime eksperte në investime në metale të çmuara dhe dizajn të personalizuar të stolive.",

@@ -1,11 +1,13 @@
 import axios from 'axios';
-import axiosInstance from './api';
+import axiosClient from './api';
+import axiosServer from './axiosServer';
 import { Category } from '../types/category.types';
 
 const CategoriesService = {
     getAll: async (): Promise<Category[]> => {
         try {
-            const response = await axiosInstance.get('/categories');
+            const instance = typeof window === 'undefined' ? axiosServer : axiosClient;
+            const response = await instance.get('/categories');
             return response.data;
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
@@ -17,7 +19,8 @@ const CategoriesService = {
 
     getById: async (id: string): Promise<Category> => {
         try {
-            const response = await axiosInstance.get(`/categories/${id}`);
+            const instance = typeof window === 'undefined' ? axiosServer : axiosClient;
+            const response = await instance.get(`/categories/${id}`);
             return response.data;
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
@@ -27,12 +30,13 @@ const CategoriesService = {
         }
     },
 
+    // Client-side only operations below
     create: async (categoryData: Category): Promise<Category> => {
         try {
             const token = localStorage.getItem('token');
             if (!token) throw new Error("Token not found");
 
-            const response = await axiosInstance.post('/categories', categoryData, {
+            const response = await axiosClient.post('/categories', categoryData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -51,7 +55,7 @@ const CategoriesService = {
             const token = localStorage.getItem('token');
             if (!token) throw new Error("Token not found");
 
-            const response = await axiosInstance.post(`/categories/${id}`, categoryData, {
+            const response = await axiosClient.post(`/categories/${id}`, categoryData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -70,7 +74,7 @@ const CategoriesService = {
             const token = localStorage.getItem('token');
             if (!token) throw new Error("Token not found");
 
-            await axiosInstance.post(`/categories/${id}/delete`, {}, {
+            await axiosClient.post(`/categories/${id}/delete`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
