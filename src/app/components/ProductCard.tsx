@@ -29,11 +29,11 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
       <div 
-        className="relative h-64 cursor-pointer"
+        className="relative h-32 md:h-64 cursor-pointer"
         onClick={handleClick}
       >
         <Image
-          src={product.image || '/images/placeholder.jpg'}
+          src={product.images?.[0] || '/images/placeholder.jpg'}
           alt={product.name}
           fill
           className="object-cover"

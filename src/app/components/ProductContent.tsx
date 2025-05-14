@@ -9,6 +9,7 @@ import { Product } from '@/app/types/product.types';
 import { FaShoppingCart } from 'react-icons/fa';
 import {  useRouter } from '@/i18n/routing';
 import ProductCard from '@/app/components/ProductCard';
+import { ProductGallery } from './ProductGallery';
 
 export default function ProductContent({ id }: { id: string }) {
   const router = useRouter();
@@ -97,15 +98,11 @@ export default function ProductContent({ id }: { id: string }) {
     <div className="container mx-auto px-4 py-32">
       {/* Product Details */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        {/* Product Image */}
-        <div className="relative h-[400px] md:h-[600px] rounded-lg overflow-hidden">
-          <Image
-            src={product.image || '/images/placeholder.jpg'}
-            alt={product.name}
-            fill
-            className="object-cover"
-          />
-        </div>
+        {/* Product Gallery */}
+        <ProductGallery 
+          images={product?.images?.length ? product.images : ['/images/placeholder.jpg']} 
+          className="w-full"
+        />
 
         {/* Product Info */}
         <div className="space-y-6">
@@ -160,7 +157,7 @@ export default function ProductContent({ id }: { id: string }) {
           <h2 className="text-2xl font-bold mb-6 text-darkGray">
             {t('product.relatedProducts')}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedProducts?.map((relatedProduct) => (
               <ProductCard
                 key={relatedProduct.id}

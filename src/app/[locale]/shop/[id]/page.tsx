@@ -26,7 +26,7 @@ export async function generateMetadata(params: Promise<{ locale: string; id: str
         description: product.description || t('product.ogDescription'),
         images: [
           {
-            url: product.image || '/images/product-og-image.jpg',
+            url: product.images?.[0] || '/images/product-og-image.jpg',
             width: 1200,
             height: 630,
             alt: `${product.name} - ${t('product.ogImageAlt')}`,
@@ -40,7 +40,7 @@ export async function generateMetadata(params: Promise<{ locale: string; id: str
         card: 'summary_large_image',
         title: `${product.name} - ${t('product.twitterTitle')}`,
         description: product.description || t('product.twitterDescription'),
-        images: [product.image || '/images/product-og-image.jpg'],
+        images: [product.images?.[0] || '/images/product-og-image.jpg'],
       },
       alternates: {
         canonical: new URL(`/${locale}/shop/${id}`, 'https://investgoldgjokaj.com').toString(),

@@ -37,3 +37,6 @@ body {
     position: absolute;
     bottom: 35px;
 }
+svg.lucide.lucide-expand.h-4.w-4.expand {
+    position: static;
+}

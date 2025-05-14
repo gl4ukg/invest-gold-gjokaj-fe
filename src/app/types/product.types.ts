@@ -8,7 +8,7 @@ export interface Product {
     price?: number;
     weight: string;
     category: Category;
-    image?: string;
+    images?: string[];
     stock: number;
     createdAt?: Date;
     updatedAt?: Date;

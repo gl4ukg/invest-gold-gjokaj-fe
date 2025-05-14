@@ -14,8 +14,8 @@ const ProductsContent: React.FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [selectedImages, setSelectedImages] = useState<File[]>([]);
+    const [imagePreviews, setImagePreviews] = useState<string[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [formData, setFormData] = useState<Omit<Product, 'id' | 'createdAt' | 'updatedAt'>>({
         name: '',
@@ -23,7 +23,7 @@ const ProductsContent: React.FC = () => {
         weight: '2-3',
         category: { id: '', name: '' },
         stock: 0,
-        image: '',
+        images: [],
         configuration: {
             selectedProfile: null,
             dimensions: {
@@ -64,7 +64,7 @@ const ProductsContent: React.FC = () => {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(products.length / itemsPerPage);
-
+console.log(formData.images,"images")
     const fetchData = async () => {
         try {
             const [productsData, categoriesData] = await Promise.all([
@@ -88,36 +88,60 @@ const ProductsContent: React.FC = () => {
         fetchData();
     }, []);
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                toast.error('Madhësia e imazhit duhet të jetë më pak se 5 MB');
-                return;
+    const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (files) {
+            const newPreviews: string[] = [];
+            const newBase64Images: string[] = [];
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                    toast.error('Madhësia e imazhit duhet të jetë më pak se 5 MB');
+                    return;
+                }
+                
+                if (!file.type.startsWith('image/')) {
+                    toast.error('Ju lutem shtojni një imazh');
+                    return;
+                }
+
+                try {
+                    const base64String = await convertFileToBase64(file);
+                    // Ensure the base64 string is complete and not split
+                    if (base64String && base64String.startsWith('data:image/')) {
+                        newPreviews.push(base64String);
+                        newBase64Images.push(base64String);
+                    }
+                } catch (error) {
+                    console.error('Error converting file to base64:', error);
+                    toast.error('Gabim gjatë ngarkimit të imazhit');
+                }
             }
             
-            if (!file.type.startsWith('image/')) {
-                toast.error('Ju lutem shtojni një imazh');
-                return;
-            }
-
-            setSelectedImage(file);
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result as string);
-            };
-            reader.readAsDataURL(file);
-            setError(null);
+            setImagePreviews(newPreviews);
+            setSelectedImages(Array.from(files));
+            setFormData(prev => ({ ...prev, images: newBase64Images }));
         }
     };
 
-    const handleImageRemove = () => {
-        setSelectedImage(null);
-        setImagePreview(null);
-        if (fileInputRef.current) {
-            fileInputRef.current.value = '';
-        }
-        setFormData(prev => ({ ...prev, image: '' }));
+    const convertFileToBase64 = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    };
+
+    const handleImageRemove = (index: number) => {
+        const newPreviews = [...imagePreviews];
+        const newImages = [...selectedImages];
+        newPreviews.splice(index, 1);
+        newImages.splice(index, 1);
+        setImagePreviews(newPreviews);
+        setSelectedImages(newImages);
+        setFormData(prev => ({ ...prev, images: newPreviews }));
     };
 
     const validateForm = (): boolean => {
@@ -151,7 +175,7 @@ const ProductsContent: React.FC = () => {
             weight: '2-3',
             category: { id: '', name: '' },
             stock: 0,
-            image: '',
+            images: [],
             configuration: {
                 selectedProfile: null,
                 dimensions: {
@@ -186,8 +210,8 @@ const ProductsContent: React.FC = () => {
         });
         setIsEditing(false);
         setSelectedProductId(null);
-        setSelectedImage(null);
-        setImagePreview(null);
+        setImagePreviews([]);
+        setSelectedImages([]);
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
         }
@@ -202,12 +226,12 @@ const ProductsContent: React.FC = () => {
                 weight: productData.weight,
                 category: productData.category,
                 stock: productData.stock,
-                image: productData.image || '',
+                images: productData.images || [],
                 configuration: productData.configuration
             });
             // Set image preview if product has an image
-            if (productData.image) {
-                setImagePreview(productData.image);
+            if (productData.images?.[0]) {
+                setImagePreviews(productData.images);
             }
             setSelectedProductId(String(product.id));
             setIsEditing(true);
@@ -229,35 +253,14 @@ const ProductsContent: React.FC = () => {
         try {
             setLoading(true);
             
-            // Convert the image to base64 if selected
-            let base64Image = '';
-            if (selectedImage) {
-                const reader = new FileReader();
-                base64Image = await new Promise((resolve, reject) => {
-                    reader.onload = () => resolve(reader.result as string);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(selectedImage);
-                });
-            }
-
-            const newProduct = {
-                name: formData.name.trim(),
-                description: formData.description.trim(),
-                weight: formData.weight,
-                category: formData.category,
-                stock: Number(formData.stock),
-                image: base64Image || formData.image,
-                configuration: formData.configuration
-            };
-
             if (isEditing && selectedProductId) {
                 // Update existing product
-                await ProductsService.update(selectedProductId, newProduct);
+                await ProductsService.update(selectedProductId, formData);
                 toast.success('Produkti u përditësua me sukses');
             } else {
                 // Create new product
                 const payload = {
-                    product: newProduct,
+                    product: formData,
                     categoryId: formData.category.id
                 }   
 
@@ -314,29 +317,35 @@ const ProductsContent: React.FC = () => {
                     {/* Image Upload */}
                     <div>
                         <label className="block text-sm font-medium text-darkGray mb-2">
-                            Product Image
+                            Imazhet e produktit
                         </label>
                         <div className="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 lg:space-x-4">
-                            {/* Image Preview */}
-                            <div className="w-[150px] aspect-square relative bg-gray-50 rounded-lg overflow-hidden">
-                                {imagePreview ? (
-                                    <Image
-                                        src={imagePreview}
-                                        alt="Preview"
-                                        fill
-                                        className="object-cover"
-                                    />
-                                ) : (
-                                    <div className="h-full flex items-center justify-center">
-                                        <FaImage className="w-12 h-12 text-gray-300" />
+                            {/* Image Previews */}
+                            <div className="w-full lg:w-2/3 space-y-2">
+                                {imagePreviews.length > 0 && (
+                                    <div className="mt-2 grid grid-cols-3 gap-2">
+                                        {imagePreviews.map((preview, index) => (
+                                            <div key={index} className="relative">
+                                                <img
+                                                    src={preview}
+                                                    alt={`Preview ${index + 1}`}
+                                                    className="w-32 h-32 object-cover rounded-md"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleImageRemove(index)}
+                                                    className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
+                                                >
+                                                    <FaTrash className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        ))}
                                     </div>
                                 )}
-                            </div>
-                            {/* Upload Controls */}
-                            <div className="w-full lg:w-2/3 space-y-2">
                                 <input
                                     type="file"
                                     accept="image/*"
+                                    multiple
                                     onChange={handleImageChange}
                                     ref={fileInputRef}
                                     className="hidden"
@@ -510,7 +519,7 @@ const ProductsContent: React.FC = () => {
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="w-12 h-12 relative rounded-lg overflow-hidden">
                                             <Image
-                                                src={product.image || '/images/placeholder.jpg'}
+                                                src={product.images?.[0] || '/images/placeholder.jpg'}
                                                 alt={product.name}
                                                 fill
                                                 className="object-cover"

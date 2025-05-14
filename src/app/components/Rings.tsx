@@ -30,32 +30,15 @@ const RingsSection: React.FC = () => {
   const isCategoryInView = useInView(categoryRef, { once: true, amount: 0.3 });
   const isCarouselInView = useInView(carouselRef, { once: true, amount: 0.2 });
 
-  const fetchProducts = async () => {
-    try {
-      const categoryId = selectedCategory || categories.find(
-        (cat) => cat.name === "Ari i Verdhë"
-      )?.id;
-      
-      if (!categoryId) return;
-
-      const related = await ProductsService.search({
-        categoryIds: [selectedCategory ?? ''],
-        page: 1,
-        limit: 4,
-      });
-      setProducts(related.items);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const fetchCategories = async () => {
     try {
-      const [categoriesData] = await Promise.all([CategoriesService.getAll()]);
+      const categoriesData = await CategoriesService.getAll();
       setCategories(categoriesData);
-      fetchProducts();
+      if (categoriesData && categoriesData.length > 0) {
+        setSelectedCategory(categoriesData[0].id);
+      }
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching categories:', error);
     }
   };
 
@@ -64,8 +47,25 @@ const RingsSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    fetchProducts();
-  }, [selectedCategory]);
+    if (categories && categories.length > 0) {
+      fetchProducts();
+    }
+  }, [selectedCategory, categories]);
+
+  const fetchProducts = async () => {
+    try {
+      if (!selectedCategory) return;
+
+      const related = await ProductsService.search({
+        categoryIds: [selectedCategory],
+        page: 1,
+        limit: 4,
+      });
+      setProducts(related.items);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const ringsText: { [key: string]: string } = {
     "Ari i Verdhe": t("yellowGold"),

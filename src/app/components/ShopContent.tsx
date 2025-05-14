@@ -6,19 +6,10 @@ import ProductsService from "@/app/services/products";
 import CategoriesService from "@/app/services/categories";
 import { Product } from "@/app/types/product.types";
 import { Category } from "@/app/types/category.types";
-import { useCart } from "@/app/context/CartContext";
-import Cart from "@/app/components/Cart";
-import { FaShoppingCart, FaFilter } from "react-icons/fa";
-import { debounce, update } from "lodash";
-import { useRouter } from "@/i18n/routing";
+import { FaFilter } from "react-icons/fa";
+import { debounce } from "lodash";
 import ProductCard from "@/app/components/ProductCard";
 import Loader from "@/app/components/Loader";
-import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-
-type Props = {
-  params: Promise<{ locale: string }>;
-};
 
 interface Filter {
   sortOrder: "ASC" | "DESC";
@@ -28,7 +19,6 @@ export default function ShopContent() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -329,7 +319,7 @@ export default function ShopContent() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
                 {allProducts?.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

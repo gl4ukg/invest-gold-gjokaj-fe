@@ -28,13 +28,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  const locale = useLocale()
+  const locale = useLocale();
   
   const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     const homePath = `${locale}`;
     const fullPath = `${locale}#${sectionId}`;
     
+    setIsOpen(false);
 
     if (pathname === homePath) {
       const section = document.getElementById(sectionId);
@@ -70,6 +71,7 @@ const Navbar = () => {
     } else {
       router.push(`${newLocale}`);
     }
+    setIsOpen(false);
   };
 
   return (
@@ -164,7 +166,7 @@ const Navbar = () => {
                   {t(link.key)}
                 </a>
               ) : (
-                <Link href={link.href} locale={locale} className="text-white hover:text-gray-400">
+                <Link href={link.href} onClick={() => setIsOpen(false)} locale={locale} className="text-white hover:text-gray-400">
                   {t(link.key)}
                 </Link>
               )}
