@@ -71,7 +71,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                         <li key={item.id} className="flex py-6">
                                             <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                                 <Image
-                                                    src={item.product.image || '/images/placeholder.jpg'}
+                                                    src={item.product.images?.[0] || '/images/placeholder.jpg'}
                                                     alt={item.product.name}
                                                     fill
                                                     className="object-cover object-center"

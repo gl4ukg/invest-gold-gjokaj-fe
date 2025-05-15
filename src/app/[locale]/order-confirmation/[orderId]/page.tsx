@@ -111,7 +111,7 @@ export default function OrderConfirmation() {
                   className="flex justify-between items-center py-2 border-b"
                 >
                   <div className='flex align-items-center'>
-                    <Image src={String(item?.product?.image)} alt={String(item?.product?.name)} width={75} height={75} />
+                    <Image src={String(item?.product?.images?.[0])} alt={String(item?.product?.name)} width={75} height={75} />
                     <div className='flex flex-col ms-3'>
                       <p className="font-medium">{t('orderConfirmation.productName')}: {item?.product?.name}</p>
                       <span>{t('orderConfirmation.price')}: €{item.price}</span>
