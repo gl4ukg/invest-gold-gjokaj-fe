@@ -17,7 +17,7 @@ export const ProfileSelector: React.FC<ProfileSelectorProps> = ({
     onSelectProfile,
 }) => {
     return (
-        <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-5 sm:grid-cols-4 grid-cols-3 gap-2">
+        <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-5 sm:grid-cols-4 grid-cols-2 gap-2">
             {profiles?.map((profile) => (
                 <button
                     key={profile.id}

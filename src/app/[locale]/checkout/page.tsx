@@ -109,7 +109,7 @@ export default function Checkout() {
           configuration: item?.configuration,
           product: item.product,
           price: Number(item?.configuration?.weight) * 70,
-          image: String(item.product.image),
+          image: String(item.product.images?.[0]),
           
       }));
         console.log(orderItems, "order items");
@@ -407,7 +407,7 @@ export default function Checkout() {
                   <div className='flex items-center gap-3 justify-between w-full'>
                     <div className='flex items-center gap-3 '>
                       <Image
-                        src={String(item?.product?.image)}
+                        src={String(item?.product?.images?.[0])}
                         alt={item?.product?.name}
                         width={50}
                         height={50}
