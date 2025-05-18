@@ -15,18 +15,47 @@ export const usePriceOfGram = () => {
         try {
             setIsLoading(true);
             setError(null);
+
+            // Check authentication
             const user = await AuthService.getUserFromSession();
             if (!user) {
-                throw new Error('User not authenticated');
-            }else {
+                toast.error('Please log in to view current gold prices');
+                return;
+            }
+
+            // Fetch price data with retry logic
+            let attempts = 0;
+            const maxAttempts = 3;
+            
+            while (attempts < maxAttempts) {
+                try {
                     const priceData = await PriceOfGramService.get();
-                setPrices(priceData);
+                    if (!priceData) {
+                        throw new Error('No price data available');
+                    }
+
+                    setPrices(priceData);
+                    // Optional: Show success message on first load or significant price changes
+                    if (!prices || Math.abs(prices.price - priceData.price) > 1) {
+                        toast.success('Gold prices updated successfully');
+                    }
+                    return;
+                } catch (e) {
+                    attempts++;
+                    if (attempts === maxAttempts) throw e;
+                    // Wait before retry (exponential backoff)
+                    await new Promise(resolve => setTimeout(resolve, 1000 * attempts));
+                }
             }
         } catch (error) {
-            const errorMessage = 'Failed to load current price';
+            const isAuthError = error instanceof Error && error.message === 'User not authenticated';
+            const errorMessage = isAuthError
+                ? 'Please log in to view prices'
+                : 'Unable to load current gold prices. Please try again later.';
+            
             setError(errorMessage);
             toast.error(errorMessage);
-            console.error('Error loading price:', error);
+            console.error('Price loading error:', error);
         } finally {
             setIsLoading(false);
         }
