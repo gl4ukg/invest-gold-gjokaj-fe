@@ -19,7 +19,7 @@ export const usePriceOfGram = () => {
             // Check authentication
             const user = await AuthService.getUserFromSession();
             if (!user) {
-                toast.error('Please log in to view current gold prices');
+                // toast.error('Please log in to view current gold prices');
                 return;
             }
 
