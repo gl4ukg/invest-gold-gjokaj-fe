@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import PriceOfGramService from '../services/price-of-gram';
 import { PriceOfGram } from '../types/price-of-gram.types';
 import { toast } from 'react-hot-toast';
+import AuthService from '../services/auth';
 
 export const usePriceOfGram = () => {
     const [prices, setPrices] = useState<PriceOfGram>();
@@ -14,8 +15,13 @@ export const usePriceOfGram = () => {
         try {
             setIsLoading(true);
             setError(null);
-            const priceData = await PriceOfGramService.get();
-            setPrices(priceData);
+            const user = await AuthService.getUserFromSession();
+            if (!user) {
+                throw new Error('User not authenticated');
+            }else {
+                    const priceData = await PriceOfGramService.get();
+                setPrices(priceData);
+            }
         } catch (error) {
             const errorMessage = 'Failed to load current price';
             setError(errorMessage);
