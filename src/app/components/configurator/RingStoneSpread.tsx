@@ -34,6 +34,14 @@ const stoneSizes = [
   // '0.13 ct.'
 ];
 
+const itemSize = [
+  '1mm',
+  '1.25mm',
+  '1.5mm',
+  '1.75mm',
+  '2mm',
+]
+
 const stoneQualities = [
   'zirconia',
   'G-H/VS-SI',
@@ -41,23 +49,31 @@ const stoneQualities = [
   'Black Diamond - VS/SI'
 ];
 
-// Convert carat size to visual size in pixels
-const getVisualStoneSize = (caratSize: string): number => {
-  // Extract the numeric value from the carat string
-  const caratValue = parseFloat(caratSize.replace(' ct.', ''));
+// Convert stone size (carat or mm) to visual size in pixels
+const getVisualStoneSize = (size: string): number => {
+  // Check if the size is in millimeters
+  if (size.endsWith('mm')) {
+    // Extract the numeric value from the mm string
+    const mmValue = parseFloat(size.replace('mm', ''));
+    // Convert mm directly to pixels (1mm = 10px for better visibility)
+    return mmValue * 10;
+  }
   
-  // Define the mapping for known sizes
+  // Handle carat measurements
+  const caratValue = parseFloat(size.replace(' ct.', ''));
+  
+  // Define the mapping for known carat sizes
   if (caratValue === 0.004) return 14.4;
   if (caratValue === 0.035) return 32;
   
-  // For sizes in between, calculate proportionally
+  // For carat sizes in between, calculate proportionally
   // Using linear interpolation between 0.004 (14.4px) and 0.035 (32px)
   const minCarat = 0.004;
   const maxCarat = 0.035;
   const minSize = 14.4;
   const maxSize = 32;
   
-  // Linear interpolation formula
+  // Linear interpolation formula for carats
   return minSize + ((caratValue - minCarat) * (maxSize - minSize)) / (maxCarat - minCarat);
 };
 
@@ -94,8 +110,19 @@ const getStoneYPosition = (stoneIndex: number, stones: Stone[], newStoneSize: st
 
 export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones }) => {
   const [stones, setStones] = useState<Stone[]>([]);
-  const [selectedSize, setSelectedSize] = useState(stoneSizes[0]);
+  const [selectedSize, setSelectedSize] = useState(itemSize[0]);
   const [selectedQuality, setSelectedQuality] = useState(stoneQualities[0]);
+
+  // Update selected size when quality changes to ensure compatible sizes
+  const handleQualityChange = (quality: string) => {
+    setSelectedQuality(quality);
+    // Reset size to first option when switching quality
+    if (quality === 'zirconia') {
+      setSelectedSize(itemSize[0]);
+    } else {
+      setSelectedSize(stoneSizes[0]);
+    }
+  };
 
   const addStone = () => {
     const newStone: Stone = {
@@ -171,12 +198,12 @@ export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones
             label="Stone Size"
             value={selectedSize}
             onChange={(value) => setSelectedSize(value)}
-            options={stoneSizes.map(size => ({ value: size, label: size }))}
+            options={selectedQuality === "zirconia" ? itemSize.map(size => ({ value: size, label: size })) : stoneSizes.map(size => ({ value: size, label: size }))}
           />
           <SelectInput
             label="Stone Quality"
             value={selectedQuality}
-            onChange={(value) => setSelectedQuality(value)}
+            onChange={handleQualityChange}
             options={stoneQualities.map(quality => ({ value: quality, label: quality }))}
           />
           <button

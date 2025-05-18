@@ -14,7 +14,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, onPageChange }) => {
     const menuItems = [
         { name: 'Produktet', id: 'products' },
         { name: 'Kategorite', id: 'categories' },
-        { name: 'Porosite', id: 'orders' }
+        { name: 'Porosite', id: 'orders' },
+        { name: 'Cmimi i gramit', id: 'price-of-gram' }
     ];
 
     const handleLogout = () => {

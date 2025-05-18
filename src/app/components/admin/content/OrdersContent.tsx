@@ -207,15 +207,15 @@ console.log(orders,"order items")
                                                         return (
                                                           <div className='space-y-0.5'>
                                                             {item?.configuration?.stoneSettings.stones?.map((stone, idx) => (
-                                                              <>
-                                                                <div key={idx} className="text-gray-600">
+                                                              <div key={idx}>
+                                                                <div className="text-gray-600">
                                                                   <p>Guri: {idx+1}</p>
                                                                   <p>Madhesia:{stone.size}</p>
                                                                   <p>Qualiteti: {stone.quality}</p>
                                                                   <p>Pozicioni: ({stone.x}, {stone.y})</p>
                                                                 </div>
                                                                 <br />
-                                                              </>
+                                                              </div>
                                                             ))}
                                                           </div>
                                                         )

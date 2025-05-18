@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Button } from "./button";
+import { Button } from "./Button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Skeleton } from "./skeleton";

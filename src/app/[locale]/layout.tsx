@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import { CartProvider } from '../context/CartContext';
 import NavigationWrapper from "../components/NavigationWrapper";
 import FooterWrapper from "../components/FooterWrapper";
+import OrganizationJsonLd from "../components/JsonLd/OrganizationJsonLd";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
     description: 'Premium gold jewelry store in Kosovo. Engagement rings, wedding rings, gold bracelets, necklaces, and custom jewelry. Professional gold services with guaranteed quality.',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/images/um6.png',
         width: 1200,
         height: 630,
         alt: 'Invest Gold Gjokaj - Premium Gold Jewelry',
@@ -79,7 +80,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Invest Gold Gjokaj - Premium Gold Jewelry in Kosovo',
     description: 'Premium gold jewelry store in Kosovo. Engagement rings, wedding rings, gold bracelets, necklaces, and custom jewelry.',
-    images: ['/images/twitter-image.jpg'],
+    images: ['/images/um6.png'],
     creator: '@investgoldgjokaj',
   },
   robots: {
@@ -133,6 +134,7 @@ export default async function RootLayout({
       <body 
         className={`${poppins.variable} antialiased bg-white`}
         >
+        <OrganizationJsonLd />
         <NextIntlClientProvider messages={messages}>
             <CartProvider>
               <NavigationWrapper />

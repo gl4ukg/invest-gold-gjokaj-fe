@@ -1,11 +1,12 @@
 import React from 'react';
 import ProductsService from '@/app/services/products';
+import ProductJsonLd from "@/app/components/JsonLd/ProductJsonLd";
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import ProductContent from '@/app/components/ProductContent';
 
 
-export async function generateMetadata(params: Promise<{ locale: string; id: string }>): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
   const { locale, id } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
@@ -26,7 +27,7 @@ export async function generateMetadata(params: Promise<{ locale: string; id: str
         description: product.description || t('product.ogDescription'),
         images: [
           {
-            url: product.images?.[0] || '/images/product-og-image.jpg',
+            url: product.images?.[0] || '/images/um6.png',
             width: 1200,
             height: 630,
             alt: `${product.name} - ${t('product.ogImageAlt')}`,
@@ -40,7 +41,7 @@ export async function generateMetadata(params: Promise<{ locale: string; id: str
         card: 'summary_large_image',
         title: `${product.name} - ${t('product.twitterTitle')}`,
         description: product.description || t('product.twitterDescription'),
-        images: [product.images?.[0] || '/images/product-og-image.jpg'],
+        images: [product.images?.[0] || '/images/um6.png'],
       },
       alternates: {
         canonical: new URL(`/${locale}/shop/${id}`, 'https://investgoldgjokaj.com').toString(),
@@ -66,9 +67,32 @@ export async function generateMetadata(params: Promise<{ locale: string; id: str
   }
 }
 
-export default function ProductDetail({ params }: { params: { id: string } }) {
+export default async function ProductDetail({ params }: { params: Promise<{ locale: string; id: string }> }) {
 
-  return (
-    <ProductContent id={params.id} />
-  );
+  const { locale, id } = await params;
+  const t = await getTranslations({ locale, namespace: 'metadata' });
+
+  try {
+    // Fetch the specific product data
+    const product = await ProductsService.getById(id);
+
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <ProductJsonLd product={product} />
+        <ProductContent id={id} />
+      </div>
+    );
+  } catch (error) {
+    // Return a 404 page if product is not found
+    return (
+      <div>
+        <h1>{t('product.notFound')}</h1>
+        <p>{t('product.notFoundDescription')}</p>
+      </div>
+    );
+  }
 }

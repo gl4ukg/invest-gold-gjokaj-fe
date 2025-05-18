@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Expand, X } from "lucide-react";
 import Image from "next/image";
 import { Skeleton } from "./skeleton";
-import { Button } from "./button";
+import { Button } from "./Button";
 
 
 interface ZoomImageProps {

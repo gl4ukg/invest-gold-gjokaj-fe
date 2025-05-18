@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { usePriceOfGram } from '@/app/hooks/usePriceOfGram';
 import { useCart } from '@/app/context/CartContext';
 import OrdersService from '@/app/services/orders';
 import { PayPalButtons } from '@paypal/react-paypal-js';
@@ -27,6 +28,7 @@ interface CheckoutForm {
 export default function Checkout() {
   const t = useTranslations();
   const router = useRouter();
+  const { currentPrice } = usePriceOfGram();
   const { cart, clearCart, isLoading } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -108,7 +110,7 @@ export default function Checkout() {
           id: String(item.id),
           configuration: item?.configuration,
           product: item.product,
-          price: Number(item?.configuration?.weight) * 70,
+          price: Number(item?.configuration?.weight) * currentPrice,
           image: String(item.product.images?.[0]),
           
       }));
@@ -399,9 +401,9 @@ export default function Checkout() {
               {t('checkout.orderSummary')}
             </h2>
             <div className="space-y-4">
-              {cart.items?.map((item) => (
+              {cart.items?.map((item, idx) => (
                 <div
-                  key={item.product.id}
+                  key={idx}
                   className="flex justify-between items-center py-2 border-b"
                 >
                   <div className='flex items-center gap-3 justify-between w-full'>
@@ -419,7 +421,7 @@ export default function Checkout() {
                         </p>
                       </div>
                     </div>
-                    <span>€{(Number(item?.configuration?.weight) * 70)}</span>
+                    <span>€{(Number(item?.configuration?.weight) * currentPrice)}</span>
                   </div>
                 </div>
               ))}

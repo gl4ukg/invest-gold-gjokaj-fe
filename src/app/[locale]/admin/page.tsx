@@ -6,6 +6,7 @@ import AdminLayout from '@/app/components/admin/AdminLayout';
 import ProductsContent from '@/app/components/admin/content/ProductsContent';
 import CategoriesContent from '@/app/components/admin/content/CategoriesContent';
 import OrdersContent from '@/app/components/admin/content/OrdersContent';
+import PriceOfGramContent from '@/app/components/admin/content/PriceOfGramContent';
 
 const AdminPage: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,6 +29,8 @@ const AdminPage: React.FC = () => {
                 return <CategoriesContent />;
             case 'orders':
                 return <OrdersContent />;
+            case 'price-of-gram':
+                return <PriceOfGramContent />
         }
     };
 

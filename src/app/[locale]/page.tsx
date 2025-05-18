@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t('home.ogDescription'),
       images: [
         {
-          url: '/images/og-image.jpg',
+          url: '/images/um6.png',
           width: 1200,
           height: 630,
           alt: t('home.ogImageAlt'),
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: t('home.twitterTitle'),
       description: t('home.twitterDescription'),
-      images: ['/images/og-image.jpg'],
+      images: ['/images/um6.png'],
     },
     alternates: {
       canonical: new URL(`/${locale}`, 'https://investgoldgjokaj.com').toString(),

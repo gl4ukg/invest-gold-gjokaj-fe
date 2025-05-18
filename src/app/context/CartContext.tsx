@@ -1,6 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { usePriceOfGram } from '@/app/hooks/usePriceOfGram';
 import { Cart, CartContextType, CartItem } from "../types/cart.types";
 import { Product } from "../types/product.types";
 import { ConfiguratorState } from "../types/configurator";
@@ -93,6 +94,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 
   const t = useTranslations();
+  const { currentPrice } = usePriceOfGram();
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -123,9 +125,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const calculateTotal = (items: CartItem[]) => {
     return items.reduce((total, item) => {
-      // If item has configuration with weight, use weight × 70€
+      // If item has configuration with weight, use weight × currentPrice
       if (item.configuration?.weight) {
-        return total + item.configuration.weight * 70 * Number(item?.quantity);
+        return total + item.configuration.weight * currentPrice * Number(item?.quantity);
       }
       // Fallback to product price if no weight configuration
       return 0;

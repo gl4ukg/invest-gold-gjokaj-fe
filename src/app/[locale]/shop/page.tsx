@@ -19,13 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Fetch categories for dynamic metadata
     const categories = await CategoriesService.getAll();
     const categoryNames = categories.map((cat) => cat.name).join(", ");
+    const categoryImages = categories.map((cat) => cat.image).join(", ");
 
     const metadata: Metadata = {
       title: t("shop.title"),
       description: `${t("shop.description")} ${t(
         "shop.featuring"
       )} ${categoryNames}`,
-      keywords: `${t("shop.keywords")}, ${categoryNames}`,
+      keywords: `${t("shop.keywords")}, ${categoryNames}, ${categoryImages}`,
       openGraph: {
         title: t("shop.ogTitle"),
         description: `${t("shop.ogDescription")} ${t(
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         )} ${categoryNames}`,
         images: [
           {
-            url: "/images/shop-og-image.jpg",
+            url: categoryImages || '/images/um6.png',
             width: 1200,
             height: 630,
             alt: t("shop.ogImageAlt"),
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description: `${t("shop.twitterDescription")} ${t(
           "shop.featuring"
         )} ${categoryNames}`,
-        images: ["/images/shop-og-image.jpg"],
+        images: [categoryImages || '/images/um6.png'],
       },
       alternates: {
         canonical: new URL(
@@ -76,7 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description: t("shop.ogDescription"),
         images: [
           {
-            url: "/images/shop-og-image.jpg",
+            url: "/images/um6.png",
             width: 1200,
             height: 630,
             alt: t("shop.ogImageAlt"),
@@ -90,7 +91,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         card: "summary_large_image",
         title: t("shop.twitterTitle"),
         description: t("shop.twitterDescription"),
-        images: ["/images/shop-og-image.jpg"],
+        images: ["/images/um6.png"],
       },
       alternates: {
         canonical: new URL(
