@@ -49,6 +49,13 @@ const ProductsService = {
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          if (typeof window === 'undefined') {
+            throw new Error('Unauthorized');
+          } else {
+            throw error.response?.data;
+          }
+        }
         throw error.response?.data;
       }
       throw error;

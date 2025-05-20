@@ -98,6 +98,8 @@ export default function Checkout() {
     }
   };
 
+  console.log(currentPrice,"currentprice")
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if(formData.paymentMethod !== '') {

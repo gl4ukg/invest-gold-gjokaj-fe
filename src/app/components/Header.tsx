@@ -46,6 +46,7 @@ const Header = () => {
                     muted
                     loop
                     playsInline
+                    poster="/header.png"
                     className="absolute inset-0 w-full h-full object-cover"
                 >
                     <source src="https://glaukthaqi.com/header-video.mp4" type="video/mp4" />

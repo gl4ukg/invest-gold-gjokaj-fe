@@ -57,6 +57,18 @@ export default function ConfiguratorPage() {
     }
   }, [currentStep, highestStepReached]);
 
+  // Initialize configurator state with weight when component mounts
+  useEffect(() => {
+    if (cart.items.length > 0) {
+      const selectedItem = cart.items.find(item => item.id === cart.selectedItemId);
+      if (selectedItem?.configuration) {
+        setConfiguratorState(selectedItem.configuration);
+      } else {
+        setConfiguratorState(initialConfiguratorState);
+      }
+    }
+  }, []);
+
   const handleProfileSelect = (profileId: string) => {
     const newState = {
       ...configuratorState,

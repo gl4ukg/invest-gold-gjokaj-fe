@@ -9,4 +9,17 @@ const axiosServer = axios.create({
   },
 });
 
+// Response interceptor
+axiosServer.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // For server-side requests, we should throw an error that can be handled by the page
+      throw new Error('Unauthorized');
+    }
+    console.error("API Error:", error);
+    return Promise.reject(error);
+  }
+);
+
 export default axiosServer;

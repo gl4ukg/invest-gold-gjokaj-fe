@@ -154,11 +154,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     }
 
     setCart((currentCart) => {
-      // Always add as a new item with unique ID
+      // Always add as a new item with unique ID and fresh configuration
       const newItem = {
         id: Date.now().toString(), // Unique ID for each item
         product,
-        configuration,
+        configuration: configuration || { ...initialConfiguratorState }, // Create fresh configuration for each item
         quantity: 1, // Always 1 since we're adding separate items
       };
       const newItems = [...currentCart.items, newItem];
