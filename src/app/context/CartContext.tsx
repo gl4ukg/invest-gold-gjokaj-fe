@@ -49,7 +49,6 @@ export const initialConfiguratorState: ConfiguratorState = {
     stoneSize: "",
     stoneQuality: "",
     numberOfStones: 0,
-    spacing: "",
     position: "",
   },
   groovesAndEdges: {
@@ -99,6 +98,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   // Load cart from localStorage on mount
   useEffect(() => {
     const loadCart = async () => {
+      console.log("here qokla")
       try {
         const savedCart = localStorage.getItem("cart");
         if (savedCart) {
@@ -228,6 +228,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const [lastToastTime, setLastToastTime] = useState(0);
+  const TOAST_DELAY = 500; // Show toast at most every 500ms
+
   const updateConfiguration = (
     productId: string,
     configuration: ConfiguratorState
@@ -243,7 +246,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         total: calculateTotal(newItems),
       };
     });
-    toast.success(t("notifications.configurationUpdated"));
+        // Only show toast if enough time has passed since last toast
+        const now = Date.now();
+        if (now - lastToastTime >= TOAST_DELAY) {
+          toast.success(t("notifications.configurationUpdated"));
+          setLastToastTime(now);
+        }
+  
   };
 
   const selectCartItem = (productId: string | undefined) => {

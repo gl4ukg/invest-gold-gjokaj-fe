@@ -23,6 +23,7 @@ import {
 } from "@/app/types/configurator";
 import Image from "next/image";
 import { useRouter } from "@/i18n/routing";
+import { CartItem } from "@/app/types/cart.types";
 
 export default function ConfiguratorPage() {
   const {
@@ -59,11 +60,20 @@ export default function ConfiguratorPage() {
 
   // Initialize configurator state with weight when component mounts
   useEffect(() => {
+    const configuratorState = JSON.parse(localStorage.getItem('cart')!)
+    if(configuratorState) {
+      const item = configuratorState.items.find((item: CartItem) => item.id === configuratorState.selectedItemId)
+      if(item) {
+        setConfiguratorState(item.configuration)
+      }
+    }
     if (cart.items.length > 0) {
       const selectedItem = cart.items.find(item => item.id === cart.selectedItemId);
       if (selectedItem?.configuration) {
+        console.log("here")
         setConfiguratorState(selectedItem.configuration);
       } else {
+        console.log("here 2")
         setConfiguratorState(initialConfiguratorState);
       }
     }
@@ -218,7 +228,6 @@ export default function ConfiguratorPage() {
             configuratorState.stoneSettings.stoneType !== "" &&
             configuratorState.stoneSettings.stoneSize !== "" &&
             configuratorState.stoneSettings.stoneQuality !== "" &&
-            configuratorState.stoneSettings.spacing !== "" &&
             configuratorState.stoneSettings.position !== "")
         );
       case 6:

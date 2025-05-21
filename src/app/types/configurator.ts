@@ -104,12 +104,7 @@ export type StoneSize =
   | "0.05 ct."
   | "0.10 ct.";
 export type StoneQuality = "" | "G-H/VS-SI" | "F-G/VVS" | "D-E/IF-VVS1";
-export type StoneSpacing =
-  | ""
-  | "Together"
-  | "Small Gap"
-  | "Medium Gap"
-  | "Large Gap";
+
 export type StonePosition = "" | "Left" | "Center" | "Right" | "Free";
 
 export interface Stone {
@@ -126,10 +121,11 @@ export interface StoneSettings {
   stoneSize?: StoneSize;
   stoneQuality?: StoneQuality;
   numberOfStones: number;
-  spacing?: StoneSpacing;
   position?: StonePosition;
   offset?: number;
   stones?: Stone[];
+  rows?: number;
+  numberOfChannels?: number;
 }
 
 export type GrooveType =

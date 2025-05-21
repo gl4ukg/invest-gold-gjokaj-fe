@@ -79,11 +79,7 @@ export default function ShopContent() {
       setError(null);
     } catch (err) {
       console.error("Failed to search products:", err);
-      if (err instanceof Error && err.message === 'Unauthorized') {
-        setError(t('shop.unauthorized'));
-      } else {
-        setError(t('shop.errorLoadingProducts'));
-      }
+      setError("Failed to load products");
     } finally {
       setLoading(false);
     }

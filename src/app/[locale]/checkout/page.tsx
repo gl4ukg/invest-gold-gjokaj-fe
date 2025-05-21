@@ -10,6 +10,7 @@ import { useRouter } from '@/i18n/routing';
 import Loader from '@/app/components/Loader';
 import { countries, kosovoMunicipalities } from '@/app/data/locations';
 import Image from 'next/image';
+import PaymentsService from '@/app/services/paymets';
 
 interface CheckoutForm {
   email: string;
@@ -43,6 +44,7 @@ export default function Checkout() {
     paymentMethod: '',
     shippingMethod: 'local',
   });
+  console.log(currentPrice,"currentPrice")
 
   const [orderSummary, setOrderSummary] = useState({
     subtotal: 0,
@@ -98,8 +100,6 @@ export default function Checkout() {
     }
   };
 
-  console.log(currentPrice,"currentprice")
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if(formData.paymentMethod !== '') {
@@ -136,6 +136,18 @@ export default function Checkout() {
   
         if (formData.paymentMethod === 'paypal') {
           // PayPal payment will be handled by PayPal buttons
+          return;
+        }
+
+        if (formData.paymentMethod === 'card') {
+          const cardPayment = await PaymentsService.initiateCardPayment({
+            orderId: order.id,
+            amount: order.total,
+            currency: 'EUR',
+            returnUrl: `${window.location.origin}/payment`,
+          });
+        
+          window.location.href = cardPayment.redirectUrl;
           return;
         }
   

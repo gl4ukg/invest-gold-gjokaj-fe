@@ -86,43 +86,82 @@ const EdgeSettingsForm: React.FC<{
         {edge.type !== 'none' && (
             <div className="grid grid-cols-2 gap-4">
                 <div>
-                    <SelectInput
-                        label={t('configurator.groovesAndEdges.width')}
-                        value={edge?.width?.toFixed(2)}
-                        onChange={(value) => onChange({ ...edge, width: parseFloat(value) })}
-                        options={[
-                            { value: '0.30', label: '0.30 mm' },
-                            { value: '0.50', label: '0.50 mm' },
-                            { value: '1.00', label: '1.00 mm' },
-                            { value: '1.50', label: '1.50 mm' },
-                            { value: '2.00', label: '2.00 mm' },
-                            { value: '2.50', label: '2.50 mm' }
-                        ]}
-                        className="w-full"
-                    />
+                    {/* Width options constants */}
+                    {(() => {
+                        const createOption = (value: string) => ({ 
+                            value, 
+                            label: `${value} mm` 
+                        });
+
+                        const STEP_WIDTHS = Array.from(
+                            { length: 23 }, 
+                            (_, i) => createOption(((i * 0.1 + 0.3).toFixed(2)))
+                        );
+
+                        const CARBON_WIDTHS = [
+                            '0.80', '1.00', '1.50', '2.00'
+                        ].map(createOption);
+
+                        const MILGRAIN_WIDTHS = [
+                            '0.45', '0.62', '0.80'
+                        ].map(createOption);
+
+                        const getWidthOptions = () => {
+                            switch(edge.type) {
+                                case 'step': return STEP_WIDTHS;
+                                case 'carbon': return CARBON_WIDTHS;
+                                case 'milgrain': return MILGRAIN_WIDTHS;
+                                default: return [];
+                            }
+                        };
+
+                        return (
+                            <SelectInput
+                                label={t('configurator.groovesAndEdges.width')}
+                                value={edge?.width?.toFixed(2)}
+                                onChange={(value) => onChange({ ...edge, width: parseFloat(value) })}
+                                options={getWidthOptions()}
+                                className="w-full"
+                            />
+                        );
+                    })()}
                 </div>
 
-                <div>
-                    <SelectInput
-                        label={t('configurator.groovesAndEdges.depth')}
-                        value={edge?.depth?.toFixed(2)}
-                        onChange={(value) => onChange({ ...edge, depth: parseFloat(value) })}
-                        options={[
-                            { value: '0.30', label: '0.30 mm' }
-                        ]}
-                        className="w-full"
-                    />
-                </div>
+                {/* Depth input with fixed values */}
+                {(() => {
+                    const EDGE_DEPTHS = {
+                        step: '0.30',
+                        carbon: '0.46',
+                        milgrain: '0.10',
+                        none: '0.00',
+                        '': '0.00'
+                    } as const;
 
+                    const depth = EDGE_DEPTHS[edge.type] || EDGE_DEPTHS['none'];
+
+                    return (
+                        <div>
+                            <SelectInput
+                                label={t('configurator.groovesAndEdges.depth')}
+                                value={depth}
+                                onChange={() => {}} // No-op since it's disabled
+                                options={[{ value: depth, label: `${depth} mm` }]}
+                                className="w-full"
+                                disabled={true}
+                            />
+                        </div>
+                    );
+                })()}
+
+                {/* Surface input - always Polished and disabled */}
                 <div>
                     <SelectInput
                         label={t('configurator.groovesAndEdges.surface')}
-                        value={edge.surface}
-                        onChange={(value) => onChange({ ...edge, surface: value as SurfaceType })}
-                        options={[
-                            { value: 'Polished', label: 'Polished' }
-                        ]}
+                        value="Polished"
+                        onChange={() => {}} // No-op since it's disabled
+                        options={[{ value: 'Polished', label: 'Polished' }]}
                         className="w-full"
+                        disabled={true}
                     />
                 </div>
             </div>

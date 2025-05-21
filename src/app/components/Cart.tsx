@@ -15,7 +15,6 @@ interface CartProps {
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
     const t = useTranslations('cart');
     const { cart, removeFromCart, updateQuantity, itemCount } = useCart();
-
     if (!isOpen) return null;
 
     return (

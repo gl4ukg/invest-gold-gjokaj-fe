@@ -194,7 +194,9 @@
       "stoneQuality": "Cilësia e Gurit",
       "numberOfStones": "Numri i Gurëve",
       "stoneSpacing": "Hapësira e Gurëve",
-      "stonePosition": "Pozicioni i Gurit"
+      "stonePosition": "Pozicioni i Gurit",
+      "rows": "Rreshtat",
+      "numberOfChannels": "Anzahl der Kanäle"
     },
     "navigation": {
       "previousStep": "Hapi i Mëparshëm",
@@ -233,7 +235,11 @@
       "enterEngraving": "Please complete engraving settings",
       "selectStoneSettings": "Ju lutemi plotësoni parametrat e gurit",
       "completeGroovesAndEdges": "Ju lutemi plotësoni parametrat e kanaleve dhe skajeve"
-    }
+    },
+    "left": "Left",
+    "center": "Center",
+    "right": "Right",
+    "free": "Free"
   },
   "shop": {
     "title": "Dyqan",
@@ -458,16 +464,16 @@
   },
   "metadata": {
     "product": {
-      "title": "Invest Gold Gjokaj | Premium Goldschmuck",
-      "description": "Entdecken Sie unsere exquisite Kollektion an Premium-Goldschmuck. Jedes Stück wird mit Präzision und Sorgfalt gefertigt.",
-      "keywords": "goldschmuck, goldringe, goldarmbänder, goldketten, maßgefertigter schmuck",
-      "ogTitle": "Premium Goldschmuck - Invest Gold Gjokaj",
-      "ogDescription": "Erkunden Sie unsere Kollektion an Premium-Goldschmuck. Finden Sie einzigartige Stücke, die mit Exzellenz gefertigt wurden.",
-      "ogImageAlt": "Produktbild",
-      "twitterTitle": "Premium Goldschmuck - Invest Gold Gjokaj",
-      "twitterDescription": "Sehen Sie sich unsere Premium-Goldschmuck-Kollektion an",
-      "notFound": "Produkt nicht gefunden",
-      "notFoundDescription": "Entschuldigung, das gesuchte Produkt konnte nicht gefunden werden."
+      "title": "Invest Gold Gjokaj | Stoli të Çmuara në Ar",
+      "description": "Zbuloni koleksionin tonë të stolive të çmuara në ar. Çdo pjesë është punuar me precizion dhe kujdes.",
+      "keywords": "stoli ari, unaza ari, byzylykë ari, varëse ari, stoli të personalizuara",
+      "ogTitle": "Stoli të Çmuara në Ar - Invest Gold Gjokaj",
+      "ogDescription": "Eksploroni koleksionin tonë të stolive të çmuara në ar. Gjeni pjesë unike të punuara me përsosmëri.",
+      "ogImageAlt": "Imazhi i Produktit",
+      "twitterTitle": "Stoli të Çmuara në Ar - Invest Gold Gjokaj",
+      "twitterDescription": "Shikoni koleksionin tonë të stolive të çmuara në ar",
+      "notFound": "Produkti nuk u gjet",
+      "notFoundDescription": "Na vjen keq, produkti që po kërkoni nuk mund të gjendet."
     },
     "shop": {
       "title": "Shop - Invest Gold Gjokaj | Premium Gold Jewelry and Accessories",

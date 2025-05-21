@@ -14,6 +14,7 @@ interface SelectInputProps {
     label?: string;
     className?: string;
     imageClassName?: string;
+    disabled?: boolean;
 }
 
 export const SelectInput: React.FC<SelectInputProps> = ({
@@ -22,7 +23,8 @@ export const SelectInput: React.FC<SelectInputProps> = ({
     onChange,
     label,
     className = '',
-    imageClassName = ''
+    imageClassName = '',
+    disabled = false
 }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const dropdownRef = React.useRef<HTMLDivElement>(null);
@@ -49,8 +51,11 @@ export const SelectInput: React.FC<SelectInputProps> = ({
             )}
             <button
                 type="button"
-                onClick={() => setIsOpen(!isOpen)}
-                className={`w-full p-2 flex items-center gap-3 border border-darkGray text-darkGray rounded-lg hover:bg-gray-50 transition-all duration-200 ${isOpen ? 'ring-2 ring-primary/20' : ''} ${className}`}
+                onClick={() => !disabled && setIsOpen(!isOpen)}
+                className={`w-full p-2 flex items-center gap-3 border rounded-lg transition-all duration-200 
+                    ${isOpen && !disabled ? 'ring-2 ring-primary/20' : ''} 
+                    ${disabled ? 'border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed' : 'border-darkGray hover:bg-gray-50 text-darkGray cursor-pointer'} 
+                    ${className}`}
             >
                 {selectedOption?.image && (
                     <div className={`flex-shrink-0 ${imageClassName}`}>
@@ -65,7 +70,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
                 )}
                 <span className="flex-1 text-left">{selectedOption?.label}</span>
                 <svg
-                    className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                    className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''} ${disabled ? 'opacity-50' : ''}`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

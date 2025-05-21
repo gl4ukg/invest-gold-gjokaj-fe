@@ -194,7 +194,9 @@
       "stoneQuality": "Cilësia e Gurit",
       "numberOfStones": "Numri i Gurëve",
       "stoneSpacing": "Hapësira e Gurëve",
-      "stonePosition": "Pozicioni i Gurit"
+      "stonePosition": "Pozicioni i Gurit",
+      "rows": "Rreshtat",
+      "numberOfChannels": "Numri i Kanaleve"
     },
     "navigation": {
       "previousStep": "Hapi i Mëparshëm",
@@ -233,7 +235,11 @@
       "enterEngraving": "Please complete engraving settings",
       "selectStoneSettings": "Ju lutemi plotësoni parametrat e gurit",
       "completeGroovesAndEdges": "Ju lutemi plotësoni parametrat e kanaleve dhe skajeve"
-    }
+    },
+    "left": "Left",
+    "center": "Center",
+    "right": "Right",
+    "free": "Free"
   },
   "shop": {
     "title": "Dyqan",
