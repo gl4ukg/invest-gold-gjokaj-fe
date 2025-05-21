@@ -226,7 +226,6 @@ console.log(orders,"order items")
                                                                 <div>Permasat: {item?.configuration?.stoneSettings?.stoneSize}</div>
                                                                 <div>Cilesia: {item?.configuration?.stoneSettings?.stoneQuality}</div>
                                                                 <div>Numri i gureve: {item?.configuration?.stoneSettings?.numberOfStones}</div>
-                                                                <div>Hapesira: {item?.configuration?.stoneSettings?.spacing}</div>
                                                                 <div>Pozicioni: {item?.configuration?.stoneSettings?.position}</div>
                                                             </div>
                                                         );
