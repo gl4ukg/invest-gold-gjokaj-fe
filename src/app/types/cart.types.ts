@@ -26,7 +26,6 @@ export interface CartContextType {
     setConfiguratorState: (state: ConfiguratorState) => void;
     addToCart: (product: Product, quantity?: number, configuration?: ConfiguratorState) => void;
     removeFromCart: (productId: string) => void;
-    updateQuantity: (productId: string, quantity: number) => void;
     selectCartItem: (id?: string) => void;
     updateConfiguration: (productId: string, configuration: ConfiguratorState) => void;
     activeTab: GroovesAndEdgesTab;

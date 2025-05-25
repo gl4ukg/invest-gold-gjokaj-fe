@@ -24,7 +24,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "@/i18n/routing";
 import { CartItem } from "@/app/types/cart.types";
-
+import { useStep } from "@/app/context/StepContext";
 export default function ConfiguratorPage() {
   const {
     cart,
@@ -36,48 +36,31 @@ export default function ConfiguratorPage() {
     setActiveTab,
   } = useCart();
   const router = useRouter();
-  const t = useTranslations("configurator");
+  const t = useTranslations("");
   const tConfig = useTranslations("configurator.validation");
 
   const steps = [
-    { id: 1, name: t("steps.weight") },
-    { id: 2, name: t("steps.profiles") },
-    { id: 3, name: t("steps.dimensions") },
-    { id: 4, name: t("steps.preciousMetal") },
-    { id: 5, name: t("steps.stones") },
-    { id: 6, name: t("steps.groovesAndEdges") },
-    { id: 7, name: t("steps.engraving") },
+    { id: 1, name: t("configurator.steps.weight") },
+    { id: 2, name: t("configurator.steps.profiles") },
+    { id: 3, name: t("configurator.steps.dimensions") },
+    { id: 4, name: t("configurator.steps.preciousMetal") },
+    { id: 5, name: t("configurator.steps.stones") },
+    { id: 6, name: t("configurator.steps.groovesAndEdges") },
+    { id: 7, name: t("configurator.steps.engraving") },
   ];
 
-  const [currentStep, setCurrentStep] = useState(1);
-  const [highestStepReached, setHighestStepReached] = useState(1);
-
+  const { currentStep, setCurrentStep } = useStep();
+  // Initialize configurator state from cart when component mounts
   useEffect(() => {
-    if (currentStep > highestStepReached) {
-      setHighestStepReached(currentStep);
-    }
-  }, [currentStep, highestStepReached]);
-
-  // Initialize configurator state with weight when component mounts
-  useEffect(() => {
-    const configuratorState = JSON.parse(localStorage.getItem('cart')!)
-    if(configuratorState) {
-      const item = configuratorState.items.find((item: CartItem) => item.id === configuratorState.selectedItemId)
-      if(item) {
-        setConfiguratorState(item.configuration)
-      }
-    }
     if (cart.items.length > 0) {
       const selectedItem = cart.items.find(item => item.id === cart.selectedItemId);
       if (selectedItem?.configuration) {
-        console.log("here")
         setConfiguratorState(selectedItem.configuration);
       } else {
-        console.log("here 2")
         setConfiguratorState(initialConfiguratorState);
       }
     }
-  }, []);
+  }, [cart.selectedItemId]);
 
   const handleProfileSelect = (profileId: string) => {
     const newState = {
@@ -157,8 +140,9 @@ export default function ConfiguratorPage() {
   };
 
   const handleNextStep = () => {
+    // Check if current step is valid before proceeding
     if (!canProceedToNext()) {
-      toast.error(t("completeStepBeforeProceeding"));
+      toast.error(t("configurator.completeStepBeforeProceeding"));
       return;
     }
 
@@ -182,7 +166,6 @@ export default function ConfiguratorPage() {
           // Reset everything for the next item
           setConfiguratorState(initialConfiguratorState);
           setCurrentStep(1);
-          setHighestStepReached(1);
           setActiveTab("grooves"); // Reset tab state
 
           // Select next item
@@ -192,7 +175,7 @@ export default function ConfiguratorPage() {
       }
     } else {
       // Move to next step
-      setCurrentStep((prev) => prev + 1);
+      setCurrentStep(currentStep + 1);
     }
   };
 
@@ -201,7 +184,7 @@ export default function ConfiguratorPage() {
       setCurrentStep(currentStep - 1);
     }
   };
-
+  console.log(configuratorState,"qokla configuratorState")
   const canProceedToNext = () => {
     switch (currentStep) {
       case 1:
@@ -212,8 +195,8 @@ export default function ConfiguratorPage() {
         return (
           configuratorState.dimensions.profileWidth > 0 &&
           configuratorState.dimensions.profileHeight > 0 &&
-          configuratorState.dimensions.ringSizeSystem !== null &&
-          configuratorState.dimensions.ringSize !== null
+          configuratorState.dimensions.ringSizeSystem !== "" &&
+          configuratorState.dimensions.ringSize !== ""
         );
       case 4:
         return (
@@ -222,13 +205,35 @@ export default function ConfiguratorPage() {
           configuratorState.preciousMetal.shape !== null
         );
       case 5:
+        const specialSettingTypes = [
+            'Cross American',
+            'Cross pave',
+            'Tensionring',
+            'Tensionring (diagonal)',
+            'Eye (Vertical)',
+            'Eye horizontal',
+            'Eye diagonal',
+            'Side American',
+            'Side pave'
+        ];
+
+        // For Free Stone Spreading, we only need to check if there's more than 1 stone
+        if (configuratorState.stoneSettings.settingType === "Free Stone Spreading") {
+          return Number(configuratorState?.stoneSettings?.stones?.length) >= 1;
+        }
+        if (configuratorState.stoneSettings.settingType === "No stone") {
+          return true;
+        }
+
         return (
-          configuratorState.stoneSettings.settingType !== "" ||
-          (configuratorState?.stoneSettings?.numberOfStones > 0 &&
-            configuratorState.stoneSettings.stoneType !== "" &&
-            configuratorState.stoneSettings.stoneSize !== "" &&
-            configuratorState.stoneSettings.stoneQuality !== "" &&
-            configuratorState.stoneSettings.position !== "")
+          configuratorState.stoneSettings.settingType !== "" &&
+          configuratorState.stoneSettings.stoneType !== "" &&
+          configuratorState.stoneSettings.stoneSize !== "" &&
+          configuratorState.stoneSettings.stoneQuality !== "" &&
+          configuratorState.stoneSettings.position !== "" &&
+          // Only validate numberOfStones if the setting type requires it
+          (specialSettingTypes.includes(configuratorState.stoneSettings.settingType) || 
+           configuratorState?.stoneSettings?.numberOfStones > 0)
         );
       case 6:
         if (activeTab === "grooves") {
@@ -242,16 +247,22 @@ export default function ConfiguratorPage() {
             ).length > 0
           );
         } else {
-          return (
-            configuratorState.groovesAndEdges.leftEdge.type !== "" &&
-            configuratorState.groovesAndEdges.rightEdge.type !== "" &&
-            configuratorState.groovesAndEdges?.leftEdge?.depth !== 0 &&
-            configuratorState.groovesAndEdges?.rightEdge.depth !== 0 &&
-            configuratorState.groovesAndEdges?.leftEdge?.width !== 0 &&
-            configuratorState.groovesAndEdges?.rightEdge.width !== 0 &&
-            configuratorState.groovesAndEdges?.leftEdge?.surface !== "" &&
-            configuratorState.groovesAndEdges?.rightEdge.surface !== ""
-          );
+          console.log(configuratorState.groovesAndEdges?.leftEdge?.width,"left width")
+          console.log(configuratorState.groovesAndEdges?.rightEdge?.width,"right width")
+          const leftEdge = configuratorState.groovesAndEdges.leftEdge;
+          const rightEdge = configuratorState.groovesAndEdges.rightEdge;
+
+          // Helper function to check if an edge is valid
+          const isEdgeValid = (edge: typeof leftEdge) => {
+            // Type must be explicitly set (not empty string)
+            if (edge.type === "") return false;
+            // If type is none, it's valid
+            if (edge.type === "none") return true;
+            // For any other type, width must be defined
+            return edge.width !== undefined;
+          }
+
+          return isEdgeValid(leftEdge) && isEdgeValid(rightEdge);
         }
 
       case 7:
@@ -261,8 +272,42 @@ export default function ConfiguratorPage() {
     }
   };
 
+  const isStepComplete = (step: number) => {
+    // Check if the step's required data is filled
+    switch (step) {
+      case 1:
+        return configuratorState.weight > 0;
+      case 2:
+        return configuratorState.selectedProfile !== null;
+      case 3:
+        return (
+          configuratorState.dimensions.profileWidth > 0 &&
+          configuratorState.dimensions.profileHeight > 0 &&
+          configuratorState.dimensions.ringSizeSystem !== "" &&
+          configuratorState.dimensions.ringSize !== ""
+        );
+      case 4:
+        return (
+          configuratorState.preciousMetal.colorType !== "" &&
+          configuratorState.preciousMetal.colors.length > 0 &&
+          configuratorState.preciousMetal.shape !== null
+        );
+      case 5:
+        // Stone step is optional
+        return true;
+      case 6:
+        // Grooves and edges step is optional
+        return true;
+      case 7:
+        // Engraving step is optional
+        return true;
+      default:
+        return false;
+    }
+  };
+
   const hanldeCellClick = (stepId: number) => {
-    if (stepId <= highestStepReached) {
+    if (isStepComplete(stepId)) {
       // Allow navigation to any previously completed step
       setCurrentStep(stepId);
     } else if (stepId === currentStep + 1) {
@@ -270,11 +315,11 @@ export default function ConfiguratorPage() {
       if (canProceedToNext()) {
         setCurrentStep(stepId);
       } else {
-        toast.error(t("completeStepBeforeProceeding"));
+        toast.error(t("configurator.completeStepBeforeProceeding"));
       }
     } else {
       // If trying to jump forward to an uncompleted step, show an error
-      toast.error(t("completeStepBeforeProceeding"));
+      toast.error(t("configurator.completeStepBeforeProceeding"));
     }
   };
 
@@ -399,7 +444,7 @@ export default function ConfiguratorPage() {
                   }`}
                   disabled={currentStep === 1}
                 >
-                  {t("navigation.previousStep")}
+                  {t("configurator.navigation.previousStep")}
                 </button>
 
                 <button
@@ -413,11 +458,11 @@ export default function ConfiguratorPage() {
                   disabled={!canProceedToNext()}
                 >
                   {currentStep < steps.length
-                    ? t("navigation.nextStep")
+                    ? t("configurator.navigation.nextStep")
                     : cart.selectedItemId ===
                       cart.items[cart.items.length - 1]?.id
-                    ? t("navigation.complete")
-                    : t("navigation.nextRing")}
+                    ? t("configurator.navigation.complete")
+                    : t("configurator.navigation.nextRing")}
                 </button>
               </div>
             </div>
@@ -428,174 +473,81 @@ export default function ConfiguratorPage() {
                 <div className="bg-white py-6 px-3 rounded-lg shadow-lg">
                   <div className="space-y-4">
                     {/* Cart Items Preview */}
-                    <div className="bg-white overflow-y-auto h-64 lg:h-96 px-3">
-                      <h3 className="text-lg font-medium text-darkGray mb-4">
-                        {t("cart.ringsInCart")}
-                      </h3>
-                      <div className="space-y-4">
-                        {cart.items.map((item, index) => (
-                          <div
-                            key={`${item?.id}-${index}`}
-                            className={`p-4 rounded-lg cursor-pointer transition-all ${
-                              cart.selectedItemId === item.id
-                                ? " border-2 border-gold shadow-lg scale-105"
-                                : "bg-gray-50 hover:bg-gray-100 border border-gray-200"
-                            }`}
-                            onClick={() => {
-                              if (cart.selectedItemId === item.id) {
-                                selectCartItem(undefined);
-                              } else {
-                                console.log(item, "item id");
-                                selectCartItem(item?.id);
-                                if (item.configuration) {
-                                  setConfiguratorState(item.configuration);
+                    <div className="flex flex-col justify-between bg-white  h-64 lg:h-96 px-3">
+                      <>
+                        <h3 className="text-lg font-medium text-darkGray mb-4">
+                          {t("configurator.cart.ringsInCart")}
+                        </h3>
+                        <div className="space-y-4 overflow-y-auto h-[270px] p-1">
+                          {cart.items.map((item, index) => (
+                            <div
+                              key={`${item?.id}-${index}`}
+                              className={`p-4 rounded-lg cursor-pointer transition-all ${
+                                cart.selectedItemId === item.id
+                                  ? " border-2 border-gold shadow-lg"
+                                  : "bg-gray-50 hover:bg-gray-100 border border-gray-200"
+                              }`}
+                              onClick={() => {
+                                if (cart.selectedItemId === item.id) {
+                                  selectCartItem(undefined);
+                                } else {
+                                  console.log(item, "item id");
+                                  selectCartItem(item?.id);
+                                  if (item.configuration) {
+                                    setConfiguratorState(item.configuration);
+                                  }
                                 }
-                              }
-                            }}
-                          >
-                            <div className="flex items-center space-x-4 relative">
-                              <div
-                                className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center transition-all ${
-                                  cart.selectedItemId === item.id
-                                    ? "ring-2 ring-primary ring-offset-2 rounded-lg"
-                                    : ""
-                                }`}
-                              >
-                                <Image
-                                  src={String(item?.product.images?.[0])}
-                                  alt={item.product.name}
-                                  width={100}
-                                  height={100}
-                                  className="w-full h-full object-contain rounded-lg"
-                                />
-                              </div>
-                              <div className="flex-1 space-y-1">
-                                <p className="font-medium text-darkGray capitalize">
-                                  {item.product.name}
-                                </p>
-                                {cart.selectedItemId === item.id && (
-                                  <div className="flex items-center space-x-2">
-                                    <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></div>
-                                    <p className="text-sm text-primary font-medium">
-                                      Configuring: {steps[currentStep - 1].name}
-                                    </p>
-                                  </div>
-                                )}
+                              }}
+                            >
+                              <div className="flex items-center space-x-4 relative">
+                                <div
+                                  className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center transition-all ${
+                                    cart.selectedItemId === item.id
+                                      ? "ring-2 ring-primary ring-offset-2 rounded-lg"
+                                      : ""
+                                  }`}
+                                >
+                                  <Image
+                                    src={String(item?.product.images?.[0])}
+                                    alt={item.product.name}
+                                    width={100}
+                                    height={100}
+                                    className="w-full h-full object-contain rounded-lg"
+                                  />
+                                </div>
+                                <div className="flex-1 space-y-1">
+                                  <p className="font-medium text-darkGray capitalize">
+                                    {item.product.name}
+                                  </p>
+                                  {cart.selectedItemId === item.id && (
+                                    <div className="flex items-center space-x-2">
+                                      <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></div>
+                                      <p className="text-sm text-primary font-medium">
+                                        Configuring: {steps[currentStep - 1].name}
+                                      </p>
+                                    </div>
+                                  )}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
+                      </>
+                      <div className="flex justify-between items-center pt-6">
+                        <p className="text-lg font-medium text-darkGray">
+                          {t("orderConfirmation.total")}:
+                        </p>
+                        
+                          {cart.total === 0 ? (
+                            <p className="text-darkGray text-sm text-right">Qmimi kalkulohet pasi te zgjidhet pesha</p>
+                          ) : (
+                            <p className="text-lg font-medium text-darkGray">{cart.total + " €"}</p>
+                          )}
+                        
                       </div>
                     </div>
                   </div>
-                  {/* <div className="space-y-4 mt-4">
-                                    <h3 className="font-semibold text-darkGray">Selected Options:</h3>
-                                    
-                                    <div className="space-y-1">
-                                        <p className="text-darkGray">Profile: {configuratorState.selectedProfile ? `PR ${configuratorState.selectedProfile}` : 'Not selected'}</p>
-                                    </div>
-
-                                    <div className="space-y-1">
-                                        <p className="text-darkGray">Dimensions:</p>
-                                        <p className="text-darkGray ml-2">• Width: {configuratorState.dimensions.profileWidth} mm</p>
-                                        <p className="text-darkGray ml-2">• Height: {configuratorState.dimensions.profileHeight} mm</p>
-                                        <p className="text-darkGray ml-2">• Ring Size: {configuratorState.dimensions.ringSize} ({configuratorState.dimensions.ringSizeSystem})</p>
-                                    </div>
-
-                                    <div className="space-y-1">
-                                        <p className="text-darkGray">Precious Metal:</p>
-                                        <p className="text-darkGray ml-2">• Type: {
-                                            configuratorState.preciousMetal.colorType === 'single' ? 'Single Color' :
-                                            configuratorState.preciousMetal.colorType === 'two' ? 'Two Colors' : 'Three Colors'
-                                        }</p>
-                                        {configuratorState.preciousMetal.shape && (
-                                            <p className="text-darkGray ml-2">• Shape: {configuratorState.preciousMetal.shape.category} {configuratorState.preciousMetal.shape.variant}</p>
-                                        )}
-                                        {configuratorState.preciousMetal.shape?.heightPercentage && (
-                                            <p className="text-darkGray ml-2">• Diagonal Height: {configuratorState.preciousMetal.shape.heightPercentage}%</p>
-                                        )}
-                                        {configuratorState.preciousMetal.shape?.waveCount && (
-                                            <p className="text-darkGray ml-2">• Diagonal Width: {configuratorState.preciousMetal.shape.waveCount}</p>
-                                        )}
-                                        {renderColorInfo(configuratorState.preciousMetal)}
-                                    </div>
-
-                                    <div className="space-y-1">
-                                        <p className="text-darkGray">Stone Settings:</p>
-                                        <p className="text-darkGray ml-2">• Setting Type: {configuratorState.stoneSettings.settingType}</p>
-                                        {configuratorState.stoneSettings.settingType !== 'No stone' && (
-                                            <>
-                                                <p className="text-darkGray ml-2">• Stone Type: {configuratorState.stoneSettings.stoneType}</p>
-                                                <p className="text-darkGray ml-2">• Size: {configuratorState.stoneSettings.stoneSize}</p>
-                                                <p className="text-darkGray ml-2">• Quality: {configuratorState.stoneSettings.stoneQuality}</p>
-                                                <p className="text-darkGray ml-2">• Number of Stones: {configuratorState.stoneSettings.numberOfStones}</p>
-                                                <p className="text-darkGray ml-2">• Spacing: {configuratorState.stoneSettings.spacing}</p>
-                                                <p className="text-darkGray ml-2">• Position: {configuratorState.stoneSettings.position}</p>
-                                            </>
-                                        )}
-                                    </div>
-
-                                    <div className="space-y-1">
-                                        <p className="text-darkGray">Grooves and Edges:</p>
-                                        <div className="ml-2 space-y-2">
-                                            <div>
-                                                <p className="text-darkGray font-medium">Groove</p>
-                                                <p className="text-darkGray">• Type: {configuratorState.groovesAndEdges.groove.grooveType}</p>
-                                                <p className="text-darkGray">• Width: {configuratorState.groovesAndEdges.groove.width.toFixed(2)} mm</p>
-                                                <p className="text-darkGray">• Depth: {configuratorState.groovesAndEdges.groove.depth.toFixed(2)} mm</p>
-                                                <p className="text-darkGray">• Surface: {configuratorState.groovesAndEdges.groove.surface}</p>
-                                                <p className="text-darkGray">• Alignment: {configuratorState.groovesAndEdges.groove.alignment}</p>
-                                            </div>
-                                            
-                                            <div>
-                                                <p className="text-darkGray font-medium">Left Edge</p>
-                                                <p className="text-darkGray">• Type: {configuratorState.groovesAndEdges.leftEdge.type}</p>
-                                                {configuratorState.groovesAndEdges.leftEdge.type !== 'none' && (
-                                                    <>
-                                                        <p className="text-darkGray">• Width: {configuratorState.groovesAndEdges.leftEdge.width} mm</p>
-                                                        <p className="text-darkGray">• Depth: {configuratorState.groovesAndEdges.leftEdge.depth} mm</p>
-                                                        <p className="text-darkGray">• Surface: {configuratorState.groovesAndEdges.leftEdge.surface}</p>
-                                                    </>
-                                                )}
-                                            </div>
-
-                                            <div>
-                                                <p className="text-darkGray font-medium">Right Edge</p>
-                                                <p className="text-darkGray">• Type: {configuratorState.groovesAndEdges.rightEdge.type}</p>
-                                                {configuratorState.groovesAndEdges.rightEdge.type !== 'none' && (
-                                                    <>
-                                                        <p className="text-darkGray">• Width: {configuratorState.groovesAndEdges.rightEdge.width} mm</p>
-                                                        <p className="text-darkGray">• Depth: {configuratorState.groovesAndEdges.rightEdge.depth} mm</p>
-                                                        <p className="text-darkGray">• Surface: {configuratorState.groovesAndEdges.rightEdge.surface}</p>
-                                                    </>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {configuratorState.engraving.text && (
-                                        <div className="space-y-1">
-                                            <p className="text-darkGray">Engraving:</p>
-                                            <div className="ml-2">
-                                                <p className="text-darkGray">• Font: {configuratorState.engraving.fontFamily}</p>
-                                                <div className='flex'>
-                                                    <p 
-                                                        className="text-darkGray me-3"
-                                                        style={{ fontFamily: configuratorState.engraving.fontFamily }}
-                                                    >
-                                                        • Text: 
-                                                    </p>
-                                                    <p  
-                                                        className={` text-darkGray text-center break-words ${fontFamilies.find(f => f.id === configuratorState.engraving.fontFamily)?.className || ''}`}
-                                                        style={{ fontFamily: fontFamilies.find(f => f.id === configuratorState.engraving.fontFamily)?.className ? undefined : fontFamilies.find(f => f.id === configuratorState.engraving.fontFamily)?.name }}
-                                                    >
-                                                        {configuratorState.engraving.text}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div> */}
+                  
                 </div>
               </div>
             </div>
@@ -609,8 +561,8 @@ export default function ConfiguratorPage() {
             width={300}
             height={300}
           />
-          <h1 className="text-lightGray text-xl">{t("noProducts")}</h1>
-          <p className="text-lightGray mt-3">{t("noProductsDescription")}</p>
+          <h1 className="text-lightGray text-xl">{t("configurator.noProducts")}</h1>
+          <p className="text-lightGray mt-3">{t("configurator.noProductsDescription")}</p>
         </div>
       )}
     </div>

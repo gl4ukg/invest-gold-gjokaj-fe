@@ -50,11 +50,19 @@ const EdgeSettingsForm: React.FC<{
                             value={type}
                             checked={edge.type === type}
                             onChange={() => {
+                                const EDGE_DEPTHS = {
+                                    step: 0.30,
+                                    carbon: 0.46,
+                                    milgrain: 0.10,
+                                    none: 0.00,
+                                    '': 0.00
+                                } as const;
+
                                 onChange({
                                     type,
                                     ...(type !== 'none' && {
-                                        width: edge.width || 0.45,
-                                        depth: edge.depth || 0.10,
+                                        width: edge.width,
+                                        depth: EDGE_DEPTHS[type as keyof typeof EDGE_DEPTHS],
                                         surface: edge.surface || 'Polished'
                                     })
                                 });
@@ -118,7 +126,7 @@ const EdgeSettingsForm: React.FC<{
                         return (
                             <SelectInput
                                 label={t('configurator.groovesAndEdges.width')}
-                                value={edge?.width?.toFixed(2)}
+                                value={(edge?.width || 0).toFixed(2)}
                                 onChange={(value) => onChange({ ...edge, width: parseFloat(value) })}
                                 options={getWidthOptions()}
                                 className="w-full"

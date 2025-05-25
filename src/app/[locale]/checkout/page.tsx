@@ -139,17 +139,17 @@ export default function Checkout() {
           return;
         }
 
-        if (formData.paymentMethod === 'card') {
-          const cardPayment = await PaymentsService.initiateCardPayment({
-            orderId: order.id,
-            amount: order.total,
-            currency: 'EUR',
-            returnUrl: `${window.location.origin}/payment`,
-          });
+        // if (formData.paymentMethod === 'card') {
+        //   const cardPayment = await PaymentsService.initiateCardPayment({
+        //     orderId: order.id,
+        //     amount: order.total,
+        //     currency: 'EUR',
+        //     returnUrl: `${window.location.origin}/payment`,
+        //   });
         
-          window.location.href = cardPayment.redirectUrl;
-          return;
-        }
+        //   window.location.href = cardPayment.redirectUrl;
+        //   return;
+        // }
   
         // For other payment methods, redirect to confirmation
         clearCart();

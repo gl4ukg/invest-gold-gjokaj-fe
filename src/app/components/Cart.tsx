@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FaTrash, FaMinus, FaPlus, FaShoppingCart } from 'react-icons/fa';
 import { Link } from '@/i18n/routing';
+import { useStep } from '../context/StepContext';
 
 interface CartProps {
     isOpen: boolean;
@@ -14,8 +15,14 @@ interface CartProps {
 
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
     const t = useTranslations('cart');
-    const { cart, removeFromCart, updateQuantity, itemCount } = useCart();
+    const { cart, removeFromCart, itemCount } = useCart();
+    const { setCurrentStep } = useStep();
     if (!isOpen) return null;
+
+    const removeProduct = (productId: string) => {
+        removeFromCart(productId);
+        setCurrentStep(1);
+    };
 
     return (
         <div className="fixed inset-0 z-[99999] overflow-hidden">
@@ -90,7 +97,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                                 <div className="flex flex-1 items-end justify-between text-sm">
                                                     <button
                                                         type="button"
-                                                        onClick={() => removeFromCart(item.id!)}
+                                                        onClick={() => removeProduct(item.id!)}
                                                         className="font-medium text-red-600 hover:text-red-500"
                                                     >
                                                         <FaTrash />

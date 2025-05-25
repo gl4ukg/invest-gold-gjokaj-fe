@@ -75,9 +75,9 @@ export const usePriceOfGram = () => {
         loadCurrentPrice();
 
         // Set up regular refresh interval
-        const refreshInterval = setInterval(loadCurrentPrice, REFRESH_INTERVAL);
+        // const refreshInterval = setInterval(loadCurrentPrice, REFRESH_INTERVAL);
 
-        return () => clearInterval(refreshInterval);
+        // return () => clearInterval(refreshInterval);
     }, []);
 
     return {

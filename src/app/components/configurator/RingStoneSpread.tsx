@@ -241,8 +241,8 @@ export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones
                     <td className='text-primary text-sm'>
                       <input
                         type="number"
-                        value={stone.x}
-                        onChange={(e) => updateStonePosition(stone.id, 'x', parseFloat(e.target.value))}
+                        value={Number(stone.x).toFixed(2)}
+                        onChange={(e) => updateStonePosition(stone.id, 'x', parseFloat(Number(e.target.value).toFixed(2)))}
                         step="0.01"
                         className="w-20 px-2 py-1 border rounded me-1"
                       />
@@ -251,8 +251,8 @@ export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones
                     <td className='text-primary text-sm'>
                       <input
                         type="number"
-                        value={stone.y}
-                        onChange={(e) => updateStonePosition(stone.id, 'y', parseFloat(e.target.value))}
+                        value={Number(stone.y).toFixed(2)}
+                        onChange={(e) => updateStonePosition(stone.id, 'y', parseFloat(Number(e.target.value).toFixed(2)))}
                         step="0.01"
                         className="w-20 px-2 py-1 border rounded me-1"
                       />

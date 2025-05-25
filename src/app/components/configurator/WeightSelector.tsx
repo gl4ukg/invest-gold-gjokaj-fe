@@ -14,7 +14,7 @@ export const WeightSelector: React.FC<WeightSelectorProps> = ({
     selectedWeight,
     onChange
 }) => {
-    const t  = useTranslations();
+    const t = useTranslations();
     // Generate weight options from min to max
     const weightOptions = Array.from(
         { length: maxWeight - minWeight + 1 },
@@ -26,27 +26,24 @@ export const WeightSelector: React.FC<WeightSelectorProps> = ({
             <h2 className="text-xl font-semibold text-darkGray">{t('configurator.weight.title')}</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {weightOptions.map((weight) => (
-                    <label
+                    <button
                         key={weight}
+                        onClick={() => onChange(selectedWeight === weight ? 0 : weight)}
+                        aria-pressed={selectedWeight === weight}
                         className={`
-                            relative flex items-center justify-center p-4 rounded-lg border-2 cursor-pointer
-                            transition-all duration-200 ease-in-out
+                            relative flex items-center justify-center p-4 rounded-lg border-2
+                            transition-all duration-200 ease-in-out w-full
+                            hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary/50
                             ${selectedWeight === weight
-                                ? 'border-primary bg-primary/5 text-primary'
-                                : 'border-gray-200 hover:border-primary/50'
+                                ? 'border-primary bg-primary/5 text-primary shadow-sm'
+                                : 'border-gray-200 hover:border-primary/30 active:scale-95'
                             }
                         `}
                     >
-                        <input
-                            type="radio"
-                            name="weight"
-                            value={weight}
-                            checked={selectedWeight === weight}
-                            onChange={() => onChange(weight)}
-                            className="sr-only"
-                        />
-                        <span className="text-lg font-medium text-darkGray">{weight}g</span>
-                    </label>
+                        <span className={`text-lg font-medium ${selectedWeight === weight ? 'text-primary' : 'text-darkGray'}`}>
+                            {weight}g
+                        </span>
+                    </button>
                 ))}
             </div>
         </div>

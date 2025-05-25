@@ -189,11 +189,29 @@ console.log(orders,"order items")
                                                 <div className="font-semibold text-gray-900">Metali</div>
                                                 <div className="space-y-0.5">
                                                     <div>{item?.configuration?.preciousMetal?.colorType}</div>
-                                                    {item?.configuration?.preciousMetal?.colors.map((color, idx) => (
+                                                    {item?.configuration?.preciousMetal?.colors?.map((color, idx) => (
                                                         <div key={idx} className="text-gray-600">
-                                                            {color.metalColor} ({color.fineness})
+                                                            {color.metalColor} ({color.fineness}) ({color.polishType})
                                                         </div>
                                                     ))}
+                                                    {(item?.configuration?.preciousMetal?.colors?.length ?? 0) > 1 && (
+                                                        <div className="text-gray-600">
+                                                            <span>Forma: </span>
+                                                            {item.configuration?.preciousMetal?.shape?.category}
+                                                        </div>
+                                                    )}
+                                                    {(item?.configuration?.preciousMetal?.colors?.length ?? 0) > 2 && (
+                                                        <div className="text-gray-600">
+                                                            <span>Lartesia: </span>
+                                                            {item.configuration?.preciousMetal?.shape?.heightPercentage}%
+                                                        </div>
+                                                    )}
+                                                    {(item?.configuration?.preciousMetal?.colors?.length ?? 0) > 2 && (
+                                                        <div className="text-gray-600">
+                                                            <span>Numri i valave: </span>
+                                                            {item.configuration?.preciousMetal?.shape?.waveCount}
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
 
@@ -227,13 +245,14 @@ console.log(orders,"order items")
                                                                 <div>Cilesia: {item?.configuration?.stoneSettings?.stoneQuality}</div>
                                                                 <div>Numri i gureve: {item?.configuration?.stoneSettings?.numberOfStones}</div>
                                                                 <div>Pozicioni: {item?.configuration?.stoneSettings?.position}</div>
+                                                                {item?.configuration?.stoneSettings?.position === "Free" ? `(${(Math.abs(item?.configuration?.stoneSettings?.offset || 0) * 0.1).toFixed(1)}mm ${Number(item?.configuration?.stoneSettings?.offset) > 0 ? 'Right' : 'Left'})` : ''}
                                                             </div>
                                                         );
                                                     }
                                                 })()}
                                             </div>
 
-                                            {item.configuration?.groovesAndEdges?.groove.map((groove, idx) => (
+                                            {item.configuration?.groovesAndEdges?.groove[0].grooveType !== "" ? item.configuration?.groovesAndEdges?.groove.map((groove, idx) => (
                                                 <div key={idx} className="space-y-1">
                                                     <div className="font-semibold text-gray-900">Gravimi {idx+1}</div>
                                                     <div className="space-y-0.5">
@@ -251,9 +270,12 @@ console.log(orders,"order items")
                                                         }
                                                     </div>
                                                 </div>
-                                            ))}
+                                            )): <div className="space-y-1">
+                                                    <div className="font-semibold text-gray-900">Gravimi</div>
+                                                     <div>Nuk ka gravime</div>
+                                                </div>}
 
-                                            {(item.configuration?.groovesAndEdges?.leftEdge || item.configuration?.groovesAndEdges?.rightEdge) && (
+                                            {(item.configuration?.groovesAndEdges?.leftEdge.type !== "none" || item.configuration?.groovesAndEdges?.rightEdge.type !== "none") ? (
                                                 <div className="space-y-1">
                                                     <div className="font-semibold text-gray-900">Skajet</div>
                                                     <div className="space-y-2">
@@ -273,7 +295,10 @@ console.log(orders,"order items")
                                                         )}
                                                     </div>
                                                 </div>
-                                            )}
+                                            ): <div className="space-y-1">
+                                                    <div className="font-semibold text-gray-900">Skajet</div>
+                                                     <div>Nuk ka skaje</div>
+                                                </div>}
 
                                             {item.configuration?.engraving && (
                                                 <div className="space-y-1">

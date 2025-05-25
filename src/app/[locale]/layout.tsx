@@ -9,6 +9,7 @@ import { CartProvider } from '../context/CartContext';
 import NavigationWrapper from "../components/NavigationWrapper";
 import FooterWrapper from "../components/FooterWrapper";
 import OrganizationJsonLd from "../components/JsonLd/OrganizationJsonLd";
+import { StepProvider } from "../context/StepContext";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -137,10 +138,12 @@ export default async function RootLayout({
         <OrganizationJsonLd />
         <NextIntlClientProvider messages={messages}>
             <CartProvider>
-              <NavigationWrapper />
-              {children}
-              <FooterWrapper />
-              <Toaster position="bottom-right" />
+              <StepProvider>
+                <NavigationWrapper />
+                {children}
+                <FooterWrapper />
+                <Toaster position="bottom-right" />
+              </StepProvider>
             </CartProvider>
         </NextIntlClientProvider>
       </body>

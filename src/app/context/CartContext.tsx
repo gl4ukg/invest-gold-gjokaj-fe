@@ -98,14 +98,22 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   // Load cart from localStorage on mount
   useEffect(() => {
     const loadCart = async () => {
-      console.log("here qokla")
       try {
         const savedCart = localStorage.getItem("cart");
         if (savedCart) {
           const parsedCart = JSON.parse(savedCart);
           // If there are items but none is selected, select the first one
-          if (parsedCart.items.length > 0 && !parsedCart.selectedItemId) {
-            parsedCart.selectedItemId = parsedCart.items[0].id;
+          if (parsedCart.items.length > 0) {
+            if (!parsedCart.selectedItemId) {
+              parsedCart.selectedItemId = parsedCart.items[0].id;
+            }
+            // Load configuration from selected item
+            const selectedItem = parsedCart.items.find(
+              (item: CartItem) => item.id === parsedCart.selectedItemId
+            );
+            if (selectedItem?.configuration) {
+              setConfiguratorState(selectedItem.configuration);
+            }
           }
           setCart(parsedCart);
         }
@@ -130,7 +138,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         return total + item.configuration.weight * currentPrice * Number(item?.quantity);
       }
       // Fallback to product price if no weight configuration
-      return 0;
+      return total;
     }, 0);
   };
 
@@ -186,6 +194,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         currentCart.selectedItemId &&
         currentCart.items.find((item) => item.id === productId)?.id ===
           currentCart.selectedItemId;
+      
+      // If we're selecting a new item after removal, reset the configurator state
+      if (wasSelectedItem && newItems.length > 0) {
+        setConfiguratorState(initialConfiguratorState);
+      }
+      
       return {
         items: newItems,
         total: calculateTotal(newItems),
@@ -197,36 +211,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     toast.success(t("notifications.productRemoved"));
   };
 
-  const updateQuantity = (productId: string, quantity: number) => {
-    let shouldShowToast = true;
-
-    setCart((currentCart) => {
-      const item = currentCart.items.find(
-        (item) => item.product.id === productId
-      );
-      if (!item) return currentCart;
-
-      // Check if new quantity exceeds stock
-      if (quantity > item.product.stock) {
-        shouldShowToast = false;
-        toast.error(t("notifications.exceedsStock"));
-        return currentCart;
-      }
-
-      const newItems = currentCart.items?.map((item) =>
-        item.product.id === productId ? { ...item, quantity } : item
-      );
-
-      return {
-        items: newItems,
-        total: calculateTotal(newItems),
-      };
-    });
-
-    if (shouldShowToast) {
-      toast.success(t("notifications.cartUpdated"));
-    }
-  };
 
   const [lastToastTime, setLastToastTime] = useState(0);
   const TOAST_DELAY = 500; // Show toast at most every 500ms
@@ -239,6 +223,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       const newItems = currentCart.items.map((item) =>
         item.id === productId ? { ...item, configuration } : item
       );
+      console.log(newItems, "qokla mjau")
 
       return {
         ...currentCart,
@@ -281,7 +266,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         setConfiguratorState,
         addToCart,
         removeFromCart,
-        updateQuantity,
         clearCart,
         itemCount,
         isCartOpen,
