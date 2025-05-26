@@ -248,6 +248,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const clearCart = () => {
+    console.log("clear cart qokla")
     setCart(initialCart);
     setConfiguratorState(initialConfiguratorState);
     toast.success(t("notifications.cartCleared"));

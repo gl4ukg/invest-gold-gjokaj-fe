@@ -56,6 +56,7 @@ export default function ConfiguratorPage() {
       const selectedItem = cart.items.find(item => item.id === cart.selectedItemId);
       if (selectedItem?.configuration) {
         setConfiguratorState(selectedItem.configuration);
+        setCurrentStep(1);
       } else {
         setConfiguratorState(initialConfiguratorState);
       }

@@ -1,33 +1,38 @@
-export const countries = [
-  'Kosovo',
-  'Albania',
-  'Germany',
-  'Switzerland',
-  'Austria',
-  'Italy',
-  'France',
-  'Spain',
-  'United Kingdom',
-  'Netherlands',
-  'Belgium',
-  'Sweden',
-  'Norway',
-  'Denmark',
-  'Finland',
-  'Greece',
-  'Croatia',
-  'Serbia',
-  'Montenegro',
-  'North Macedonia',
-  'Bulgaria',
-  'Romania',
-  'Hungary',
-  'Czech Republic',
-  'Slovakia',
-  'Poland',
-  'United States',
-  'Canada'
-].sort();
+export interface Country {
+  label: string;
+  value: string;
+}
+
+export const countries: Country[] = [
+  { label: 'Kosovo', value: 'XK' },
+  { label: 'Albania', value: 'AL' },
+  { label: 'Germany', value: 'DE' },
+  { label: 'Switzerland', value: 'CH' },
+  { label: 'Austria', value: 'AT' },
+  { label: 'Italy', value: 'IT' },
+  { label: 'France', value: 'FR' },
+  { label: 'Spain', value: 'ES' },
+  { label: 'United Kingdom', value: 'GB' },
+  { label: 'Netherlands', value: 'NL' },
+  { label: 'Belgium', value: 'BE' },
+  { label: 'Sweden', value: 'SE' },
+  { label: 'Norway', value: 'NO' },
+  { label: 'Denmark', value: 'DK' },
+  { label: 'Finland', value: 'FI' },
+  { label: 'Greece', value: 'GR' },
+  { label: 'Croatia', value: 'HR' },
+  { label: 'Serbia', value: 'RS' },
+  { label: 'Montenegro', value: 'ME' },
+  { label: 'North Macedonia', value: 'MK' },
+  { label: 'Bulgaria', value: 'BG' },
+  { label: 'Romania', value: 'RO' },
+  { label: 'Hungary', value: 'HU' },
+  { label: 'Czech Republic', value: 'CZ' },
+  { label: 'Slovakia', value: 'SK' },
+  { label: 'Poland', value: 'PL' },
+  { label: 'United States', value: 'US' },
+  { label: 'Canada', value: 'CA' }
+].sort((a, b) => a.label.localeCompare(b.label));
 
 export const kosovoMunicipalities = [
   'Prishtina',

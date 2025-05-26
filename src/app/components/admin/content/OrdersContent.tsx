@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { Order } from '@/app/services/orders';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
+import PaymentsService from '@/app/services/paymets';
 
 export default function OrdersContent() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -71,6 +72,19 @@ export default function OrdersContent() {
     }
   };
 
+  const handleRefund = async (transactionId: string) => {
+    setIsLoading(true);
+    try {
+      await PaymentsService.refundOrder(transactionId);
+      toast.success('Refund request sent successfully!');
+    } catch (error) {
+      console.error('Error refunding order:', error);
+      toast.error('Failed to send refund request.');
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
 console.log(orders,"order items")
   return (
     <div className="container mx-auto px-4 py-8">
@@ -83,6 +97,7 @@ console.log(orders,"order items")
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Totali</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Statusi</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Data</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Refund</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider"></th>
             </tr>
           </thead>
@@ -125,6 +140,11 @@ console.log(orders,"order items")
                     {format(new Date(order.createdAt), 'MMM dd, yyyy')}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    {order.status !== OrderStatus.REFUNDED 
+                    ? (
+                      <button onClick={() => handleRefund(order.id)} className="text-red-500 hover:text-red-600">Refund Order</button>
+                    )
+                    : <p className="text-red-500">Refunded</p>}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button onClick={() => toggleRow(order.id)} className="text-darkGray hover:text-gray-700">
@@ -140,11 +160,11 @@ console.log(orders,"order items")
                           <div>
                             <h4 className="font-medium text-darkGray">Adresa e Transportit</h4>
                             <div className="text-sm text-gray-600">
-                              <p className='capitalize'>{order.shippingAddress.fullName}</p>
-                              <p className='capitalize'>{order.shippingAddress.address}</p>
-                              <p className='capitalize'>{order.shippingAddress.city}, {order.shippingAddress.postalCode}</p>
-                              <p className='capitalize'>{order.shippingAddress.country}</p>
-                              <p>{order.shippingAddress.phone}</p>
+                              <p className='capitalize'>Emri: {order.shippingAddress.fullName}</p>
+                              <p className='capitalize'>Adresa: {order.shippingAddress.address}</p>
+                              <p className='capitalize'>Qyteti: {order.shippingAddress.city}, {order.shippingAddress.postalCode}</p>
+                              <p className='capitalize'>Shteti: {order.shippingAddress.country}</p>
+                              <p>Telefoni: {order.shippingAddress.phone}</p>
                             </div>
                           </div>
                           <div>

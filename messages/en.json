@@ -132,7 +132,14 @@
     "error": "Gabim",
     "errorLoading": "Gabim në ngarkimin e porosisë",
     "backToShop": "Kthehu né Dyqan",
-    "price": "Cmimi"
+    "price": "Cmimi",
+    "cancelTitle": "Order Cancelled",
+    "cancelMessage": "Your order has been cancelled. No payment has been processed.",
+    "errorTitle": "Payment Error",
+    "errorMessage": "There was an error processing your payment. Please try again.",
+    "errorSupport": "If the problem persists, please contact our support team.",
+    "tryAgain": "Try Again",
+    "backToHome": "Back to Home"
   },
   "configurator": {
     "noProducts": "Nuk ka produkte në shportë",

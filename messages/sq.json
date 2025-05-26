@@ -132,7 +132,14 @@
     "error": "Gabim",
     "errorLoading": "Gabim në ngarkimin e porosisë",
     "backToShop": "Kthehu né Dyqan",
-    "price": "Cmimi"
+    "price": "Cmimi",
+    "cancelTitle": "Porosia juaj u anullua",
+    "cancelMessage": "Porosia juaj u anullua. Nuk ka pranojë të pranojme.",
+    "errorTitle": "Gabim në Pagesë",
+    "errorMessage": "Ka nje gabim në pranojë të pranojme. Ju lutem, provoni perseri.",
+    "errorSupport": "Nëse problemi persiston, ju lutem na kontaktoni",
+    "tryAgain": "Provoni perseri",
+    "backToHome": "Kryefaqja"
   },
   "configurator": {
     "noProducts": "Nuk ka produkte në shportë",
