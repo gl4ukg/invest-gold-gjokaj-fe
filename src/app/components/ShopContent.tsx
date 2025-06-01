@@ -199,6 +199,14 @@ export default function ShopContent() {
     }
   }, [searchTerm]);
 
+  const ringsText: { [key: string]: string } = {
+    "Ari i Verdhe": t("yellowGold"),
+    "Ari i Bardhë": t("whiteGold"),
+    "Ari Rozë": t("roseGold"),
+    "Ari me 2 Ngjyra": t("twoColorGold"),
+    "Ari Shumëngjyrësh": t("multiColorGold"),
+  };
+
   return (
     <div className="container mx-auto px-4 pt-32 pb-20 min-h-screen">
       <div className="flex flex-col lg:flex-row gap-8">
@@ -276,7 +284,7 @@ export default function ShopContent() {
                             : "text-darkGray group-hover:text-primary"
                         }`}
                       >
-                        {category.name}
+                        {ringsText[category.name]}
                       </span>
                     </label>
                   </div>

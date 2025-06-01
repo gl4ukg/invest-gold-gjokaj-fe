@@ -263,7 +263,7 @@ const RingsSection: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {category.name}
+                {ringsText[category.name]}
                 <Image
                   src={String(category?.image)}
                   alt={`${category.image}-category`}

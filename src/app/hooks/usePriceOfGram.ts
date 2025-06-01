@@ -48,9 +48,9 @@ export const usePriceOfGram = () => {
                         timestamp: Date.now()
                     }));
                     // Optional: Show success message on first load or significant price changes
-                    if (!prices || Math.abs(prices.price - priceData.price) > 1) {
-                        toast.success('Gold prices updated successfully');
-                    }
+                    // if (!prices || Math.abs(prices.price - priceData.price) > 1) {
+                    //     toast.success('Gold prices updated successfully');
+                    // }
                     return;
                 } catch (e) {
                     attempts++;
@@ -75,9 +75,9 @@ export const usePriceOfGram = () => {
         loadCurrentPrice();
 
         // Set up regular refresh interval
-        // const refreshInterval = setInterval(loadCurrentPrice, REFRESH_INTERVAL);
+        const refreshInterval = setInterval(loadCurrentPrice, REFRESH_INTERVAL);
 
-        // return () => clearInterval(refreshInterval);
+        return () => clearInterval(refreshInterval);
     }, []);
 
     return {
