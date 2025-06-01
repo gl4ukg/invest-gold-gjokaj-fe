@@ -18,7 +18,6 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
   const t = useTranslations();
   const { addToCart } = useCart();
 
-
   const handleClick = () => {
     router.push(`/shop/${product.id}`);
   };
@@ -27,8 +26,6 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
     e.stopPropagation();
     addToCart(product);
   };
-
-
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 h-full">

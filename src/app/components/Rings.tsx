@@ -130,7 +130,7 @@ const RingsSection: React.FC = () => {
     const { style, onClick } = props;
     return (
       <button
-        className={`custom-prev-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[450px] left-1/2 transform -translate-x-1/2 mb-4`}
+        className={`custom-prev-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[500px] left-1/2 transform -translate-x-1/2 mb-4`}
         style={{ ...style, display: "block" }}
         onClick={onClick}
       >
@@ -143,7 +143,7 @@ const RingsSection: React.FC = () => {
     const { style, onClick } = props;
     return (
       <button
-        className={`custom-next-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[450px] left-1/2 transform -translate-x-1/2 mb-4 ml-16`}
+        className={`custom-next-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[500px] left-1/2 transform -translate-x-1/2 mb-4 ml-16`}
         style={{ ...style, display: "block" }}
         onClick={onClick}
       >
@@ -302,7 +302,7 @@ const RingsSection: React.FC = () => {
                 {products?.map((ring) => (
                   <motion.div
                     key={ring.id}
-                    className="p-4"
+                    className="p-4 h-full"
                     variants={imageVariants}
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}

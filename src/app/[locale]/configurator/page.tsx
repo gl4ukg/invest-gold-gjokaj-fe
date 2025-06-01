@@ -231,10 +231,23 @@ export default function ConfiguratorPage() {
           configuratorState.stoneSettings.stoneType !== "" &&
           configuratorState.stoneSettings.stoneSize !== "" &&
           configuratorState.stoneSettings.stoneQuality !== "" &&
-          configuratorState.stoneSettings.position !== "" &&
-          // Only validate numberOfStones if the setting type requires it
-          (specialSettingTypes.includes(configuratorState.stoneSettings.settingType) || 
-           configuratorState?.stoneSettings?.numberOfStones > 0)
+          // Position validation - skip for settings that don't need position
+          ([
+            'Cross American', 'Cross pave', 'Cross Channel',
+            'Side American', 'Side pave',
+            'Tensionring', 'Tensionring (Diagonal)',
+            'Eye (Vertical)', 'Eye (Horizontal)', 'Eye (Diagonal)'
+          ].includes(configuratorState.stoneSettings.settingType) || 
+           configuratorState.stoneSettings.position !== "") &&
+
+          // Number of stones validation - skip for settings that don't need it
+          ([
+            'Cross American', 'Cross pave', 'Tensionring',
+            'Tensionring (diagonal)', 'Eye (Vertical)',
+            'Eye horizontal', 'Eye diagonal',
+            'Side American', 'Side pave'
+          ].includes(configuratorState.stoneSettings.settingType) || 
+           configuratorState.stoneSettings.numberOfStones > 0)
         );
       case 6:
         if (activeTab === "grooves") {
