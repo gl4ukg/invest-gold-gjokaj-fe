@@ -7,6 +7,7 @@ import { useCart } from '../context/CartContext';
 import { Product } from '../types/product.types';
 import { FaCartShopping } from 'react-icons/fa6';
 
+
 interface ProductCardProps {
   product: Product;
   showAddToCart?: boolean;
@@ -17,6 +18,7 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
   const t = useTranslations();
   const { addToCart } = useCart();
 
+
   const handleClick = () => {
     router.push(`/shop/${product.id}`);
   };
@@ -26,8 +28,10 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
     addToCart(product);
   };
 
+
+
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 h-full">
       <div 
         className="relative h-32 md:h-64 cursor-pointer"
         onClick={handleClick}
@@ -50,7 +54,7 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
           className="text-base font-normal mb-2 cursor-pointer text-darkGray"
           onClick={handleClick}
         >
-          {product.description.split(' ').slice(0, 11).join(' ').concat('...')}
+          <p className="truncate">{product.description}</p>
         </h6>
         <div className="flex justify-between items-center">
           <span className="text-xl font-bold text-lightGray">{product.weight} gr.</span>

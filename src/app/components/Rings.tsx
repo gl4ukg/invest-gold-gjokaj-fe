@@ -11,11 +11,13 @@ import { Category } from "../types/category.types";
 import ProductsService from "../services/products";
 import { Product } from "../types/product.types";
 import ProductCard from "./ProductCard";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const RingsSection: React.FC = () => {
   const t = useTranslations("rings");
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>();
 
   // Refs for scroll animations
@@ -55,13 +57,17 @@ const RingsSection: React.FC = () => {
   const fetchProducts = async () => {
     try {
       if (!selectedCategory) return;
+      setIsLoading(true);
 
       const related = await ProductsService.search({
-        categoryIds: [selectedCategory]
+        categoryIds: [selectedCategory],
+        sortOrder: "DESC",
       });
       setProducts(related.items);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -124,7 +130,7 @@ const RingsSection: React.FC = () => {
     const { style, onClick } = props;
     return (
       <button
-        className={`custom-prev-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[500px] left-1/2 transform -translate-x-1/2 mb-4`}
+        className={`custom-prev-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[450px] left-1/2 transform -translate-x-1/2 mb-4`}
         style={{ ...style, display: "block" }}
         onClick={onClick}
       >
@@ -137,7 +143,7 @@ const RingsSection: React.FC = () => {
     const { style, onClick } = props;
     return (
       <button
-        className={`custom-next-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[500px] left-1/2 transform -translate-x-1/2 mb-4 ml-16`}
+        className={`custom-next-arrow absolute bg-lightGray text-white text-sm py-1 px-2 rounded-md radius-2m top-[450px] left-1/2 transform -translate-x-1/2 mb-4 ml-16`}
         style={{ ...style, display: "block" }}
         onClick={onClick}
       >
@@ -281,19 +287,31 @@ const RingsSection: React.FC = () => {
             initial="hidden"
             animate={isCarouselInView ? "visible" : "hidden"}
           >
-            <Slider {...sliderSettings}>
-              {products?.map((ring) => (
+            {isLoading ? (
+              <div className="flex justify-center items-center h-64">
                 <motion.div
-                  key={ring.id}
-                  className="p-4"
-                  variants={imageVariants}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  className="text-primary text-4xl"
                 >
-                  <ProductCard key={ring.id} product={ring} />
+                  <AiOutlineLoading3Quarters />
                 </motion.div>
-              ))}
-            </Slider>
+              </div>
+            ) : (
+              <Slider {...sliderSettings}>
+                {products?.map((ring) => (
+                  <motion.div
+                    key={ring.id}
+                    className="p-4"
+                    variants={imageVariants}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ProductCard key={ring.id} product={ring} />
+                  </motion.div>
+                ))}
+              </Slider>
+            )}
           </motion.div>
         </motion.div>
       </motion.div>
