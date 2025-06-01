@@ -1,486 +1,500 @@
 {
   "navbar": {
-    "about": "Rreth Nesh",
-    "rings": "Unaza",
-    "jewelry": "Stoli",
-    "services": "Shërbimet",
+    "about": "Über uns",
+    "rings": "Ringe",
+    "jewelry": "Schmuck",
+    "services": "Dienstleistungen",
     "contact": "Kontakt",
-    "shop": "Dyqan"
+    "shop": "Shop"
   },
   "header": {
     "title": "INVEST GOLD",
-    "subtitle": "Ne jemi gjithmonë pranë atyre që betohen përpara dashurisë",
-    "secondSubtitle": "Unaza Fejese, Unaza Martese, Byzylykë dhe Zinxhirë Ari në Kosovë",
-    "seeMore": "Shiko më shumë",
+    "subtitle": "Wir sind immer bei denen, die Liebe wertschätzen",
+    "secondSubtitle": "Verlobungsringe, Eheringe, Armbänder und Goldketten im Kosovo",
+    "seeMore": "Mehr sehen",
     "video": "Video"
   },
   "about": {
-    "title": "Rreth Nesh",
-    "subtitle": "Invest Gold Gjokaj është destinacioni juaj kryesor për unaza fejese, unaza martese, byzylykë ari dhe zinxhirë ari në Kosovë. Ne krijojmë momente të paharrueshme me koleksionin tonë të kujdesshëm të stolive të arit, duke përfshirë unaza fejese moderne, unaza martese klasike, byzylykë ari të personalizuar dhe zinxhirë ari cilësor. Çdo pjesë është punuar me ekspertizë për të përjetësuar momentet tuaja të veçanta."
+    "title": "Über uns",
+    "subtitle": "Invest Gold Gjokaj ist Ihre erste Adresse für Verlobungsringe, Eheringe, Goldarmbänder und Goldketten im Kosovo. Wir schaffen unvergessliche Momente mit unserer sorgfältig kuratierten Kollektion von Goldschmuck, einschließlich moderner Verlobungsringe, klassischer Eheringe, personalisierter Goldarmbänder und hochwertiger Goldketten. Jedes Stück wird fachmännisch gefertigt, um Ihre besonderen Momente zu verewigen."
   },
   "rings": {
-    "rings": "Unaza",
-    "title": "Unazë",
-    "subtitle": "Zgjidhni unazën perfekte të fejesës ose martesës nga koleksioni ynë i kujdesshëm. Zbuloni byzylykë dhe zinxhirë unikë ari të dizajnuar për çdo moment të veçantë në jetën tuaj. Mjeshtëria jonë e arit siguron cilësi të qëndrueshme dhe stil të përjetshëm.",
-    "seeMore": "Shiko më shumë",
-    "shop": "Blej",
-    "width": "Gjerësia",
-    "height": "Lartësia",
-    "yellowGold": "Ari i Verdhë",
-    "whiteGold": "Ari i Bardhë",
-    "roseGold": "Ari Rozë",
-    "twoColorGold": "Ari Dy-ngjyrësh",
-    "multiColorGold": "Ari Shumëngjyrësh",
-    "prev": "Prapa",
-    "next": "Para"
+    "rings": "Ringe",
+    "title": "Ring",
+    "subtitle": "Wählen Sie den perfekten Verlobungs- oder Ehering aus unserer kuratierten Kollektion. Entdecken Sie einzigartige Goldarmbänder und Ketten, die für jeden besonderen Moment in Ihrem Leben gestaltet sind. Unsere Goldschmiedekunst garantiert dauerhafte Qualität und zeitlosen Stil.",
+    "seeMore": "Mehr sehen",
+    "shop": "Shop",
+    "width": "Breite",
+    "height": "Höhe",
+    "yellowGold": "Gelbgold",
+    "whiteGold": "Weißgold",
+    "roseGold": "Roségold",
+    "twoColorGold": "Zweifarbiges Gold",
+    "multiColorGold": "Mehrfarbiges Gold",
+    "prev": "Zurück",
+    "next": "Weiter"
   },
   "services": {
-    "title": "Shërbimet Tona",
-    "subtitle": "Zbuloni koleksionin tonë të kujdesshëm të stolive të arit dhe shërbimeve profesionale",
-    "seoDescription": "Shërbime profesionale të stolive të arit në Kosovë, përfshirë unaza fejese, unaza martese, byzylykë ari dhe zinxhirë ari të personalizuar",
+    "title": "Dienstleistungen",
+    "subtitle": "Entdecken Sie unsere sorgfältig kuratierte Kollektion von Goldschmuck und professionellen Dienstleistungen",
+    "seoDescription": "Professionelle Goldschmuck-Dienstleistungen im Kosovo, einschließlich Verlobungsringe, Eheringe, Goldarmbänder und personalisierte Goldketten",
     "items": {
       "rings": {
-        "title": "Unaza Fejese & Martese",
-        "description": "Koleksion ekskluziv i unazave të fejesës dhe martesës, të punuara mjeshtërisht nga ari më i pastër. Dizajne moderne dhe klasike për momentet tuaja më të rëndësishme."
+        "title": "Verlobungsringe & Eheringe",
+        "description": "Entdecken Sie unsere exklusive Kollektion von Verlobungs- und Eheringen, meisterhaft gefertigt aus reinem Gold. Moderne und klassische Designs für Ihre besonderen Momente."
       },
       "bracelets": {
-        "title": "Byzylykë & Rrathë Ari",
-        "description": "Byzylykë dhe rrathë ari të personalizuar, të krijuar me detaje të hollësishme për çdo stil dhe rast. Zgjidhni nga koleksioni ynë i gjerë i dizajneve unike."
+        "title": "Goldarmbänder & Ketten",
+        "description": "Personalisierte Goldarmbänder und Armreifen, mit exquisiten Details für jeden Stil und Anlass gefertigt. Wählen Sie aus unserer breiten Kollektion einzigartiger Designs."
       },
       "necklaces": {
-        "title": "Zinxhirë & Varëse Ari",
-        "description": "Zinxhirë dhe varëse ari në dizajne të ndryshme, nga klasike në moderne. Të gjitha të punuara me ar të pastër për të siguruar cilësi premium."
+        "title": "Goldketten & Anhänger",
+        "description": "Goldketten und Anhänger in verschiedenen Designs, von klassisch bis modern. Alle aus reinem Gold gefertigt, um Premium-Qualität zu gewährleisten."
       },
       "custom": {
-        "title": "Stoli të Personalizuara",
-        "description": "Ne krijojmë stoli të personalizuara sipas preferencave tuaja. Nga dizajni deri në realizim, çdo detaj është i përshtatur sipas specifikimeve tuaja."
+        "title": "Personalisierter Schmuck",
+        "description": "Wir fertigen personalisierten Schmuck nach Ihren Wünschen. Von der Gestaltung bis zur Ausführung wird jedes Detail nach Ihren Vorgaben angepasst."
       },
       "repair": {
-        "title": "Riparim Profesional",
-        "description": "Shërbime profesionale riparimi për të gjitha llojet e stolive të arit. Restaurim dhe mirëmbajtje me kujdes maksimal."
+        "title": "Professionelle Reparatur",
+        "description": "Professionelle Reparaturservices für alle Arten von Goldschmuck. Restaurierungen und Reparaturen mit größter Sorgfalt."
       },
       "express": {
-        "title": "Shërbim i Shpejtë",
-        "description": "Përmbushje e shpejtë e porosive tuaja, duke ruajtur standardet tona të larta të cilësisë."
+        "title": "Express Service",
+        "description": "Schnelle Erfüllung Ihrer Bestellungen unter Einhaltung unserer höchsten Qualitätsstandards."
       },
       "delivery": {
-        "title": "Dërgesa në Shtëpi",
-        "description": "Shërbim i sigurt transporti për produktet tuaja deri në derën tuaj."
+        "title": "Lieferung nach Hause",
+        "description": "Sicherer Versandservice für Ihre Produkte bis zu Ihrer Haustür."
       },
       "guarantee": {
-        "title": "Garanci e Plotë",
-        "description": "Ne ofrojmë garanci të plotë për të gjitha produktet tona, duke siguruar standardet më të larta të cilësisë."
+        "title": "Volle Garantie",
+        "description": "Wir bieten volle Garantie für alle unsere Produkte und gewährleisten höchste Qualitätsstandards."
       }
     }
   },
   "contact": {
     "title": "Kontakt",
-    "informationContact": "Informacione Kontakti",
-    "openingHours": "Orari i Punës",
-    "address": "Adresa",
+    "informationContact": "Kontaktinformationen",
+    "openingHours": "Öffnungszeiten",
+    "address": "Adresse",
     "phone": "Telefon",
-    "email": "Email",
-    "weekdays": "E Hënë - E Premte",
-    "saturday": "E Shtunë",
-    "sunday": "E Diel",
+    "email": "E-Mail",
+    "weekdays": "Montag - Freitag",
+    "saturday": "Samstag",
+    "sunday": "Sonntag",
     "hours": {
       "weekdays": "08:00 - 17:00",
-      "saturday": "Mbyllur",
-      "sunday": "Mbyllur"
+      "saturday": "Geschlossen",
+      "sunday": "Geschlossen"
     },
     "form": {
-      "firstName": "Emri",
-      "lastName": "Mbiemri",
-      "email": "Email",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail",
       "phone": "Telefon",
-      "message": "Mesazhi",
-      "send": "Dërgo"
+      "message": "Nachricht",
+      "send": "Senden"
     }
   },
   "orderConfirmation": {
     "paymentMethods": {
-      "bank_transfer": "Transfer Bankar",
-      "cash_on_delivery": "Para në Dorëzim"
+      "bank_transfer": "Überweisung",
+      "cash_on_delivery": "Nachnahme"
     },
     "shippingMethods": {
-      "local": "Dërgesë Lokale (Kosovë)",
-      "international": "Dërgesë Ndërkombtare"
+      "local": "Lokale Lieferung (Kosovo)",
+      "international": "Internationale Lieferung"
     },
-    "productId": "ID e Produktit",
-    "productName": "Emri i Produktit",
+    "productId": "Produkt-ID",
+    "productName": "Produktname",
     "addressLabels": {
-      "name": "Emri",
-      "address": "Adresa",
-      "city": "Qyteti",
-      "country": "Shteti",
-      "phone": "Numri i Telefonit"
+      "name": "Name",
+      "address": "Adresse",
+      "city": "Stadt",
+      "country": "Land",
+      "phone": "Telefon",
+      "title": "Bestellbestätigung"
     },
-    "thankYou": "Faleminderit për porosinë tuaj!",
-    "orderNumber": "Numri i Porosisë",
-    "orderDetails": "Detajet e Porosisë",
-    "status": "Statusi i Porosisë",
-    "items": "Produktet",
-    "quantity": "Sasia",
-    "shippingAddress": "Adresa e Dërgesës",
-    "paymentInformation": "Informacioni i Pagesës",
-    "method": "Mënyra e Pagesës",
-    "shipping": "Mënyra e Dërgesës",
-    "orderSummary": "Përmbledhja e Porosisë",
-    "subtotal": "Nëntotali",
-    "total": "Totali",
-    "continueShopping": "Vazhdo Blerjet",
-    "error": "Gabim",
-    "errorLoading": "Gabim në ngarkimin e porosisë",
-    "backToShop": "Kthehu né Dyqan",
-    "price": "Cmimi",
-    "cancelTitle": "Porosia juaj u anullua",
-    "cancelMessage": "Porosia juaj u anullua. Nuk ka pranojë të pranojme.",
-    "errorTitle": "Gabim në Pagesë",
-    "errorMessage": "Ka nje gabim në pranojë të pranojme. Ju lutem, provoni perseri.",
-    "errorSupport": "Nëse problemi persiston, ju lutem kontaktoni timin e tjetër.",
-    "tryAgain": "Provoni perseri",
-    "backToHome": "Kryefaqja"
+    "thankYou": "Vielen Dank für Ihre Bestellung!",
+    "orderNumber": "Bestellnummer",
+    "orderDate": "Bestelldatum",
+    "orderStatus": "Bestellstatus",
+    "orderTotal": "Gesamtbetrag",
+    "shippingAddress": "Lieferadresse",
+    "billingAddress": "Rechnungsadresse",
+    "paymentMethod": "Zahlungsmethode",
+    "shippingMethod": "Versandart",
+    "orderDetails": "Bestelldetails",
+    "product": "Produkt",
+    "quantity": "Menge",
+    "price": "Preis",
+    "subtotal": "Zwischensumme",
+    "shipping": "Versand",
+    "total": "Gesamtsumme",
+    "printOrder": "Bestellung drucken",
+    "backToHome": "Zurück zur Startseite",
+    "viewOrder": "Bestellung ansehen",
+    "orderProcessing": "Ihre Bestellung wird bearbeitet",
+    "orderShipped": "Ihre Bestellung wurde versandt",
+    "orderDelivered": "Ihre Bestellung wurde zugestellt",
+    "trackOrder": "Bestellung verfolgen",
+    "needHelp": "Benötigen Sie Hilfe mit Ihrer Bestellung?",
+    "cancelMessage": "Ihre Bestellung wurde storniert. Es wurde keine Zahlung verarbeitet.",
+    "errorTitle": "Zahlungsfehler",
+    "errorMessage": "Bei der Verarbeitung Ihrer Zahlung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "errorSupport": "Wenn das Problem weiterhin besteht, kontaktieren Sie bitte unseren Kundenservice.",
+    "tryAgain": "Erneut versuchen"
   },
   "configurator": {
-    "noProducts": "Nuk ka produkte në shportë",
-    "noProductsDescription": "Ju lutem, se pari duhet te shtoni produkte ne shporte",
-    "completeStepBeforeProceeding": "Ju lutem plotsoni gjitha fushat para se te vazhdoni",
+    "noProducts": "Keine Produkte im Warenkorb",
+    "noProductsDescription": "Bitte fügen Sie zuerst Produkte in Ihren Warenkorb hinzu",
+    "completeStepBeforeProceeding": "Bitte füllen Sie alle Felder aus, bevor Sie fortfahren",
     "dimensions": {
-      "selectedProfile": "Profili i Zgjedhur",
-      "profileWidth": "Gjerësia e Profilit (mm)",
-      "profileHeight": "Lartësia e Profilit (mm)",
-      "ringSizeSystem": "Sistemi i Madhësisë së Unazës",
-      "ringSize": "Madhësia e Unazës"
+      "selectedProfile": "Ausgewähltes Profil",
+      "profileWidth": "Profilbreite (mm)",
+      "profileHeight": "Profilhöhe (mm)",
+      "ringSizeSystem": "Ringgrößensystem",
+      "ringSize": "Ringgröße"
     },
     "engraving": {
-      "engravingText": "Teksti për gravim",
-      "charactersCount": "{count} / 25 karaktere",
-      "symbols": "Simbolet",
-      "fontStyle": "Stili i Shkrimit",
-      "preview": "Pamja Paraprake",
-      "inputPlaceholder": "Shkruani tekstin për gravim...",
-      "placeholder": "Teksti juaj do të shfaqet këtu"
+      "engravingText": "Gravurtext",
+      "charactersCount": "{count} / 25 Zeichen",
+      "symbols": "Symbole",
+      "fontStyle": "Schriftart",
+      "preview": "Vorschau",
+      "inputPlaceholder": "Gravurtext eingeben...",
+      "placeholder": "Ihr Text erscheint hier"
     },
     "groovesAndEdges": {
-      "type": "Lloji",
-      "edges": "Skajet",
-      "grooves": "Kanalet",
-      "width": "Gjerësia (mm)",
-      "depth": "Thellësia (mm)",
-      "surface": "Sipërfaqja",
-      "grooveSettings": "Cilësimet e Kanalit",
-      "grooveType": "Lloji i Kanalit",
-      "grooveDepth": "Thellësia e Kanalit (mm)",
-      "grooveAlignment": "Rreshtimi i Kanalit",
-      "edgeSettings": "Cilësimet e Skajeve",
-      "leftEdge": "Skaji i Majtë",
-      "rightEdge": "Skaji i Djathtë"
+      "type": "Typ",
+      "edges": "Kanten",
+      "grooves": "Rillen",
+      "width": "Breite (mm)",
+      "depth": "Tiefe (mm)",
+      "surface": "Oberfläche",
+      "grooveSettings": "Rilleneinstellungen",
+      "grooveType": "Rillentyp",
+      "grooveDepth": "Rillentiefe (mm)",
+      "grooveAlignment": "Rillenausrichtung",
+      "edgeSettings": "Kanteneinstellungen",
+      "leftEdge": "Linke Kante",
+      "rightEdge": "Rechte Kante"
     },
     "preciousMetal": {
-      "selectColorType": "Zgjidh Llojin e Ngjyrës",
-      "selectShape": "Zgjidh Formën",
+      "selectColorType": "Farbtyp auswählen",
+      "selectShape": "Form auswählen",
       "colorTypes": {
-        "single": "Një Ngjyrë",
-        "two": "Dy Ngjyra",
-        "three": "Tre Ngjyra"
+        "single": "Einfarbig",
+        "two": "Zweifarbig",
+        "three": "Dreifarbig"
       },
-      "waveCount": "Numri i Valëve",
-      "waveHeight": "Lartësia e Valëve",
-      "diagonalHeight": "Lartësia Diagonale",
-      "metalColor": "Ngjyra e Metalit",
-      "polishType": "Lloji i Llustrimit",
-      "fineness": "Pastertësia"
+      "waveCount": "Wellenanzahl",
+      "waveHeight": "Wellenhöhe",
+      "diagonalHeight": "Diagonalhöhe",
+      "metalColor": "Metallfarbe",
+      "polishType": "Politurart",
+      "fineness": "Feingehalt"
     },
     "weight": {
-      "title": "Zgjidh Peshën (g)"
+      "title": "Gewicht auswählen (g)"
     },
     "stones": {
-      "settingType": "Lloji i Vendosjes së Gurit",
-      "stoneType": "Lloji i Gurit",
-      "stoneSize": "Përmasat e Gurit",
-      "stoneQuality": "Cilësia e Gurit",
-      "numberOfStones": "Numri i Gurëve",
-      "stoneSpacing": "Hapësira e Gurëve",
-      "stonePosition": "Pozicioni i Gurit",
-      "rows": "Rreshtat",
+      "settingType": "Fassungsart",
+      "stoneType": "Steinart",
+      "stoneSize": "Steingröße",
+      "stoneQuality": "Steinqualität",
+      "numberOfStones": "Anzahl der Steine",
+      "stoneSpacing": "Steinabstand",
+      "stonePosition": "Steinposition",
+      "rows": "Reihen",
       "numberOfChannels": "Anzahl der Kanäle"
     },
     "navigation": {
-      "previousStep": "Hapi i Mëparshëm",
-      "nextStep": "Hapi Tjetër",
-      "complete": "Përfundo",
-      "nextRing": "Unaza rradhes"
+      "previousStep": "Vorheriger Schritt",
+      "nextStep": "Nächster Schritt",
+      "complete": "Fertigstellen",
+      "nextRing": "Nächster Ring"
     },
     "colors": {
-      "primary": "Parësor",
-      "secondary": "Dytësor",
-      "tertiary": "Tretësor",
-      "colorLabel": "Ngjyra"
+      "primary": "Primär",
+      "secondary": "Sekundär",
+      "tertiary": "Tertiär",
+      "colorLabel": "Farbe"
     },
     "cart": {
-      "ringsInCart": "Unazat në Shportë"
+      "ringsInCart": "Ringe im Warenkorb"
     },
     "steps": {
-      "profiles": "Profilet",
-      "dimensions": "Dimensionet",
-      "preciousMetal": "Metali i Çmuar",
-      "stones": "Gurët",
-      "groovesAndEdges": "Gravurat / Skajet",
-      "engraving": "Gdhendja",
-      "weight": "Pesha"
+      "profiles": "Profile",
+      "dimensions": "Abmessungen",
+      "preciousMetal": "Edelmetall",
+      "stones": "Steine",
+      "groovesAndEdges": "Rillen und Kanten",
+      "engraving": "Gravur",
+      "weight": "Gewicht"
     },
     "validation": {
-      "configurator": "Konfiguratori",
-      "weight": "Pesha",
-      "selectWeight": "Please choose weight",
-      "selectProfile": "Ju lutemi zgjidhni një profil për të vazhduar",
-      "enterDimensions": "Ju lutemi plotësoni të gjitha dimensionet e kërkuara",
-      "selectMetal": "Ju lutem zgjidhni një metal të çmuar",
-      "selectStones": "Ju lutem zgjidheni nje gure",
-      "selectGrooves": "Ju lutem zgjedhini kanalet",
-      "selectEdges": "Ju lutem zgjidhini skajet",
-      "enterEngraving": "Please complete engraving settings",
-      "selectStoneSettings": "Ju lutemi plotësoni parametrat e gurit",
-      "completeGroovesAndEdges": "Ju lutemi plotësoni parametrat e kanaleve dhe skajeve"
+      "configurator": "Konfigurator",
+      "weight": "Gewicht",
+      "selectWeight": "Bitte wählen Sie das Gewicht",
+      "selectProfile": "Bitte wählen Sie ein Profil zum Fortfahren",
+      "enterDimensions": "Bitte geben Sie alle erforderlichen Abmessungen ein",
+      "selectMetal": "Bitte wählen Sie ein Edelmetall",
+      "selectStones": "Bitte wählen Sie einen Stein",
+      "selectGrooves": "Bitte wählen Sie Rillen",
+      "selectEdges": "Bitte wählen Sie Kanten",
+      "enterEngraving": "Bitte vervollständigen Sie die Gravureinstellungen",
+      "selectStoneSettings": "Bitte wählen Sie die Steineinstellungen",
+      "completeGroovesAndEdges": "Bitte vervollständigen Sie die Rillen- und Kanteneinstellungen"
     },
-    "left": "Left",
-    "center": "Center",
-    "right": "Right",
-    "free": "Free"
+    "left": "Links",
+    "center": "Mitte",
+    "right": "Rechts",
+    "free": "Frei"
   },
   "shop": {
-    "title": "Dyqan",
-    "filters": "Filtrat",
-    "search": "Kërko",
-    "searchPlaceholder": "Kërko produkte...",
-    "categories": "Kategoritë",
-    "priceRange": "Gama e Çmimit",
+    "title": "Shop",
+    "filters": "Filter",
+    "search": "Suchen",
+    "searchPlaceholder": "Produkte suchen...",
+    "categories": "Kategorien",
+    "priceRange": "Preisbereich",
     "min": "Min",
     "max": "Max",
-    "sortBy": "Rendit Sipas",
-    "newest": "Më të Rejat",
-    "oldest": "Më të Vjetrat",
-    "priceLowToHigh": "Çmimi: Ulët në të Lartë",
-    "priceHighToLow": "Çmimi: Lartë në të Ulët",
-    "addToCart": "Shto në Shportë",
-    "loading": "Duke u ngarkuar...",
-    "noProducts": "Nuk u gjetën produkte",
-    "outOfStock": "Nuk ka stok",
-    "errorFetchingProducts": "Gabim në ngarkimin e produkteve",
-    "errorFetchingCategories": "Gabim në ngarkimin e kategorive",
-    "categoryAll": "Të Gjitha",
-    "categoryRings": "Unaza",
-    "categoryBracelets": "Byzylykë",
-    "categoryNecklaces": "Varëse",
-    "categoryCustom": "Të Personalizuara",
-    "allCategories": "Të Gjitha Kategoritë",
-    "inStock": "Në Stok"
+    "sortBy": "Sortieren nach",
+    "newest": "Neueste",
+    "oldest": "Älteste",
+    "priceLowToHigh": "Preis: Niedrig nach Hoch",
+    "priceHighToLow": "Preis: Hoch nach Niedrig",
+    "addToCart": "In den Warenkorb",
+    "loading": "Lädt...",
+    "noProducts": "Keine Produkte gefunden",
+    "outOfStock": "Nicht vorrätig",
+    "errorFetchingProducts": "Fehler beim Laden der Produkte",
+    "errorFetchingCategories": "Fehler beim Laden der Kategorien",
+    "categoryAll": "Alle",
+    "categoryRings": "Ringe",
+    "categoryBracelets": "Armbänder",
+    "categoryNecklaces": "Halsketten",
+    "categoryCustom": "Individuell",
+    "allCategories": "Alle Kategorien",
+    "inStock": "Auf Lager"
   },
   "cart": {
-    "title": "Shporta e Blerjeve",
-    "close": "Mbyll",
-    "emptyCart": "Shporta juaj është bosh",
-    "startShopping": "Filloni blerjet duke shtuar artikuj në shportën tuaj",
-    "continueShopping": "Vazhdo Blerjet",
-    "subtotal": "Nëntotali",
-    "shippingNote": "Çmimi llogaritet pasi behet konfigurimi unazave.",
-    "checkout": "Vazhdo në Checkout",
-    "configurator": "Vazhdo te konfiguratori",
-    "or": "ose",
-    "addToCart": "Shto në Shportë",
-    "outOfStock": "Nuk ka stok",
-    "itemAdded": "Artikulli u shtua në shportë",
-    "itemRemoved": "Artikulli u hoq nga shporta",
-    "quantityUpdated": "Sasia u përditësua"
+    "title": "Warenkorb",
+    "close": "Schließen",
+    "emptyCart": "Ihr Warenkorb ist leer",
+    "startShopping": "Beginnen Sie mit dem Einkauf, indem Sie Artikel in den Warenkorb legen",
+    "continueShopping": "Weiter einkaufen",
+    "subtotal": "Zwischensumme",
+    "shippingNote": "Der Preis wird nach der Ringkonfiguration berechnet.",
+    "checkout": "Zur Kasse",
+    "configurator": "Zum Konfigurator",
+    "or": "oder",
+    "addToCart": "In den Warenkorb",
+    "outOfStock": "Nicht vorrätig",
+    "itemAdded": "Artikel zum Warenkorb hinzugefügt",
+    "itemRemoved": "Artikel aus dem Warenkorb entfernt",
+    "quantityUpdated": "Menge aktualisiert"
   },
   "checkout": {
-    "title": "Checkout",
-    "emptyCart": "Shporta juaj është bosh",
-    "continueShopping": "Vazhdo Blerjet",
-    "contactInformation": "Informacioni i Kontaktit",
-    "email": "Email",
-    "shippingAddress": "Adresa e Dërgesës",
-    "fullName": "Emri i Plotë",
-    "address": "Adresa",
-    "city": "Qyteti",
-    "country": "Shteti",
-    "postalCode": "Kodi Postar",
+    "title": "Kasse",
+    "emptyCart": "Ihr Warenkorb ist leer",
+    "continueShopping": "Weiter einkaufen",
+    "contactInformation": "Kontaktinformationen",
+    "email": "E-Mail",
+    "shippingAddress": "Lieferadresse",
+    "fullName": "Vollständiger Name",
+    "address": "Adresse",
+    "city": "Stadt",
+    "country": "Land",
+    "postalCode": "Postleitzahl",
     "phone": "Telefon",
-    "shippingMethod": "Metoda e Dërgesës",
-    "localDelivery": "Dërgesa Lokale (Kosovë)",
-    "internationalDelivery": "Dërgesa Ndërkombëtare",
-    "paymentMethod": "Metoda e Pagesës",
-    "creditCard": "Kartë Krediti",
-    "bankTransfer": "Transfertë Bankare",
-    "cashOnDelivery": "Para në Dorëzim",
-    "payWithPaypal": "Paguaj në mënyrë të sigurt me PayPal",
-    "payWithCard": "Paguaj me kartë krediti ose debiti",
-    "payOnDelivery": "Paguaj me para në dorë kur porosia juaj mbërrin",
-    "orderSummary": "Përmbledhja e Porosisë",
-    "product": "Artikulli",
-    "quantity": "Sasia",
-    "subtotal": "Nëntotali",
-    "shipping": "Transporti",
-    "total": "Totali",
-    "placeOrder": "Vendos Porosinë",
-    "processing": "Duke u procesuar...",
-    "errorProcessingOrder": "Gabim në procesimin e porosisë suaj. Ju lutemi provoni përsëri.",
-    "choosePaymentMethod": "Zgjedhni metoden e pagesës"
+    "shippingMethod": "Versandart",
+    "localDelivery": "Lokale Lieferung (Kosovo)",
+    "internationalDelivery": "Internationale Lieferung",
+    "paymentMethod": "Zahlungsmethode",
+    "creditCard": "Kreditkarte",
+    "bankTransfer": "Überweisung",
+    "cashOnDelivery": "Nachnahme",
+    "payWithPaypal": "Mit PayPal bezahlen",
+    "payWithCard": "Mit Kredit- oder Debitkarte bezahlen",
+    "payOnDelivery": "Zahlung bei Lieferung",
+    "orderSummary": "Bestellzusammenfassung",
+    "product": "Produkt",
+    "quantity": "Menge",
+    "subtotal": "Zwischensumme",
+    "shipping": "Versand",
+    "total": "Gesamtsumme",
+    "placeOrder": "Bestellung aufgeben",
+    "processing": "Wird bearbeitet...",
+    "errorProcessingOrder": "Fehler bei der Bearbeitung Ihrer Bestellung. Bitte versuchen Sie es erneut.",
+    "choosePaymentMethod": "Zahlungsmethode wählen"
   },
   "product": {
-    "loading": "Duke ngarkuar produktin...",
-    "error": "Gabim në ngarkimin e produktit",
-    "notFound": "Produkti nuk u gjet",
-    "backToShop": "Kthehu në Dyqan",
-    "addToCart": "Shto në Shportë",
-    "outOfStock": "Nuk ka stok",
-    "description": "Përshkrimi",
-    "specifications": "Specifikimet",
-    "category": "Kategoria",
-    "price": "Çmimi",
-    "stock": "Stoku",
-    "inStock": "Në Stok",
-    "relatedProducts": "Produkte të Ngjashme",
-    "quantity": "Sasia"
+    "loading": "Produkt wird geladen...",
+    "error": "Fehler beim Laden des Produkts",
+    "notFound": "Produkt nicht gefunden",
+    "backToShop": "Zurück zum Shop",
+    "addToCart": "In den Warenkorb",
+    "outOfStock": "Nicht vorrätig",
+    "description": "Beschreibung",
+    "specifications": "Spezifikationen",
+    "category": "Kategorie",
+    "price": "Preis",
+    "stock": "Lagerbestand",
+    "inStock": "Auf Lager",
+    "relatedProducts": "Ähnliche Produkte",
+    "quantity": "Menge"
   },
   "notifications": {
-    "error": "Ndodhi një gabim",
-    "outOfStock": "Nuk ka stok",
-    "exceedsStock": "Sasia e këruar tejkalon stokun e disponueshëm",
-    "productAdded": "Produkti u shtua shportë",
-    "productRemoved": "Produkti u hoq nga shporta",
-    "cartUpdated": "Shporta u përditësua me sukses",
-    "configurationUpdated": "Konfigurimi u përditësua me sukses",
-    "cartCleared": "Shporta u pastrua me sukses"
+    "error": "Ein Fehler ist aufgetreten",
+    "outOfStock": "Nicht vorrätig",
+    "exceedsStock": "Die angeforderte Menge überschreitet den verfügbaren Lagerbestand",
+    "productAdded": "Produkt zum Warenkorb hinzugefügt",
+    "productRemoved": "Produkt aus dem Warenkorb entfernt",
+    "cartUpdated": "Warenkorb erfolgreich aktualisiert",
+    "configurationUpdated": "Konfiguration erfolgreich aktualisiert",
+    "cartCleared": "Warenkorb erfolgreich geleert"
   },
   "jewelry": {
-    "description": "Ne u ofrojmë klientëve tanë mundësinë per te zbuluar botë unike, elegante dhe te çmuar te stolive."
+    "description": "Wir bieten unseren Kunden die Möglichkeit, einzigartige, elegante und schöne Schmuckstücke zu finden."
   },
   "terms": {
-    "title": "Kushtet dhe Rregullat",
+    "title": "Allgemeine Geschäftsbedingungen",
     "introduction": {
-      "title": "Hyrje",
-      "content": "Mirë se vini në Invest Gold Gjokaj. Duke hyrë dhe përdorur faqen tonë të internetit, ju pranoni të jeni të lidhur me këto Kushte dhe Rregulla."
+      "title": "Einleitung",
+      "content": "Willkommen bei Invest Gold Gjokaj. Durch den Zugriff auf und die Nutzung unserer Website stimmen Sie zu, an diese Allgemeinen Geschäftsbedingungen gebunden zu sein."
     },
     "acceptance": {
-      "title": "Pranimi i Kushteve",
-      "content": "Duke hyrë në faqen tonë të internetit dhe duke bërë blerje, ju pranoni se i keni lexuar, kuptuar dhe jeni dakord të lidheni me këto kushte dhe rregulla."
+      "title": "Annahme der Bedingungen",
+      "content": "Durch den Zugriff auf und die Nutzung unserer Website und die Aufgabe einer Bestellung stimmen Sie zu, an diese Allgemeinen Geschäftsbedingungen gebunden zu sein."
     },
     "products": {
-      "title": "Produktet",
-      "content": "Ne ofrojmë produkte të arit dhe metaleve të çmuara të cilësisë së lartë. Ndërsa përpiqemi të shfaqim informacion të saktë për produktet, ne ruajmë të drejtën për të modifikuar specifikimet pa njoftim paraprak."
+      "title": "Produkte",
+      "content": "Alle auf unserer Website angezeigten Produkte sind verfügbar, solange der Vorrat reicht. Wir behalten uns das Recht vor, jedes Produkt jederzeit einzustellen."
     },
     "pricing": {
-      "title": "Çmimet dhe Pagesat",
-      "content": "Të gjitha çmimet mund të ndryshojnë pa njoftim. Çmimet për metalet e çmuara bazohen në kurset aktuale të tregut. Pagesa duhet të bëhet plotësisht përpara se të fillojë përpunimi i porosisë."
+      "title": "Preise",
+      "content": "Alle Preise sind in Euro (€) angegeben und können ohne vorherige Ankündigung geändert werden. Wir bemühen uns, genaue Preisinformationen anzugeben, aber Fehler können auftreten."
     },
-    "orders": {
-      "title": "Përpunimi i Porosive",
-      "content": "Porositë varen nga disponueshmëria dhe konfirmimi. Ne ruajmë të drejtën të refuzojmë ose anulojmë çdo porosi për çdo arsye, përfshirë gabimet në çmime."
+    "ordering": {
+      "title": "Bestellung",
+      "content": "Mit der Aufgabe einer Bestellung machen Sie ein Kaufangebot. Wir behalten uns das Recht vor, Ihre Bestellung anzunehmen oder abzulehnen."
+    },
+    "payment": {
+      "title": "Zahlung",
+      "content": "Wir akzeptieren verschiedene Zahlungsmethoden, die während des Bezahlvorgangs angezeigt werden. Alle Zahlungen müssen vor der Bestellbearbeitung vollständig erfolgt sein."
     },
     "shipping": {
-      "title": "Transporti dhe Dorëzimi",
-      "content": "Ne transportojmë në vendndodhje të zgjedhura. Kohët e dorëzimit mund të ndryshojnë bazuar në vendndodhjen dhe disponueshmërinë e produktit. Të gjitha dërgesat janë plotësisht të siguruara."
+      "title": "Versand",
+      "content": "Versandkosten und Lieferzeiten variieren je nach Standort und gewählter Versandmethode. Wir sind nicht verantwortlich für Verzögerungen außerhalb unserer Kontrolle."
     },
     "returns": {
-      "title": "Kthimet dhe Rimbursimet",
-      "content": "Për shkak të natyrës së metaleve të çmuara, kthimet pranohen vetëm për produktet me defekt. Ju lutemi inspektoni artikujt tuaj në momentin e dorëzimit."
+      "title": "Rückgabe",
+      "content": "Rückgaben werden für alle Produkte akzeptiert. Bitte überprüfen Sie Ihre Artikel bei der Lieferung."
     },
     "intellectual": {
-      "title": "Pronësia Intelektuale",
-      "content": "I gjithë përmbajtja në këtë faqe interneti është pronë e jona dhe mbrohet nga ligjet e të drejtave të autorit dhe pronësisë intelektuale."
+      "title": "Geistiges Eigentum",
+      "content": "Alle Inhalte auf dieser Website sind unser Eigentum und durch Urheberrechtsgesetze geschützt."
     },
     "liability": {
-      "title": "Kufizimi i Përgjegjësisë",
-      "content": "Ne nuk do të jemi përgjegjës për dëme të tërthorta, të rastësishme, të veçanta ose rrjedhimore që rezultojnë nga përdorimi i produkteve ose shërbimeve tona."
+      "title": "Haftung",
+      "content": "Wir haften nicht für Verluste, die aus der Nutzung unserer Website oder Produkte entstehen, außer soweit gesetzlich vorgeschrieben."
     },
     "changes": {
-      "title": "Ndryshimet në Kushte",
-      "content": "Ne ruajmë të drejtën për të modifikuar këto kushte në çdo kohë. Vazhdimi i përdorimit të faqes sonë të internetit përbën pranim të çdo ndryshimi."
+      "title": "Änderungen der Bedingungen",
+      "content": "Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Änderungen treten sofort nach Veröffentlichung auf der Website in Kraft."
     },
     "contact": {
-      "title": "Na Kontaktoni",
-      "content": "Nëse keni pyetje në lidhje me këto Kushte dhe Rregulla, ju lutemi na kontaktoni përmes informacionit të kontaktit të ofruar."
+      "title": "Kontaktinformationen",
+      "content": "Bei Fragen zu diesen Bedingungen kontaktieren Sie uns bitte über die auf unserer Kontaktseite angegebenen Informationen."
     }
   },
   "privacy": {
-    "title": "Politika e Privatësisë",
+    "title": "Datenschutzerklärung",
     "introduction": {
-      "title": "Hyrje",
-      "content": "Në Invest Gold Gjokaj, ne e marrim seriozisht privatësinë tuaj. Kjo Politikë e Privatësisë shpjegon se si mbledhim, përdorim dhe mbrojmë informacionin tuaj personal."
+      "title": "Einleitung",
+      "content": "Bei Invest Gold Gjokaj nehmen wir Ihre Privatsphäre ernst. Diese Datenschutzerklärung erläutert, wie wir Ihre personenbezogenen Daten erheben, verwenden und schützen."
     },
     "collection": {
-      "title": "Informacioni që Mbledhim",
-      "content": "Ne mbledhim lloje të ndryshme informacioni për të ofruar dhe përmirësuar shërbimet tona:",
-      "items": {
-        "personal": "Informacion personal (emër, email, adresë, numër telefoni)",
-        "payment": "Informacion pagese (përpunuar në mënyrë të sigurt përmes ofruesve tanë të pagesave)",
-        "technical": "Informacion teknik (adresa IP, lloji i shfletuesit, informacioni i pajisjes)",
-        "usage": "Të dhëna përdorimi (si ndërveproni me faqen tonë të internetit)"
-      }
+      "title": "Datenerhebung",
+      "content": "Wir erheben Informationen, die Sie uns direkt zur Verfügung stellen, einschließlich:",
+      "items": [
+        "Persönliche Informationen (Name, E-Mail, Telefonnummer)",
+        "Liefer- und Rechnungsadressen",
+        "Zahlungsinformationen",
+        "Bestellverlauf und Präferenzen"
+      ]
     },
-    "usage": {
-      "title": "Si e Përdorim Informacionin Tuaj",
-      "content": "Ne e përdorim informacionin tuaj për qëllimet e mëposhtme:",
-      "items": {
-        "process": "Për të përpunuar dhe përmbushur porositë tuaja",
-        "improve": "Për të përmirësuar faqen tonë dhe shërbimet",
-        "communicate": "Për të komunikuar me ju rreth porosive dhe shërbimeve tona",
-        "legal": "Për të përmbushur detyrimet ligjore"
-      }
+    "use": {
+      "title": "Datenverwendung",
+      "content": "Wir verwenden Ihre Informationen für:",
+      "items": [
+        "Bearbeitung und Erfüllung Ihrer Bestellungen",
+        "Kommunikation über Bestellungen",
+        "Versand von Marketing-Mitteilungen (mit Einwilligung)",
+        "Verbesserung unserer Dienstleistungen"
+      ]
     },
     "sharing": {
-      "title": "Ndarja e Informacionit",
-      "content": "Ne nuk e shesim informacionin tuaj personal. Ne e ndajmë informacionin tuaj vetëm me partnerë të besuar të nevojshëm për të ofruar shërbimet tona dhe siç kërkohet me ligj."
-    },
-    "cookies": {
-      "title": "Cookies dhe Gjurmimi",
-      "content": "Ne përdorim cookies dhe teknologji të ngjashme për të përmirësuar përvojën tuaj të shfletimit dhe për të analizuar trafikun e faqes."
+      "title": "Datenweitergabe",
+      "content": "Wir können Ihre Informationen weitergeben an:",
+      "items": [
+        "Versanddienstleister",
+        "Zahlungsabwickler",
+        "Dienstleister",
+        "Rechtliche Behörden bei Erfordernis"
+      ]
     },
     "security": {
-      "title": "Siguria e të Dhënave",
-      "content": "Ne zbatojmë masa të përshtatshme sigurie për të mbrojtur informacionin tuaj personal nga aksesi i paautorizuar, ndryshimi ose zbulimi."
+      "title": "Datensicherheit",
+      "content": "Wir setzen angemessene Sicherheitsmaßnahmen zum Schutz Ihrer personenbezogenen Daten ein."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "content": "Wir verwenden Cookies, um Ihr Browsing-Erlebnis zu verbessern und den Website-Verkehr zu analysieren."
     },
     "rights": {
-      "title": "Të Drejtat Tuaja",
-      "content": "Ju keni disa të drejta në lidhje me informacionin tuaj personal:",
-      "items": {
-        "access": "E drejta për të aksesuar informacionin tuaj personal",
-        "rectification": "E drejta për të korrigjuar informacionin e pasaktë",
-        "deletion": "E drejta për të kërkuar fshirjen e informacionit tuaj",
-        "restriction": "E drejta për të kufizuar përpunimin e informacionit tuaj",
-        "portability": "E drejta për bartjen e të dhënave"
-      }
-    },
-    "updates": {
-      "title": "Përditësimet e Politikës së Privatësisë",
-      "content": "Ne mund ta përditësojmë këtë Politikë Privatësie herë pas here. Do t'ju njoftojmë për çdo ndryshim të rëndësishëm."
+      "title": "Ihre Rechte",
+      "content": "Sie haben das Recht auf:",
+      "items": [
+        "Zugriff auf Ihre personenbezogenen Daten",
+        "Berichtigung anfordern",
+        "Löschung anfordern",
+        "Abmeldung von Marketing"
+      ]
     },
     "contact": {
-      "title": "Na Kontaktoni",
-      "content": "Nëse keni pyetje rreth Politikës sonë të Privatësisë ose se si e trajtojmë informacionin tuaj, ju lutemi na kontaktoni."
+      "title": "Kontakt",
+      "content": "Für datenschutzbezogene Anfragen kontaktieren Sie uns bitte über die angegebenen Kontaktinformationen."
+    },
+    "updates": {
+      "title": "Aktualisierungen der Richtlinie",
+      "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Bitte überprüfen Sie sie regelmäßig."
     }
   },
   "footer": {
-    "about": "Rreth Nesh",
-    "description": "Invest Gold Gjokaj është partneri juaj i besuar për investime në metale të çmuara dhe dizajne të personalizuara të stolive.",
-    "quickLinks": "Lidhje të Shpejta",
-    "followUs": "Na Ndiqni",
-    "rights": "Të Gjitha të Drejtat të Rezervuara.",
-    "contact": "Na Kontaktoni"
+    "about": "About",
+    "description": "Invest Gold Gjokaj is your trusted partner for investments in precious metals and personalized jewelry designs.",
+    "quickLinks": "Quick Links",
+    "followUs": "Follow Us",
+    "rights": "All Rights Reserved.",
+    "contact": "Contact"
   },
   "metadata": {
     "product": {
-      "title": "Invest Gold Gjokaj | Stoli të Çmuara në Ar",
-      "description": "Zbuloni koleksionin tonë të stolive të çmuara në ar. Çdo pjesë është punuar me precizion dhe kujdes.",
-      "keywords": "stoli ari, unaza ari, byzylykë ari, varëse ari, stoli të personalizuara",
-      "ogTitle": "Stoli të Çmuara në Ar - Invest Gold Gjokaj",
-      "ogDescription": "Eksploroni koleksionin tonë të stolive të çmuara në ar. Gjeni pjesë unike të punuara me përsosmëri.",
-      "ogImageAlt": "Imazhi i Produktit",
-      "twitterTitle": "Stoli të Çmuara në Ar - Invest Gold Gjokaj",
-      "twitterDescription": "Shikoni koleksionin tonë të stolive të çmuara në ar",
-      "notFound": "Produkti nuk u gjet",
-      "notFoundDescription": "Na vjen keq, produkti që po kërkoni nuk mund të gjendet."
+      "title": "Invest Gold Gjokaj | Gold Jewelry and Accessories",
+      "description": "Explore our premium collection of gold jewelry and accessories. Find unique pieces crafted with excellence.",
+      "keywords": "gold jewelry, gold rings, gold bracelets, gold necklaces, custom jewelry, jewelry shop",
+      "ogTitle": "Gold Jewelry and Accessories - Invest Gold Gjokaj",
+      "ogDescription": "Explore our premium collection of gold jewelry and accessories. Find unique pieces crafted with excellence.",
+      "ogImageAlt": "Invest Gold Gjokaj Product Image",
+      "twitterTitle": "Gold Jewelry and Accessories - Invest Gold Gjokaj",
+      "twitterDescription": "Explore our premium collection of gold jewelry and accessories",
+      "notFound": "Product not found",
+      "notFoundDescription": "We're sorry, the product you are looking for could not be found."
     },
     "shop": {
       "title": "Shop - Invest Gold Gjokaj | Premium Gold Jewelry and Accessories",
@@ -494,14 +508,14 @@
       "featuring": "featuring"
     },
     "home": {
-      "title": "Invest Gold Gjokaj | Investime Premium në Ar dhe Stoli",
-      "description": "Zbuloni investime premium në ar dhe stoli të mrekullueshme në Invest Gold Gjokaj. Udhëzime eksperte në investime në metale të çmuara dhe dizajn të personalizuar të stolive.",
-      "keywords": "investim në ar, stoli, metale të çmuara, stoli të personalizuara, shufra ari, monedha ari, ar për investim, ar në Kosovë",
-      "ogTitle": "Invest Gold Gjokaj - Partneri Juaj i Besuar për Investime në Ar",
-      "ogDescription": "Udhëzime eksperte në investime në ar dhe stoli të personalizuara. Zbuloni koleksionin tonë premium të arit për investim dhe stolive të mrekullueshme.",
-      "ogImageAlt": "Vitrina e Invest Gold Gjokaj",
-      "twitterTitle": "Invest Gold Gjokaj - Ar dhe Stoli Premium",
-      "twitterDescription": "Partneri juaj i besuar për investime në ar dhe dizajne të personalizuara të stolive. Eksploroni koleksionin tonë të arit premium dhe metaleve të çmuara."
+      "title": "Invest Gold Gjokaj | Premium Gold Jewelry and Accessories",
+      "description": "Discover premium investments in gold and beautiful jewelry at Invest Gold Gjokaj. Expert guidance in precious metals investments and personalized jewelry design.",
+      "keywords": "gold jewelry, gold rings, gold bracelets, gold necklaces, custom jewelry, jewelry shop",
+      "ogTitle": "Invest Gold Gjokaj - Premium Gold Jewelry and Accessories",
+      "ogDescription": "Discover premium investments in gold and beautiful jewelry at Invest Gold Gjokaj. Expert guidance in precious metals investments and personalized jewelry design.",
+      "ogImageAlt": "Invest Gold Gjokaj Home Collection",
+      "twitterTitle": "Invest Gold Gjokaj - Premium Gold Jewelry and Accessories",
+      "twitterDescription": "Discover premium investments in gold and beautiful jewelry at Invest Gold Gjokaj. Expert guidance in precious metals investments and personalized jewelry design."
     }
   }
 }

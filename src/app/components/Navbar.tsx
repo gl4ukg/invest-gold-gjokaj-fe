@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
+import { useParams } from 'next/navigation';
 
 const NAV_LINKS = [
   { href: '#about', key: 'about' },
@@ -27,9 +28,10 @@ const Navbar = () => {
   const { itemCount, setIsCartOpen } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { id } = useParams();
   const router = useRouter();
   const locale = useLocale();
-  
+
   const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     const homePath = `${locale}`;
@@ -60,6 +62,8 @@ const Navbar = () => {
   const changeLocale = (newLocale: string) => {
     if(pathname === "/shop"){
       window.location.replace(`/${newLocale}/shop`);
+    } else if (pathname === `/shop/${id}`){
+      window.location.replace(`/${newLocale}/shop/${id}`);
     } else if (pathname === "/configurator"){
       window.location.replace(`/${newLocale}/configurator`);
     } else if (pathname === "/checkout"){

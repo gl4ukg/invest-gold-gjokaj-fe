@@ -232,7 +232,7 @@
     "validation": {
       "configurator": "Konfiguratori",
       "weight": "Pesha",
-      "selectWeight": "Please choose weight",
+      "selectWeight": "Ju lutemi zgjidhni peshe",
       "selectProfile": "Ju lutemi zgjidhni një profil për të vazhduar",
       "enterDimensions": "Ju lutemi plotësoni të gjitha dimensionet e kërkuara",
       "selectMetal": "Ju lutem zgjidhni një metal të çmuar",
@@ -284,7 +284,7 @@
     "continueShopping": "Vazhdo Blerjet",
     "subtotal": "Nëntotali",
     "shippingNote": "Çmimi llogaritet pasi behet konfigurimi unazave.",
-    "checkout": "Vazhdo në Checkout",
+    "checkout": "Vazhdo tek arka",
     "configurator": "Vazhdo te konfiguratori",
     "or": "ose",
     "addToCart": "Shto në Shportë",
@@ -294,7 +294,7 @@
     "quantityUpdated": "Sasia u përditësua"
   },
   "checkout": {
-    "title": "Checkout",
+    "title": "Arka",
     "emptyCart": "Shporta juaj është bosh",
     "continueShopping": "Vazhdo Blerjet",
     "contactInformation": "Informacioni i Kontaktit",
@@ -384,7 +384,7 @@
     },
     "returns": {
       "title": "Kthimet dhe Rimbursimet",
-      "content": "Për shkak të natyrës së metaleve të çmuara, kthimet pranohen vetëm për produktet me defekt. Ju lutemi inspektoni artikujt tuaj në momentin e dorëzimit."
+      "content": "Kthimet pranohen për të gjitha produktet. Ju lutemi inspektoni artikujt tuaj në momentin e dorëzimit."
     },
     "intellectual": {
       "title": "Pronësia Intelektuale",
@@ -415,7 +415,6 @@
       "items": {
         "personal": "Informacion personal (emër, email, adresë, numër telefoni)",
         "payment": "Informacion pagese (përpunuar në mënyrë të sigurt përmes ofruesve tanë të pagesave)",
-        "technical": "Informacion teknik (adresa IP, lloji i shfletuesit, informacioni i pajisjes)",
         "usage": "Të dhëna përdorimi (si ndërveproni me faqen tonë të internetit)"
       }
     },
@@ -471,32 +470,32 @@
   },
   "metadata": {
     "product": {
-      "title": "Invest Gold Gjokaj | Stoli të Çmuara në Ar",
-      "description": "Zbuloni koleksionin tonë të stolive të çmuara në ar. Çdo pjesë është punuar me precizion dhe kujdes.",
+      "title": "Invest Gold Gjokaj | Stoli të Çmuara në Ari",
+      "description": "Zbuloni koleksionin tonë të stolive të çmuara në ari. Çdo pjesë është punuar me precizion dhe kujdes.",
       "keywords": "stoli ari, unaza ari, byzylykë ari, varëse ari, stoli të personalizuara",
-      "ogTitle": "Stoli të Çmuara në Ar - Invest Gold Gjokaj",
-      "ogDescription": "Eksploroni koleksionin tonë të stolive të çmuara në ar. Gjeni pjesë unike të punuara me përsosmëri.",
+      "ogTitle": "Stoli të Çmuara në Ari - Invest Gold Gjokaj",
+      "ogDescription": "Eksploroni koleksionin tonë të stolive të çmuara në ari. Gjeni pjesë unike të punuara me përsosmëri.",
       "ogImageAlt": "Imazhi i Produktit",
-      "twitterTitle": "Stoli të Çmuara në Ar - Invest Gold Gjokaj",
-      "twitterDescription": "Shikoni koleksionin tonë të stolive të çmuara në ar",
+      "twitterTitle": "Stoli të Çmuara në Ari - Invest Gold Gjokaj",
+      "twitterDescription": "Shikoni koleksionin tonë të stolive të çmuara në ari",
       "notFound": "Produkti nuk u gjet",
       "notFoundDescription": "Na vjen keq, produkti që po kërkoni nuk mund të gjendet."
     },
     "shop": {
-      "title": "Shop - Invest Gold Gjokaj | Premium Gold Jewelry and Accessories",
-      "description": "Explore our premium collection of gold jewelry and accessories. Find unique pieces crafted with excellence.",
-      "keywords": "gold jewelry, gold rings, gold bracelets, gold necklaces, custom jewelry, jewelry shop",
-      "ogTitle": "Shop Premium Gold Jewelry - Invest Gold Gjokaj",
-      "ogDescription": "Discover our exquisite collection of premium gold jewelry. Each piece is crafted with precision and care.",
-      "ogImageAlt": "Invest Gold Gjokaj Shop Collection",
-      "twitterTitle": "Premium Gold Jewelry Shop - Invest Gold Gjokaj",
-      "twitterDescription": "Browse our collection of premium gold jewelry and accessories",
+      "title": "Shop - Invest Gold Gjokaj | Stoli të Çmuara në Ari",
+      "description": "Eksploroni koleksionin tonë premium të bizhuterive dhe aksesorëve të arit. Gjeni bizhuteri unike të punuara me përsosmëri.",
+      "keywords": "bizhuteri ari, unaza ari, byzylykë ari, varëse ari, bizhuteri me porosi, dyqan bizhuterish",
+      "ogTitle": "Stoli të Çmuara në Ari - Invest Gold Gjokaj",
+      "ogDescription": "Eksploroni koleksionin tonë premium të bizhuterive dhe aksesorëve të arit. Gjeni bizhuteri unike të punuara me përsosmëri.",
+      "ogImageAlt": "Invest Gold Gjokaj Koleksioni",
+      "twitterTitle": "Stoli të Çmuara në Ari - Invest Gold Gjokaj",
+      "twitterDescription": "Eksploroni koleksionin tonë premium të bizhuterive dhe aksesorëve të arit",
       "featuring": "featuring"
     },
     "home": {
-      "title": "Invest Gold Gjokaj | Investime Premium në Ar dhe Stoli",
-      "description": "Zbuloni investime premium në ar dhe stoli të mrekullueshme në Invest Gold Gjokaj. Udhëzime eksperte në investime në metale të çmuara dhe dizajn të personalizuar të stolive.",
-      "keywords": "investim në ar, stoli, metale të çmuara, stoli të personalizuara, shufra ari, monedha ari, ar për investim, ar në Kosovë",
+      "title": "Invest Gold Gjokaj | Stoli të Çmuara në Ari",
+      "description": "Zbuloni koleksionin tonë premium të bizhuterive dhe aksesorëve të arit. Gjeni bizhuteri unike të punuara me përsosmëri.",
+      "keywords": "bizhuteri ari, unaza ari, byzylykë ari, varëse ari, bizhuteri me porosi, dyqan bizhuterish",
       "ogTitle": "Invest Gold Gjokaj - Partneri Juaj i Besuar për Investime në Ar",
       "ogDescription": "Udhëzime eksperte në investime në ar dhe stoli të personalizuara. Zbuloni koleksionin tonë premium të arit për investim dhe stolive të mrekullueshme.",
       "ogImageAlt": "Vitrina e Invest Gold Gjokaj",

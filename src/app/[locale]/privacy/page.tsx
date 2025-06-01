@@ -17,7 +17,7 @@ export default function PrivacyPage() {
                     <h2 className="text-2xl text-primary font-semibold mb-4">{t('privacy.collection.title')}</h2>
                     <p className="text-tertiary mb-4">{t('privacy.collection.content')}</p>
                     <ul className="list-disc pl-6 space-y-2">
-                        {['personal', 'payment', 'technical', 'usage'].map((item) => (
+                        {['personal', 'payment', 'usage'].map((item) => (
                             <li key={item} className="text-tertiary">
                                 {t(`privacy.collection.items.${item}`)}
                             </li>
