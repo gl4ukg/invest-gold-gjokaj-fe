@@ -200,11 +200,11 @@ export default function ShopContent() {
   }, [searchTerm]);
 
   const ringsText: { [key: string]: string } = {
-    "Ari i Verdhe": t("yellowGold"),
-    "Ari i Bardhë": t("whiteGold"),
-    "Ari Rozë": t("roseGold"),
-    "Ari me 2 Ngjyra": t("twoColorGold"),
-    "Ari Shumëngjyrësh": t("multiColorGold"),
+    "Ari i Verdhë": t("rings.yellowGold"),
+    "Ari i Bardhë": t("rings.whiteGold"),
+    "Ari Rozë": t("rings.roseGold"),
+    "Ari Dy-ngjyrësh": t("rings.twoColorGold"),
+    "Ari Shumëngjyrësh": t("rings.multiColorGold"),
   };
 
   return (

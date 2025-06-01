@@ -57,9 +57,7 @@ const RingsSection: React.FC = () => {
       if (!selectedCategory) return;
 
       const related = await ProductsService.search({
-        categoryIds: [selectedCategory],
-        page: 1,
-        limit: 4,
+        categoryIds: [selectedCategory]
       });
       setProducts(related.items);
     } catch (error) {
@@ -68,10 +66,10 @@ const RingsSection: React.FC = () => {
   };
 
   const ringsText: { [key: string]: string } = {
-    "Ari i Verdhe": t("yellowGold"),
+    "Ari i Verdhë": t("yellowGold"),
     "Ari i Bardhë": t("whiteGold"),
     "Ari Rozë": t("roseGold"),
-    "Ari me 2 Ngjyra": t("twoColorGold"),
+    "Ari Dy-ngjyrësh": t("twoColorGold"),
     "Ari Shumëngjyrësh": t("multiColorGold"),
   };
 
