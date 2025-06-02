@@ -5,6 +5,7 @@ import ReusableModal from './Modal';
 import { useState } from 'react';
 import { Link } from '@/i18n/routing';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const Header = () => {
 
@@ -52,7 +53,14 @@ const Header = () => {
                     <source src="https://glaukthaqi.com/header-video.mp4" type="video/mp4" />
                 </video>
                 {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+                <div className="absolute inset-0 bg-black bg-opacity-40">
+                    <Image
+                        src="/header.png"
+                        alt="Header Image"
+                        fill
+                        className="object-cover"
+                    />
+                </div>
             </div>
 
             <div className="container mx-auto px-4 h-full flex items-center py-4 relative z-10">
