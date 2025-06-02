@@ -81,7 +81,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ loca
     }
 
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-0 md:px-4 py-4 md:py-8">
         <ProductJsonLd product={product} />
         <ProductContent id={id} />
       </div>
