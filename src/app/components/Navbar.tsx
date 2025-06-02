@@ -72,6 +72,14 @@ const Navbar = () => {
       window.location.replace(`/${newLocale}/terms`);
     } else if (pathname === "/privacy"){
       window.location.replace(`/${newLocale}/privacy`);
+    } else if (pathname === "/order-confirmation/error"){
+      window.location.replace(`/${newLocale}/order-confirmation/error`);
+    } else if (pathname === "/order-confirmation/cancel"){
+      window.location.replace(`/${newLocale}/order-confirmation/cancel`);
+    } else if (pathname === "/order-confirmation"){
+      window.location.replace(`/${newLocale}/order-confirmation`);
+    }else if (pathname === `/order-confirmation/${id}`){
+      window.location.replace(`/${newLocale}/order-confirmation/${id}`);
     } else {
       router.push(`${newLocale}`);
     }

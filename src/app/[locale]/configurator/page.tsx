@@ -537,7 +537,7 @@ export default function ConfiguratorPage() {
                                     <div className="flex items-center space-x-2">
                                       <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></div>
                                       <p className="text-sm text-primary font-medium">
-                                        Configuring: {steps[currentStep - 1].name}
+                                       {steps[currentStep - 1].name}
                                       </p>
                                     </div>
                                   )}

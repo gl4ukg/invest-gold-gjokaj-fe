@@ -333,10 +333,10 @@ const ContactSection: React.FC = () => {
                       {t("email")}
                     </h3>
                     <a
-                      href="mailto:investgold_2017@hotmail.com"
+                      href="mailto:investgoldgjokaj2017@gmail.com"
                       className="lg:text-lg text-primary hover:text-primary/80 transition-colors"
                     >
-                      investgold_2017@hotmail.com
+                      investgoldgjokaj2017@gmail.comcom
                     </a>
                   </div>
                 </motion.div>

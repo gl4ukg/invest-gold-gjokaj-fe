@@ -1,478 +1,463 @@
 {
   "navbar": {
-    "about": "Über uns",
-    "rings": "Ringe",
-    "jewelry": "Schmuck",
-    "services": "Dienstleistungen",
-    "contact": "Kontakt",
+    "about": "About",
+    "rings": "Rings",
+    "jewelry": "Jewelry",
+    "services": "Services",
+    "contact": "Contact",
     "shop": "Shop"
   },
   "header": {
     "title": "INVEST GOLD",
-    "subtitle": "Wir sind immer bei denen, die Liebe wertschätzen",
-    "secondSubtitle": "Verlobungsringe, Eheringe, Armbänder und Goldketten im Kosovo",
-    "seeMore": "Mehr sehen",
+    "subtitle": "We are always with those who value love",
+    "secondSubtitle": "Engagement Rings, Wedding Rings, Bracelets and Gold Chains in Kosovo",
+    "seeMore": "See More",
     "video": "Video"
   },
   "about": {
-    "title": "Über uns",
-    "subtitle": "Invest Gold Gjokaj ist Ihre erste Adresse für Verlobungsringe, Eheringe, Goldarmbänder und Goldketten im Kosovo. Wir schaffen unvergessliche Momente mit unserer sorgfältig kuratierten Kollektion von Goldschmuck, einschließlich moderner Verlobungsringe, klassischer Eheringe, personalisierter Goldarmbänder und hochwertiger Goldketten. Jedes Stück wird fachmännisch gefertigt, um Ihre besonderen Momente zu verewigen."
+    "title": "About",
+    "subtitle": "Invest Gold Gjokaj is your premier destination for engagement rings, wedding rings, gold bracelets and gold chains in Kosovo. We create unforgettable moments with our carefully curated collection of gold jewelry, including modern engagement rings, classic wedding rings, personalized gold bracelets and quality gold chains. Each piece is expertly crafted to immortalize your special moments."
   },
   "rings": {
-    "rings": "Ringe",
+    "rings": "Rings",
     "title": "Ring",
-    "subtitle": "Wählen Sie den perfekten Verlobungs- oder Ehering aus unserer kuratierten Kollektion. Entdecken Sie einzigartige Goldarmbänder und Ketten, die für jeden besonderen Moment in Ihrem Leben gestaltet sind. Unsere Goldschmiedekunst garantiert dauerhafte Qualität und zeitlosen Stil.",
-    "seeMore": "Mehr sehen",
+    "subtitle": "Choose the perfect engagement or wedding ring from our curated collection. Discover unique gold bracelets and chains designed for every special moment in your life. Our gold craftsmanship ensures lasting quality and timeless style.",
+    "seeMore": "See More",
     "shop": "Shop",
-    "width": "Breite",
-    "height": "Höhe",
-    "yellowGold": "Gelbgold",
-    "whiteGold": "Weißgold",
-    "roseGold": "Roségold",
-    "twoColorGold": "Zweifarbiges Gold",
-    "multiColorGold": "Mehrfarbiges Gold",
-    "prev": "Zurück",
-    "next": "Weiter"
+    "width": "Width",
+    "height": "Height",
+    "yellowGold": "Yellow Gold",
+    "whiteGold": "White Gold",
+    "roseGold": "Rose Gold",
+    "twoColorGold": "Two Color Gold",
+    "multiColorGold": "Multi Color Gold",
+    "prev": "Previous",
+    "next": "Next"
   },
   "services": {
-    "title": "Dienstleistungen",
-    "subtitle": "Entdecken Sie unsere sorgfältig kuratierte Kollektion von Goldschmuck und professionellen Dienstleistungen",
-    "seoDescription": "Professionelle Goldschmuck-Dienstleistungen im Kosovo, einschließlich Verlobungsringe, Eheringe, Goldarmbänder und personalisierte Goldketten",
+    "title": "Services",
+    "subtitle": "Discover our carefully curated collection of gold jewelry and professional services",
+    "seoDescription": "Professional gold jewelry services in Kosovo, including engagement rings, wedding rings, gold bracelets and personalized gold chains",
     "items": {
       "rings": {
-        "title": "Verlobungsringe & Eheringe",
-        "description": "Entdecken Sie unsere exklusive Kollektion von Verlobungs- und Eheringen, meisterhaft gefertigt aus reinem Gold. Moderne und klassische Designs für Ihre besonderen Momente."
+        "title": "Engagement Rings & Wedding Rings",
+        "description": "Discover our exclusive collection of engagement and wedding rings, expertly crafted from pure gold. Modern and classic designs for your most special moments."
       },
       "bracelets": {
-        "title": "Goldarmbänder & Ketten",
-        "description": "Personalisierte Goldarmbänder und Armreifen, mit exquisiten Details für jeden Stil und Anlass gefertigt. Wählen Sie aus unserer breiten Kollektion einzigartiger Designs."
+        "title": "Gold Bracelets & Chains",
+        "description": "Personalized gold bracelets and bangles, crafted with exquisite detail for every style and occasion. Choose from our wide collection of unique designs."
       },
       "necklaces": {
-        "title": "Goldketten & Anhänger",
-        "description": "Goldketten und Anhänger in verschiedenen Designs, von klassisch bis modern. Alle aus reinem Gold gefertigt, um Premium-Qualität zu gewährleisten."
+        "title": "Gold Chains & Pendants",
+        "description": "Gold chains and pendants in various designs, from classic to modern. All crafted with pure gold to ensure premium quality."
       },
       "custom": {
-        "title": "Personalisierter Schmuck",
-        "description": "Wir fertigen personalisierten Schmuck nach Ihren Wünschen. Von der Gestaltung bis zur Ausführung wird jedes Detail nach Ihren Vorgaben angepasst."
+        "title": "Personalized Jewelry",
+        "description": "We create personalized jewelry according to your preferences. From design to execution, every detail is tailored to your specifications."
       },
       "repair": {
-        "title": "Professionelle Reparatur",
-        "description": "Professionelle Reparaturservices für alle Arten von Goldschmuck. Restaurierungen und Reparaturen mit größter Sorgfalt."
+        "title": "Professional Repair",
+        "description": "Professional repair services for all types of gold jewelry. Restorations and repairs with maximum care."
       },
       "express": {
         "title": "Express Service",
-        "description": "Schnelle Erfüllung Ihrer Bestellungen unter Einhaltung unserer höchsten Qualitätsstandards."
+        "description": "Quick fulfillment of your orders, maintaining our highest standards of quality."
       },
       "delivery": {
-        "title": "Lieferung nach Hause",
-        "description": "Sicherer Versandservice für Ihre Produkte bis zu Ihrer Haustür."
+        "title": "Home Delivery",
+        "description": "Secure shipping service for your products to your doorstep."
       },
       "guarantee": {
-        "title": "Volle Garantie",
-        "description": "Wir bieten volle Garantie für alle unsere Produkte und gewährleisten höchste Qualitätsstandards."
+        "title": "Full Guarantee",
+        "description": "We offer full guarantee for all our products, ensuring the highest standards of quality."
       }
     }
   },
   "contact": {
-    "title": "Kontakt",
-    "informationContact": "Kontaktinformationen",
-    "openingHours": "Öffnungszeiten",
-    "address": "Adresse",
-    "phone": "Telefon",
-    "email": "E-Mail",
-    "weekdays": "Montag - Freitag",
-    "saturday": "Samstag",
-    "sunday": "Sonntag",
+    "title": "Contact",
+    "informationContact": "Contact Information",
+    "openingHours": "Working Hours",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "weekdays": "Monday - Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
     "hours": {
       "weekdays": "08:00 - 17:00",
-      "saturday": "Geschlossen",
-      "sunday": "Geschlossen"
+      "saturday": "Closed",
+      "sunday": "Closed"
     },
     "form": {
-      "firstName": "Vorname",
-      "lastName": "Nachname",
-      "email": "E-Mail",
-      "phone": "Telefon",
-      "message": "Nachricht",
-      "send": "Senden"
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "send": "Send"
     }
   },
   "orderConfirmation": {
     "paymentMethods": {
-      "bank_transfer": "Überweisung",
-      "cash_on_delivery": "Nachnahme"
+      "bank_transfer": "Bank Transfer",
+      "cash_on_delivery": "Cash on Delivery"
     },
     "shippingMethods": {
-      "local": "Lokale Lieferung (Kosovo)",
-      "international": "Internationale Lieferung"
+      "local": "Local Delivery (Kosovo)",
+      "international": "International Delivery"
     },
-    "productId": "Produkt-ID",
-    "productName": "Produktname",
+    "productId": "Product ID",
+    "productName": "Product Name",
     "addressLabels": {
       "name": "Name",
-      "address": "Adresse",
-      "city": "Stadt",
-      "country": "Land",
-      "phone": "Telefon",
-      "title": "Bestellbestätigung"
+      "address": "Address",
+      "city": "City",
+      "country": "Country",
+      "phone": "Phone"
     },
-    "thankYou": "Vielen Dank für Ihre Bestellung!",
-    "orderNumber": "Bestellnummer",
-    "orderDate": "Bestelldatum",
-    "orderStatus": "Bestellstatus",
-    "orderTotal": "Gesamtbetrag",
-    "shippingAddress": "Lieferadresse",
-    "billingAddress": "Rechnungsadresse",
-    "paymentMethod": "Zahlungsmethode",
-    "shippingMethod": "Versandart",
-    "orderDetails": "Bestelldetails",
-    "product": "Produkt",
-    "quantity": "Menge",
-    "price": "Preis",
-    "subtotal": "Zwischensumme",
-    "shipping": "Versand",
-    "total": "Gesamtsumme",
-    "printOrder": "Bestellung drucken",
-    "backToHome": "Zurück zur Startseite",
-    "viewOrder": "Bestellung ansehen",
-    "orderProcessing": "Ihre Bestellung wird bearbeitet",
-    "orderShipped": "Ihre Bestellung wurde versandt",
-    "orderDelivered": "Ihre Bestellung wurde zugestellt",
-    "trackOrder": "Bestellung verfolgen",
-    "needHelp": "Benötigen Sie Hilfe mit Ihrer Bestellung?",
-    "cancelMessage": "Ihre Bestellung wurde storniert. Es wurde keine Zahlung verarbeitet.",
-    "errorTitle": "Zahlungsfehler",
-    "errorMessage": "Bei der Verarbeitung Ihrer Zahlung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-    "errorSupport": "Wenn das Problem weiterhin besteht, kontaktieren Sie bitte unseren Kundenservice.",
-    "tryAgain": "Erneut versuchen"
+    "thankYou": "Thank you for your order!",
+    "orderNumber": "Order Number",
+    "orderDetails": "Order Details",
+    "status": "Order Status",
+    "items": "Items",
+    "quantity": "Quantity",
+    "shippingAddress": "Shipping Address",
+    "paymentInformation": "Payment Information",
+    "method": "Payment Method",
+    "shipping": "Shipping Method",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "continueShopping": "Continue Shopping",
+    "error": "Error",
+    "errorLoading": "Error loading order",
+    "backToShop": "Back to Shop",
+    "price": "Price",
+    "cancelTitle": "Order Cancelled",
+    "cancelMessage": "Your order has been cancelled. No payment has been processed.",
+    "errorTitle": "Payment Error",
+    "errorMessage": "There was an error processing your payment. Please try again.",
+    "errorSupport": "If the problem persists, please contact our support team.",
+    "tryAgain": "Try Again",
+    "backToHome": "Back to Home"
   },
   "configurator": {
-    "noProducts": "Keine Produkte im Warenkorb",
-    "noProductsDescription": "Bitte fügen Sie zuerst Produkte in Ihren Warenkorb hinzu",
-    "completeStepBeforeProceeding": "Bitte füllen Sie alle Felder aus, bevor Sie fortfahren",
+    "noProducts": "No products in cart",
+    "noProductsDescription": "Please add products to your cart first",
+    "completeStepBeforeProceeding": "Please complete all fields before proceeding",
     "dimensions": {
-      "selectedProfile": "Ausgewähltes Profil",
-      "profileWidth": "Profilbreite (mm)",
-      "profileHeight": "Profilhöhe (mm)",
-      "ringSizeSystem": "Ringgrößensystem",
-      "ringSize": "Ringgröße"
+      "selectedProfile": "Selected Profile",
+      "profileWidth": "Profile Width (mm)",
+      "profileHeight": "Profile Height (mm)",
+      "ringSizeSystem": "Ring Size System",
+      "ringSize": "Ring Size"
     },
     "engraving": {
-      "engravingText": "Gravurtext",
-      "charactersCount": "{count} / 25 Zeichen",
-      "symbols": "Symbole",
-      "fontStyle": "Schriftart",
-      "preview": "Vorschau",
-      "inputPlaceholder": "Gravurtext eingeben...",
-      "placeholder": "Ihr Text erscheint hier"
+      "engravingText": "Engraving Text",
+      "charactersCount": "{count} / 25 characters",
+      "symbols": "Symbols",
+      "fontStyle": "Font Style",
+      "preview": "Preview",
+      "inputPlaceholder": "Enter engraving text...",
+      "placeholder": "Your text will appear here"
     },
     "groovesAndEdges": {
-      "type": "Typ",
-      "edges": "Kanten",
-      "grooves": "Rillen",
-      "width": "Breite (mm)",
-      "depth": "Tiefe (mm)",
-      "surface": "Oberfläche",
-      "grooveSettings": "Rilleneinstellungen",
-      "grooveType": "Rillentyp",
-      "grooveDepth": "Rillentiefe (mm)",
-      "grooveAlignment": "Rillenausrichtung",
-      "edgeSettings": "Kanteneinstellungen",
-      "leftEdge": "Linke Kante",
-      "rightEdge": "Rechte Kante"
+      "type": "Type",
+      "edges": "Edges",
+      "grooves": "Grooves",
+      "width": "Width (mm)",
+      "depth": "Depth (mm)",
+      "surface": "Surface",
+      "grooveSettings": "Groove Settings",
+      "grooveType": "Groove Type",
+      "grooveDepth": "Groove Depth (mm)",
+      "grooveAlignment": "Groove Alignment",
+      "edgeSettings": "Edge Settings",
+      "leftEdge": "Left Edge",
+      "rightEdge": "Right Edge"
     },
     "preciousMetal": {
-      "selectColorType": "Farbtyp auswählen",
-      "selectShape": "Form auswählen",
+      "selectColorType": "Select Color Type",
+      "selectShape": "Select Shape",
       "colorTypes": {
-        "single": "Einfarbig",
-        "two": "Zweifarbig",
-        "three": "Dreifarbig"
+        "single": "Single Color",
+        "two": "Two Colors",
+        "three": "Three Colors"
       },
-      "waveCount": "Wellenanzahl",
-      "waveHeight": "Wellenhöhe",
-      "diagonalHeight": "Diagonalhöhe",
-      "metalColor": "Metallfarbe",
-      "polishType": "Politurart",
-      "fineness": "Feingehalt"
+      "waveCount": "Wave Count",
+      "waveHeight": "Wave Height",
+      "diagonalHeight": "Diagonal Height",
+      "metalColor": "Metal Color",
+      "polishType": "Polish Type",
+      "fineness": "Fineness"
     },
     "weight": {
-      "title": "Gewicht auswählen (g)"
+      "title": "Select Weight (g)"
     },
     "stones": {
-      "settingType": "Fassungsart",
-      "stoneType": "Steinart",
-      "stoneSize": "Steingröße",
-      "stoneQuality": "Steinqualität",
-      "numberOfStones": "Anzahl der Steine",
-      "stoneSpacing": "Steinabstand",
-      "stonePosition": "Steinposition",
-      "rows": "Reihen",
-      "numberOfChannels": "Anzahl der Kanäle"
+      "settingType": "Setting Type",
+      "stoneType": "Stone Type",
+      "stoneSize": "Stone Size",
+      "stoneQuality": "Stone Quality",
+      "numberOfStones": "Number of Stones",
+      "stoneSpacing": "Stone Spacing",
+      "stonePosition": "Stone Position",
+      "rows": "Rows",
+      "numberOfChannels": "Number of Channels"
     },
     "navigation": {
-      "previousStep": "Vorheriger Schritt",
-      "nextStep": "Nächster Schritt",
-      "complete": "Fertigstellen",
-      "nextRing": "Nächster Ring"
+      "previousStep": "Previous Step",
+      "nextStep": "Next Step",
+      "complete": "Complete",
+      "nextRing": "Next Ring"
     },
     "colors": {
-      "primary": "Primär",
-      "secondary": "Sekundär",
-      "tertiary": "Tertiär",
-      "colorLabel": "Farbe"
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "tertiary": "Tertiary",
+      "colorLabel": "Color"
     },
     "cart": {
-      "ringsInCart": "Ringe im Warenkorb"
+      "ringsInCart": "Rings in Cart"
     },
     "steps": {
-      "profiles": "Profile",
-      "dimensions": "Abmessungen",
-      "preciousMetal": "Edelmetall",
-      "stones": "Steine",
-      "groovesAndEdges": "Rillen und Kanten",
-      "engraving": "Gravur",
-      "weight": "Gewicht"
+      "profiles": "Profiles",
+      "dimensions": "Dimensions",
+      "preciousMetal": "Precious Metal",
+      "stones": "Stones",
+      "groovesAndEdges": "Grooves and Edges",
+      "engraving": "Engraving",
+      "weight": "Weight"
     },
     "validation": {
-      "configurator": "Konfigurator",
-      "weight": "Gewicht",
-      "selectWeight": "Bitte wählen Sie das Gewicht",
-      "selectProfile": "Bitte wählen Sie ein Profil zum Fortfahren",
-      "enterDimensions": "Bitte geben Sie alle erforderlichen Abmessungen ein",
-      "selectMetal": "Bitte wählen Sie ein Edelmetall",
-      "selectStones": "Bitte wählen Sie einen Stein",
-      "selectGrooves": "Bitte wählen Sie Rillen",
-      "selectEdges": "Bitte wählen Sie Kanten",
-      "enterEngraving": "Bitte vervollständigen Sie die Gravureinstellungen",
-      "selectStoneSettings": "Bitte wählen Sie die Steineinstellungen",
-      "completeGroovesAndEdges": "Bitte vervollständigen Sie die Rillen- und Kanteneinstellungen"
+      "configurator": "Configurator",
+      "weight": "Weight",
+      "selectWeight": "Please choose weight",
+      "selectProfile": "Please select a profile to continue",
+      "enterDimensions": "Please enter all required dimensions",
+      "selectMetal": "Please select a precious metal",
+      "selectStones": "Please select a stone",
+      "selectGrooves": "Please select grooves",
+      "selectEdges": "Please select edges",
+      "enterEngraving": "Please complete engraving settings",
+      "selectStoneSettings": "Please select stone settings",
+      "completeGroovesAndEdges": "Please complete grooves and edges settings"
     },
-    "left": "Links",
-    "center": "Mitte",
-    "right": "Rechts",
-    "free": "Frei"
+    "left": "Left",
+    "center": "Center",
+    "right": "Right",
+    "free": "Free"
   },
   "shop": {
     "title": "Shop",
-    "filters": "Filter",
-    "search": "Suchen",
-    "searchPlaceholder": "Produkte suchen...",
-    "categories": "Kategorien",
-    "priceRange": "Preisbereich",
+    "filters": "Filters",
+    "search": "Search",
+    "searchPlaceholder": "Search products...",
+    "categories": "Categories",
+    "priceRange": "Price Range",
     "min": "Min",
     "max": "Max",
-    "sortBy": "Sortieren nach",
-    "newest": "Neueste",
-    "oldest": "Älteste",
-    "priceLowToHigh": "Preis: Niedrig nach Hoch",
-    "priceHighToLow": "Preis: Hoch nach Niedrig",
-    "addToCart": "In den Warenkorb",
-    "loading": "Lädt...",
-    "noProducts": "Keine Produkte gefunden",
-    "outOfStock": "Nicht vorrätig",
-    "errorFetchingProducts": "Fehler beim Laden der Produkte",
-    "errorFetchingCategories": "Fehler beim Laden der Kategorien",
-    "categoryAll": "Alle",
-    "categoryRings": "Ringe",
-    "categoryBracelets": "Armbänder",
-    "categoryNecklaces": "Halsketten",
-    "categoryCustom": "Individuell",
-    "allCategories": "Alle Kategorien",
-    "inStock": "Auf Lager"
+    "sortBy": "Sort By",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "priceLowToHigh": "Price: Low to High",
+    "priceHighToLow": "Price: High to Low",
+    "addToCart": "Add to Cart",
+    "loading": "Loading...",
+    "noProducts": "No products found",
+    "outOfStock": "Out of stock",
+    "errorFetchingProducts": "Error fetching products",
+    "errorFetchingCategories": "Error fetching categories",
+    "categoryAll": "All",
+    "categoryRings": "Rings",
+    "categoryBracelets": "Bracelets",
+    "categoryNecklaces": "Necklaces",
+    "categoryCustom": "Custom",
+    "allCategories": "All Categories",
+    "inStock": "In Stock"
   },
   "cart": {
-    "title": "Warenkorb",
-    "close": "Schließen",
-    "emptyCart": "Ihr Warenkorb ist leer",
-    "startShopping": "Beginnen Sie mit dem Einkauf, indem Sie Artikel in den Warenkorb legen",
-    "continueShopping": "Weiter einkaufen",
-    "subtotal": "Zwischensumme",
-    "shippingNote": "Der Preis wird nach der Ringkonfiguration berechnet.",
-    "checkout": "Zur Kasse",
-    "configurator": "Zum Konfigurator",
-    "or": "oder",
-    "addToCart": "In den Warenkorb",
-    "outOfStock": "Nicht vorrätig",
-    "itemAdded": "Artikel zum Warenkorb hinzugefügt",
-    "itemRemoved": "Artikel aus dem Warenkorb entfernt",
-    "quantityUpdated": "Menge aktualisiert"
+    "title": "Cart",
+    "close": "Close",
+    "emptyCart": "Your cart is empty",
+    "startShopping": "Start shopping by adding items to your cart",
+    "continueShopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "shippingNote": "The price is calculated after ring configuration.",
+    "checkout": "Continue to Checkout",
+    "configurator": "Continue to configurator",
+    "or": "or",
+    "addToCart": "Add to Cart",
+    "outOfStock": "Out of Stock",
+    "itemAdded": "Item added to cart",
+    "itemRemoved": "Item removed from cart",
+    "quantityUpdated": "Quantity updated"
   },
   "checkout": {
-    "title": "Kasse",
-    "emptyCart": "Ihr Warenkorb ist leer",
-    "continueShopping": "Weiter einkaufen",
-    "contactInformation": "Kontaktinformationen",
-    "email": "E-Mail",
-    "shippingAddress": "Lieferadresse",
-    "fullName": "Vollständiger Name",
-    "address": "Adresse",
-    "city": "Stadt",
-    "country": "Land",
-    "postalCode": "Postleitzahl",
-    "phone": "Telefon",
-    "shippingMethod": "Versandart",
-    "localDelivery": "Lokale Lieferung (Kosovo)",
-    "internationalDelivery": "Internationale Lieferung",
-    "paymentMethod": "Zahlungsmethode",
-    "creditCard": "Kreditkarte",
-    "bankTransfer": "Überweisung",
-    "cashOnDelivery": "Nachnahme",
-    "payWithPaypal": "Mit PayPal bezahlen",
-    "payWithCard": "Mit Kredit- oder Debitkarte bezahlen",
-    "payOnDelivery": "Zahlung bei Lieferung",
-    "orderSummary": "Bestellzusammenfassung",
-    "product": "Produkt",
-    "quantity": "Menge",
-    "subtotal": "Zwischensumme",
-    "shipping": "Versand",
-    "total": "Gesamtsumme",
-    "placeOrder": "Bestellung aufgeben",
-    "processing": "Wird bearbeitet...",
-    "errorProcessingOrder": "Fehler bei der Bearbeitung Ihrer Bestellung. Bitte versuchen Sie es erneut.",
-    "choosePaymentMethod": "Zahlungsmethode wählen"
+    "title": "Checkout",
+    "emptyCart": "Your cart is empty",
+    "continueShopping": "Continue Shopping",
+    "contactInformation": "Contact Information",
+    "email": "Email",
+    "shippingAddress": "Shipping Address",
+    "fullName": "Full Name",
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "postalCode": "Postal Code",
+    "phone": "Phone",
+    "shippingMethod": "Shipping Method",
+    "localDelivery": "Local Delivery (Kosovo)",
+    "internationalDelivery": "International Delivery",
+    "paymentMethod": "Payment Method",
+    "creditCard": "Credit Card",
+    "bankTransfer": "Bank Transfer",
+    "cashOnDelivery": "Cash on Delivery",
+    "payWithPaypal": "Pay with PayPal",
+    "payWithCard": "Pay with credit card or debit card",
+    "payOnDelivery": "Pay on delivery",
+    "orderSummary": "Order Summary",
+    "product": "Product",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "processing": "Processing...",
+    "errorProcessingOrder": "Error processing your order. Please try again.",
+    "choosePaymentMethod": "Choose payment method"
   },
   "product": {
-    "loading": "Produkt wird geladen...",
-    "error": "Fehler beim Laden des Produkts",
-    "notFound": "Produkt nicht gefunden",
-    "backToShop": "Zurück zum Shop",
-    "addToCart": "In den Warenkorb",
-    "outOfStock": "Nicht vorrätig",
-    "description": "Beschreibung",
-    "specifications": "Spezifikationen",
-    "category": "Kategorie",
-    "price": "Preis",
-    "stock": "Lagerbestand",
-    "inStock": "Auf Lager",
-    "relatedProducts": "Ähnliche Produkte",
-    "quantity": "Menge"
+    "loading": "Loading product...",
+    "error": "Error loading product",
+    "notFound": "Product not found",
+    "backToShop": "Back to Shop",
+    "addToCart": "Add to Cart",
+    "outOfStock": "Out of stock",
+    "description": "Description",
+    "specifications": "Specifications",
+    "category": "Category",
+    "price": "Price",
+    "stock": "Stock",
+    "inStock": "In Stock",
+    "relatedProducts": "Related Products",
+    "quantity": "Quantity"
   },
   "notifications": {
-    "error": "Ein Fehler ist aufgetreten",
-    "outOfStock": "Nicht vorrätig",
-    "exceedsStock": "Die angeforderte Menge überschreitet den verfügbaren Lagerbestand",
-    "productAdded": "Produkt zum Warenkorb hinzugefügt",
-    "productRemoved": "Produkt aus dem Warenkorb entfernt",
-    "cartUpdated": "Warenkorb erfolgreich aktualisiert",
-    "configurationUpdated": "Konfiguration erfolgreich aktualisiert",
-    "cartCleared": "Warenkorb erfolgreich geleert"
+    "error": "An error occurred",
+    "outOfStock": "Out of stock",
+    "exceedsStock": "The requested quantity exceeds available stock",
+    "productAdded": "Product added to cart",
+    "productRemoved": "Product removed from cart",
+    "cartUpdated": "Cart updated successfully",
+    "configurationUpdated": "Configuration updated successfully",
+    "cartCleared": "Cart cleared successfully"
   },
   "jewelry": {
-    "description": "Wir bieten unseren Kunden die Möglichkeit, einzigartige, elegante und schöne Schmuckstücke zu finden."
+    "description": "We offer our customers the opportunity to find unique, elegant and beautiful jewelry."
   },
   "terms": {
-    "title": "Allgemeine Geschäftsbedingungen",
+    "title": "Terms and Conditions",
     "introduction": {
-      "title": "Einleitung",
-      "content": "Willkommen bei Invest Gold Gjokaj. Durch den Zugriff auf und die Nutzung unserer Website stimmen Sie zu, an diese Allgemeinen Geschäftsbedingungen gebunden zu sein."
+      "title": "Introduction",
+      "content": "Welcome to Invest Gold Gjokaj. By accessing and using our website, you agree to be bound by these Terms and Conditions."
     },
     "acceptance": {
-      "title": "Annahme der Bedingungen",
-      "content": "Durch den Zugriff auf und die Nutzung unserer Website und die Aufgabe einer Bestellung stimmen Sie zu, an diese Allgemeinen Geschäftsbedingungen gebunden zu sein."
+      "title": "Acceptance of Terms",
+      "content": "By accessing and using our website and making a purchase, you agree to be bound by these Terms and Conditions."
     },
     "products": {
-      "title": "Produkte",
-      "content": "Alle auf unserer Website angezeigten Produkte sind verfügbar, solange der Vorrat reicht. Wir behalten uns das Recht vor, jedes Produkt jederzeit einzustellen."
+      "title": "Products",
+      "content": "We offer high quality gold and precious metal products. While we strive to display accurate product information, we reserve the right to modify specifications without prior notice."
     },
     "pricing": {
-      "title": "Preise",
-      "content": "Alle Preise sind in Euro (€) angegeben und können ohne vorherige Ankündigung geändert werden. Wir bemühen uns, genaue Preisinformationen anzugeben, aber Fehler können auftreten."
+      "title": "Prices and Payments",
+      "content": "All prices are subject to change without notice. Prices for precious metals are based on current market rates. Payment must be made in full before order processing can begin."
     },
-    "ordering": {
-      "title": "Bestellung",
-      "content": "Mit der Aufgabe einer Bestellung machen Sie ein Kaufangebot. Wir behalten uns das Recht vor, Ihre Bestellung anzunehmen oder abzulehnen."
-    },
-    "payment": {
-      "title": "Zahlung",
-      "content": "Wir akzeptieren verschiedene Zahlungsmethoden, die während des Bezahlvorgangs angezeigt werden. Alle Zahlungen müssen vor der Bestellbearbeitung vollständig erfolgt sein."
+    "orders": {
+      "title": "Order Processing",
+      "content": "Orders are subject to availability and confirmation. We reserve the right to refuse or cancel any order for any reason, including pricing errors.."
     },
     "shipping": {
-      "title": "Versand",
-      "content": "Versandkosten und Lieferzeiten variieren je nach Standort und gewählter Versandmethode. Wir sind nicht verantwortlich für Verzögerungen außerhalb unserer Kontrolle."
+      "title": "Shipping and Delivery",
+      "content": "We ship to select locations. Delivery times may vary based on location and product availability. All shipments are fully insured."
     },
     "returns": {
-      "title": "Rückgabe",
-      "content": "Rückgaben werden für alle Produkte akzeptiert. Bitte überprüfen Sie Ihre Artikel bei der Lieferung."
+      "title": "Returns and Refunds",
+      "content": "Returns are accepted on all products. Please inspect your items upon delivery."
     },
     "intellectual": {
-      "title": "Geistiges Eigentum",
-      "content": "Alle Inhalte auf dieser Website sind unser Eigentum und durch Urheberrechtsgesetze geschützt."
+      "title": "Intellectual Property",
+      "content": "All content on this website is owned by us and protected by copyright laws and intellectual property rights."
     },
     "liability": {
-      "title": "Haftung",
-      "content": "Wir haften nicht für Verluste, die aus der Nutzung unserer Website oder Produkte entstehen, außer soweit gesetzlich vorgeschrieben."
+      "title": "Limitation of Liability",
+      "content": "We are not liable for any indirect, incidental, special, consequential or punitive damages resulting from the use of our products or services."
     },
     "changes": {
-      "title": "Änderungen der Bedingungen",
-      "content": "Wir behalten uns das Recht vor, diese Bedingungen jederzeit zu ändern. Änderungen treten sofort nach Veröffentlichung auf der Website in Kraft."
+      "title": "Changes to Terms",
+      "content": "We reserve the right to modify these terms at any time. The use of our website internet page continues to accept any changes."
     },
     "contact": {
-      "title": "Kontaktinformationen",
-      "content": "Bei Fragen zu diesen Bedingungen kontaktieren Sie uns bitte über die auf unserer Kontaktseite angegebenen Informationen."
+      "title": "Contact Us",
+      "content": "If you have questions regarding these Terms and Conditions, please contact us through the contact information provided."
     }
   },
   "privacy": {
-    "title": "Datenschutzerklärung",
+    "title": "Privacy Policy",
     "introduction": {
-      "title": "Einleitung",
-      "content": "Bei Invest Gold Gjokaj nehmen wir Ihre Privatsphäre ernst. Diese Datenschutzerklärung erläutert, wie wir Ihre personenbezogenen Daten erheben, verwenden und schützen."
+      "title": "Introduction",
+      "content": "In Invest Gold Gjokaj, we take your privacy seriously. This Privacy Policy explains how we collect, use and protect your personal information."
     },
     "collection": {
-      "title": "Datenerhebung",
-      "content": "Wir erheben Informationen, die Sie uns direkt zur Verfügung stellen, einschließlich:",
-      "items": [
-        "Persönliche Informationen (Name, E-Mail, Telefonnummer)",
-        "Liefer- und Rechnungsadressen",
-        "Zahlungsinformationen",
-        "Bestellverlauf und Präferenzen"
-      ]
+      "title": "Information Collected",
+      "content": "We collect various types of information for our services:",
+      "items": {
+        "personal": "Personal information (name, email, address, phone number)",
+        "payment": "Payment information (processed securely through our payment providers)",
+        "usage": "Usage data (how you interact with our website)"
+      }
     },
-    "use": {
-      "title": "Datenverwendung",
-      "content": "Wir verwenden Ihre Informationen für:",
-      "items": [
-        "Bearbeitung und Erfüllung Ihrer Bestellungen",
-        "Kommunikation über Bestellungen",
-        "Versand von Marketing-Mitteilungen (mit Einwilligung)",
-        "Verbesserung unserer Dienstleistungen"
-      ]
+    "usage": {
+      "title": "How We Use Your Information",
+      "content": "We use your information for the following purposes:",
+      "items": {
+        "process": "To process and fulfill your orders",
+        "improve": "To improve our website and services",
+        "communicate": "To communicate with you about our products and services",
+        "legal": "Për të përmbushur detyrimet ligjore"
+      }
     },
     "sharing": {
-      "title": "Datenweitergabe",
-      "content": "Wir können Ihre Informationen weitergeben an:",
-      "items": [
-        "Versanddienstleister",
-        "Zahlungsabwickler",
-        "Dienstleister",
-        "Rechtliche Behörden bei Erfordernis"
-      ]
-    },
-    "security": {
-      "title": "Datensicherheit",
-      "content": "Wir setzen angemessene Sicherheitsmaßnahmen zum Schutz Ihrer personenbezogenen Daten ein."
+      "title": "Information Sharing",
+      "content": "We do not sell your personal information. We share your information only with authorized partners necessary to provide our services and as required by law."
     },
     "cookies": {
-      "title": "Cookies",
-      "content": "Wir verwenden Cookies, um Ihr Browsing-Erlebnis zu verbessern und den Website-Verkehr zu analysieren."
+      "title": "Cookies and Consent",
+      "content": "We use cookies and similar technologies to improve your browsing experience and analyze website traffic."
+    },
+    "security": {
+      "title": "Security of Information",
+      "content": "We use advanced security measures to protect your personal information from unauthorized access, modification or disclosure."
     },
     "rights": {
-      "title": "Ihre Rechte",
-      "content": "Sie haben das Recht auf:",
-      "items": [
-        "Zugriff auf Ihre personenbezogenen Daten",
-        "Berichtigung anfordern",
-        "Löschung anfordern",
-        "Abmeldung von Marketing"
-      ]
-    },
-    "contact": {
-      "title": "Kontakt",
-      "content": "Für datenschutzbezogene Anfragen kontaktieren Sie uns bitte über die angegebenen Kontaktinformationen."
+      "title": "Your Rights",
+      "content": "You have certain rights in relation to your personal information:",
+      "items": {
+        "access": "Right to access your personal information",
+        "rectification": "Right to correct inaccurate information",
+        "deletion": "Right to request the deletion of your information",
+        "restriction": "Right to restrict the processing of your information",
+        "portability": "Right to data portability"
+      }
     },
     "updates": {
-      "title": "Aktualisierungen der Richtlinie",
-      "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Bitte überprüfen Sie sie regelmäßig."
+      "title": "Updates on Privacy Policy",
+      "content": "We may update this Privacy Policy from time to time. We will notify you of any significant changes."
+    },
+    "contact": {
+      "title": "Contact us",
+      "content": "If you have questions regarding this Privacy Policy, please contact us through the contact information provided."
     }
   },
   "footer": {

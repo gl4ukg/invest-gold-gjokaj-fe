@@ -63,7 +63,7 @@ export const usePriceOfGram = () => {
             const errorMessage = 'Unable to load current gold prices. Please try again later.';
             
             setError(errorMessage);
-            toast.error(errorMessage);
+            // toast.error(errorMessage);
             console.error('Price loading error:', error);
         } finally {
             setIsLoading(false);
