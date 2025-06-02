@@ -172,7 +172,7 @@ const RingsSection: React.FC = () => {
       },
       {
         breakpoint: 480,
-        settings: { slidesToShow: 1 },
+        settings: { slidesToShow: 2 },
       },
     ],
   };
