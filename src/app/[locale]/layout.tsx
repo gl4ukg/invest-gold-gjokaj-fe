@@ -133,7 +133,7 @@ export default async function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body 
-        className={`${poppins.variable} antialiased bg-white`}
+        className={`${poppins.variable} antialiased bg-white overflow-x-hidden`}
         >
         <OrganizationJsonLd />
         <NextIntlClientProvider messages={messages}>
