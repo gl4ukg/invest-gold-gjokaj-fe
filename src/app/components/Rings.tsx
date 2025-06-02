@@ -155,7 +155,7 @@ const RingsSection: React.FC = () => {
 
   const sliderSettings = {
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: false,
     speed: 500,
     slidesToShow: 5,
