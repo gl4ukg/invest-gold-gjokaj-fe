@@ -180,7 +180,7 @@ const RingsSection: React.FC = () => {
   return (
     <section id="rings" className="py-12 bg-white relative overflow-x-hidden" ref={sectionRef}>
       <motion.div
-        className="container mx-auto px-4"
+        className="container mx-auto px-0 md:px-4"
         variants={containerVariants}
         initial="hidden"
         animate={isSectionInView ? "visible" : "hidden"}
@@ -302,7 +302,7 @@ const RingsSection: React.FC = () => {
                 {products?.map((ring) => (
                   <motion.div
                     key={ring.id}
-                    className="p-4 h-full"
+                    className="p-2 h-full"
                     variants={imageVariants}
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
