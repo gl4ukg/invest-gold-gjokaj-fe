@@ -126,7 +126,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang="sq">
+    <html lang="sq" className="overflow-x-hidden">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

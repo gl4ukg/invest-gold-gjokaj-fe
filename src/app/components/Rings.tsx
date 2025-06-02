@@ -178,7 +178,7 @@ const RingsSection: React.FC = () => {
   };
 
   return (
-    <section id="rings" className="py-12 bg-white relative" ref={sectionRef}>
+    <section id="rings" className="py-12 bg-white relative overflow-x-hidden" ref={sectionRef}>
       <motion.div
         className="container mx-auto px-4"
         variants={containerVariants}

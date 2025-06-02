@@ -69,7 +69,7 @@ export default async function Home({ params }: Props) {
   return (
     <>
       <Header />
-      <main>
+      <main className="overflow-x-hidden">
         <AboutSection
           id="about"
           title={t("title")}
