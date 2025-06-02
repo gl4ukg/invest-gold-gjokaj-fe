@@ -47,7 +47,7 @@ const Header = () => {
                     muted
                     loop
                     playsInline
-                    poster="/header.png"
+                    poster="/images/header.png"
                     className="absolute inset-0 w-full h-full object-cover"
                 >
                     <source src="https://glaukthaqi.com/header-video.mp4" type="video/mp4" />
@@ -55,7 +55,7 @@ const Header = () => {
                 {/* Overlay for better text readability */}
                 <div className="absolute inset-0 bg-black bg-opacity-40">
                     <Image
-                        src="/header.png"
+                        src="/images/header.png"
                         alt="Header Image"
                         fill
                         className="object-cover"
