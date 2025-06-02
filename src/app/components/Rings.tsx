@@ -62,6 +62,7 @@ const RingsSection: React.FC = () => {
       const related = await ProductsService.search({
         categoryIds: [selectedCategory],
         sortOrder: "DESC",
+        limit: 30,
       });
       setProducts(related.items);
     } catch (error) {
@@ -178,7 +179,7 @@ const RingsSection: React.FC = () => {
   };
 
   return (
-    <section id="rings" className="py-12 bg-white relative overflow-x-hidden" ref={sectionRef}>
+    <section id="rings" className="py-12 bg-white relative overflow-hidden" ref={sectionRef}>
       <motion.div
         className="container mx-auto px-0 md:px-4"
         variants={containerVariants}
