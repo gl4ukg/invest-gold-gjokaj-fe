@@ -54,12 +54,12 @@ const Header = () => {
                 </video>
                 {/* Overlay for better text readability */}
                 <div className="absolute inset-0 bg-black bg-opacity-40">
-                    <Image
+                    {/* <Image
                         src="/images/header.png"
                         alt="Header Image"
                         fill
                         className="object-cover"
-                    />
+                    /> */}
                 </div>
             </div>
 
