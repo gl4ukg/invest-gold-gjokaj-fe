@@ -146,10 +146,11 @@ export default function Checkout() {
             returnUrl: `${window.location.origin}/${locale}/order-confirmation`,
           });
         
-          window.location.href = cardPayment.redirectUrl;
           if(cardPayment.success) {
             clearCart();
           }
+          window.location.href = cardPayment.redirectUrl;
+          return;
         } else {
           router.push(`/order-confirmation/${order.id}`);
         }
