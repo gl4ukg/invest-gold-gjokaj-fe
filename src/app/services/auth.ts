@@ -33,7 +33,7 @@ const AuthService = {
     }
   },
 
-  login: async (email: string, password: string): Promise<string> => {
+  login: async (email: string, password: string): Promise<{token: string, user: Partial<User>}> => {
     try {
       const response = await axiosClient.post("/auth/login", {
         email,

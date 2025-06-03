@@ -16,7 +16,8 @@ const LoginPage: React.FC = () => {
 
     try {
       const login = await AuthService.login(email, password);
-      if (login) {
+
+      if (login.user) {
         router.push("/admin");
       }
     } catch (error) {
