@@ -104,6 +104,15 @@ export const metadata: Metadata = {
   category: 'Dyqan Bizhuterish',
   classification: 'Biznes',
   referrer: 'origin-when-cross-origin',
+  icons: {
+    icon: [
+      { url: '/favicon_16x16.ico', sizes: '16x16' },
+      { url: '/favicon_32x32.ico', sizes: '32x32' },
+      { url: '/favicon_48x48.ico', sizes: '48x48' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   other: {
     'geo.region': 'XK',
     'geo.placename': 'Kosovë',
@@ -117,6 +126,8 @@ export const metadata: Metadata = {
   }
 };
 
+
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -127,10 +138,8 @@ export default async function RootLayout({
 
   return (
     <html lang="sq" className="overflow-x-hidden">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="manifest" href="/manifest.json" />
-      </head>
+      <head />
+      <link rel="manifest" href="/manifest.json" />
       <body 
         className={`${poppins.variable} antialiased bg-white overflow-x-hidden`}
         >
