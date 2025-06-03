@@ -15,9 +15,9 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 
   React.useEffect(() => {
     if (!isAuthenticated) {
-      router.push("login");
+      router.push("/login");
     } else {
-      router.push("admin");
+      router.push('/admin')
     }
   }, [isAuthenticated]);
 

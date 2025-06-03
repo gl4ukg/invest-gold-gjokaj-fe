@@ -6,6 +6,10 @@ const STORAGE_KEY = "questionnaire_state";
 
 const AuthService = {
   getUserFromSession: async (): Promise<any | null> => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return null;
+    }
     const userProfile = await AuthService.getProfile();
     if (userProfile) {
       return userProfile;

@@ -10,6 +10,16 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  React.useEffect(() => {
+    const checkAuth = async () => {
+      const user = await AuthService.getUserFromSession();
+      if (user) {
+        router.push("/admin");
+      }
+    };
+    checkAuth();
+  }, []);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
