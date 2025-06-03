@@ -10,28 +10,19 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  React.useEffect(() => {
-    const checkAuth = async () => {
-      const user = await AuthService.getUserFromSession();
-      if (user) {
-        router.push("/admin");
-      }
-    };
-    checkAuth();
-  }, []);
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const login = await AuthService.login(email, password);
+      const login = await AuthService.login(email.toLowerCase(), password);
 
       if (login.user) {
         router.push("/admin");
       }
     } catch (error) {
-      let errorMessage = "Login failed. Please check your credentials.";
+      let errorMessage = "Kredencialet jane gabim. Ju lutem provoni perseri!";
+      console.log(error,"erroe")
       if (error instanceof Error) {
         errorMessage = error.message;
       }
