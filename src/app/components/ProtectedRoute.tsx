@@ -1,31 +1,36 @@
 "use client";
-import React from "react";
-import { redirect, useRouter } from "@/i18n/routing";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "@/i18n/routing";
+import AuthService from "@/app/services/auth";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  isAuthenticated: boolean;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  children,
-  isAuthenticated,
-}) => {
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  React.useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/login");
-    } else {
-      router.push('/admin')
-    }
-  }, [isAuthenticated]);
+  useEffect(() => {
+    const checkAuth = async () => {
+      const user = await AuthService.getUserFromSession();
+      if (user) {
+        setIsAuthenticated(true);
+      } else {
+        router.push("/login");
+      }
+      setIsLoading(false);
+    };
 
-  if (!isAuthenticated) {
-    return null;
+    checkAuth();
+  }, []);
+
+  if (isLoading) {
+    return null; // or show a loading spinner
   }
 
-  return <>{children}</>;
+  return <>{isAuthenticated && children}</>;
 };
 
 export default ProtectedRoute;
