@@ -138,8 +138,12 @@ export default async function RootLayout({
 
   return (
     <html lang="sq" className="overflow-x-hidden">
-      <head />
-      <link rel="manifest" href="/manifest.json" />
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/x-icon" href="/favicon_32x32.ico" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/favicon_48x48.ico" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body 
         className={`${poppins.variable} antialiased bg-white overflow-x-hidden`}
         >
