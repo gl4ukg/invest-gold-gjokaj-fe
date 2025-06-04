@@ -147,14 +147,17 @@ export default function Checkout() {
             returnUrl: `${window.location.origin}/${locale}/order-confirmation`,
           });
         
+          console.log("is going here 1")
           window.location.href = cardPayment.redirectUrl;
           if(cardPayment.success) {
             clearCart();
           }
+          console.log("is going here 1.2")
         } else {
+          console.log("is going here 2")
           delay(() => {
             router.push(`/order-confirmation/${order.id}`);
-          }, 1000);
+          }, 3000);
         }
   
       } catch (err) {
