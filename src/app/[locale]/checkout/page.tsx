@@ -149,15 +149,13 @@ export default function Checkout() {
         
           console.log("is going here 1")
           window.location.href = cardPayment.redirectUrl;
-          if(cardPayment.success) {
-            clearCart();
-          }
+          // if(cardPayment.success) {
+          //   clearCart();
+          // }
           console.log("is going here 1.2")
         } else {
           console.log("is going here 2")
-          delay(() => {
-            router.push(`/order-confirmation/${order.id}`);
-          }, 3000);
+          router.push(`/order-confirmation/${order.id}`);
         }
   
       } catch (err) {
