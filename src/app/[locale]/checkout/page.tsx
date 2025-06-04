@@ -11,6 +11,7 @@ import Loader from '@/app/components/Loader';
 import { countries, kosovoMunicipalities } from '@/app/data/locations';
 import Image from 'next/image';
 import PaymentsService from '@/app/services/paymets';
+import { delay } from 'lodash';
 
 interface CheckoutForm {
   email: string;
@@ -151,7 +152,9 @@ export default function Checkout() {
             clearCart();
           }
         } else {
-          router.push(`/order-confirmation/${order.id}`);
+          delay(() => {
+            router.push(`/order-confirmation/${order.id}`);
+          }, 1000);
         }
   
       } catch (err) {
