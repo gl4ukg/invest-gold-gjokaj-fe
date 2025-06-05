@@ -137,7 +137,7 @@ console.log(orders,"order items")
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-darkGray">
-                    {format(new Date(order.createdAt), 'MMM dd, yyyy')}
+                    {format(new Date(order.createdAt), 'MMM dd, yyyy HH:mm:ss')}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     {order.status !== OrderStatus.REFUNDED 

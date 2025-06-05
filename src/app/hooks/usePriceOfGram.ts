@@ -11,7 +11,7 @@ const REFRESH_INTERVAL = 60 * 1000; // 1 minute in milliseconds
 export const usePriceOfGram = () => {
     const [prices, setPrices] = useState<PriceOfGram>(() => {
         // Initialize from cache if available
-        const cached = localStorage.getItem(PRICE_CACHE_KEY);
+        const cached = localStorage?.getItem(PRICE_CACHE_KEY);
         if (cached) {
             const { data, timestamp } = JSON.parse(cached);
             if (Date.now() - timestamp < PRICE_CACHE_DURATION) {
@@ -43,7 +43,7 @@ export const usePriceOfGram = () => {
 
                     setPrices(priceData);
                     // Cache the price data
-                    localStorage.setItem(PRICE_CACHE_KEY, JSON.stringify({
+                    localStorage?.setItem(PRICE_CACHE_KEY, JSON.stringify({
                         data: priceData,
                         timestamp: Date.now()
                     }));
