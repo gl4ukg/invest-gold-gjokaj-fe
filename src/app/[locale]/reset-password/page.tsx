@@ -26,8 +26,14 @@ const ResetPassword = () => {
                 return;
             }
             const response = await AuthService.resetPasswordByToken(token as string, password, confirmationPassword);
-            toast.success(response.message);
-            router.push('/login');
+            if(response.message) {
+                toast.success(response.message);
+                router.push('/login');
+                setPassword('');
+                setConfirmationPassword('');
+                setPasswordError('');
+                setConfirmPasswordError('');
+            }
         } catch (error: any) {
             console.log('Reset password error:', error);
             let errorMessage = 'Diqka nuk shkoi mire, provoni perseri!';

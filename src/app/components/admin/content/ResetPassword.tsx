@@ -27,6 +27,10 @@ const ResetPassword = () => {
             const resetPassword = await AuthService.resetPassword(password, confirmationPassword);
             if (resetPassword) {
                 toast.success(resetPassword.message);
+                setPassword('');
+                setConfirmationPassword('');
+                setPasswordError('');
+                setConfirmPasswordError('');
             }
         } catch (error) {
             let errorMessage = 'Diqka nuk shkoi mire, provoni perseri!';
