@@ -4,7 +4,7 @@ import { Link } from "lucide-react"
 import { useRouter } from '@/i18n/routing';
 import { useState } from "react"
 import toast from "react-hot-toast";
-import { validatePassword } from "@/app/[locale]/reset-password/page";
+import { validatePassword } from "@/lib/utils";
 
 
 const ResetPassword = () => {
