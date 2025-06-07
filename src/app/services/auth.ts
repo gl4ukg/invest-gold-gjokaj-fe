@@ -103,6 +103,63 @@ const AuthService = {
   logout: (): void => {
     AuthService.clearToken();
   },
+
+  resetPassword: async (password: string, confirmationPassword: string): Promise<any> => {
+    try {
+      const response = await axiosClient.post("/auth/reset-password", {
+        password,
+        confirmationPassword,
+      });
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        throw error.response?.data;
+      }
+      throw error;
+    }
+  },
+
+  findUserByEmail: async (email: string): Promise<any> => {
+    try {
+      const response = await axiosClient.get(`/auth/find-user-by-email?email=${email}`);
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        throw error.response?.data;
+      }
+      throw error;
+    }
+  },
+
+  forgotPassword: async (email: string): Promise<any> => {
+    try {
+      const response = await axiosClient.post("/auth/forgot-password", {
+        email,
+      });
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        throw error.response?.data;
+      }
+      throw error;
+    }
+  },
+
+  resetPasswordByToken: async (token: string, password: string, confirmationPassword: string): Promise<any> => {
+    try {
+      const response = await axiosClient.post(`/auth/reset-password-with-token`, {
+        token,
+        password,
+        confirmationPassword,
+      });
+      return response.data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        throw error.response?.data;
+      }
+      throw error;
+    }
+  },
 };
 
 export default AuthService;

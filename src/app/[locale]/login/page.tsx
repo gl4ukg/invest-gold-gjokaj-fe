@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import AuthService from "@/app/services/auth";
-import { useRouter } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import toast from "react-hot-toast";
 
 const LoginPage: React.FC = () => {
@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
               htmlFor="email"
               className="block text-sm font-medium text-darkGray"
             >
-              Username:
+              Email:
             </label>
             <input
               type="text"
@@ -74,6 +74,7 @@ const LoginPage: React.FC = () => {
               required
             />
           </div>
+          <Link className="text-sm text-darkGray hover:text-lightGray" href="/forgot-password">Keni harruar fjalekalimin?</Link>
           <button
             type="submit"
             className={`w-full px-4 py-2 text-white bg-lightGray rounded-md ${

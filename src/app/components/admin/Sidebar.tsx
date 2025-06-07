@@ -15,7 +15,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, onPageChange }) => {
         { name: 'Produktet', id: 'products' },
         { name: 'Kategorite', id: 'categories' },
         { name: 'Porosite', id: 'orders' },
-        { name: 'Cmimi i gramit', id: 'price-of-gram' }
+        { name: 'Cmimi i gramit', id: 'price-of-gram' },
+        { name: 'Ndrysho fjalekalimin', id: 'reset-password' }
     ];
 
     const handleLogout = () => {
