@@ -64,7 +64,7 @@ const ProductsContent: React.FC = () => {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(products.length / itemsPerPage);
-console.log(formData.images,"images")
+    
     const fetchData = async () => {
         try {
             const [productsData, categoriesData] = await Promise.all([

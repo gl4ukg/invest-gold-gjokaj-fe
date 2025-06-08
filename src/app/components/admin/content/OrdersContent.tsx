@@ -7,12 +7,19 @@ import { Order } from '@/app/services/orders';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import PaymentsService from '@/app/services/paymets';
+import Pagination from '../Pagination';
 
 export default function OrdersContent() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [expandedRows, setExpandedRows] = useState<{ [key: string]: boolean }>({});
   const [status, setStatus] = useState<OrderStatus>(OrderStatus.PROCESSING);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(orders.length / itemsPerPage);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -20,7 +27,7 @@ export default function OrdersContent() {
       setOrders(data);
     };
     fetchOrders();
-  }, []);
+  }, [isLoading]);
 
   const toggleRow = (orderId: string) => {
     setExpandedRows(prev => ({
@@ -85,7 +92,10 @@ export default function OrdersContent() {
     }
   }
 
-console.log(orders,"order items")
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+};
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="overflow-x-auto bg-white rounded-lg shadow">
@@ -97,12 +107,15 @@ console.log(orders,"order items")
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Totali</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Statusi</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Data</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Refund</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">Rimbursimi</th>
               <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider"></th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {orders?.map((order) => (
+            {currentItems?.filter(order => 
+              (order.paymentMethod === 'card' && order.paymentStatus === 'success') || 
+              (order.paymentMethod === 'cash_on_delivery')
+            ).map((order) => (
               <React.Fragment key={order.id}>
                 <tr className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-darkGray">
@@ -119,9 +132,14 @@ console.log(orders,"order items")
                     <div className="relative inline-block">
                       <select
                         value={order.status}
-                        onChange={(e) => handleStatusUpdate(order.id!, e.target.value as OrderStatus)}
+                        onChange={(e) => {
+                          if(order.status !== OrderStatus.REFUNDED) {
+                            handleStatusUpdate(order.id!, e.target.value as OrderStatus)
+                          } 
+                          return;
+                        }}
                         className={`pl-3 pr-8 py-1 text-sm font-semibold rounded-full border-2 focus:outline-none focus:ring-2 focus:ring-offset-2 ${statusColors[order.status]} border-transparent`}
-                        disabled={isLoading}
+                        disabled={isLoading || order.status === OrderStatus.REFUNDED}
                       >
                         <option value={OrderStatus.PENDING}>Në pritje</option>
                         <option value={OrderStatus.PROCESSING}>Procesuar</option>
@@ -140,11 +158,13 @@ console.log(orders,"order items")
                     {format(new Date(order.createdAt), 'MMM dd, yyyy HH:mm:ss')}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    {order.status !== OrderStatus.REFUNDED 
+                    {order.paymentMethod === 'card' 
+                    ? (order.status !== OrderStatus.REFUNDED 
                     ? (
-                      <button onClick={() => handleRefund(order.id)} className="text-red-500 hover:text-red-600">Refund Order</button>
+                      <button onClick={() => handleRefund(order.id)} className="border border-red-500 rounded-full px-2 py-1 text-red-500 hover:text-red-600">Rimburso</button>
                     )
-                    : <p className="text-red-500">Refunded</p>}
+                    : <p className="text-red-500">U rimbursua</p>)
+                    : <p className="text-darkGray">Pagese me kesh</p>}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button onClick={() => toggleRow(order.id)} className="text-darkGray hover:text-gray-700">
@@ -345,6 +365,12 @@ console.log(orders,"order items")
           </tbody>
         </table>
       </div>
+      {/* Pagination */}
+      <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+      />
 
     </div>
   );

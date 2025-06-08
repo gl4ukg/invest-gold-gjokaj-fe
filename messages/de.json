@@ -115,6 +115,7 @@
       "country": "Country",
       "phone": "Phone"
     },
+    "verifyingPayment": "Verifying Payment...",
     "thankYou": "Thank you for your order!",
     "orderNumber": "Order Number",
     "orderDetails": "Order Details",

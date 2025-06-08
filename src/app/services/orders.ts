@@ -51,6 +51,7 @@ export interface Order {
   shippingCost: number;
   total: number;
   status: OrderStatus;
+  paymentStatus: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -120,19 +121,6 @@ const OrdersService = {
     }
   },
 
-  async initiatePayment(orderId: string, paymentMethod: string): Promise<any> {
-    try {
-      const response = await axiosClient.post(`/orders/${orderId}/payment`, {
-        paymentMethod,
-      });
-      return response.data;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        throw error.response?.data;
-      }
-      throw error;
-    }
-  },
 
   async getOrder(orderId: string): Promise<Order> {
     try {
@@ -169,6 +157,9 @@ const OrdersService = {
       console.error('Error updating order status:', error);
       throw error;
     }
+  },
+  markOrderAsPaid(orderId: string) {
+    return axiosClient.patch(`/orders/${orderId}/mark-paid`);
   }
 };
 

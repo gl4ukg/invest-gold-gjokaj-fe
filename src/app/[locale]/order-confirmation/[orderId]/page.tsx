@@ -74,6 +74,28 @@ export default function OrderConfirmation() {
     "international": t('orderConfirmation.shippingMethods.international'),
   }
 
+  if(order?.paymentMethod === 'card' && order?.paymentStatus !== 'success' ) {
+    return (
+
+      <div className="container mx-auto px-4 pt-32 pb-20 min-h-screen text-darkGray">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-green-600 mb-4">
+              {t('orderConfirmation.thankYou')}
+            </h1>
+            <p className="text-gray-600">
+              {t('orderConfirmation.orderNumber')}: {order.id}
+            </p>
+          </div>
+
+          <div className="text-red-600 bg-red-50 border border-red-200 p-4 rounded-md my-4">
+            Payment was not successful. Your order is pending or failed. You can retry payment or contact support.
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="container mx-auto px-4 pt-32 pb-20 min-h-screen text-darkGray">
       <div className="max-w-2xl mx-auto">
