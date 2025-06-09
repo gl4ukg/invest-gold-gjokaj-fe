@@ -7,6 +7,7 @@ import OrdersService, { Order } from '@/app/services/orders';
 import { useRouter } from '@/i18n/routing';
 import Loader from '@/app/components/Loader';
 import Image from 'next/image';
+import { useCart } from '@/app/context/CartContext';
 
 export default function OrderConfirmation() {
   const t = useTranslations();
@@ -15,6 +16,7 @@ export default function OrderConfirmation() {
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { clearCart } = useCart(); 
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -22,6 +24,7 @@ export default function OrderConfirmation() {
         const orderId = params.orderId as string;
         const orderData = await OrdersService.getOrder(orderId);
         setOrder(orderData);
+        clearCart();
       } catch (err) {
         setError(
           err instanceof Error ? err.message : t('orderConfirmation.errorLoading')
