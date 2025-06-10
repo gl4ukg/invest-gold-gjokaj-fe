@@ -24,7 +24,9 @@ export default function OrderConfirmation() {
         const orderId = params.orderId as string;
         const orderData = await OrdersService.getOrder(orderId);
         setOrder(orderData);
-        clearCart();
+        if(order?.paymentStatus === 'success') {
+          clearCart();
+        }
       } catch (err) {
         setError(
           err instanceof Error ? err.message : t('orderConfirmation.errorLoading')
