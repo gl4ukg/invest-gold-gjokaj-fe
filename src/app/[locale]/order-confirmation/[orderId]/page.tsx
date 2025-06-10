@@ -92,7 +92,7 @@ export default function OrderConfirmation() {
           </div>
 
           <div className="text-red-600 bg-red-50 border border-red-200 p-4 rounded-md my-4">
-            Payment was not successful. Your order is pending or failed. You can retry payment or contact support.
+            {t('orderConfirmation.paymentFailed')}
           </div>
         </div>
       </div>

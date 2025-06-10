@@ -116,6 +116,7 @@
       "phone": "Phone"
     },
     "verifyingPayment": "Verifying Payment...",
+    "paymentFailed": "Payment was not successful. Your order is pending or failed. You can retry payment or contact support.",
     "thankYou": "Thank you for your order!",
     "orderNumber": "Order Number",
     "orderDetails": "Order Details",

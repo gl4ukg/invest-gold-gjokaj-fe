@@ -115,7 +115,8 @@
       "country": "Shteti",
       "phone": "Numri i Telefonit"
     },
-    "verifyingPayment": "Verifying Payment...",
+    "verifyingPayment": "Duke verifikuar pagesën...",
+    "paymentFailed": "Pagesa nuk u krye me sukses. Porosia juaj është në pritje ose ka dështuar. Mund të provoni përsëri ose të na kontaktoni.",
     "thankYou": "Faleminderit për porosinë tuaj!",
     "orderNumber": "Numri i Porosisë",
     "orderDetails": "Detajet e Porosisë",
