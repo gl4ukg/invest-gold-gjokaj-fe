@@ -357,7 +357,7 @@ export default function ConfiguratorPage() {
                       ? "bg-gold text-primary"
                       : "bg-gray-100 text-darkGray hover:bg-gray-200"
                   }`}
-                  onClick={() => hanldeCellClick(step.id)}
+                  // onClick={() => hanldeCellClick(step.id)}
                 >
                   {step.name}
                 </li>
