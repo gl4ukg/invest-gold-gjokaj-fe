@@ -121,7 +121,7 @@ export const metadata: Metadata = {
     'business:contact_data:locality': 'Gjakovë',
     'business:contact_data:postal_code': '50000',
     'business:contact_data:country_name': 'Kosovë',
-    'business:contact_data:email': 'investgoldgjokaj2017@gmail.com',
+    'business:contact_data:email': 'info@investgoldgjokaj.com',
     'business:contact_data:phone_number': '+383 43 666 236'
   }
 };
