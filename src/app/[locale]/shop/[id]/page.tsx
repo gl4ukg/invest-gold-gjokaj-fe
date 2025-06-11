@@ -72,7 +72,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ loca
   const { locale, id } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
-  // try {
+  try {
     // Fetch the specific product data
     const product = await ProductsService.getById(id);
 
@@ -86,13 +86,13 @@ export default async function ProductDetail({ params }: { params: Promise<{ loca
         <ProductContent id={id} />
       </div>
     );
-  // } catch (error) {
-  //   // Return a 404 page if product is not found
-  //   return (
-  //     <div>
-  //       <h1>{t('product.notFound')}</h1>
-  //       <p>{t('product.notFoundDescription')}</p>
-  //     </div>
-  //   );
-  // }
+  } catch (error) {
+    // Return a 404 page if product is not found
+    return (
+      <div>
+        <h1>{t('product.notFound')}</h1>
+        <p>{t('product.notFoundDescription')}</p>
+      </div>
+    );
+  }
 }

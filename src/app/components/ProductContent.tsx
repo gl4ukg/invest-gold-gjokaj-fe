@@ -94,6 +94,14 @@ export default function ProductContent({ id }: { id: string }) {
     );
   }
 
+  const ringsText: { [key: string]: string } = {
+    "Ari i Verdhë": t("rings.yellowGold"),
+    "Ari i Bardhë": t("rings.whiteGold"),
+    "Ari Rozë": t("rings.roseGold"),
+    "Ari Dy-ngjyrësh": t("rings.twoColorGold"),
+    "Ari Shumëngjyrësh": t("rings.multiColorGold"),
+  };
+  
   return (
     <div className="container mx-auto px-4 py-32">
       {/* Product Details */}
@@ -109,15 +117,15 @@ export default function ProductContent({ id }: { id: string }) {
           <h1 className="text-3xl font-bold text-darkGray">{product.name}</h1>
           
           <div className="text-2xl font-bold text-primary">
-            {product.weight} gr.
+            {product.weight} gram
           </div>
 
-          <div>
+          {/* <div>
             <h2 className="text-xl font-semibold mb-2 text-darkGray">
               {t('product.description')}
             </h2>
             <p className="text-lightGray">{product.description}</p>
-          </div>
+          </div> */}
 
           <div>
             <h2 className="text-xl text-darkGray font-semibold mb-2">
@@ -126,7 +134,7 @@ export default function ProductContent({ id }: { id: string }) {
             <div className="space-y-2">
               <div className="flex justify-between text-lightGray py-2 border-b">
                 <span className="font-medium">{t('product.category')}</span>
-                <span>{product.category.name}</span>
+                <span>{ringsText[product.category.name]}</span>
               </div>
               <div className="flex justify-between py-2 border-b text-lightGray">
                 <span className="font-medium text-lightGray">{t('product.stock')}</span>

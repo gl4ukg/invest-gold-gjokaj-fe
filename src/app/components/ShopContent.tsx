@@ -284,8 +284,7 @@ export default function ShopContent() {
                             : "text-darkGray group-hover:text-primary"
                         }`}
                       >
-                        {/* {ringsText[category.name]} */}
-                        {category.name}
+                        {ringsText[category.name]}
                       </span>
                     </label>
                   </div>

@@ -149,10 +149,10 @@ const ProductsContent: React.FC = () => {
             toast.error('Emri i produktit është bosh');
             return false;
         }
-        if (!formData.description.trim()) {
-            toast.error('Përshkrimi i produktit është bosh');
-            return false;
-        }
+        // if (!formData.description.trim()) {
+        //     toast.error('Përshkrimi i produktit është bosh');
+        //     return false;
+        // }
         if (formData.weight <= '0') {
             toast.error('Pesha duhet të jetë ose një numër i vetëm (p.sh., "2") ose një varge (p.sh., "2-3")');
             return false;
@@ -408,7 +408,7 @@ const ProductsContent: React.FC = () => {
                         </div>
                     </div>
 
-                    <div>
+                    {/* <div>
                         <label htmlFor="description" className="block text-sm font-medium text-darkGray">
                             Përshkrimi
                         </label>
@@ -420,7 +420,7 @@ const ProductsContent: React.FC = () => {
                             rows={3}
                             required
                         />
-                    </div>
+                    </div> */}
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div>
@@ -496,9 +496,9 @@ const ProductsContent: React.FC = () => {
                                 <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Emri
                                 </th>
-                                <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
+                                {/* <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Përshkrimi
-                                </th>
+                                </th> */}
                                 <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Pesha
                                 </th>
@@ -529,9 +529,9 @@ const ProductsContent: React.FC = () => {
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-darkGray">{product.name}</div>
                                     </td>
-                                    <td className="hidden lg:table-cell px-6 py-4">
+                                    {/* <td className="hidden lg:table-cell px-6 py-4">
                                         <div className="text-sm text-darkGray line-clamp-2">{product.description}</div>
-                                    </td>
+                                    </td> */}
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-darkGray">{product.weight}</div>
                                     </td>

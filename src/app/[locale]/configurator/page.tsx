@@ -344,7 +344,7 @@ export default function ConfiguratorPage() {
       </h1>
       {cart.items.length > 0 ? (
         <div className="flex flex-col">
-          <div className="md:py-6 py-4 md:px-6 ">
+          <div className="md:py-6 py-4 px-3 md:px-6 ">
             <ul className="flex flex-wrap gap-3">
               {steps?.map((step) => (
                 <li
@@ -367,7 +367,7 @@ export default function ConfiguratorPage() {
               {/* Steps */}
 
               {/* Configuration Area */}
-              <div className="flex-1 bg-white sm:p-6 rounded-lg shadow-lg mb-8">
+              <div className="flex-1 bg-white p-3 md:p-6 rounded-lg shadow-lg mb-8">
                 {currentStep === 1 && (
                   <>
                     {(() => {

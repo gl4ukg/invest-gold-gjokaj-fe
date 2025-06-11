@@ -32,4 +32,6 @@ export interface CartContextType {
     setActiveTab: (tab: GroovesAndEdgesTab) => void;
     clearCart: () => void;
     itemCount: number;
+    isNavbarOpen: boolean;
+    setIsNavbarOpen: Dispatch<SetStateAction<boolean>>;
 }

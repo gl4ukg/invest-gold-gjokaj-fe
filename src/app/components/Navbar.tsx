@@ -25,8 +25,7 @@ const LANGUAGE_LINKS = [
 
 const Navbar = () => {
   const t = useTranslations('navbar');
-  const { itemCount, setIsCartOpen } = useCart();
-  const [isOpen, setIsOpen] = useState(false);
+  const { itemCount, setIsCartOpen, isNavbarOpen, setIsNavbarOpen } = useCart();
   const pathname = usePathname();
   const { id } = useParams();
   const router = useRouter();
@@ -37,7 +36,7 @@ const Navbar = () => {
     const homePath = `${locale}`;
     const fullPath = `${locale}#${sectionId}`;
     
-    setIsOpen(false);
+    setIsNavbarOpen(false);
 
     if (pathname === homePath) {
       const section = document.getElementById(sectionId);
@@ -51,10 +50,17 @@ const Navbar = () => {
         || pathname === "/checkout" 
         || pathname === "/terms" 
         || pathname === "/privacy"
+        || pathname === `/order-confirmation/${id}`
+        || pathname === `/order-confirmation`
+        || pathname === `/order-confirmation/error`
+        || pathname === `/order-confirmation/cancel`
+        || pathname === `/shop/${id}`
       ){
+        console.log("here")
         window.location.replace(`/${fullPath}`);
       } else {
-        router.push(fullPath);
+        console.log("here 2")
+        router.push(`/#${sectionId}`);
       }
     }
   };
@@ -78,17 +84,17 @@ const Navbar = () => {
       window.location.replace(`/${newLocale}/order-confirmation/cancel`);
     } else if (pathname === "/order-confirmation"){
       window.location.replace(`/${newLocale}/order-confirmation`);
-    }else if (pathname === `/order-confirmation/${id}`){
+    } else if (pathname === `/order-confirmation/${id}`){
       window.location.replace(`/${newLocale}/order-confirmation/${id}`);
     } else {
       router.push(`${newLocale}`);
     }
-    setIsOpen(false);
+    setIsNavbarOpen(false);
   };
 
   return (
     <nav className={`fixed top-0 w-full z-[9999] bg-black/70  transition-colors duration-300 
-          ${isOpen ? '' : 'shadow-md'}`}>
+          ${isNavbarOpen ? '' : 'shadow-md'}`}>
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href={'/'} className="text-white text-xl font-bold flex-shrink-0">
@@ -151,7 +157,7 @@ const Navbar = () => {
         {/* Mobile Toggle Button */}
         <button
           className="text-white cursor-pointer lg:hidden"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsNavbarOpen(!isNavbarOpen)}
           aria-label="Toggle navigation"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,7 +169,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={` fixed top-18 left-0 w-full bg-black/70 transition-all duration-500 ${
-          isOpen ? ' max-h-screen opacity-100 block pb-4' : 'block max-h-0 opacity-0 hidden'
+          isNavbarOpen ? ' max-h-screen opacity-100 block pb-4' : 'block max-h-0 opacity-0 hidden'
         }`}
       >
         <ul className="text-center space-y-4">
@@ -178,7 +184,7 @@ const Navbar = () => {
                   {t(link.key)}
                 </a>
               ) : (
-                <Link href={link.href} onClick={() => setIsOpen(false)} locale={locale} className="text-white hover:text-gray-400">
+                <Link href={link.href} onClick={() => setIsNavbarOpen(false)} locale={locale} className="text-white hover:text-gray-400">
                   {t(link.key)}
                 </Link>
               )}

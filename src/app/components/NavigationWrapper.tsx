@@ -9,7 +9,7 @@ export default function NavigationWrapper() {
   const pathname = usePathname();
   const isAdminRoute = pathname.includes('/admin');
   const isLoginRoute = pathname.includes('/login');
-  const {isCartOpen, setIsCartOpen} = useCart();
+  const {isCartOpen, setIsCartOpen, isNavbarOpen, setIsNavbarOpen} = useCart();
 
   if (isAdminRoute || isLoginRoute) {
     return null;
@@ -19,7 +19,10 @@ export default function NavigationWrapper() {
     <>
       <Navbar />
       {/* Cart Sidebar */}
-      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <Cart isOpen={isCartOpen} onClose={() => {
+        setIsCartOpen(false)
+        setIsNavbarOpen(false)
+        }} />
     </>
   );
 }

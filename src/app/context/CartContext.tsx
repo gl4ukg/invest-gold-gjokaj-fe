@@ -91,6 +91,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const [activeTab, setActiveTab] = React.useState<"grooves" | "edges">(
     "grooves"
   );
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const t = useTranslations();
   const { currentPrice } = usePriceOfGram();
@@ -276,6 +277,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         selectCartItem,
         activeTab,
         setActiveTab,
+        isNavbarOpen,
+        setIsNavbarOpen,
       }}
     >
       {children}

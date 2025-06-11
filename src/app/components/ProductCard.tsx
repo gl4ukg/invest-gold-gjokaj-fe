@@ -47,21 +47,21 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
         >
           {product.name}
         </h3>
-        <h6
+        {/* <h6
           className="text-base font-normal mb-2 cursor-pointer text-darkGray"
           onClick={handleClick}
         >
           <p className="truncate">{product.description}</p>
-        </h6>
+        </h6> */}
         <div className="flex justify-between items-center">
-          <span className="text-xl font-bold text-lightGray">{product.weight} gr.</span>
+          <span className="text-sm md:text-lg font-bold text-lightGray">{product.weight} gram</span>
           {showAddToCart && (
             product.stock > 0 ? (
               <button
                 onClick={handleAddToCart}
-                className="bg-primary text-white px-4 py-2 rounded-lg "
+                className="bg-primary text-white p-2 md:px-4 md:py-2 rounded-lg "
               >
-                <FaCartShopping className='text-white' />
+                <FaCartShopping className='text-white text-sm md:text-lg' />
               </button>
             ) : (
               <span className="text-primary">{t('shop.outOfStock')}</span>
