@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion, useInView } from "framer-motion";
+import emailService from '@/app/services/email';
 
 // Dynamically import the Map component with no SSR
 const Map = dynamic(() => import("./Map"), {
@@ -16,6 +17,19 @@ const Map = dynamic(() => import("./Map"), {
 
 const ContactSection: React.FC = () => {
   const t = useTranslations("contact");
+
+  // Form state
+  const [formData, setFormData] = useState({
+    first_name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ success: boolean; message: string | null }>({ 
+    success: false, 
+    message: null 
+  });
 
   // Refs for scroll animations
   const sectionRef = useRef(null);
@@ -149,9 +163,43 @@ const ContactSection: React.FC = () => {
           >
             <form
               name="contactform"
-              action="send_form_email.php"
-              method="post"
-              id="contact_form"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setIsSubmitting(true);
+                try {
+                  const response = await emailService.sendContactEmail({
+                    to: 'info@investgoldgjokaj.com', // Replace with your email
+                    subject: `Contact Form: ${formData.subject}`,
+                    text: `Name: ${formData.first_name}\nEmail: ${formData.email}\nMessage: ${formData.message}`,
+                    html: `
+                      <h3>New Contact Form Submission</h3>
+                      <p><strong>Name:</strong> ${formData.first_name}</p>
+                      <p><strong>Email:</strong> ${formData.email}</p>
+                      <p><strong>Subject:</strong> ${formData.subject}</p>
+                      <p><strong>Message:</strong></p>
+                      <p>${formData.message}</p>
+                    `
+                  });
+                  
+                  setSubmitStatus({
+                    success: true,
+                    message: t('form.successMessage')
+                  });
+                  setFormData({
+                    first_name: '',
+                    email: '',
+                    subject: '',
+                    message: ''
+                  });
+                } catch (error) {
+                  setSubmitStatus({
+                    success: false,
+                    message: t('form.errorMessage')
+                  });
+                } finally {
+                  setIsSubmitting(false);
+                }
+              }}
               className="space-y-4"
             >
               <div className="flex items-center justify-between space-x-4">
@@ -161,6 +209,9 @@ const ContactSection: React.FC = () => {
                       name="first_name"
                       type="text"
                       placeholder={t("form.firstName")}
+                      value={formData.first_name}
+                      onChange={(e) => setFormData(prev => ({ ...prev, first_name: e.target.value }))}
+                      required
                       className="w-full p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </motion.div>
@@ -183,6 +234,9 @@ const ContactSection: React.FC = () => {
                       name="email"
                       type="email"
                       placeholder={t("form.email")}
+                      value={formData.email}
+                      onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                      required
                       className="w-full p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </motion.div>
@@ -201,8 +255,11 @@ const ContactSection: React.FC = () => {
               <div>
                 <motion.div variants={inputVariants}>
                   <textarea
-                    name="comments"
+                    name="message"
                     placeholder={t("form.message")}
+                    value={formData.message}
+                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                    required
                     className="w-full p-3 border border-primary h-32 resize-none focus:outline-none focus:ring-2 focus:ring-primary"
                   ></textarea>
                 </motion.div>
@@ -210,12 +267,18 @@ const ContactSection: React.FC = () => {
               <div className="text-center">
                 <motion.button
                   type="submit"
-                  className="bg-primary text-white py-2 px-12 rounded-md hover:bg-[#7a6a2c] transition duration-300"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  className="bg-primary text-white py-2 px-12 rounded-md hover:bg-[#7a6a2c] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  disabled={isSubmitting}
                 >
-                  {t("form.send")}
+                  {isSubmitting ? t('form.submitting') : t('form.send')}
                 </motion.button>
+                {submitStatus.message && (
+                  <div className={`mt-4 p-4 rounded-lg ${submitStatus.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                    {submitStatus.message}
+                  </div>
+                )}
               </div>
             </form>
           </motion.div>
