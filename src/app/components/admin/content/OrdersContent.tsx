@@ -82,11 +82,13 @@ export default function OrdersContent() {
   const handleRefund = async (transactionId: string) => {
     setIsLoading(true);
     try {
-      await PaymentsService.refundOrder(transactionId);
-      toast.success('Refund request sent successfully!');
+      const response = await PaymentsService.refundOrder(transactionId);
+      if(response.message) {
+        toast.success(response.message);
+      }
     } catch (error) {
       console.error('Error refunding order:', error);
-      toast.error('Failed to send refund request.');
+      toast.error('Ndodhi një gabim gjatë rimbursimit.');
     } finally {
       setIsLoading(false);
     }
@@ -159,12 +161,12 @@ export default function OrdersContent() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     {order.paymentMethod === 'card' 
-                    ? (order.status !== OrderStatus.REFUNDED 
-                    ? (
-                      <button onClick={() => handleRefund(order.id)} className="border border-red-500 rounded-full px-2 py-1 text-red-500 hover:text-red-600">Rimburso</button>
-                    )
-                    : <p className="text-red-500">U rimbursua</p>)
-                    : <p className="text-darkGray">Pagese me kesh</p>}
+                      ? (
+                        order.status !== OrderStatus.REFUNDED 
+                          ? (<button onClick={() => handleRefund(order.id)} className="border border-red-500 rounded-full px-2 py-1 text-red-500 hover:text-red-600">Rimburso</button>)
+                          : <p className="text-red-500">U rimbursua</p>
+                        )
+                      : <p className="text-darkGray">Pagese me kesh</p>}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button onClick={() => toggleRow(order.id)} className="text-darkGray hover:text-gray-700">

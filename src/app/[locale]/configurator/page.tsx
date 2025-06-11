@@ -337,9 +337,6 @@ export default function ConfiguratorPage() {
     }
   };
 
-  console.log(cart, "qokla cart");
-  console.log(configuratorState, "qokla configuratorState");
-
   return (
     <div className="container mx-auto min-h-screen px-4 pt-32 pb-8">
       <h1 className="text-2xl text-primary font-bold mb-6">

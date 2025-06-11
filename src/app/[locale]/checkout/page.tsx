@@ -91,7 +91,14 @@ export default function Checkout() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    if (name === 'phone') {
+      // Only allow numbers
+      const numbersOnly = value.replace(/[^0-9]/g, '');
+      setFormData((prev) => ({ ...prev, [name]: numbersOnly }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
 
     if (name === 'shippingMethod') {
       updateShippingCost(value, formData.country);
