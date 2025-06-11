@@ -129,7 +129,7 @@ const Header = () => {
                 <div className="relative w-full h-[400px]">
                     <iframe
                         id="video"
-                        src={'https://glaukthaqi.com/header-video.mp4'}
+                        src={'https://glaukthaqi.com/video.mp4'}
                         title={'Video Modal'}
                         className="absolute top-0 left-0 w-full h-full rounded-md"
                         allowFullScreen
