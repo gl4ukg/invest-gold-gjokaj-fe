@@ -299,7 +299,7 @@ const RingsSection: React.FC = () => {
                 </motion.div>
               </div>
             ) : (
-              <Slider {...sliderSettings}>
+              <Slider {...sliderSettings} className="rings-slider">
                 {products?.map((ring) => (
                   <motion.div
                     key={ring.id}

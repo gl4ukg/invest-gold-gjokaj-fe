@@ -51,6 +51,9 @@ body {
     bottom: 25px;
   }
 }
+.rings-slider .slick-list {
+    padding: 0 0 10px 0;
+}
 svg.lucide.lucide-expand.h-4.w-4.expand {
     position: static;
 }
