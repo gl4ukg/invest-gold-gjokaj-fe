@@ -257,8 +257,8 @@
       "enterDimensions": "Please enter all required dimensions",
       "selectMetal": "Please select a precious metal",
       "selectStones": "Please select a stone",
-      "selectGrooves": "Please select grooves",
-      "selectEdges": "Please select edges",
+      "selectGrooves": "Grooves are not mandatory",
+      "selectEdges": "Edges are not mandatory",
       "enterEngraving": "Please complete engraving settings",
       "selectStoneSettings": "Please select stone settings",
       "completeGroovesAndEdges": "Please complete grooves and edges settings"

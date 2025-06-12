@@ -257,8 +257,8 @@
       "enterDimensions": "Ju lutemi plotësoni të gjitha dimensionet e kërkuara",
       "selectMetal": "Ju lutem zgjidhni një metal të çmuar",
       "selectStones": "Ju lutem zgjidheni nje gure",
-      "selectGrooves": "Ju lutem zgjedhini kanalet",
-      "selectEdges": "Ju lutem zgjidhini skajet",
+      "selectGrooves": "Kanalet jane opsionale",
+      "selectEdges": "Skajet jane opsionale",
       "enterEngraving": "Please complete engraving settings",
       "selectStoneSettings": "Ju lutemi plotësoni parametrat e gurit",
       "completeGroovesAndEdges": "Ju lutemi plotësoni parametrat e kanaleve dhe skajeve"
