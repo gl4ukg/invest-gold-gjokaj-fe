@@ -94,7 +94,11 @@
       "email": "Email",
       "phone": "Phone",
       "message": "Message",
-      "send": "Send"
+      "subject": "Subject",
+      "send": "Send",
+      "submitting": "Submitting...",
+      "successMessage": "Your email has been sent successfully!",
+      "errorMessage": "Your email has not been sent. Please try again."
     }
   },
   "orderConfirmation": {
@@ -402,11 +406,7 @@
     },
     "contact": {
       "title": "Contact Us",
-      "content": "If you have questions regarding these Terms and Conditions, please contact us through the contact information provided.",
-      "form": {
-        "successMessage": "Your email has been sent successfully!",
-        "errorMessage": "Your email has not been sent. Please try again."
-      }
+      "content": "If you have questions regarding these Terms and Conditions, please contact us through the contact information provided."
     }
   },
   "privacy": {

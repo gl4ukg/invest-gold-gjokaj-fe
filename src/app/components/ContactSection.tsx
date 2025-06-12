@@ -244,9 +244,12 @@ const ContactSection: React.FC = () => {
                 <div className="w-1/2">
                   <motion.div variants={inputVariants}>
                     <input
-                      name="phone"
+                      name="subject"
                       type="text"
-                      placeholder={t("form.phone")}
+                      placeholder={t("form.subject")}
+                      value={formData.subject}
+                      onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
+                      required
                       className="w-full text-darkGray p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </motion.div>

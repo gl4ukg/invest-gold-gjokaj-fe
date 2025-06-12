@@ -94,7 +94,11 @@
       "email": "Email",
       "phone": "Telefon",
       "message": "Mesazhi",
-      "send": "Dërgo"
+      "subject": "Subjekt",
+      "send": "Dërgo",
+      "submitting": "Po dergon...",
+      "successMessage": "Email-i juaj u dergua me sukses!",
+      "errorMessage": "Email-i juaj nuk u dergua. Ju lutemi provoni përsëri."
     }
   },
   "orderConfirmation": {
@@ -402,11 +406,7 @@
     },
     "contact": {
       "title": "Na Kontaktoni",
-      "content": "Nëse keni pyetje në lidhje me këto Kushte dhe Rregulla, ju lutemi na kontaktoni përmes informacionit të kontaktit të ofruar.",
-      "form": {
-        "successMessage": "Email-i juaj u dergua me sukses!",
-        "errorMessage": "Email-i juaj nuk u dergua. Ju lutemi provoni përsëri."
-      }
+      "content": "Nëse keni pyetje në lidhje me këto Kushte dhe Rregulla, ju lutemi na kontaktoni përmes informacionit të kontaktit të ofruar."
     }
   },
   "privacy": {
