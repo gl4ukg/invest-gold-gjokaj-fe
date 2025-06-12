@@ -11,7 +11,7 @@ interface EmailData {
 const emailService = {
     sendContactEmail: async (emailData: EmailData): Promise<{ success: boolean; messageId?: string }> => {
         try {
-            const response = await axiosClient.post('/contact', emailData);
+            const response = await axiosClient.post('/email/contact', emailData);
             return {
                 success: true,
                 messageId: response.data.messageId
