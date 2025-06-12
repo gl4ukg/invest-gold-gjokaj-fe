@@ -66,8 +66,8 @@ export const metadata: Metadata = {
     alternateLocale: ['en_US', 'de_DE'],
     url: 'https://investgoldgjokaj.com',
     siteName: 'Invest Gold Gjokaj',
-    title: 'Invest Gold Gjokaj - Partneri Juaj i Besuar për Investime në Ar',
-    description: 'Udhëzime eksperte në investime në ar dhe stoli të personalizuara. Zbuloni koleksionin tonë premium të arit për investim dhe stolive të mrekullueshme.',
+    title: 'Invest Gold Gjokaj - Partneri Juaj i Besuar',
+    description: 'Partneri juaj i besuar për bizhuteri dhe aksesorë premium të arit. Zbuloni koleksionin tonë premium të arit për investim dhe stolive të mrekullueshme.',
     images: [
       {
         url: '/images/um6.png',
@@ -79,8 +79,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Invest Gold Gjokaj - Ar dhe Stoli Premium',
-    description: 'Partneri juaj i besuar për investime në ar dhe dizajne të personalizuara të stolive. Eksploroni koleksionin tonë të arit premium dhe metaleve të çmuara.',
+    title: 'Invest Gold Gjokaj - Partneri Juaj i Besuar',
+    description: 'Partneri juaj i besuar për bizhuteri dhe aksesorë premium të arit. Eksploroni koleksionin tonë të arit premium dhe metaleve të çmuara.',
     images: ['/images/um6.png'],
     creator: '@investgoldgjokaj',
   },
