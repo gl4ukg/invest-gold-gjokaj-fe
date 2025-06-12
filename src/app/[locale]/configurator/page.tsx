@@ -184,13 +184,16 @@ export default function ConfiguratorPage() {
   };
 
   const handlePrevStep = () => {
-     // Scroll to top smoothly
-     window.scrollTo({ top: 50, behavior: 'smooth' });
-  
-     if (currentStep > 1) {
+    // Scroll to top smoothly
+    window.scrollTo({ top: 50, behavior: 'smooth' });
+    if(activeTab === "edges") {
+      setActiveTab("grooves");
+      return;
+    }
+    if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
- };
+  };
   console.log(configuratorState,"qokla configuratorState")
   const canProceedToNext = () => {
     switch (currentStep) {
@@ -257,15 +260,7 @@ export default function ConfiguratorPage() {
         );
       case 6:
         if (activeTab === "grooves") {
-          return (
-            configuratorState.groovesAndEdges.groove.map(
-              (groove) =>
-                groove.grooveType !== "" &&
-                groove.depth !== 0 &&
-                groove.width !== 0 &&
-                groove.surface !== ""
-            ).length > 0
-          );
+          return true;
         } else {
           console.log(configuratorState.groovesAndEdges?.leftEdge?.width,"left width")
           console.log(configuratorState.groovesAndEdges?.rightEdge?.width,"right width")
