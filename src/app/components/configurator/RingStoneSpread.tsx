@@ -162,7 +162,7 @@ export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones
     <div className="grid grid-cols-1 md:grid-cols-[100px_1fr] gap-4 md:gap-8">
       {/* Left side - Ring Preview */}
       <div className="relative w-[80px] h-[300px] md:h-[400px] bg-yellow-100 rounded-lg mx-auto">
-        <div className="absolute  h-[300px] md:h-[400px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[400px]">
+        <div className="absolute  h-[300px] md:h-[400px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px]">
           {/* Vertical guide line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-[#777] border-dashed" />
           
