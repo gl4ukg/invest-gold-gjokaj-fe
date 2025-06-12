@@ -440,7 +440,7 @@ export default function Checkout() {
 
         {/* Order Summary */}
         <div>
-          <div className="bg-gray-50 p-6 rounded-lg">
+          <div className="bg-gray-50 p-0 md:p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">
               {t('checkout.orderSummary')}
             </h2>

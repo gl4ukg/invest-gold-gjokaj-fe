@@ -3,7 +3,7 @@
 import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 import { useParams } from 'next/navigation';
@@ -31,13 +31,31 @@ const Navbar = () => {
   const router = useRouter();
   const locale = useLocale();
 
+  useEffect(() => {
+    const homePath = `/${locale}`;
+    
+    if ((pathname === '/' || pathname === homePath) && window.location.hash) {
+      const sectionId = window.location.hash.slice(1);
+      
+      const section = document.getElementById(sectionId);
+      
+      if (section) {
+        setTimeout(() => {
+          window.scrollTo({
+            top: section.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }, 500);
+      }
+    }
+  }, [pathname, locale]);
+
   const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     const homePath = `${locale}`;
     const fullPath = `${locale}#${sectionId}`;
     
     setIsNavbarOpen(false);
-
     if (pathname === homePath) {
       const section = document.getElementById(sectionId);
       if (section) {
