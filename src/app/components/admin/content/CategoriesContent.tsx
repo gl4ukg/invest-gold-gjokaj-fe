@@ -175,7 +175,7 @@ export default function CategoriesContent() {
             {/* Create/Edit Category Form */}
             <div className="bg-white rounded-lg border shadow p-4 lg:p-6">
                 <h2 className="text-xl font-semibold mb-4 text-darkGray">
-                    {isEditing ? 'Edit Category' : 'Create New Category'}
+                    {isEditing ? 'Ndrysho kategorine' : 'Krijo kategorine'}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
