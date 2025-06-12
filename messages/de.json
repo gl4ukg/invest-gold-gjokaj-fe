@@ -402,7 +402,11 @@
     },
     "contact": {
       "title": "Contact Us",
-      "content": "If you have questions regarding these Terms and Conditions, please contact us through the contact information provided."
+      "content": "If you have questions regarding these Terms and Conditions, please contact us through the contact information provided.",
+      "form": {
+        "successMessage": "Your email has been sent successfully!",
+        "errorMessage": "Your email has not been sent. Please try again."
+      }
     }
   },
   "privacy": {

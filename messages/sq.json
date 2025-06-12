@@ -402,7 +402,11 @@
     },
     "contact": {
       "title": "Na Kontaktoni",
-      "content": "Nëse keni pyetje në lidhje me këto Kushte dhe Rregulla, ju lutemi na kontaktoni përmes informacionit të kontaktit të ofruar."
+      "content": "Nëse keni pyetje në lidhje me këto Kushte dhe Rregulla, ju lutemi na kontaktoni përmes informacionit të kontaktit të ofruar.",
+      "form": {
+        "successMessage": "Email-i juaj u dergua me sukses!",
+        "errorMessage": "Email-i juaj nuk u dergua. Ju lutemi provoni përsëri."
+      }
     }
   },
   "privacy": {
