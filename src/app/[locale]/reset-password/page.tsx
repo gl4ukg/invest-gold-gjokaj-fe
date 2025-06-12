@@ -74,7 +74,7 @@ const ResetPassword = () => {
                             htmlFor="password"
                             className="block text-sm font-medium text-darkGray"
                         >
-                        Fjalekalimi:
+                        Fjalekalimi i ri:
                         </label>
                         <input 
                             type="password"
