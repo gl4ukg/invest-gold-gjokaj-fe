@@ -212,7 +212,7 @@ const ContactSection: React.FC = () => {
                       value={formData.first_name}
                       onChange={(e) => setFormData(prev => ({ ...prev, first_name: e.target.value }))}
                       required
-                      className="w-full p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full text-darkGray p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </motion.div>
                 </div>
@@ -222,7 +222,7 @@ const ContactSection: React.FC = () => {
                       name="last_name"
                       type="text"
                       placeholder={t("form.lastName")}
-                      className="w-full p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full text-darkGray p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </motion.div>
                 </div>
@@ -237,7 +237,7 @@ const ContactSection: React.FC = () => {
                       value={formData.email}
                       onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                       required
-                      className="w-full p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full text-darkGray p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </motion.div>
                 </div>
@@ -247,7 +247,7 @@ const ContactSection: React.FC = () => {
                       name="phone"
                       type="text"
                       placeholder={t("form.phone")}
-                      className="w-full p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full text-darkGray p-3 border border-primary focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </motion.div>
                 </div>
@@ -260,7 +260,7 @@ const ContactSection: React.FC = () => {
                     value={formData.message}
                     onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                     required
-                    className="w-full p-3 border border-primary h-32 resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full text-darkGray p-3 border border-primary h-32 resize-none focus:outline-none focus:ring-2 focus:ring-primary"
                   ></textarea>
                 </motion.div>
               </div>
