@@ -102,6 +102,15 @@
     }
   },
   "orderConfirmation": {
+    "statusTypes": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "failed": "Failed",
+      "cancelled": "Cancelled",
+      "refunded": "Refunded"
+    },
     "paymentMethods": {
       "bank_transfer": "Bank Transfer",
       "cash_on_delivery": "Cash on Delivery"
@@ -180,7 +189,12 @@
       "grooveAlignment": "Groove Alignment",
       "edgeSettings": "Edge Settings",
       "leftEdge": "Left Edge",
-      "rightEdge": "Right Edge"
+      "rightEdge": "Right Edge",
+      "addGroove": "Add Groove",
+      "removeGroove": "Remove Groove",
+      "groove": "Groove",
+      "settings": "Settings",
+      "position": "Position"
     },
     "preciousMetal": {
       "selectColorType": "Select Color Type",

@@ -37,12 +37,20 @@ body {
     position: absolute;
     bottom: 35px;
 }
-/* @media screen and (max-width: 450px) {
+@media screen and (max-width: 450px) {
   .aspect-square svg {
-    width: 100%;
+    width: 105px;
+  }
+  .profile-background {
+    background-size: contain;
+  }
+}
+@media screen and (max-width: 375px) {
+  .aspect-square svg {
+    width: 90px;
     bottom: 25px;
   }
-} */
+}
 svg.lucide.lucide-expand.h-4.w-4.expand {
     position: static;
 }

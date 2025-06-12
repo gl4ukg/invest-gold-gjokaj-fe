@@ -159,10 +159,10 @@ export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones
   };
 
   return (
-    <div className="grid grid-cols-[100px_1fr] gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-[100px_1fr] gap-4 md:gap-8">
       {/* Left side - Ring Preview */}
-      <div className="relative w-[80px] h-[400px] bg-yellow-100 rounded-lg">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[400px]">
+      <div className="relative w-[80px] h-[300px] md:h-[400px] bg-yellow-100 rounded-lg mx-auto">
+        <div className="absolute  h-[300px] md:h-[400px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[400px]">
           {/* Vertical guide line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-[#777] border-dashed" />
           
@@ -217,7 +217,7 @@ export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones
         {/* Stones table */}
         {stones.length > 0 && (
           <div className="space-y-4">
-            <table className="w-full">
+            <table className="w-full text-sm md:text-base">
               <thead>
                 <tr>
                   <th className='text-left text-primary'>Size</th>
@@ -244,7 +244,7 @@ export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones
                         value={Number(stone.x).toFixed(2)}
                         onChange={(e) => updateStonePosition(stone.id, 'x', parseFloat(Number(e.target.value).toFixed(2)))}
                         step="0.01"
-                        className="w-20 px-2 py-1 border rounded me-1"
+                        className="w-16 md:w-20 px-2 py-1 border rounded me-1 text-sm"
                       />
                       mm
                     </td>
@@ -254,7 +254,7 @@ export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones
                         value={Number(stone.y).toFixed(2)}
                         onChange={(e) => updateStonePosition(stone.id, 'y', parseFloat(Number(e.target.value).toFixed(2)))}
                         step="0.01"
-                        className="w-20 px-2 py-1 border rounded me-1"
+                        className="w-16 md:w-20 px-2 py-1 border rounded me-1 text-sm"
                       />
                       mm
                     </td>
@@ -273,7 +273,7 @@ export const RingStoneSpread: React.FC<RingStoneSpreadProps> = ({ onUpdateStones
 
             <button
               onClick={deleteAllStones}
-              className="flex border border-1 border-red p-2 rounded-lg items-center space-x-2 text-red-500 hover:text-red-700"
+              className="flex border border-1 border-red p-2 rounded-lg items-center space-x-2 text-red-500 hover:text-red-700 text-sm md:text-base w-full md:w-auto justify-center"
             >
               <span className='pe-2'>Delete all</span> 🗑️
             </button>

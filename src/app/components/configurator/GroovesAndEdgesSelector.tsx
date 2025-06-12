@@ -40,7 +40,7 @@ const EdgeSettingsForm: React.FC<{
         <h4 className="text-darkGray text-lg font-medium">{label}</h4>
         <div>
             <label className="block text-darkGray text-sm font-medium mb-2">{t('configurator.groovesAndEdges.type')}</label>
-            <div className="grid grid-cols-8 gap-4">
+            <div className="grid grid-cols-4 md:grid-cols-8 gap-4">
                 {edgeTypes?.map((type) => (
                     <div key={type} className="relative">
                         <input
@@ -272,12 +272,12 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
     return (
         <div className="space-y-6">
             {/* Tab Switch */}
-            <div className="flex justify-center mb-8">
-                <div className="inline-flex rounded-xl p-1.5 bg-gray-100 space-x-4">
+            <div className="flex justify-center mb-4 md:mb-8">
+                <div className="inline-flex rounded-xl p-1.5 bg-gray-100 space-x-2 md:space-x-4">
                     <button
                         onClick={() => setActiveTab('grooves')}
                         className={`
-                            flex items-center gap-2 px-6 py-2.5 border rounded-lg text-sm font-medium
+                            flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-2.5 border rounded-lg text-xs md:text-sm font-medium
                             transition-all duration-200 ease-in-out
                             ${activeTab === 'grooves'
                                 ? 'bg-white text-primary shadow-lg transform scale-105'
@@ -291,7 +291,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                     <button
                         onClick={() => setActiveTab('edges')}
                         className={`
-                            flex items-center gap-2 px-6 py-2.5 border rounded-lg text-sm font-medium
+                            flex items-center gap-1 md:gap-2 px-3 md:px-6 py-2 md:py-2.5 border rounded-lg text-xs md:text-sm font-medium
                             transition-all duration-200 ease-in-out
                             ${activeTab === 'edges'
                                 ? 'bg-white text-primary shadow-lg transform scale-105'
@@ -309,13 +309,13 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
             {activeTab === 'grooves' && (
                 <div className="space-y-6">
                     <div className="flex justify-between items-center">
-                        <h3 className="text-darkGray text-xl font-medium">{t('configurator.groovesAndEdges.grooveSettings')}</h3>
+                        <h3 className="text-darkGray text-lg font-medium">{t('configurator.groovesAndEdges.grooveSettings')}</h3>
                         <button 
                             onClick={addGroove}
                             disabled={grooves.length >= 5}
-                            className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50"
+                            className="px-4 py-2 bg-primary text-white rounded-lg disabled:opacity-50 text-sm md:text-base"
                         >
-                            Add Groove ({grooves.length}/5)
+                            {t('configurator.groovesAndEdges.addGroove')} ({grooves.length}/5)
                         </button>
                     </div>
 
@@ -331,15 +331,15 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                                             : 'bg-gray-100 text-darkGray hover:bg-gray-200'
                                     }`}
                                 >
-                                    Groove {index + 1}
+                                    {t('configurator.groovesAndEdges.groove')} {index + 1}
                                 </button>
                             ))}
                         </div>
                     )}
                     
-                    <div className='grid grid-cols-6 gap-4'>
-                        <div className="col-span-1 relative w-[80px] h-[400px] bg-yellow-100 rounded-lg">
-                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[400px]">
+                    <div className='grid grid-cols-1 md:grid-cols-6 gap-4'>
+                        <div className="col-span-1 relative w-[80px] h-[300px] md:h-[400px] bg-yellow-100 rounded-lg mx-auto">
+                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[70px] h-[300px] md:h-[400px]">
                                 {/* Guide line */}
                                 <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-[#777] border-dashed" />
                                 
@@ -365,27 +365,27 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                             </div>
                         </div>
 
-                        <div className='col-span-5'>
+                        <div className='col-span-1 md:col-span-5'>
                             {selectedGrooveId ? (
                                 <div className="space-y-4">
                                     <div className="flex justify-between items-center">
-                                        <h4 className="text-lg text-darkGray font-medium">Groove #{grooves.findIndex(g => g.id === selectedGrooveId) + 1} Settings</h4>
+                                        <h4 className="text-lg text-darkGray font-medium">{t('configurator.groovesAndEdges.groove')} #{grooves.findIndex(g => g.id === selectedGrooveId) + 1} {t('configurator.groovesAndEdges.settings')}</h4>
                                         <button 
                                             onClick={() => removeGroove(selectedGrooveId)}
                                             className="px-3 py-1 text-red-500 hover:bg-red-50 rounded-lg transition-all"
                                         >
-                                            Remove Groove
+                                            {t('configurator.groovesAndEdges.removeGroove')}
                                         </button>
                                     </div>
-                                    <div className="mt-4 grid grid-cols-2 gap-4">
-                                        <div className="col-span-2">
+                                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div className="col-span-1 sm:col-span-2">
                                             <label className="block text-darkGray text-sm font-medium mb-2">{t('configurator.groovesAndEdges.grooveType')}</label>
-                                            <div className="grid grid-cols-6 gap-4">
+                                            <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 gap-2">
                                                 {grooveTypes?.map((type) => (
                                                     <button
                                                         key={type}
                                                         onClick={() => handleGrooveChange('grooveType', type)}
-                                                        className={`p-4 border rounded-lg ${
+                                                        className={`p-2 md:p-4 border rounded-lg ${
                                                             grooves.find(g => g.id === selectedGrooveId)?.grooveType === type
                                                                 ? 'border-primary bg-primary/10'
                                                                 : 'border-darkGray'
@@ -496,9 +496,9 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                                             </>
                                         )}
 
-                                        <div className="col-span-2 p-4">
-                                            <label className="block text-darkGray text-sm font-semibold mb-3">Position</label>
-                                            <div className="flex items-center space-x-6">
+                                        <div className="col-span-1 sm:col-span-2 p-2 md:p-4">
+                                            <label className="block text-darkGray text-sm font-semibold mb-3">{t('configurator.groovesAndEdges.position')}</label>
+                                            <div className="flex items-center space-x-3 md:space-x-6">
                                                 <div className="relative flex-1">
                                                     <input
                                                         type="range"

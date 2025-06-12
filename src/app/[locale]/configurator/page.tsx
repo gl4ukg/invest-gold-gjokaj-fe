@@ -147,6 +147,9 @@ export default function ConfiguratorPage() {
       return;
     }
 
+    // Scroll to top smoothly
+    window.scrollTo({ top: 50, behavior: 'smooth' });
+
     // Handle grooves/edges tab switching in step 6
     if (currentStep === 6 && activeTab === "grooves") {
       setActiveTab("edges");
@@ -184,6 +187,9 @@ export default function ConfiguratorPage() {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
+
+    // Scroll to top smoothly
+    window.scrollTo({ top: 50, behavior: 'smooth' });
   };
   console.log(configuratorState,"qokla configuratorState")
   const canProceedToNext = () => {

@@ -52,7 +52,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
             <button
                 type="button"
                 onClick={() => !disabled && setIsOpen(!isOpen)}
-                className={`w-full p-2 flex items-center gap-3 border rounded-lg transition-all duration-200 
+                className={`w-full p-2 flex items-center gap-1 md:gap-3 border rounded-lg transition-all duration-200 
                     ${isOpen && !disabled ? 'ring-2 ring-primary/20' : ''} 
                     ${disabled ? 'border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed' : 'border-darkGray hover:bg-gray-50 text-darkGray cursor-pointer'} 
                     ${className}`}
@@ -68,7 +68,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
                         />
                     </div>
                 )}
-                <span className="flex-1 text-left">{selectedOption?.label}</span>
+                <span className="flex-1 text-left text-xs sm:text-sm md:text-base lg:text-base xl:text-base">{selectedOption?.label}</span>
                 <svg
                     className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''} ${disabled ? 'opacity-50' : ''}`}
                     fill="none"
@@ -104,7 +104,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
                                     />
                                 </div>
                             )}
-                            <span className="flex-1 text-left">{option.label}</span>
+                            <span className="flex-1 text-left text-xs sm:text-sm md:text-base lg:text-base xl:text-base">{option.label}</span>
                         </button>
                     ))}
                     </div>

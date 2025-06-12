@@ -102,6 +102,15 @@
     }
   },
   "orderConfirmation": {
+    "statusTypes": {
+      "pending": "Përpara",
+      "processing": "Përpunim",
+      "shipped": "Dërguar",
+      "delivered": "Dorëzuar",
+      "failed": "Dështuar",
+      "cancelled": "Mbyllur",
+      "refunded": "Rimbursuar"
+    },
     "paymentMethods": {
       "bank_transfer": "Transfer Bankar",
       "cash_on_delivery": "Para në Dorëzim"
@@ -155,7 +164,7 @@
       "selectedProfile": "Profili i Zgjedhur",
       "profileWidth": "Gjerësia e Profilit (mm)",
       "profileHeight": "Lartësia e Profilit (mm)",
-      "ringSizeSystem": "Sistemi i Madhësisë së Unazës",
+      "ringSizeSystem": "Sis. i Madhësisë",
       "ringSize": "Madhësia e Unazës"
     },
     "engraving": {
@@ -180,7 +189,12 @@
       "grooveAlignment": "Rreshtimi i Kanalit",
       "edgeSettings": "Cilësimet e Skajeve",
       "leftEdge": "Skaji i Majtë",
-      "rightEdge": "Skaji i Djathtë"
+      "rightEdge": "Skaji i Djathtë",
+      "addGroove": "Shto Kanalin",
+      "removeGroove": "Fshije Kanalin",
+      "groove": "Kanali",
+      "settings": "Cilësimet",
+      "position": "Pozicioni"
     },
     "preciousMetal": {
       "selectColorType": "Zgjidh Llojin e Ngjyrës",

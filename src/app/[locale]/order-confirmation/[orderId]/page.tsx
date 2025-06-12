@@ -99,6 +99,16 @@ export default function OrderConfirmation() {
     )
   }
 
+  const orderStatusTypes = {
+    "pending": t('orderConfirmation.statusTypes.pending'),
+    "processing": t('orderConfirmation.statusTypes.processing'),
+    "shipped": t('orderConfirmation.statusTypes.shipped'),
+    "delivered": t('orderConfirmation.statusTypes.delivered'),
+    "failed": t('orderConfirmation.statusTypes.failed'),
+    "cancelled": t('orderConfirmation.statusTypes.cancelled'),
+    "refunded": t('orderConfirmation.statusTypes.refunded'),
+  }
+
   return (
     <div className="container mx-auto px-4 pt-32 pb-20 min-h-screen text-darkGray">
       <div className="max-w-2xl mx-auto">
@@ -121,7 +131,7 @@ export default function OrderConfirmation() {
             <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
               <span className="font-medium">{t('orderConfirmation.status')}</span>
               <span className="px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                {order.status}
+                {orderStatusTypes[order.status]}
               </span>
             </div>
           </div>

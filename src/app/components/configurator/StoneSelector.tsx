@@ -113,7 +113,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                         <button
                             key={type}
                             onClick={() => handleChange('settingType', type)}
-                            className={`p-4 border rounded-lg ${
+                            className={`px-1 py-2 md:p-4 border rounded-lg ${
                                 stoneSettings.settingType === type
                                     ? 'border-primary bg-primary/10'
                                     : 'border-darkGray'
@@ -264,7 +264,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                         <div className="space-y-6">
                             <div>
                                 <h3 className="text-darkGray text-lg font-medium mb-4">{t('configurator.stones.stonePosition')}</h3>
-                                <div className="grid grid-cols-6 gap-4">
+                                <div className="grid grid-cols-4 md:grid-cols-6 gap-4">
                                     {stonePositions.map((position) => {
                                         const disabled = isPositionDisabled(position);
                                         return (
@@ -305,7 +305,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
 
                             {/* Free Position Slider */}
                             {stoneSettings.position === 'Free' && (
-                                <div className="space-y-4 w-[400px]">
+                                <div className="space-y-4 w-full max-w-[400px]">
                                     <div className="flex justify-between items-center">
                                         <label className="text-sm font-medium text-darkGray">{t('configurator.stones.stonePosition')}</label>
                                         <span className="text-sm font-medium" style={{ color: stoneSettings.offset === 0 ? '#4B5563' : '#B7A44C' }}>

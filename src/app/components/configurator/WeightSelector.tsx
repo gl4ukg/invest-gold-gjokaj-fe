@@ -24,7 +24,7 @@ export const WeightSelector: React.FC<WeightSelectorProps> = ({
     return (
         <div className="space-y-6">
             <h2 className="text-xl font-semibold text-darkGray">{t('configurator.weight.title')}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
                 {weightOptions.map((weight) => (
                     <button
                         key={weight}
@@ -40,7 +40,7 @@ export const WeightSelector: React.FC<WeightSelectorProps> = ({
                             }
                         `}
                     >
-                        <span className={`text-lg font-medium ${selectedWeight === weight ? 'text-primary' : 'text-darkGray'}`}>
+                        <span className={`text-sm md:text-base lg:text-lg font-medium ${selectedWeight === weight ? 'text-primary' : 'text-darkGray'}`}>
                             {weight}g
                         </span>
                     </button>

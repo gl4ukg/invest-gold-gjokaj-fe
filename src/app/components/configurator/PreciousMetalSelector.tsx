@@ -149,13 +149,13 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                         <button
                             key={type}
                             onClick={() => handleColorTypeChange(type)}
-                            className={`p-4 border rounded-lg ${
+                            className={`p-2 md:p-4 border rounded-lg ${
                                 preciousMetal.colorType === type
                                     ? 'border-primary bg-primary/10'
                                     : 'border-darkGray'
                             }`}
                         >
-                            <span className="text-darkGray">
+                            <span className="text-darkGray text-sm md:text-base">
                                 {t(`configurator.preciousMetal.colorTypes.${type}`)}
                             </span>
                         </button>
@@ -204,7 +204,7 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                                 onChange={(value) => handleWaveCountChange(Number(value) as WaveCount)}
                                 options={waveCountOptions.map((count) => ({
                                     value: count.toString(),
-                                    label: `${count} Waves`
+                                    label: `${count}`
                                 }))}
                             />
                             <SelectInput
