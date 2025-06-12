@@ -181,7 +181,7 @@ const RingsSection: React.FC = () => {
   return (
     <section id="rings" className="py-12 bg-white relative overflow-hidden" ref={sectionRef}>
       <motion.div
-        className="container mx-auto px-0 md:px-4"
+        className="container mx-auto px-4"
         variants={containerVariants}
         initial="hidden"
         animate={isSectionInView ? "visible" : "hidden"}
