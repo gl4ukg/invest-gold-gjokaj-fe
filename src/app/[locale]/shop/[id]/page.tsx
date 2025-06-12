@@ -20,11 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
     const metadata: Metadata = {
       title: `${product.name} - ${t('product.title')}`,
-      description: product.description || t('product.description'),
+      description: product.name || '',
       keywords: `${t('product.keywords')}, ${product.name}, ${product.category?.name || ''}`,
       openGraph: {
         title: `${product.name} - ${t('product.ogTitle')}`,
-        description: product.description || t('product.ogDescription'),
+        description: product.name || '',
         images: [
           {
             url: product.images?.[0] || '/images/um6.png',
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       twitter: {
         card: 'summary_large_image',
         title: `${product.name} - ${t('product.twitterTitle')}`,
-        description: product.description || t('product.twitterDescription'),
+        description: product.name || '',
         images: [product.images?.[0] || '/images/um6.png'],
       },
       alternates: {

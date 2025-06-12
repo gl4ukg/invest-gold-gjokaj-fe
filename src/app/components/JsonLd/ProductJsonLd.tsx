@@ -9,7 +9,7 @@ export default function ProductJsonLd({ product }: ProductJsonLdProps) {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
-    description: product.description,
+    description: product.name,
     image: product.images?.[0] || '/images/um6.png',
     sku: String(product.id),
     brand: {

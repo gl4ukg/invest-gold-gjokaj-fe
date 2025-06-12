@@ -90,9 +90,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                                         <h3>{item.product.name}</h3>
                                                         <p className="ml-4">{item.product.weight} gram</p>
                                                     </div>
-                                                    <p className="mt-1 text-sm text-darkGray line-clamp-2">
+                                                    {/* <p className="mt-1 text-sm text-darkGray line-clamp-2">
                                                         {item.product.description}
-                                                    </p>
+                                                    </p> */}
                                                 </div>
                                                 <div className="flex flex-1 items-end justify-between text-sm">
                                                     <button
