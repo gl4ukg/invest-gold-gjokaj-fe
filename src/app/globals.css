@@ -62,3 +62,7 @@ header h2,
 header h3 {
   color: #ffffff!important;
 }
+select {
+  appearance: none;
+  background-color: #ffffff;
+}

@@ -253,7 +253,7 @@ export default function Checkout() {
                       value={formData.city}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary appearance-none bg-white"
                     >
                       {kosovoMunicipalities?.map((city) => (
                         <option key={city} value={city}>
@@ -277,7 +277,7 @@ export default function Checkout() {
                     value={formData.country}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary appearance-none bg-white"
                   >
                     {countries?.map((country) => (
                       <option key={country.value} value={country.value}>
