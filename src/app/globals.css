@@ -57,3 +57,8 @@ body {
 svg.lucide.lucide-expand.h-4.w-4.expand {
     position: static;
 }
+header h1,
+header h2,
+header h3 {
+  color: #ffffff!important;
+}
