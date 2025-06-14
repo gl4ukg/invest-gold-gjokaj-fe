@@ -278,8 +278,8 @@ export default function OrdersContent() {
                                                                 <div className="text-gray-600">
                                                                   <p>Guri: {idx+1}</p>
                                                                   <p>Madhesia:{stone.size}</p>
-                                                                  <p>Qualiteti: {stone.quality}</p>
-                                                                  <p>Pozicioni: ({stone.x}, {stone.y})</p>
+                                                                  <p>Cilësia: {stone.quality}</p>
+                                                                  <p>Pozicioni: (X:{stone.x?.toFixed(2)}mm, Y:{stone.y?.toFixed(2)}mm)</p>
                                                                 </div>
                                                                 <br />
                                                               </div>
