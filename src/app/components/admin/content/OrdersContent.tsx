@@ -240,7 +240,7 @@ export default function OrdersContent() {
                                                     <div>Lloji: {colorTypes[item?.configuration?.preciousMetal?.colorType ?? '']}</div>
                                                     {item?.configuration?.preciousMetal?.colors?.map((color, idx) => (
                                                         <div key={idx} className="text-gray-600">
-                                                            {color.metalColor} ({color.fineness}) ({color.polishType})
+                                                            Ngjyra {idx+1}: {color.metalColor} ({color.fineness}) ({color.polishType})
                                                         </div>
                                                     ))}
                                                     {(item?.configuration?.preciousMetal?.colors?.length ?? 0) > 1 && (
@@ -313,8 +313,8 @@ export default function OrdersContent() {
                                                         <div>Pozicioni: {groove?.position}mm</div>
                                                         {groove?.direction === "wave" 
                                                           ? <>
-                                                          <div>Numri i vjetave: {groove?.numberOfWaves}</div>
-                                                          <div>Height e vjetave: {groove?.waveHeight}</div> 
+                                                          <div>Numri i valeve: {groove?.numberOfWaves}</div>
+                                                          <div>Lartësia e valës: {groove?.waveHeight}%</div> 
                                                           </>
                                                           : null
                                                         }
@@ -357,10 +357,10 @@ export default function OrdersContent() {
                                             {item.configuration?.engraving && (
                                                 <div className="space-y-1">
                                                     <div className="font-semibold text-gray-900">Gravimi i tekstit</div>
-                                                    <div className="space-y-0.5">
+                                                    {item?.configuration?.engraving?.text !== "" ? <div className="space-y-0.5">
                                                         <div>"{item?.configuration?.engraving?.text}"</div>
                                                         <div className="text-gray-600">{item?.configuration?.engraving?.fontFamily}</div>
-                                                    </div>
+                                                    </div> : <div>Nuk ka gravim te tekstit</div>}
                                                 </div>
                                             )}
                                         </div>
