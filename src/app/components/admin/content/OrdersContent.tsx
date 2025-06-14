@@ -96,7 +96,13 @@ export default function OrdersContent() {
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-};
+  };
+
+  const colorTypes: Record<string, string> = {
+    'single': "Nje ngjyresh",
+    'two': "Dy ngjyresh",
+    'three': "Tre ngjyresh",
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -222,15 +228,15 @@ export default function OrdersContent() {
                                             <div className="space-y-1">
                                                 <div className="font-semibold text-gray-900">Dimensionet</div>
                                                 <div className="space-y-0.5">
-                                                    <div>{item?.configuration?.dimensions?.profileWidth}×{item?.configuration?.dimensions?.profileHeight}mm</div>
-                                                    <div>{item?.configuration?.dimensions?.ringSizeSystem} {item?.configuration?.dimensions?.ringSize}</div>
+                                                    <div>Gjerësia × Lartësia: {item?.configuration?.dimensions?.profileWidth}×{item?.configuration?.dimensions?.profileHeight}mm</div>
+                                                    <div>Sistemi i unazes: {item?.configuration?.dimensions?.ringSizeSystem} Madhësia: {item?.configuration?.dimensions?.ringSize}</div>
                                                 </div>
                                             </div>
 
                                             <div className="space-y-1">
                                                 <div className="font-semibold text-gray-900">Metali</div>
                                                 <div className="space-y-0.5">
-                                                    <div>{item?.configuration?.preciousMetal?.colorType}</div>
+                                                    <div>Lloji: {colorTypes[item?.configuration?.preciousMetal?.colorType ?? '']}</div>
                                                     {item?.configuration?.preciousMetal?.colors?.map((color, idx) => (
                                                         <div key={idx} className="text-gray-600">
                                                             {color.metalColor} ({color.fineness}) ({color.polishType})
@@ -242,13 +248,13 @@ export default function OrdersContent() {
                                                             {item.configuration?.preciousMetal?.shape?.category}
                                                         </div>
                                                     )}
-                                                    {(item?.configuration?.preciousMetal?.colors?.length ?? 0) > 2 && (
+                                                    {((item?.configuration?.preciousMetal?.colors?.length ?? 0) > 1 && item.configuration?.preciousMetal?.shape?.heightPercentage !== undefined) && (
                                                         <div className="text-gray-600">
                                                             <span>Lartesia: </span>
                                                             {item.configuration?.preciousMetal?.shape?.heightPercentage}%
                                                         </div>
                                                     )}
-                                                    {(item?.configuration?.preciousMetal?.colors?.length ?? 0) > 2 && (
+                                                    {((item?.configuration?.preciousMetal?.colors?.length ?? 0) > 1 && item.configuration?.preciousMetal?.shape?.waveCount !== undefined) && (
                                                         <div className="text-gray-600">
                                                             <span>Numri i valave: </span>
                                                             {item.configuration?.preciousMetal?.shape?.waveCount}
@@ -287,7 +293,7 @@ export default function OrdersContent() {
                                                                 <div>Cilesia: {item?.configuration?.stoneSettings?.stoneQuality}</div>
                                                                 <div>Numri i gureve: {item?.configuration?.stoneSettings?.numberOfStones}</div>
                                                                 <div>Pozicioni: {item?.configuration?.stoneSettings?.position}</div>
-                                                                {item?.configuration?.stoneSettings?.position === "Free" ? `(${(Math.abs(item?.configuration?.stoneSettings?.offset || 0) * 0.1).toFixed(1)}mm ${Number(item?.configuration?.stoneSettings?.offset) > 0 ? 'Right' : 'Left'})` : ''}
+                                                                {item?.configuration?.stoneSettings?.position === "Free" ? `(${Math.abs(item?.configuration?.stoneSettings?.offset || 0)}mm ${Number(item?.configuration?.stoneSettings?.offset) > 0 ? 'Right' : 'Left'})` : ''}
                                                             </div>
                                                         );
                                                     }
@@ -298,15 +304,16 @@ export default function OrdersContent() {
                                                 <div key={idx} className="space-y-1">
                                                     <div className="font-semibold text-gray-900">Gravimi {idx+1}</div>
                                                     <div className="space-y-0.5">
-                                                        <div>{groove?.grooveType}</div>
-                                                        <div>{groove?.depth}×{groove?.width}mm</div>
-                                                        <div>Surface: {groove?.surface}</div>
-                                                        <div>Direction: {groove?.direction}</div>
-                                                        <div>Position: {groove?.position}</div>
+                                                        <div>Lloji: {groove?.grooveType}</div>
+                                                        <div>Thellesia: {groove?.depth}</div>
+                                                        <div>Gjerësia: {groove?.width}</div>
+                                                        <div>Siperfaqja: {groove?.surface}</div>
+                                                        <div>Drejtimi: {groove?.direction}</div>
+                                                        <div>Pozicioni: {groove?.position}mm</div>
                                                         {groove?.direction === "wave" 
                                                           ? <>
-                                                          <div>Number of waves: {groove?.numberOfWaves}</div>
-                                                          <div>Wave height: {groove?.waveHeight}</div> 
+                                                          <div>Numri i vjetave: {groove?.numberOfWaves}</div>
+                                                          <div>Height e vjetave: {groove?.waveHeight}</div> 
                                                           </>
                                                           : null
                                                         }
@@ -324,15 +331,19 @@ export default function OrdersContent() {
                                                         {item.configuration?.groovesAndEdges?.leftEdge && (
                                                             <div className="space-y-0.5">
                                                                 <div className="text-gray-600">Majtas:</div>
-                                                                <div>{item?.configuration?.groovesAndEdges?.leftEdge?.type}</div>
-                                                                <div>{item?.configuration?.groovesAndEdges?.leftEdge?.depth}×{item?.configuration?.groovesAndEdges?.leftEdge?.width}mm</div>
+                                                                <div>Lloji: {item?.configuration?.groovesAndEdges?.leftEdge?.type}</div>
+                                                                <div>Thellesia: {item?.configuration?.groovesAndEdges?.leftEdge?.depth}</div>
+                                                                <div>Gjerësia: {item?.configuration?.groovesAndEdges?.leftEdge?.width}</div>
+                                                                <div>Siperfaqja: {item?.configuration?.groovesAndEdges?.leftEdge?.surface}</div>
                                                             </div>
                                                         )}
                                                         {item.configuration?.groovesAndEdges?.rightEdge && (
                                                             <div className="space-y-0.5">
                                                                 <div className="text-gray-600">Djathtas:</div>
-                                                                <div>{item?.configuration?.groovesAndEdges?.rightEdge?.type}</div>
-                                                                <div>{item?.configuration?.groovesAndEdges?.rightEdge?.depth}×{item?.configuration?.groovesAndEdges?.rightEdge?.width}mm</div>
+                                                                <div>Lloji: {item?.configuration?.groovesAndEdges?.rightEdge?.type}</div>
+                                                                <div>Thellesia: {item?.configuration?.groovesAndEdges?.rightEdge?.depth}</div>
+                                                                <div>Gjerësia: {item?.configuration?.groovesAndEdges?.rightEdge?.width}</div>
+                                                                <div>Siperfaqja: {item?.configuration?.groovesAndEdges?.rightEdge?.surface}</div>
                                                             </div>
                                                         )}
                                                     </div>

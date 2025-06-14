@@ -344,9 +344,9 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                                 <div className="absolute left-1/2 top-0 bottom-0 w-px border-l border-[#777] border-dashed" />
                                 
                                 {/* Position markers */}
-                                <div className="absolute top-0 -translate-y-1/2 left-0 text-[#777] text-xs">-5mm</div>
+                                {/* <div className="absolute top-0 -translate-y-1/2 left-0 text-[#777] text-xs">-5mm</div> */}
                                 <div className="absolute top-1/2 -translate-y-1/2 left-0 text-[#777] text-xs">0mm</div>
-                                <div className="absolute bottom-0 -translate-y-1/2 left-0 text-[#777] text-xs">+5mm</div>
+                                {/* <div className="absolute bottom-0 -translate-y-1/2 left-0 text-[#777] text-xs">+5mm</div> */}
 
                                 {/* Grooves */}
                                 {grooves.map((groove) => (
@@ -502,16 +502,16 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                                                 <div className="relative flex-1">
                                                     <input
                                                         type="range"
-                                                        min="-5"
-                                                        max="5"
+                                                        min="-3"
+                                                        max="3"
                                                         step="0.1"
                                                         value={grooves.find(g => g.id === selectedGrooveId)?.position || 0}
                                                         onChange={(e) => handleGrooveChange('position', parseFloat(e.target.value))}
                                                         className="w-full h-2 bg-gray rounded-lg appearance-none cursor-pointer accent-primary hover:bg-gray-300 transition-colors"
                                                     />
                                                     <div className="flex justify-between text-primary text-xs text-gray-500 mt-1">
-                                                        <span>-5mm</span>
-                                                        <span>5mm</span>
+                                                        <span>-3mm</span>
+                                                        <span>3mm</span>
                                                     </div>
                                                 </div>
                                                 <div className="bg-gray-100 rounded-lg px-4 py-2">
