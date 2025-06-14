@@ -311,7 +311,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                                         <span className="text-sm font-medium" style={{ color: stoneSettings.offset === 0 ? '#4B5563' : '#B7A44C' }}>
                                             {stoneSettings.offset === 0
                                                 ? 'Center'
-                                                : `${(Math.abs(stoneSettings?.offset || 0) * 0.1).toFixed(1)}mm ${Number(stoneSettings?.offset) > 0 ? 'Right' : 'Left'}`}
+                                                : `${Math.abs(stoneSettings?.offset || 0)}mm ${Number(stoneSettings?.offset) > 0 ? 'Right' : 'Left'}`}
                                         </span>
                                     </div>
                                     <div className="relative pb-6">
