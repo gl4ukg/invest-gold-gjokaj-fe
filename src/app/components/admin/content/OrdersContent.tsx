@@ -229,7 +229,8 @@ export default function OrdersContent() {
                                                 <div className="font-semibold text-gray-900">Dimensionet</div>
                                                 <div className="space-y-0.5">
                                                     <div>Gjerësia × Lartësia: {item?.configuration?.dimensions?.profileWidth}×{item?.configuration?.dimensions?.profileHeight}mm</div>
-                                                    <div>Sistemi i unazes: {item?.configuration?.dimensions?.ringSizeSystem} Madhësia: {item?.configuration?.dimensions?.ringSize}</div>
+                                                    <div>Sistemi i unazes: {item?.configuration?.dimensions?.ringSizeSystem} </div>
+                                                    <div>Madhësia: {item?.configuration?.dimensions?.ringSize}</div>
                                                 </div>
                                             </div>
 
@@ -245,7 +246,7 @@ export default function OrdersContent() {
                                                     {(item?.configuration?.preciousMetal?.colors?.length ?? 0) > 1 && (
                                                         <div className="text-gray-600">
                                                             <span>Forma: </span>
-                                                            {item.configuration?.preciousMetal?.shape?.category}
+                                                            {item.configuration?.preciousMetal?.shape?.category} {item.configuration?.preciousMetal?.shape?.variant} 
                                                         </div>
                                                     )}
                                                     {((item?.configuration?.preciousMetal?.colors?.length ?? 0) > 1 && item.configuration?.preciousMetal?.shape?.heightPercentage !== undefined) && (
@@ -305,8 +306,8 @@ export default function OrdersContent() {
                                                     <div className="font-semibold text-gray-900">Gravimi {idx+1}</div>
                                                     <div className="space-y-0.5">
                                                         <div>Lloji: {groove?.grooveType}</div>
-                                                        <div>Thellesia: {groove?.depth}</div>
-                                                        <div>Gjerësia: {groove?.width}</div>
+                                                        <div>Thellesia: {groove?.depth}mm</div>
+                                                        <div>Gjerësia: {groove?.width}mm</div>
                                                         <div>Siperfaqja: {groove?.surface}</div>
                                                         <div>Drejtimi: {groove?.direction}</div>
                                                         <div>Pozicioni: {groove?.position}mm</div>
@@ -332,8 +333,8 @@ export default function OrdersContent() {
                                                             <div className="space-y-0.5">
                                                                 <div className="text-gray-600">Majtas:</div>
                                                                 <div>Lloji: {item?.configuration?.groovesAndEdges?.leftEdge?.type}</div>
-                                                                <div>Thellesia: {item?.configuration?.groovesAndEdges?.leftEdge?.depth}</div>
-                                                                <div>Gjerësia: {item?.configuration?.groovesAndEdges?.leftEdge?.width}</div>
+                                                                <div>Thellesia: {item?.configuration?.groovesAndEdges?.leftEdge?.depth}mm</div>
+                                                                <div>Gjerësia: {item?.configuration?.groovesAndEdges?.leftEdge?.width}mm</div>
                                                                 <div>Siperfaqja: {item?.configuration?.groovesAndEdges?.leftEdge?.surface}</div>
                                                             </div>
                                                         )}
@@ -341,8 +342,8 @@ export default function OrdersContent() {
                                                             <div className="space-y-0.5">
                                                                 <div className="text-gray-600">Djathtas:</div>
                                                                 <div>Lloji: {item?.configuration?.groovesAndEdges?.rightEdge?.type}</div>
-                                                                <div>Thellesia: {item?.configuration?.groovesAndEdges?.rightEdge?.depth}</div>
-                                                                <div>Gjerësia: {item?.configuration?.groovesAndEdges?.rightEdge?.width}</div>
+                                                                <div>Thellesia: {item?.configuration?.groovesAndEdges?.rightEdge?.depth}mm</div>
+                                                                <div>Gjerësia: {item?.configuration?.groovesAndEdges?.rightEdge?.width}mm</div>
                                                                 <div>Siperfaqja: {item?.configuration?.groovesAndEdges?.rightEdge?.surface}</div>
                                                             </div>
                                                         )}
