@@ -4,6 +4,7 @@ import React from 'react';
 interface WeightSelectorProps {
     minWeight: number;
     maxWeight: number;
+    weight: string | null;
     selectedWeight: number;
     onChange: (weight: number) => void;
 }
@@ -11,6 +12,7 @@ interface WeightSelectorProps {
 export const WeightSelector: React.FC<WeightSelectorProps> = ({
     minWeight,
     maxWeight,
+    weight,
     selectedWeight,
     onChange
 }) => {
@@ -25,7 +27,27 @@ export const WeightSelector: React.FC<WeightSelectorProps> = ({
         <div className="space-y-6">
             <h2 className="text-xl font-semibold text-darkGray">{t('configurator.weight.title')}</h2>
             <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
-                {weightOptions.map((weight) => (
+                {
+                weight !== null
+                ? <button
+                    key={weight}
+                    onClick={() => onChange(selectedWeight === Number(weight) ? 0 : Number(weight))}
+                    aria-pressed={selectedWeight === Number(weight)}
+                    className={`
+                        relative flex items-center justify-center p-4 rounded-lg border-2
+                        transition-all duration-200 ease-in-out w-full
+                        hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary/50
+                        ${selectedWeight === Number(weight)
+                            ? 'border-primary bg-primary/5 text-primary shadow-sm'
+                            : 'border-gray-200 hover:border-primary/30 active:scale-95'
+                        }
+                    `}
+                >
+                    <span className={`text-sm md:text-base lg:text-lg font-medium ${selectedWeight === Number(weight) ? 'text-primary' : 'text-darkGray'}`}>
+                        {weight}g
+                    </span>
+                </button>
+                : weightOptions.map((weight) => (
                     <button
                         key={weight}
                         onClick={() => onChange(selectedWeight === weight ? 0 : weight)}

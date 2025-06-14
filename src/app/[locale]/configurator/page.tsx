@@ -375,7 +375,6 @@ export default function ConfiguratorPage() {
                       const selectedProduct = cart.items.find(
                         (item) => item.id === cart.selectedItemId
                       );
-                      console.log(selectedProduct, "selected");
                       if (!selectedProduct) return null;
 
                       const weightRange = selectedProduct.product.weight
@@ -387,6 +386,7 @@ export default function ConfiguratorPage() {
                         <WeightSelector
                           minWeight={minWeight}
                           maxWeight={maxWeight}
+                          weight={weightRange.length === 1 ? selectedProduct.product.weight : null}
                           selectedWeight={configuratorState.weight}
                           onChange={(weight) => {
                             const newState = {
