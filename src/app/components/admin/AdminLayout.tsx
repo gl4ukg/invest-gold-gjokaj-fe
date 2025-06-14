@@ -22,7 +22,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, activePage, onPageC
             {/* Mobile Menu Button */}
             <button
                 onClick={toggleSidebar}
-                className="lg:hidden fixed top-4 right-4 z-50 p-2 rounded-md bg-white shadow-lg"
+                className="lg:hidden fixed top-4 right-4 z-50 p-2 rounded-md bg-darkGray text-white hover:bg-gray-700 transition-colors duration-200 shadow-lg"
             >
                 <FiMenu className="w-6 h-6" />
             </button>
