@@ -1,36 +1,31 @@
-/** @type {import('next-sitemap').IConfig} */
+const locales = ['sq', 'en', 'de'];
+const paths = ['/', '/unaza', '/zinxhire', '/checkout', '/shop', '/login'];
+
 module.exports = {
   siteUrl: 'https://investgoldgjokaj.com',
   generateRobotsTxt: true,
-  robotsTxtOptions: {
-    policies: [
-      {
-        userAgent: '*',
-        allow: '/',
-      },
-      {
-        userAgent: '*',
-        disallow: ['/api/', '/_next/', '/admin/', '/login', '/signup'],
-      },
-    ],
-  },
-  exclude: ['/api/*', '/admin/*', '/login', '/signup'],
-  changefreq: 'daily',
+  changefreq: 'weekly',
   priority: 0.7,
-  sitemapSize: 5000,
   generateIndexSitemap: true,
-  alternateRefs: [
-    {
-      href: 'https://investgoldgjokaj.com/sq',
-      hreflang: 'sq',
-    },
-    {
-      href: 'https://investgoldgjokaj.com/en',
-      hreflang: 'en',
-    },
-    {
-      href: 'https://investgoldgjokaj.com/de',
-      hreflang: 'de',
-    },
-  ],
-}
+  sitemapSize: 5000,
+
+  additionalPaths: async () => {
+    return locales.flatMap((locale) =>
+      paths.map((path) => {
+        const cleanPath = path === '/' ? '' : path;
+        const fullPath = `/${locale}${cleanPath}`;
+
+        return {
+          loc: `https://investgoldgjokaj.com${fullPath}`,
+          changefreq: 'weekly',
+          priority: path === '/' ? 1.0 : 0.7,
+          lastmod: new Date().toISOString(),
+          alternateRefs: locales.map((altLocale) => ({
+            href: `https://investgoldgjokaj.com/${altLocale}${cleanPath}`,
+            hreflang: altLocale,
+          })),
+        };
+      })
+    );
+  },
+};
