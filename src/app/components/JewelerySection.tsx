@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 const JewelrySection: React.FC = () => {
   // Refs for scroll detection
@@ -112,6 +113,9 @@ const JewelrySection: React.FC = () => {
           >
             Nuk janë të disponueshme për momentin
           </motion.p>
+          <Link href="/zinxhire" className="hidden text-primary font-medium">
+            {t("seeMore")}
+          </Link>
         </motion.div>
       </section>
     </div>
