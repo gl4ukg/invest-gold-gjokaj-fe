@@ -19,7 +19,7 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
   const { addToCart } = useCart();
 
   const handleClick = () => {
-    router.push(`/shop/${product.id}`);
+    router.push(`/unaza/${product.id}`);
   };
 
   const handleAddToCart = (e: React.MouseEvent) => {

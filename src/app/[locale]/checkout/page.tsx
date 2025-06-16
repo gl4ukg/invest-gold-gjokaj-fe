@@ -188,7 +188,7 @@ export default function Checkout() {
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">{t('checkout.emptyCart')}</h1>
           <button
-            onClick={() => router.push('/shop')}
+            onClick={() => router.push('/unaza')}
             className="bg-primary text-white px-6 py-2 rounded-lg"
           >
             {t('checkout.continueShopping')}

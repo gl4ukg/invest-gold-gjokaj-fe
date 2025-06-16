@@ -6,7 +6,7 @@ export default function OrganizationJsonLd() {
     url: 'https://investgoldgjokaj.com',
     logo: 'https://investgoldgjokaj.com/images/um6.png',
     image: 'https://investgoldgjokaj.com/images/um6.png',
-    description: 'Premium gold jewelry store in Kosovo. Engagement rings, wedding rings, gold bracelets, necklaces, and custom jewelry.',
+    description: 'Zbuloni koleksionin premium të Invest Gold Gjokaj me bizhuteri të arit, unaza dhe rrathe të punuara me përkushtim në Kosovë. Tek ne gjeni bizhuteri unike të punuara me përsoshmëri.',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Pjeter Mazreku',

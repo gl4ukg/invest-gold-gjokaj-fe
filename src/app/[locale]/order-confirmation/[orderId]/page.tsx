@@ -54,7 +54,7 @@ export default function OrderConfirmation() {
           </h1>
           <p className="text-gray-600 mb-4">{error}</p>
           <button
-            onClick={() => router.push(`/shop`)}
+            onClick={() => router.push(`/unaza`)}
             className="bg-primary text-white px-6 py-2 rounded-lg"
           >
             {t('orderConfirmation.backToShop')}
@@ -213,7 +213,7 @@ export default function OrderConfirmation() {
         {/* Actions */}
         <div className="text-center">
           <button
-            onClick={() => router.push('/shop')}
+            onClick={() => router.push('/unaza')}
             className="bg-primary text-white px-6 py-2 rounded-lg"
           >
             {t('orderConfirmation.continueShopping')}

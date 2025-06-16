@@ -44,11 +44,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         images: [product.images?.[0] || '/images/um6.png'],
       },
       alternates: {
-        canonical: new URL(`/${locale}/shop/${id}`, 'https://investgoldgjokaj.com').toString(),
+        canonical: new URL(`/${locale}/unaza/${id}`, 'https://investgoldgjokaj.com').toString(),
         languages: {
-          'en': `/en/shop/${id}`,
-          'de': `/de/shop/${id}`,
-          'sq': `/sq/shop/${id}`,
+          'en': `/en/unaza/${id}`,
+          'de': `/de/unaza/${id}`,
+          'sq': `/sq/unaza/${id}`,
         },
       },
     };

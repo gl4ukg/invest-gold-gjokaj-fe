@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: `${t("shop.description")} ${t(
         "shop.featuring"
       )} ${categoryNames}`,
-      keywords: `${t("shop.keywords")}, ${categoryNames}, ${categoryImages}`,
+      keywords: `${t("shop.keywords")}, ${categoryNames}, ${categoryImages}, 'unaza ari', 'unaza qafe', 'unaza Gjakovë', 'bizhuteri ari', 'invest gold gjokaj', 'invest gold', 'rrathe fejese', 'rrathe martese'`,
       openGraph: {
         title: t("shop.ogTitle"),
         description: `${t("shop.ogDescription")} ${t(
@@ -54,13 +54,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
       alternates: {
         canonical: new URL(
-          `/${locale}/shop`,
+          `/${locale}/unaza`,
           "https://investgoldgjokaj.com"
         ).toString(),
         languages: {
-          en: "/en/shop",
-          de: "/de/shop",
-          sq: "/sq/shop",
+          en: "/en/unaza",
+          de: "/de/unaza",
+          sq: "/sq/unaza",
         },
       },
     };
@@ -95,13 +95,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
       alternates: {
         canonical: new URL(
-          `/${locale}/shop`,
+          `/${locale}/unaza`,
           "https://investgoldgjokaj.com"
         ).toString(),
         languages: {
-          en: "/en/shop",
-          de: "/de/shop",
-          sq: "/sq/shop",
+          en: "/en/unaza",
+          de: "/de/unaza",
+          sq: "/sq/unaza",
         },
       },
     };

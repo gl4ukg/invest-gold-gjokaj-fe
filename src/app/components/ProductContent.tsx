@@ -84,7 +84,7 @@ export default function ProductContent({ id }: { id: string }) {
             {error || t('product.notFound')}
           </h1>
           <button
-            onClick={() => router.push('/shop')}
+            onClick={() => router.push('/unaza')}
             className="bg-primary text-white px-6 py-2 rounded-lg"
           >
             {t('product.backToShop')}

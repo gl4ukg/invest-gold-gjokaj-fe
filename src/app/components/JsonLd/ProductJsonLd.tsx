@@ -19,7 +19,7 @@ export default function ProductJsonLd({ product }: ProductJsonLdProps) {
     category: product.category,
     offers: {
       '@type': 'Offer',
-      url: `https://investgoldgjokaj.com/shop/${product.id}`,
+      url: `https://investgoldgjokaj.com/unaza/${product.id}`,
       priceCurrency: 'EUR',
       price: product.price,
       priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 30 days from now

@@ -14,7 +14,7 @@ const NAV_LINKS = [
   { href: '#jewelry', key: 'jewelry' },
   { href: '#services', key: 'services' },
   { href: '#contact', key: 'contact' },
-  { href: '/shop', key: 'shop' }, // External Page
+  { href: '/unaza', key: 'shop' }, // External Page
 ];
 
 const LANGUAGE_LINKS = [
@@ -63,7 +63,7 @@ const Navbar = () => {
       }
     } else {
       if(
-        pathname === "/shop" 
+        pathname === "/unaza" 
         || pathname === "/configurator" 
         || pathname === "/checkout" 
         || pathname === "/terms" 
@@ -72,7 +72,7 @@ const Navbar = () => {
         || pathname === `/order-confirmation`
         || pathname === `/order-confirmation/error`
         || pathname === `/order-confirmation/cancel`
-        || pathname === `/shop/${id}`
+        || pathname === `/unaza/${id}`
       ){
         console.log("here")
         window.location.replace(`/${fullPath}`);
@@ -84,10 +84,10 @@ const Navbar = () => {
   };
 
   const changeLocale = (newLocale: string) => {
-    if(pathname === "/shop"){
-      window.location.replace(`/${newLocale}/shop`);
-    } else if (pathname === `/shop/${id}`){
-      window.location.replace(`/${newLocale}/shop/${id}`);
+    if(pathname === "/unaza"){
+      window.location.replace(`/${newLocale}/unaza`);
+    } else if (pathname === `/unaza/${id}`){
+      window.location.replace(`/${newLocale}/unaza/${id}`);
     } else if (pathname === "/configurator"){
       window.location.replace(`/${newLocale}/configurator`);
     } else if (pathname === "/checkout"){
