@@ -1,11 +1,62 @@
 import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Zinxhirë Ari në Kosovë | Invest Gold Gjokaj',
-  description: 'Zbuloni koleksionin e zinxhirëve prej ari nga Invest Gold Gjokaj. Blej zinxhirë cilësorë në Kosovë për meshkuj dhe femra.',
-  keywords: ['zinxhirë ari', 'zinxhir qafe në Kosovë', 'zinxhir ari Gjakovë', 'bizhuteri ari', 'invest gold gjokaj']
+type Props = {
+  params: { locale: string };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'jewelry' });
+
+  return {  
+    title: t('pageTitle'),
+    description: t('pageDescription'),
+    keywords: [
+      'zinxhirë ari',
+      'zingjirë ari',
+      'zingjirë qafe ne Gjakove',
+      'zingjirë qafe në Kosovë',
+      'zinxhir qafe në Kosovë',
+      'zinxhir ari Gjakovë',
+      'bizhuteri ari',
+      'invest gold gjokaj',
+      'invest gold zinxhire',
+      'invest gold zingjire',
+    ],
+    alternates: {
+      canonical: `https://investgoldgjokaj.com/${locale}/zinxhire`,
+      languages: {
+        sq: 'https://investgoldgjokaj.com/sq/zinxhire',
+        en: 'https://investgoldgjokaj.com/en/zinxhire',
+        de: 'https://investgoldgjokaj.com/de/zinxhire',
+      },
+    },
+    openGraph: {
+      title: t('pageTitle'),
+      description: t('pageDescription'),
+      url: `https://investgoldgjokaj.com/${locale}/zinxhire`,
+      images: [
+        {
+          url: '/images/um6.png',
+          width: 1200,
+          height: 630,
+          alt: t('ogImageAlt') || 'Zinxhirë të artë Invest Gold Gjokaj',
+        },
+      ],
+      locale,
+      siteName: 'Invest Gold Gjokaj',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('pageTitle'),
+      description: t('pageDescription'),
+      images: ['/images/um6.png'],
+    },
+  };
+}
+
 
 const ZinxhirePage = () => {
     const t = useTranslations('jewelry');
