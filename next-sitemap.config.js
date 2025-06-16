@@ -1,5 +1,5 @@
 const locales = ['sq', 'en', 'de'];
-const paths = ['/', '/unaza', '/zinxhire', '/checkout', '/shop', '/login'];
+const paths = ['/', '/unaza', '/zinxhire', '/checkout', '/login'];
 
 module.exports = {
   siteUrl: 'https://investgoldgjokaj.com',
