@@ -15,7 +15,7 @@ import { Analytics } from "@vercel/analytics/next"
 import Script from "next/script";
 
 const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
   display: "swap",

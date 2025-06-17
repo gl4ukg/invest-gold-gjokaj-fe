@@ -41,13 +41,13 @@ const HeaderContentText = () => {
         <div className="container mx-auto px-4 h-full flex items-center py-4 relative z-10">
             <div className="text-left animate-zoomIn">
 
-                <h1 className="md:text-6xl text-5xl font-bold text-white font-[Poppins]" itemProp="name">
+                <h1 className="md:text-6xl text-5xl font-bold text-white" itemProp="name">
                     {t('title')}
                 </h1>
-                <h2 className="md:text-2xl text-lg font-[Poppins] mt-4" itemProp="description">
+                <h2 className="md:text-2xl text-lg mt-4" itemProp="description">
                     {t('subtitle')}
                 </h2>
-                <h3 className="md:text-lg text-base font-[Poppins] mt-4" itemProp="offers">
+                <h3 className="md:text-lg text-base mt-4" itemProp="offers">
                     {t('secondSubtitle')}
                 </h3>
                 <div className="mt-6 flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0">
