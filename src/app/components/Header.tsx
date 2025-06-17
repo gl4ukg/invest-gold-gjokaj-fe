@@ -2,13 +2,17 @@
 
 import HeaderContentText from './HeaderContentText';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import Loader from './Loader';
 
 const Header = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const loaderRef = useRef<HTMLDivElement>(null);
 
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
+    setIsLoading(false);
   };
 
   return (
@@ -33,17 +37,24 @@ const Header = () => {
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute inset-0 bg-black bg-opacity-40" />
         {typeof window !== 'undefined' && (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-60' : 'opacity-0'}`}
-            onLoadedData={handleVideoLoad}
-          >
-            <source src="https://glaukthaqi.com/header-video.mp4" type="video/mp4" />
-          </video>
+          <>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-60' : 'opacity-0'}`}
+              onLoadedData={handleVideoLoad}
+            >
+              <source src="https://glaukthaqi.com/header-video.mp4" type="video/mp4" />
+            </video>
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <Loader loaderRef={loaderRef} />
+              </div>
+            )}
+          </>
         )}
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
