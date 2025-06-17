@@ -141,7 +141,7 @@ const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="bg-[url('/images/cover2-01.webp')] bg-cover bg-center bg-no-repeat py-24"
+      className="bg-[url('/images/cover2-01.png')] bg-cover bg-center bg-no-repeat py-24"
       ref={sectionRef}
     >
       <motion.div

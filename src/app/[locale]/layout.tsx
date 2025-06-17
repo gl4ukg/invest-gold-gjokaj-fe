@@ -10,6 +10,7 @@ import NavigationWrapper from "../components/NavigationWrapper";
 import FooterWrapper from "../components/FooterWrapper";
 import OrganizationJsonLd from "../components/JsonLd/OrganizationJsonLd";
 import { StepProvider } from "../context/StepContext";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
