@@ -24,35 +24,42 @@ const HeaderContentText = () => {
         <>
         <div className="container mx-auto px-4 h-full flex items-center py-4 relative z-10">
             <div className="text-left">
+                <div className="space-y-4">
+                    <h1 
+                        className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+                        itemProp="name"
+                    >
+                        {t('title')}
+                    </h1>
+                    <h2 
+                        className="md:text-2xl text-lg font-semibold text-white"
+                        itemProp="description"
+                    >
+                        {t('subtitle')}
+                    </h2>
+                    <h3 
+                        className="md:text-lg text-base text-white/90"
+                        itemProp="offers"
+                    >
+                        {t('secondSubtitle')}
+                    </h3>
+                </div>
 
-                <h1 className="md:text-6xl text-5xl font-bold text-white" itemProp="name">
-                    {t('title')}
-                </h1>
-                <h2 className="md:text-2xl text-lg mt-4" itemProp="description">
-                    {t('subtitle')}
-                </h2>
-                <h3 className="md:text-lg text-base mt-4" itemProp="offers">
-                    {t('secondSubtitle')}
-                </h3>
-                <div className="mt-6 flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0">
-                    <Link href="#about" className="scroll-smooth">
-                    <button
-                        style={{ minWidth: '48px', minHeight: '48px', width: '200px' }}
-                        className="bg-[#907C33] text-white py-2 px-6 rounded-md hover:bg-transparent hover:border hover:border-[#907C33] transition-all duration-300"
+                <div className="mt-8 flex flex-col md:flex-row gap-4">
+                    <Link 
+                        href="#about"
+                        className="inline-flex justify-center items-center h-12 px-6 bg-[#907C33] text-white rounded-md hover:bg-[#907C33]/90 transition-colors"
                         aria-label={t('seeMore')}
                     >
                         {t('seeMore')}
-                    </button>
                     </Link>
-                    <Link href="#video" className="scroll-smooth">
-                    <button
+                    <Link 
+                        href="#video"
                         onClick={openVideoModal}
-                        style={{ minWidth: '48px', minHeight: '48px', width: '200px' }}
-                        className="bg-transparent text-white border border-[#907C33] py-2 px-4 rounded-md hover:bg-[#907C33] transition-all duration-300"
+                        className="inline-flex justify-center items-center h-12 px-6 bg-transparent text-white border border-[#907C33] rounded-md hover:bg-[#907C33]/10 transition-colors"
                         aria-label={t('video')}
                     >
                         {t('video')}
-                    </button>
                     </Link>
                 </div>
             </div>
