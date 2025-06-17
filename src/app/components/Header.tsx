@@ -13,7 +13,7 @@ const Header = () => {
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           poster="/images/header.webp"
           className="absolute inset-0 w-full h-full object-cover"
         >

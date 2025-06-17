@@ -235,6 +235,7 @@ export default async function RootLayout({
               </StepProvider>
             </CartProvider>
         </NextIntlClientProvider>
+        {/* Google Tag Manager temporarily disabled for performance testing
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-J4KW6NGKY4"
           strategy="afterInteractive"
@@ -247,6 +248,7 @@ export default async function RootLayout({
             gtag('config', 'G-J4KW6NGKY4');
           `}
         </Script>
+        */}
       </body>
     </html>
   );

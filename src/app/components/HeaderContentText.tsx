@@ -3,7 +3,12 @@ import { Link } from '@/i18n/routing';
 import useIsDesktop from '../hooks/useIsDesktop';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import ReusableModal from './Modal';
+import dynamic from 'next/dynamic';
+
+const ReusableModal = dynamic(() => import('./Modal'), {
+  loading: () => <div className="loading-placeholder"></div>,
+  ssr: false
+});
 
 const HeaderContentText = () => {
   const t = useTranslations('header');
@@ -74,17 +79,20 @@ const HeaderContentText = () => {
             </div>
         </div>
       {/* Modal */}
-      <ReusableModal isOpen={isVideoOpen} onClose={closeVideoModal}>
-        <div className="relative w-full h-[400px]">
-          <iframe
-            id="video"
-            src="https://glaukthaqi.com/video.mp4"
-            title="Video Modal"
-            className="absolute top-0 left-0 w-full h-full rounded-md"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </ReusableModal>
+      {isVideoOpen && (
+        <ReusableModal isOpen={isVideoOpen} onClose={closeVideoModal}>
+          <div className="relative w-full h-[400px]">
+            <iframe
+              id="video"
+              src="https://glaukthaqi.com/video.mp4"
+              title="Video Modal"
+              className="absolute top-0 left-0 w-full h-full rounded-md"
+              allowFullScreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </ReusableModal>
+      )}
       </>
     )
 }
