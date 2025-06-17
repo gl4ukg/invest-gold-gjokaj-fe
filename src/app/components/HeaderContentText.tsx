@@ -25,6 +25,9 @@ const HeaderContentText = () => {
         <div className="container mx-auto px-4 h-full flex items-center py-4 relative z-10">
             <div className="text-left">
 
+                <h1 className="md:text-6xl text-5xl font-bold text-white" itemProp="name">
+                    {t('title')}
+                </h1>
                 <h2 className="md:text-2xl text-lg mt-4" itemProp="description">
                     {t('subtitle')}
                 </h2>
