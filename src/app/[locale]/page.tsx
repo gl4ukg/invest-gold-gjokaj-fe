@@ -3,17 +3,20 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import AboutSection from "../components/AboutSection";
 import Header from "../components/Header";
-import RingsSection from "../components/Rings";
 import JewelrySection from "../components/JewelerySection";
 import ServicesSection from "../components/ServicesSection";
 import ContactSection from "../components/ContactSection";
+import dynamic from 'next/dynamic';
 
+const RingsSection = dynamic(() => import("@/app/components/Rings"), {
+  ssr: true,
+});
 interface Props {
-  params: Promise<{ locale: string }>
+  params: { locale: string }
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale } = params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
   const metadata: Metadata = {
@@ -65,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Home({ params }: Props) {
   try {
-    const { locale } = await params;
+    const { locale } = params;
     if (!['en', 'de', 'sq'].includes(locale)) {
       notFound();
     }
