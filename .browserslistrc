@@ -1,0 +1,8 @@
+# Target modern browsers
+last 2 versions
+not dead
+not ie 11
+chrome >= 60
+firefox >= 60
+safari >= 12
+not op_mini all

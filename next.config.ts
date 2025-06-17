@@ -12,6 +12,45 @@ const baseConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  swcMinify: true,
+  experimental: {
+    // Optimize modern JavaScript features
+    optimizePackageImports: ['@loadable/component'],
+  },
+  // Optimize bundle size
+  webpack: (config, { dev, isServer }) => {
+    // Production optimizations
+    if (!dev && !isServer) {
+      // Split chunks more aggressively
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 50000,
+        minChunks: 1,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
+        cacheGroups: {
+          defaultVendors: false,
+          default: false,
+          // Bundle core packages together
+          framework: {
+            name: 'framework',
+            chunks: 'all',
+            test: /[\/]node_modules[\/](react|react-dom|next)[\/]/,
+            priority: 40,
+            enforce: true,
+          },
+          // Bundle common utilities
+          commons: {
+            name: 'commons',
+            minChunks: 2,
+            priority: 20,
+          },
+        },
+      };
+    }
+    return config;
+  },
   async redirects() {
     return [
       {
