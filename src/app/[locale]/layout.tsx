@@ -214,22 +214,18 @@ export default async function RootLayout({
   return (
     <html lang="sq" className="overflow-x-hidden">
       <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4KW6NGKY4"></script>
+        <script>
+         {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-J4KW6NGKY4');`}
+        </script>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/x-icon" href="/favicon_32x32.ico" sizes="32x32" />
         <link rel="apple-touch-icon" href="/favicon_48x48.ico" />
         <link rel="manifest" href="/manifest.json" />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-J4KW6NGKY4"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-J4KW6NGKY4');
-          `}
-        </Script>
       </head>
       <body 
         className={`${poppins.variable} antialiased bg-white overflow-x-hidden`}
