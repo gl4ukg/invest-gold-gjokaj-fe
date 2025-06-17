@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <header className="relative w-full h-screen overflow-hidden bg-black">
       {/* Static Background with priority loading */}
-      <div className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-90'}`}>
+      <div className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-80'}`}>
         <div className="relative w-full h-full">
           <Image
             src="/images/header.webp"
@@ -39,7 +39,7 @@ const Header = () => {
             loop
             playsInline
             preload="metadata"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-90' : 'opacity-0'}`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-80' : 'opacity-0'}`}
             onLoadedData={handleVideoLoad}
           >
             <source src="https://glaukthaqi.com/header-video.mp4" type="video/mp4" />
