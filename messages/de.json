@@ -376,7 +376,10 @@
   "jewelry": {
     "description": "We offer our customers the opportunity to find unique, elegant and beautiful jewelry.",
     "pageTitle": "Gold Chains in Kosovo",
-    "pageDescription": "Discover our exclusive collection of gold chains and pendants, expertly crafted from pure gold. Modern and classic designs for your most special moments."
+    "pageDescription": "Discover our exclusive collection of gold chains and pendants, expertly crafted from pure gold. Modern and classic designs for your most special moments.",
+    "ogImageAlt": "Gold Chains in Kosovo",
+    "seeMore": "See More",
+    "comingSoon": "Coming soon with more products..."
   },
   "terms": {
     "title": "Terms and Conditions",
@@ -489,6 +492,11 @@
     "followUs": "Follow Us",
     "rights": "All Rights Reserved.",
     "contact": "Contact"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "description": "We're sorry, the page you are looking for could not be found.",
+    "backToHome": "Back to Home"
   },
   "metadata": {
     "product": {

@@ -376,7 +376,10 @@
   "jewelry": {
     "description": "Ne u ofrojmë klientëve tanë mundësinë per te zbuluar botë unike, elegante dhe te çmuar te stolive.",
     "pageTitle": "Zinxhirë prej Ari në Kosovë",
-    "pageDescription": "Eksploroni koleksionin tonë ekskluziv të zinxhirëve prej ari të punuar me mjeshtëri nga Invest Gold Gjokaj. Zinxhirë për meshkuj dhe femra – cilësi e lartë dhe dizajn elegant."
+    "pageDescription": "Eksploroni koleksionin tonë ekskluziv të zinxhirëve prej ari të punuar me mjeshtëri nga Invest Gold Gjokaj. Zinxhirë për meshkuj dhe femra – cilësi e lartë dhe dizajn elegant.",
+    "ogImageAlt": "Zinxhirë të artë Invest Gold Gjokaj",
+    "seeMore": "Shiko më shumë",
+    "comingSoon": "Së shpejti me shumë produkte..."
   },
   "terms": {
     "title": "Kushtet dhe Rregullat",
@@ -489,6 +492,11 @@
     "followUs": "Na Ndiqni",
     "rights": "Të Gjitha të Drejtat të Rezervuara.",
     "contact": "Na Kontaktoni"
+  },
+  "notFound": {
+    "title": "404 - Faqja që kërkuat nuk u gjet",
+    "description": "Na vjen keq, produkti që po kërkoni nuk mund të gjendet.",
+    "backToHome": "Kthehu në faqen kryesore"
   },
   "metadata": {
     "product": {

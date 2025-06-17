@@ -60,6 +60,7 @@ export default function ProductCard({ product, showAddToCart = true }: ProductCa
               <button
                 onClick={handleAddToCart}
                 className="bg-primary text-white p-2 md:px-4 md:py-2 rounded-lg "
+                aria-label={t('product.addToCart')}
               >
                 <FaCartShopping className='text-white text-sm md:text-lg' />
               </button>

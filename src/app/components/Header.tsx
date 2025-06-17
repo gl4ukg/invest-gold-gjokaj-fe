@@ -47,7 +47,7 @@ const Header = () => {
                     muted
                     loop
                     playsInline
-                    poster="/images/header.png"
+                    poster="/images/header.webp"
                     className="absolute inset-0 w-full h-full object-cover"
                 >
                     <source src="https://glaukthaqi.com/header-video.mp4" type="video/mp4" />
@@ -55,7 +55,7 @@ const Header = () => {
                 {/* Overlay for better text readability */}
                 <div className="absolute inset-0 bg-black bg-opacity-40">
                     {/* <Image
-                        src="/images/header.png"
+                        src="/images/header.webp"
                         alt="Header Image"
                         fill
                         className="object-cover"
@@ -105,17 +105,21 @@ const Header = () => {
                     animate="visible"
                 >
                     <Link href="#about" className="scroll-smooth">
-                        <button 
-                        style={{ width: '170px' }}
-                        className="bg-[#907C33] text-white py-2 px-4 rounded-md hover:bg-transparent hover:border hover:border-[#907C33] transition-all duration-300">
+                        <button
+                            style={{ minWidth: '48px', minHeight: '48px', width: '200px' }}
+                            className="bg-[#907C33] text-white py-2 px-6 rounded-md hover:bg-transparent hover:border hover:border-[#907C33] transition-all duration-300"
+                            aria-label={t('seeMore')}
+                        >
                             {t('seeMore')}
                         </button>
                     </Link>
                     <Link href="#video" className="scroll-smooth">
                         <button 
                             onClick={openVideoModal}
-                            style={{ width: '170px' }}
-                            className="bg-transparent text-white border border-[#907C33] py-2 px-4 rounded-md hover:bg-[#907C33] transition-all duration-300">
+                            style={{ minWidth: '48px', minHeight: '48px', width: '200px' }}
+                            className="bg-transparent text-white border border-[#907C33] py-2 px-4 rounded-md hover:bg-[#907C33] transition-all duration-300"
+                            aria-label={t('video')}
+                        >
                             {t('video')}
                         </button>
                     </Link>

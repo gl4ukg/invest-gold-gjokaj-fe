@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import AboutSection from "../components/AboutSection";
 import Header from "../components/Header";
 import RingsSection from "../components/Rings";
@@ -63,8 +64,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Home({ params }: Props) {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'about' });
+  try {
+    const { locale } = await params;
+    if (!['en', 'de', 'sq'].includes(locale)) {
+      notFound();
+    }
+    const t = await getTranslations({ locale, namespace: 'about' });
 
   return (
     <>
@@ -84,4 +89,7 @@ export default async function Home({ params }: Props) {
       </main>
     </>
   );
+  } catch (error) {
+    notFound();
+  }
 }

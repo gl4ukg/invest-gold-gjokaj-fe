@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import CategoriesService from "@/app/services/categories";
 import dynamic from "next/dynamic";
+import { notFound } from 'next/navigation';
 
 const ShopContent = dynamic(() => import("@/app/components/ShopContent"), {
   ssr: true,
@@ -108,6 +109,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function Shop() {
-  return <ShopContent />;
+export default async function Shop() {
+  try {
+    const categories = await CategoriesService.getAll();
+    if (!categories || categories.length === 0) {
+      notFound();
+    }
+    return <ShopContent />;
+  } catch (error) {
+    notFound();
+  }
 }

@@ -9,13 +9,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-white pt-12 pb-8">
+    <footer className="bg-primary text-gray-900 pt-12 pb-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">{t("footer.about")}</h3>
-            <p className="text-sm text-gray-300 mb-4">
+            <p className="text-sm text-gray-800 mb-4">
               {t("footer.description")}
             </p>
           </div>
@@ -72,7 +72,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-300">
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-800">
           <p>
             &copy; {currentYear} Gold Invest. {t("footer.rights")}
           </p>

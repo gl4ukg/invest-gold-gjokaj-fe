@@ -3,9 +3,11 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useRouter } from "@/i18n/routing";
 
 const JewelrySection: React.FC = () => {
   // Refs for scroll detection
+  const router = useRouter();
   const t = useTranslations("jewelry");
   const firstSectionRef = useRef(null);
   const secondSectionRef = useRef(null);
@@ -70,7 +72,7 @@ const JewelrySection: React.FC = () => {
       <section
         ref={firstSectionRef}
         id="jewelry"
-        className="bg-[url('/images/cover-01.png')] bg-cover bg-center bg-no-repeat py-24"
+        className="bg-[url('/images/cover-01.webp')] bg-cover bg-center bg-no-repeat py-24"
       >
         <motion.div
           className="container mx-auto px-4 py-12"
@@ -89,6 +91,8 @@ const JewelrySection: React.FC = () => {
               >
                 {t("description")}
               </motion.p>
+              <button className="bg-[#907C33] text-black py-2 px-4 rounded-md hover:bg-transparent hover:border-[#907C33] hover:text-[#907C33] border-2 border-[#907C33] transition-colors font-semibold shadow-md hidden" onClick={() => router.push('/zinxhire')} aria-label={t('seeMore')}>
+              </button>
             </motion.div>
           </motion.div>
         </motion.div>

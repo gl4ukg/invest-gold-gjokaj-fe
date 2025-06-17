@@ -4,6 +4,7 @@ import ProductJsonLd from "@/app/components/JsonLd/ProductJsonLd";
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import ProductContent from '@/app/components/ProductContent';
+import { notFound } from 'next/navigation';
 
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const product = await ProductsService.getById(id);
 
     if (!product) {
-      throw new Error('Product not found');
+      notFound();
     }
 
     const metadata: Metadata = {
@@ -55,15 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
     return metadata;
   } catch (error) {
-    // Return a 404 metadata if product is not found
-    return {
-      title: t('product.notFound'),
-      description: t('product.notFoundDescription'),
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
+    notFound();
   }
 }
 
@@ -77,7 +70,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ loca
     const product = await ProductsService.getById(id);
 
     if (!product) {
-      throw new Error('Product not found');
+      notFound();
     }
 
     return (
@@ -87,12 +80,6 @@ export default async function ProductDetail({ params }: { params: Promise<{ loca
       </div>
     );
   } catch (error) {
-    // Return a 404 page if product is not found
-    return (
-      <div>
-        <h1>{t('product.notFound')}</h1>
-        <p>{t('product.notFoundDescription')}</p>
-      </div>
-    );
+    notFound();
   }
 }

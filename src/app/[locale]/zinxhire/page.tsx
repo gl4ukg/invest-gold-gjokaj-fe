@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -61,15 +63,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const ZinxhirePage = () => {
     const t = useTranslations('jewelry');
     return (
-        <main className="container mx-auto px-4 pt-32 pb-20 min-h-screen">
-            <header className="mb-8">
-                <h1 className="text-3xl font-bold">
-                {t('pageTitle')}
-                </h1>
-                <h2 className="mt-2 text-gray-600 max-w-2xl">
-                {t('pageDescription')}
-                </h2>
-            </header>
+        <main className="container mx-auto px-4 pt-36 pb-20 min-h-screen">
+            <h1 className="text-5xl text-darkGray font-bold">
+            {t('pageTitle')}
+            </h1>
+            <h2 className="mt-8 text-darkGray max-w-2xl text-lg">
+            {t('pageDescription')}
+            </h2>
+            <h3 className="mt-8 text-darkGray max-w-2xl text-lg">
+            {t('comingSoon')}
+            </h3>
 
             <section className="flex flex-col lg:flex-row gap-8">
                 <div className="w-full">
