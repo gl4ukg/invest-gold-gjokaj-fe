@@ -1,8 +1,9 @@
+# *
 User-agent: *
-Disallow: /api/
-Disallow: /_next/
-Disallow: /admin/
-Disallow: /login
-Disallow: /signup
+Allow: /
 
+# Host
+Host: https://investgoldgjokaj.com
+
+# Sitemaps
 Sitemap: https://investgoldgjokaj.com/sitemap.xml

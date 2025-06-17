@@ -323,12 +323,14 @@ const ProductsContent: React.FC = () => {
                             {/* Image Previews */}
                             <div className="w-full lg:w-2/3 space-y-2">
                                 {imagePreviews.length > 0 && (
-                                    <div className="mt-2 grid grid-cols-3 gap-2">
+                                    <div className="mt-2 grid grid-cols-5 gap-2">
                                         {imagePreviews.map((preview, index) => (
                                             <div key={index} className="relative">
-                                                <img
+                                                <Image
                                                     src={preview}
                                                     alt={`Preview ${index + 1}`}
+                                                    width={100}
+                                                    height={100}
                                                     className="w-32 h-32 object-cover rounded-md"
                                                 />
                                                 <button

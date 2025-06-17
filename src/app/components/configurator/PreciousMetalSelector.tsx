@@ -181,9 +181,11 @@ export const PreciousMetalSelector: React.FC<PreciousMetalSelectorProps> = ({
                                     }`}
                                 >
                                     <div className="aspect-square bg-gray-100 rounded-lg mb-2">
-                                        <img
+                                        <Image
                                             src={`/images/shapes/${preciousMetal.colorType}colors/${shape.category}-${shape.variant}.png`}
                                             alt={`${shape.category} ${shape.variant}`}
+                                            width={100}
+                                            height={100}
                                             className="w-full h-full object-contain"
                                         />
                                     </div>

@@ -11,7 +11,6 @@ import { StoneSelector } from "@/app/components/configurator/StoneSelector";
 import { GroovesAndEdgesSelector } from "@/app/components/configurator/GroovesAndEdgesSelector";
 import {
   EngravingSelector,
-  fontFamilies,
 } from "@/app/components/configurator/EngravingSelector";
 import { WeightSelector } from "@/app/components/configurator/WeightSelector";
 import {
@@ -23,8 +22,9 @@ import {
 } from "@/app/types/configurator";
 import Image from "next/image";
 import { useRouter } from "@/i18n/routing";
-import { CartItem } from "@/app/types/cart.types";
 import { useStep } from "@/app/context/StepContext";
+
+
 export default function ConfiguratorPage() {
   const {
     cart,

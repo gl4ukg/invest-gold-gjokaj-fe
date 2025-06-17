@@ -4,6 +4,7 @@ import { GroovesAndEdges, GrooveType, EdgeType, SurfaceType, EdgeSettings, Groov
 import { RiLineHeight, RiRoundedCorner } from 'react-icons/ri';
 import { SelectInput } from '@/app/components/ui/SelectInput';
 import { useCart } from '@/app/context/CartContext';
+import Image from 'next/image';
 
 
 interface GroovesAndEdgesSelectorProps {
@@ -75,9 +76,11 @@ const EdgeSettingsForm: React.FC<{
                         >
                             <div className="space-y-2">
                                 <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                                    <img
+                                    <Image
                                         src={`/images/edges/${type.toLowerCase()}.png`}
                                         alt={type}
+                                        width={100}
+                                        height={100}
                                         className="w-full h-full object-contain p-2"
                                     />
                                 </div>
@@ -393,7 +396,7 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                                                     >
                                                         <div className="space-y-2">
                                                             <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                                                                <img
+                                                                <Image
                                                                     src={`/images/grooves/${type
                                                                         .toLowerCase()
                                                                         .replace('v-groove (110°)', 'v-groove-110')
@@ -403,6 +406,8 @@ export const GroovesAndEdgesSelector: React.FC<GroovesAndEdgesSelectorProps> = (
                                                                         .replace('carbon-groove', 'carbon')
                                                                         .replace('milgrain', 'perlage')}.png`}
                                                                     alt={type}
+                                                                    width={100}
+                                                                    height={100}
                                                                     className="w-full h-full object-contain p-2"
                                                                 />
                                                             </div>

@@ -10,6 +10,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^15.3.3",
     "@paypal/react-paypal-js": "^8.8.1",
     "@radix-ui/react-slot": "^1.2.2",
     "@types/leaflet": "^1.9.16",

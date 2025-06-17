@@ -3,6 +3,7 @@ import { StoneSettings, StoneSettingType, StoneType, StoneSize, StoneQuality, St
 import { SelectInput } from '../ui/SelectInput';
 import { useTranslations } from 'next-intl';
 import { RingStoneSpread } from './RingStoneSpread';
+import Image from 'next/image';
 
 interface StoneSelectorProps {
     stoneSettings: StoneSettings;
@@ -121,9 +122,11 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                         >
                             <div className="space-y-2">
                                 <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-                                    <img
+                                    <Image
                                         src={`/images/stones/${type.toLowerCase().replace(/ /g, '-').replace(/\(|\)/g, '')}.png`}
                                         alt={type}
+                                        width={100}
+                                        height={100}
                                         className="w-full h-full object-contain p-2"
                                     />
                                 </div>
@@ -290,11 +293,14 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                                                     className="sr-only"
                                                 />
                                                 <div className="aspect-square w-full bg-gray-100 rounded-lg mb-2 overflow-hidden">
-                                                    <img
+                                                    <Image
                                                         src={`/images/positions/${position.toLowerCase()}.png`}
                                                         alt={`${position} position`}
+                                                        width={100}
+                                                        height={100}
                                                         className="w-full h-full object-contain"
                                                     />
+                                                    
                                                 </div>
                                                 <span className="text-sm text-darkGray">{position}</span>
                                             </label>
@@ -349,6 +355,7 @@ export const StoneSelector: React.FC<StoneSelectorProps> = ({
                                             alt="Ring measurements" 
                                             className="w-full h-auto object-contain"
                                         />
+                                        
                                     </div>
                                 </div>
                             )}
