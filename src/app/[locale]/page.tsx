@@ -12,11 +12,11 @@ const RingsSection = dynamic(() => import("@/app/components/Rings"), {
   ssr: true,
 });
 interface Props {
-  params: { locale: string }
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = params;
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
   const metadata: Metadata = {
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Home({ params }: Props) {
   try {
-    const { locale } = params;
+    const { locale } = await params;
     if (!['en', 'de', 'sq'].includes(locale)) {
       notFound();
     }
