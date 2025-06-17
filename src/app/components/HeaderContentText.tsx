@@ -1,6 +1,5 @@
 
 import { Link } from '@/i18n/routing';
-import { motion } from 'framer-motion';
 import useIsDesktop from '../hooks/useIsDesktop';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -41,66 +40,7 @@ const HeaderContentText = () => {
         <>
         <div className="container mx-auto px-4 h-full flex items-center py-4 relative z-10">
             <div className="text-left animate-zoomIn">
-            {isDesktop ? (
-                <>
-                <motion.h1
-                    className="md:text-6xl text-5xl font-bold text-white font-[Poppins]"
-                    itemProp="name"
-                    variants={textVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {t('title')}
-                </motion.h1>
-                <motion.h2
-                    className="md:text-2xl text-lg font-[Poppins] mt-4"
-                    itemProp="description"
-                    variants={textVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ delay: 0.2 }}
-                >
-                    {t('subtitle')}
-                </motion.h2>
-                <motion.h3
-                    className="md:text-lg text-base font-[Poppins] mt-4"
-                    itemProp="offers"
-                    variants={textVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ delay: 0.4 }}
-                >
-                    {t('secondSubtitle')}
-                </motion.h3>
-                <motion.div
-                    className="mt-6 flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0"
-                    variants={fadeIn}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <Link href="#about" className="scroll-smooth">
-                    <button
-                        style={{ minWidth: '48px', minHeight: '48px', width: '200px' }}
-                        className="bg-[#907C33] text-white py-2 px-6 rounded-md hover:bg-transparent hover:border hover:border-[#907C33] transition-all duration-300"
-                        aria-label={t('seeMore')}
-                    >
-                        {t('seeMore')}
-                    </button>
-                    </Link>
-                    <Link href="#video" className="scroll-smooth">
-                    <button
-                        onClick={openVideoModal}
-                        style={{ minWidth: '48px', minHeight: '48px', width: '200px' }}
-                        className="bg-transparent text-white border border-[#907C33] py-2 px-4 rounded-md hover:bg-[#907C33] transition-all duration-300"
-                        aria-label={t('video')}
-                    >
-                        {t('video')}
-                    </button>
-                    </Link>
-                </motion.div>
-                </>
-            ) : (
-                <>
+
                 <h1 className="md:text-6xl text-5xl font-bold text-white font-[Poppins]" itemProp="name">
                     {t('title')}
                 </h1>
@@ -131,8 +71,6 @@ const HeaderContentText = () => {
                     </button>
                     </Link>
                 </div>
-                </>
-            )}
             </div>
         </div>
       {/* Modal */}
