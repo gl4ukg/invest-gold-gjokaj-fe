@@ -58,7 +58,7 @@ const Header = () => {
       </div>
 
       {/* Foreground Content */}
-      <div className="container mx-auto px-4 h-full flex items-center py-4 relative z-10">
+      {/* <div className="container mx-auto px-4 h-full flex items-center py-4 relative z-10">
         <div className="text-left animate-zoomIn">
           {isDesktop ? (
             <>
@@ -153,7 +153,7 @@ const Header = () => {
             </>
           )}
         </div>
-      </div>
+      </div> */}
 
       {/* Modal */}
       <ReusableModal isOpen={isVideoOpen} onClose={closeVideoModal}>
