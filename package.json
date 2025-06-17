@@ -10,6 +10,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@loadable/component": "^5.16.7",
     "@next/bundle-analyzer": "^15.3.3",
     "@paypal/react-paypal-js": "^8.8.1",
     "@radix-ui/react-slot": "^1.2.2",
@@ -38,6 +39,7 @@
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
+    "@types/loadable__component": "^5.13.9",
     "@types/lodash": "^4.17.14",
     "@types/node": "^20",
     "@types/react": "^19",

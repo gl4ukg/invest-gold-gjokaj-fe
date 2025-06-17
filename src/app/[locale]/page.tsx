@@ -1,16 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import AboutSection from "../components/AboutSection";
-import Header from "../components/Header";
-import JewelrySection from "../components/JewelerySection";
-import ServicesSection from "../components/ServicesSection";
-import ContactSection from "../components/ContactSection";
-import dynamic from 'next/dynamic';
+import loadable from '@loadable/component';
+import HomeSection from '../components/HomeSection';
 
-const RingsSection = dynamic(() => import("@/app/components/Rings"), {
-  ssr: true,
-});
 interface Props {
   params: Promise<{ locale: string }>;
 };
@@ -72,26 +65,10 @@ export default async function Home({ params }: Props) {
     if (!['en', 'de', 'sq'].includes(locale)) {
       notFound();
     }
-    const t = await getTranslations({ locale, namespace: 'about' });
 
-  return (
-    <>
-      <Header />
-      <main className="overflow-x-hidden">
-        <AboutSection
-          id="about"
-          title={t("title")}
-          description={t("subtitle")}
-          imageSrc="/images/gold-story-01.png"
-          imageAlt={t("title")}
-        />
-        <RingsSection />
-        <JewelrySection/>
-        <ServicesSection />
-        <ContactSection />
-      </main>
-    </>
-  );
+    return (
+      <HomeSection />
+    );
   } catch (error) {
     notFound();
   }
