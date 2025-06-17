@@ -12,6 +12,7 @@ import OrganizationJsonLd from "../components/JsonLd/OrganizationJsonLd";
 import { StepProvider } from "../context/StepContext";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
+import Script from "next/script";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -221,6 +222,18 @@ export default async function RootLayout({
       <body 
         className={`${poppins.variable} antialiased bg-white overflow-x-hidden`}
         >
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-J4KW6NGKY4"
+            strategy="afterInteractive"
+          />
+          <Script id="gtag-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-J4KW6NGKY4');
+            `}
+          </Script>
         <OrganizationJsonLd />
         <NextIntlClientProvider messages={messages}>
             <CartProvider>
