@@ -18,33 +18,12 @@ const HeaderContentText = () => {
   const openVideoModal = () => setIsVideoOpen(true);
   const closeVideoModal = () => setIsVideoOpen(false);
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const fadeIn = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: {
-        duration: 1,
-        delay: 0.5
-      }
-    }
-  };
+  // Removed animations to improve LCP
 
     return (
         <>
         <div className="container mx-auto px-4 h-full flex items-center py-4 relative z-10">
-            <div className="text-left animate-zoomIn">
+            <div className="text-left">
 
                 <h1 className="md:text-6xl text-5xl font-bold text-white" itemProp="name">
                     {t('title')}
