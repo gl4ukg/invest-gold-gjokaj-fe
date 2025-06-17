@@ -9,6 +9,31 @@ const withNextIntl = createNextIntlPlugin();
 
 // Base Next.js config
 const baseConfig: NextConfig = {
+  // Configure headers for better caching
+  async headers() {
+    return [
+      {
+        source: '/:all*(svg|jpg|png|webp|js|css|mp4|woff2|woff|ttf)',
+        locale: false,
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/fonts/:all*',
+        locale: false,
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
