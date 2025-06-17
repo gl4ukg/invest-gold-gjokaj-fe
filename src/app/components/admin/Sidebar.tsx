@@ -21,8 +21,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, onPageChange }) => {
 
     const handleLogout = () => {
         // Clear any auth tokens or user data from localStorage
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+        if (typeof window !== "undefined") {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+        }
         
         // Redirect to login page
         router.push('/login');

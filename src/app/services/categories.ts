@@ -33,6 +33,10 @@ const CategoriesService = {
     // Client-side only operations below
     create: async (categoryData: Category): Promise<Category> => {
         try {
+            if (typeof window === "undefined") {
+                throw new Error("This operation is only available on the client side");
+            }
+    
             const token = localStorage.getItem('token');
             if (!token) throw new Error("Token not found");
 
@@ -52,12 +56,16 @@ const CategoriesService = {
 
     update: async (id: string, categoryData: Partial<Category>): Promise<Category> => {
         try {
+            if (typeof window === "undefined") {
+                throw new Error("This operation is only available on the client side");
+            }
+    
             const token = localStorage.getItem('token');
             if (!token) throw new Error("Token not found");
 
             const response = await axiosClient.post(`/categories/${id}`, categoryData, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${token}`,
                 },
             });
             return response.data;
@@ -71,14 +79,16 @@ const CategoriesService = {
 
     delete: async (id: string): Promise<void> => {
         try {
-            const token = localStorage.getItem('token');
-            if (!token) throw new Error("Token not found");
+            if (typeof window !== "undefined") {
+                const token = localStorage.getItem('token');
+                if (!token) throw new Error("Token not found");
 
-            await axiosClient.post(`/categories/${id}/delete`, {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+                await axiosClient.post(`/categories/${id}/delete`, {}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            }
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
                 throw error.response?.data;

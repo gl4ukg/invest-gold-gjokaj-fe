@@ -11,11 +11,13 @@ const REFRESH_INTERVAL = 60 * 1000; // 1 minute in milliseconds
 export const usePriceOfGram = () => {
     const [prices, setPrices] = useState<PriceOfGram>(() => {
         // Initialize from cache if available
-        const cached = localStorage?.getItem(PRICE_CACHE_KEY);
-        if (cached) {
-            const { data, timestamp } = JSON.parse(cached);
-            if (Date.now() - timestamp < PRICE_CACHE_DURATION) {
-                return data;
+        if (typeof window !== "undefined") {
+            const cached = localStorage?.getItem(PRICE_CACHE_KEY);
+            if (cached) {
+                const { data, timestamp } = JSON.parse(cached);
+                if (Date.now() - timestamp < PRICE_CACHE_DURATION) {
+                    return data;
+                }
             }
         }
         return undefined;
@@ -43,10 +45,12 @@ export const usePriceOfGram = () => {
 
                     setPrices(priceData);
                     // Cache the price data
-                    localStorage?.setItem(PRICE_CACHE_KEY, JSON.stringify({
-                        data: priceData,
-                        timestamp: Date.now()
-                    }));
+                    if (typeof window !== "undefined") {
+                        localStorage?.setItem(PRICE_CACHE_KEY, JSON.stringify({
+                            data: priceData,
+                            timestamp: Date.now()
+                        }));
+                    }
                     // Optional: Show success message on first load or significant price changes
                     // if (!prices || Math.abs(prices.price - priceData.price) > 1) {
                     //     toast.success('Gold prices updated successfully');

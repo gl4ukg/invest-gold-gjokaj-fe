@@ -6,23 +6,30 @@ const STORAGE_KEY = "questionnaire_state";
 
 const AuthService = {
   getUserFromSession: async (): Promise<any | null> => {
-    const token = localStorage.getItem("token");
-    if (!token) {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        return null;
+      }
+      const userProfile = await AuthService.getProfile();
+      if (userProfile) {
+        return userProfile;
+      }
       return null;
-    }
-    const userProfile = await AuthService.getProfile();
-    if (userProfile) {
-      return userProfile;
     }
     return null;
   },
 
   saveToken: (token: string): void => {
-    localStorage.setItem("token", token);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("token", token);
+    }
   },
 
   clearToken: (): void => {
-    localStorage.removeItem("token");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
+    }
   },
 
   register: async (userData: User): Promise<any> => {
@@ -55,40 +62,48 @@ const AuthService = {
 
   getProfile: async (): Promise<any> => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        console.warn("No token found in localStorage");
-        return null;
-      }
+      if (typeof window !== "undefined") {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.warn("No token found in localStorage");
+          return null;
+        }
 
-      const response = await axiosClient.get("/auth/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (!response.data) {
-        console.warn("No user data received from profile endpoint");
-        return null;
-      }
+        const response = await axiosClient.get("/auth/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!response.data) {
+          console.warn("No user data received from profile endpoint");
+          return null;
+        }
 
-      return response.data;
+        return response.data;
+      }
     } catch (error) {
       console.error("Error fetching user profile:", error);
       // If unauthorized, clear token
       if (axios.isAxiosError(error) && error.response?.status === 401) {
-        localStorage.removeItem("token");
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("token");
+        }
       }
       return null;
     }
   },
 
   updateProfile: async (userData: User): Promise<any> => {
+    if (typeof window === "undefined") {
+      throw new Error("This operation is only available on the client side");
+    }
+    
     const token = localStorage.getItem("token");
     if (!token) throw new Error("Token not found");
     try {
       const response = await axiosClient.put("/auth/profile", userData, {
         headers: {
-          Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         },
       });
       return response.data;

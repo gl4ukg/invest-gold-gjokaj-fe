@@ -107,12 +107,16 @@ const ProductsService = {
 
   create: async (productData: CreateProduct): Promise<Product> => {
     try {
+      if (typeof window === "undefined") {
+          throw new Error("This operation is only available on the client side");
+      }
+
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Token not found");
 
       const response = await axiosClient.post("/products", productData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
         },
       });
       return response.data;
@@ -129,12 +133,16 @@ const ProductsService = {
     productData: Partial<Product>
   ): Promise<Product> => {
     try {
+      if (typeof window === "undefined") {
+          throw new Error("This operation is only available on the client side");
+      }
+
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Token not found");
 
       const response = await axiosClient.post(
-        `/products/${id}`,
-        productData,
+          `/products/${id}`,
+          productData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -152,18 +160,20 @@ const ProductsService = {
 
   delete: async (id: string): Promise<void> => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) throw new Error("Token not found");
+      if (typeof window !== "undefined") {
+        const token = localStorage.getItem("token");
+        if (!token) throw new Error("Token not found");
 
-      await axiosClient.post(
-        `/products/${id}/delete`,
-        {},
+        await axiosClient.post(
+          `/products/${id}/delete`,
+          {},
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
+      }
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         throw error.response?.data;

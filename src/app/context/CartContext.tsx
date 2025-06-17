@@ -96,10 +96,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const t = useTranslations();
   const { currentPrice } = usePriceOfGram();
 
-  // Load cart from localStorage on mount
   useEffect(() => {
     const loadCart = async () => {
       try {
+        if (typeof window === "undefined") return;
         const savedCart = localStorage.getItem("cart");
         if (savedCart) {
           const parsedCart = JSON.parse(savedCart);
@@ -127,9 +127,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     loadCart();
   }, []);
 
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
   }, [cart]);
 
   const calculateTotal = (items: CartItem[]) => {
