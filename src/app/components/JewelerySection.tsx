@@ -109,13 +109,13 @@ const JewelrySection: React.FC = () => {
             className="text-center text-primary text-5xl"
             variants={itemVariants}
           >
-            Bizhuteri
+            {t('jewelry.title')}
           </motion.p>
           <motion.p
             className="text-center text-tertiary text-2xl mt-8"
             variants={itemVariants}
           >
-            Nuk janë të disponueshme për momentin
+            {t('jewelry.notAvailable')}
           </motion.p>
           <Link href="/zinxhire" className="hidden text-primary font-medium">
             {t("seeMore")}

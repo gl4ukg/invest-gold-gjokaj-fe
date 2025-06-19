@@ -157,6 +157,7 @@
     "backToHome": "Back to Home"
   },
   "configurator": {
+    "calculatedPrice":"Price will be calculated after ring configuration",
     "noProducts": "No products in cart",
     "noProductsDescription": "Please add products to your cart first",
     "completeStepBeforeProceeding": "Please complete all fields before proceeding",
@@ -374,6 +375,8 @@
     "cartCleared": "Cart cleared successfully"
   },
   "jewelry": {
+    "title": "Jewelry",
+    "notAvailable": "They are not available at the moment, coming soon",
     "description": "We offer our customers the opportunity to find unique, elegant and beautiful jewelry.",
     "pageTitle": "Gold Chains in Kosovo",
     "pageDescription": "Discover our exclusive collection of gold chains and pendants, expertly crafted from pure gold. Modern and classic designs for your most special moments.",

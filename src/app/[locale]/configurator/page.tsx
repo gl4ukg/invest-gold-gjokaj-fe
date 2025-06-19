@@ -551,7 +551,7 @@ export default function ConfiguratorPage() {
                         </p>
                         
                           {cart.total === 0 ? (
-                            <p className="text-darkGray text-sm text-right">Qmimi kalkulohet pasi te zgjidhet pesha</p>
+                            <p className="text-darkGray text-sm text-right">{t("configurator.calculatedPrice")}</p>
                           ) : (
                             <p className="text-lg font-medium text-darkGray">{cart.total + " €"}</p>
                           )}
