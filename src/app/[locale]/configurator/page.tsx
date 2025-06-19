@@ -23,6 +23,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "@/i18n/routing";
 import { useStep } from "@/app/context/StepContext";
+import RingViewer from "@/app/components/RingViewer";
 
 
 export default function ConfiguratorPage() {
@@ -481,87 +482,7 @@ export default function ConfiguratorPage() {
 
             {/* Right side - Ring Preview */}
             <div className="w-full lg:w-1/3 mt-4 lg:mt-0">
-              <div className="lg:sticky lg:top-4">
-                <div className="bg-white py-6 px-3 rounded-lg shadow-lg">
-                  <div className="space-y-4">
-                    {/* Cart Items Preview */}
-                    <div className="flex flex-col justify-between bg-white  h-64 lg:h-96 px-3">
-                      <>
-                        <h3 className="text-lg font-medium text-darkGray mb-4">
-                          {t("configurator.cart.ringsInCart")}
-                        </h3>
-                        <div className="space-y-4 overflow-y-auto h-[270px] p-1">
-                          {cart.items.map((item, index) => (
-                            <div
-                              key={`${item?.id}-${index}`}
-                              className={`p-4 rounded-lg cursor-pointer transition-all ${
-                                cart.selectedItemId === item.id
-                                  ? " border-2 border-gold shadow-lg"
-                                  : "bg-gray-50 hover:bg-gray-100 border border-gray-200"
-                              }`}
-                              onClick={() => {
-                                if (cart.selectedItemId === item.id) {
-                                  selectCartItem(undefined);
-                                } else {
-                                  console.log(item, "item id");
-                                  selectCartItem(item?.id);
-                                  if (item.configuration) {
-                                    setConfiguratorState(item.configuration);
-                                  }
-                                }
-                              }}
-                            >
-                              <div className="flex items-center space-x-4 relative">
-                                <div
-                                  className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center transition-all ${
-                                    cart.selectedItemId === item.id
-                                      ? "ring-2 ring-primary ring-offset-2 rounded-lg"
-                                      : ""
-                                  }`}
-                                >
-                                  <Image
-                                    src={String(item?.product.images?.[0])}
-                                    alt={item.product.name}
-                                    width={100}
-                                    height={100}
-                                    className="w-full h-full object-contain rounded-lg"
-                                  />
-                                </div>
-                                <div className="flex-1 space-y-1">
-                                  <p className="font-medium text-darkGray capitalize">
-                                    {item.product.name}
-                                  </p>
-                                  {cart.selectedItemId === item.id && (
-                                    <div className="flex items-center space-x-2">
-                                      <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></div>
-                                      <p className="text-sm text-primary font-medium">
-                                       {steps[currentStep - 1].name}
-                                      </p>
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </>
-                      <div className="flex justify-between items-center pt-6">
-                        <p className="text-lg font-medium text-darkGray">
-                          {t("orderConfirmation.total")}:
-                        </p>
-                        
-                          {cart.total === 0 ? (
-                            <p className="text-darkGray text-sm text-right">{t("configurator.calculatedPrice")}</p>
-                          ) : (
-                            <p className="text-lg font-medium text-darkGray">{cart.total + " €"}</p>
-                          )}
-                        
-                      </div>
-                    </div>
-                  </div>
-                  
-                </div>
-              </div>
+            <RingViewer />
             </div>
           </div>
         </div>

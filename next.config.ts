@@ -44,6 +44,19 @@ const baseConfig: NextConfig = {
   },
   // Optimize bundle size
   webpack: (config, { dev, isServer }) => {
+    config.module.rules.push({
+      test: /\.(glb|gltf)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            outputPath: 'static/models/',
+            publicPath: '/_next/static/models/',
+            name: '[name].[ext]',
+          },
+        },
+      ],
+    });
     // Production optimizations
     if (!dev && !isServer) {
       // Split chunks more aggressively
