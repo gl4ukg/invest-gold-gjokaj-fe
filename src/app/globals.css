@@ -59,7 +59,8 @@ svg.lucide.lucide-expand.h-4.w-4.expand {
 }
 header h1,
 header h2,
-header h3 {
+header h3,
+footer * {
   color: #ffffff!important;
 }
 select {

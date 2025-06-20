@@ -421,12 +421,21 @@ export default function Checkout() {
             </div>
 
             {error && (
-              <div className="text-red-500 bg-red-50 p-4 rounded-lg">
-                {error}
+              <div className="flex items-center gap-4">
+                <div className="text-red-500 bg-red-50 p-4 rounded-lg flex-grow">
+                  {error}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => window.location.reload()}
+                  className="bg-primary text-white px-4 py-2 rounded-lg transition-colors"
+                >
+                  {t('checkout.reload')}
+                </button>
               </div>
             )}
 
-            <button
+            {!error && <button
               type="submit"
               disabled={loading}
               className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
@@ -434,7 +443,7 @@ export default function Checkout() {
               {loading
                 ? t('checkout.processing')
                 : t('checkout.placeOrder')}
-            </button>
+            </button>}
           </form>
         </div>
 

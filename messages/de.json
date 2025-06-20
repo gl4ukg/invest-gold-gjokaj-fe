@@ -346,7 +346,8 @@
     "placeOrder": "Place Order",
     "processing": "Processing...",
     "errorProcessingOrder": "Error processing your order. Please try again.",
-    "choosePaymentMethod": "Choose payment method"
+    "choosePaymentMethod": "Choose payment method",
+    "reload": "Reload"
   },
   "product": {
     "loading": "Loading product...",

@@ -346,7 +346,8 @@
     "placeOrder": "Vendos Porosinë",
     "processing": "Duke u procesuar...",
     "errorProcessingOrder": "Gabim në procesimin e porosisë suaj. Ju lutemi provoni përsëri.",
-    "choosePaymentMethod": "Zgjedhni metoden e pagesës"
+    "choosePaymentMethod": "Zgjedhni metoden e pagesës",
+    "reload": "Rifresko"
   },
   "product": {
     "loading": "Duke ngarkuar produktin...",
