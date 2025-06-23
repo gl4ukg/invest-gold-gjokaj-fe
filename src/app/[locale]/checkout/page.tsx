@@ -108,6 +108,34 @@ export default function Checkout() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    if(formData.fullName === '') {
+      setError(t('checkout.fillFullName'));
+      return;
+    }
+    if(formData.email === '') {
+      setError(t('checkout.fillEmail'));
+      return;
+    }
+    if(formData.address === '') {
+      setError(t('checkout.fillAddress'));
+      return;
+    }
+    if(formData.postalCode === '') {
+      setError(t('checkout.fillPostalCode'));
+      return;
+    }
+    if(formData.phone === '') {
+      setError(t('checkout.fillPhone'));
+      return;
+    }
+    if(formData.country === '') {
+      setError(t('checkout.selectCountry'));
+      return;
+    }
+    if(formData.city === '') {
+      setError(t('checkout.selectCity'));
+      return;
+    }
     e.preventDefault();
     if(formData.paymentMethod !== '') {
 

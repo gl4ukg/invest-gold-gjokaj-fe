@@ -349,7 +349,12 @@
     "choosePaymentMethod": "Choose payment method",
     "reload": "Reload",
     "selectCountry": "Select Country",
-    "selectCity": "Select City"
+    "selectCity": "Select City",
+    "fillFullName": "Fill input Full Name",
+    "fillEmail": "Fill input Email",
+    "fillAddress": "Fill input Address",
+    "fillPostalCode": "Fill input Postal Code",
+    "fillPhone": "Fill input Phone"
   },
   "product": {
     "loading": "Loading product...",

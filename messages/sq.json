@@ -349,7 +349,12 @@
     "choosePaymentMethod": "Zgjedhni metoden e pagesës",
     "reload": "Rifresko",
     "selectCountry": "Zgjidhni Shtetin",
-    "selectCity": "Zgjidhni Qytetin"
+    "selectCity": "Zgjidhni Qytetin",
+    "fillFullName": "Plotsoni Emrin e Plotë",
+    "fillEmail": "Plotsoni Email-in",
+    "fillAddress": "Plotsoni Adresën",
+    "fillPostalCode": "Plotsoni Kodin Postar",
+    "fillPhone": "Plotsoni Telefonin"
   },
   "product": {
     "loading": "Duke ngarkuar produktin...",
