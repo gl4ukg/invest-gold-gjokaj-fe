@@ -37,7 +37,6 @@ const baseConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  swcMinify: true,
   experimental: {
     // Optimize modern JavaScript features
     optimizePackageImports: ['@loadable/component'],

@@ -123,7 +123,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                                 <Link
                                     href="/configurator"
                                     className="flex items-center justify-center rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-dark"
-                                    onClick={onClose}
+                                    prefetch={true}
                                 >
                                     {t('configurator')}
                                 </Link>

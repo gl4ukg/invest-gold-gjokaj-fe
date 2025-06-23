@@ -1,18 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "react-hot-toast";
 import { initialConfiguratorState, useCart } from "@/app/context/CartContext";
-import { ProfileSelector } from "@/app/components/configurator/ProfileSelector";
-import { DimensionsSelector } from "@/app/components/configurator/DimensionsSelector";
-import { PreciousMetalSelector } from "@/app/components/configurator/PreciousMetalSelector";
-import { StoneSelector } from "@/app/components/configurator/StoneSelector";
-import { GroovesAndEdgesSelector } from "@/app/components/configurator/GroovesAndEdgesSelector";
-import {
-  EngravingSelector,
-} from "@/app/components/configurator/EngravingSelector";
-import { WeightSelector } from "@/app/components/configurator/WeightSelector";
+import dynamic from 'next/dynamic';
 import {
   ConfiguratorState,
   PreciousMetal,
@@ -24,6 +16,103 @@ import Image from "next/image";
 import { useRouter } from "@/i18n/routing";
 import { useStep } from "@/app/context/StepContext";
 
+// Define component props types
+type WeightSelectorProps = {
+  minWeight: number;
+  maxWeight: number;
+  weight: string | null;
+  selectedWeight: number;
+  onChange: (weight: number) => void;
+};
+
+type ProfileSelectorProps = {
+  selectedProfile: string | null;
+  onSelectProfile: (profileId: string) => void;
+};
+
+type DimensionsSelectorProps = {
+  dimensions: ConfiguratorState['dimensions'];
+  onUpdateDimensions: (dimensions: ConfiguratorState['dimensions']) => void;
+  selectedProfile: string | null;
+};
+
+type PreciousMetalSelectorProps = {
+  preciousMetal: PreciousMetal;
+  onUpdatePreciousMetal: (preciousMetal: PreciousMetal) => void;
+};
+
+type StoneSelectorProps = {
+  stoneSettings: StoneSettings;
+  onUpdateStoneSettings: (stoneSettings: StoneSettings) => void;
+};
+
+type GroovesAndEdgesSelectorProps = {
+  groovesAndEdges: GroovesAndEdges;
+  onUpdateGroovesAndEdges: (groovesAndEdges: GroovesAndEdges) => void;
+};
+
+type EngravingSelectorProps = {
+  engraving: EngravingSettings;
+  onUpdateEngraving: (engraving: EngravingSettings) => void;
+};
+
+// Dynamic imports for configurator components with proper typing
+const ProfileSelector = dynamic<ProfileSelectorProps>(
+  () => import("@/app/components/configurator/ProfileSelector").then(mod => mod as unknown as { default: React.ComponentType<ProfileSelectorProps> }),
+  {
+    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
+    ssr: false
+  }
+);
+
+const DimensionsSelector = dynamic<DimensionsSelectorProps>(
+  () => import("@/app/components/configurator/DimensionsSelector").then(mod => mod as unknown as { default: React.ComponentType<DimensionsSelectorProps> }),
+  {
+    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
+    ssr: false
+  }
+);
+
+const PreciousMetalSelector = dynamic<PreciousMetalSelectorProps>(
+  () => import("@/app/components/configurator/PreciousMetalSelector").then(mod => mod as unknown as { default: React.ComponentType<PreciousMetalSelectorProps> }),
+  {
+    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
+    ssr: false
+  }
+);
+
+const StoneSelector = dynamic<StoneSelectorProps>(
+  () => import("@/app/components/configurator/StoneSelector").then(mod => mod as unknown as { default: React.ComponentType<StoneSelectorProps> }),
+  {
+    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
+    ssr: false
+  }
+);
+
+const GroovesAndEdgesSelector = dynamic<GroovesAndEdgesSelectorProps>(
+  () => import("@/app/components/configurator/GroovesAndEdgesSelector").then(mod => mod as unknown as { default: React.ComponentType<GroovesAndEdgesSelectorProps> }),
+  {
+    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
+    ssr: false
+  }
+);
+
+const EngravingSelector = dynamic<EngravingSelectorProps>(
+  () => import("@/app/components/configurator/EngravingSelector").then(mod => mod as unknown as { default: React.ComponentType<EngravingSelectorProps> }),
+  {
+    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
+    ssr: false
+  }
+);
+
+const WeightSelector = dynamic<WeightSelectorProps>(
+  () => import("@/app/components/configurator/WeightSelector").then(mod => mod as unknown as { default: React.ComponentType<WeightSelectorProps> }),
+  {
+    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
+    ssr: false
+  }
+);
+
 
 export default function ConfiguratorPage() {
   const {
@@ -34,6 +123,8 @@ export default function ConfiguratorPage() {
     setConfiguratorState,
     activeTab,
     setActiveTab,
+    setIsCartOpen,
+    setIsNavbarOpen
   } = useCart();
   const router = useRouter();
   const t = useTranslations("");
@@ -50,6 +141,13 @@ export default function ConfiguratorPage() {
   ];
 
   const { currentStep, setCurrentStep } = useStep();
+
+
+  useEffect(() => {
+    setIsCartOpen(false)
+    setIsNavbarOpen(false)
+  }, [])
+
   // Initialize configurator state from cart when component mounts
   useEffect(() => {
     if (cart.items.length > 0) {
