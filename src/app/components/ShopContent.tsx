@@ -1,21 +1,33 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useTranslations } from "next-intl";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { useTranslations } from 'next-intl';
 import ProductsService from "@/app/services/products";
 import CategoriesService from "@/app/services/categories";
 import { Product } from "@/app/types/product.types";
 import { Category } from "@/app/types/category.types";
-import { FaFilter } from "react-icons/fa";
 import { debounce } from "lodash";
-import ProductCard from "@/app/components/ProductCard";
-import Loader from "@/app/components/Loader";
+import dynamic from 'next/dynamic';
+
+// Dynamically import components
+const SearchBar = dynamic(() => import('./shop/SearchBar'), {
+  ssr: true,
+});
+
+const Filters = dynamic(() => import('./shop/Filters'), {
+  ssr: true,
+});
+
+const ProductGrid = dynamic(() => import('./shop/ProductGrid'), {
+  ssr: true,
+});
 
 interface Filter {
   sortOrder: "ASC" | "DESC";
 }
 
 export default function ShopContent() {
+  const t = useTranslations();
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -26,14 +38,16 @@ export default function ShopContent() {
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<Filter>({
-    sortOrder: "DESC", // Default to newest first
+    sortOrder: "DESC",
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const ITEMS_PER_PAGE = 9;
 
-  const t = useTranslations();
   const loaderRef = useRef<HTMLDivElement>(null);
+
+  // Memoize categories to prevent unnecessary re-renders
+  const memoizedCategories = useMemo(() => categories, [categories]);
 
   const fetchCategories = async () => {
     try {
@@ -99,7 +113,7 @@ export default function ShopContent() {
   );
 
   // Handle search input change
-  const handleSearchChange = (newSearchTerm: string) => {
+  const handleSearchChange = useCallback((newSearchTerm: string) => {
     setSearchTerm(newSearchTerm);
     setCurrentPage(1);
 
@@ -109,24 +123,25 @@ export default function ShopContent() {
       sortOrder: filters.sortOrder,
       page: 1,
     });
-  };
+  }, [selectedCategory, filters.sortOrder, debouncedSearch]);
 
   // Handle filter changes
-  const handleFilterChange = (newFilters: Partial<Filter>) => {
+  const handleFilterChange = useCallback((newFilters: Partial<Filter>) => {
     const updatedFilters = { ...filters, ...newFilters };
     setFilters(updatedFilters);
-    setCurrentPage(1); // Reset to first page when filters change
+    setCurrentPage(1);
     setHasMore(true);
+    
     searchProducts({
       query: searchTerm,
       categoryIds: selectedCategory,
       sortOrder: updatedFilters.sortOrder,
       page: 1,
     });
-  };
+  }, [searchTerm, selectedCategory, filters, searchProducts]);
 
   // Handle category change
-  const handleCategoryChange = (categoryId: string) => {
+  const handleCategoryChange = useCallback((categoryId: string) => {
     const newSelection = selectedCategory.includes(categoryId)
       ? selectedCategory.filter(id => id !== categoryId)
       : [...selectedCategory, categoryId];
@@ -140,7 +155,7 @@ export default function ShopContent() {
       sortOrder: filters.sortOrder,
       page: 1,
     });
-  };
+  }, [selectedCategory, searchTerm, filters.sortOrder, searchProducts]);
 
   // Load more products
   const loadMore = () => {
@@ -158,16 +173,16 @@ export default function ShopContent() {
     });
   };
 
-  // Intersection Observer setup
+  // Intersection Observer setup with debounce
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      debounce((entries) => {
         const first = entries[0];
         if (first.isIntersecting && hasMore && !loadingMore && !loading) {
           loadMore();
         }
-      },
-      { threshold: 1.0 }
+      }, 100),
+      { threshold: 0.5, rootMargin: '100px' }
     );
 
     const currentLoader = loaderRef.current;
@@ -180,24 +195,33 @@ export default function ShopContent() {
         observer.unobserve(currentLoader);
       }
     };
-  }, [hasMore, loadingMore, loading, currentPage]);
+  }, [hasMore, loadingMore, loading, loadMore]);
 
   // Fetch categories on mount
   useEffect(() => {
     fetchCategories();
   }, []);
 
-  // Initial search
+  // Initial search and data fetching
   useEffect(() => {
-    if (searchTerm !== undefined) {
+    // Only search if we have a search term or categories selected
+    if (searchTerm !== "" || selectedCategory.length > 0) {
       searchProducts({
         query: searchTerm,
         categoryIds: selectedCategory,
         sortOrder: filters.sortOrder,
         page: currentPage,
       });
+    } else {
+      // If no search criteria, fetch initial products
+      searchProducts({
+        query: "",
+        categoryIds: [],
+        sortOrder: filters.sortOrder,
+        page: 1,
+      });
     }
-  }, [searchTerm]);
+  }, [searchTerm, selectedCategory, filters.sortOrder, currentPage, searchProducts]);
 
   const ringsText: { [key: string]: string } = {
     "Ari i Verdhë": t("rings.yellowGold"),
@@ -208,135 +232,34 @@ export default function ShopContent() {
   };
 
   return (
-    <div className="container mx-auto px-4 pt-32 pb-20 min-h-screen">
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Mobile Filters Button */}
-        <button
-          className="lg:hidden flex items-center gap-2 text-primary"
-          onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
-        >
-          <FaFilter /> {t("shop.filters")}
-        </button>
+    <div className="container mx-auto px-4 py-8">
+      {/* Search Bar */}
+      <SearchBar 
+        searchTerm={searchTerm}
+        handleSearchChange={handleSearchChange}
+      />
 
-        {/* Filters Sidebar */}
-        <aside
-          className={`lg:w-1/4 ${
-            isMobileFiltersOpen ? "block" : "hidden"
-          } lg:block`}
-        >
-          <div className="bg-gray rounded-lg shadow-lg p-6 sticky top-4">
-            {/* Search */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-3 text-darkGray">
-                {t("shop.search")}
-              </h3>
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                placeholder={t("shop.searchPlaceholder")}
-                className="w-full px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-lightGray"
-              />
-            </div>
-
-            {/* Categories */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-4 text-darkGray">
-                {t("shop.categories")}
-              </h3>
-              <div className="space-y-3">
-                {categories?.map((category) => (
-                  <div
-                    key={category.id}
-                    className={`p-2 rounded-lg transition-all duration-200 ${
-                      selectedCategory.includes(category.id!)
-                        ? "bg-primary/10 shadow-md"
-                        : "bg-white hover:bg-gray-50"
-                    }`}
-                  >
-                    <label className="flex items-center gap-4 cursor-pointer group">
-                      <div className="relative flex items-center justify-center w-6 h-6">
-                        <input
-                          type="checkbox"
-                          name="category"
-                          checked={selectedCategory.includes(category.id!)}
-                          onChange={() => handleCategoryChange(category.id!)}
-                          className="appearance-none w-4 h-4 rounded border-2 border-darkGray 
-                                                             checked:border-primary checked:bg-primary checked:border-0
-                                                             transition-all duration-200 cursor-pointer 
-                                                             focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        />
-                        <div
-                          className={`absolute inset-0 rounded transition-transform duration-200 
-                                                    ${
-                                                      selectedCategory.includes(category.id!)
-                                                        ? "scale-100 opacity-100"
-                                                        : "scale-0 opacity-0"
-                                                    }`}
-                        >
-                          <div className="absolute inset-0 rounded bg-primary/10 animate-pulse"></div>
-                        </div>
-                      </div>
-                      <span
-                        className={`font-medium transition-colors duration-200 ${
-                          selectedCategory.includes(category.id!)
-                            ? "text-primary"
-                            : "text-darkGray group-hover:text-primary"
-                        }`}
-                      >
-                        {ringsText[category.name]}
-                      </span>
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Sort */}
-            <div>
-              <h3 className="text-lg font-semibold mb-3 text-darkGray">
-                {t("shop.sortBy")}
-              </h3>
-              <select
-                value={filters.sortOrder}
-                onChange={(e) =>
-                  handleFilterChange({
-                    sortOrder: e.target.value as Filter["sortOrder"],
-                  })
-                }
-                className="w-full px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary  text-lightGray"
-              >
-                <option value="DESC">{t("shop.newest")}</option>
-                <option value="ASC">{t("shop.oldest")}</option>
-              </select>
-            </div>
-          </div>
-        </aside>
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Filters */}
+        <Filters
+          categories={memoizedCategories}
+          selectedCategory={selectedCategory}
+          handleCategoryChange={handleCategoryChange}
+          filters={filters}
+          handleFilterChange={handleFilterChange}
+          isMobileFiltersOpen={isMobileFiltersOpen}
+          setIsMobileFiltersOpen={setIsMobileFiltersOpen}
+        />
 
         {/* Product Grid */}
         <div className="flex-1">
-          {loading ? (
-            <Loader loaderRef={loaderRef} />
-          ) : error ? (
-            <div className="text-center py-12">
-              <p className="text-red-500">{error}</p>
-            </div>
-          ) : allProducts.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-darkGray">{t("shop.noProducts")}</p>
-            </div>
-          ) : (
-            <>
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-                {allProducts?.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-
-              {/* Infinite Scroll Loader */}
-              {hasMore && <Loader loaderRef={loaderRef} />}
-            </>
-          )}
+          <ProductGrid
+            products={allProducts}
+            loading={loading}
+            error={error}
+            hasMore={hasMore}
+            loaderRef={loaderRef}
+          />
         </div>
       </div>
     </div>
