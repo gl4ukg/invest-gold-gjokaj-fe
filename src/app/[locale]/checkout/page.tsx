@@ -233,7 +233,7 @@ export default function Checkout() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Checkout Form */}
         <div>
-          <form onSubmit={handleSubmit} autoComplete="off" className="space-y-6">
+          <form onSubmit={handleSubmit} autoComplete="off" className="space-y-6" data-form-type="other">
             {/* Contact Information */}
             <div>
               <h2 className="text-xl font-semibold mb-4">
@@ -244,7 +244,9 @@ export default function Checkout() {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                autoComplete="off"
+                autoComplete="new-email"
+                autoCorrect="off"
+                spellCheck="false"
                 placeholder={t('checkout.email')}
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -262,7 +264,9 @@ export default function Checkout() {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  autoComplete="off"
+                  autoComplete="new-name"
+                  autoCorrect="off"
+                  spellCheck="false"
                   placeholder={t('checkout.fullName')}
                   required
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -272,7 +276,9 @@ export default function Checkout() {
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  autoComplete="off"
+                  autoComplete="new-address"
+                  autoCorrect="off"
+                  spellCheck="false"
                   placeholder={t('checkout.address')}
                   required
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -315,7 +321,9 @@ export default function Checkout() {
                       value={formData.city}
                       onChange={handleInputChange}
                       placeholder={t('checkout.city')}
-                      autoComplete="off"
+                      autoComplete="new-city"
+                      autoCorrect="off"
+                      spellCheck="false"
                       required
                       className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                     />
@@ -327,7 +335,9 @@ export default function Checkout() {
                     name="postalCode"
                     value={formData.postalCode}
                     onChange={handleInputChange}
-                    autoComplete="off"
+                    autoComplete="new-postal-code"
+                    autoCorrect="off"
+                    spellCheck="false"
                     placeholder={t('checkout.postalCode')}
                     required
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -337,7 +347,9 @@ export default function Checkout() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    autoComplete="off"
+                    autoComplete="new-phone"
+                    autoCorrect="off"
+                    spellCheck="false"
                     placeholder={t('checkout.phone')}
                     required
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
