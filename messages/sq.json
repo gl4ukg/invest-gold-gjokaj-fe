@@ -347,7 +347,9 @@
     "processing": "Duke u procesuar...",
     "errorProcessingOrder": "Gabim në procesimin e porosisë suaj. Ju lutemi provoni përsëri.",
     "choosePaymentMethod": "Zgjedhni metoden e pagesës",
-    "reload": "Rifresko"
+    "reload": "Rifresko",
+    "selectCountry": "Zgjidhni Shtetin",
+    "selectCity": "Zgjidhni Qytetin"
   },
   "product": {
     "loading": "Duke ngarkuar produktin...",

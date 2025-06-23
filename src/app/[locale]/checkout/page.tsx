@@ -37,8 +37,8 @@ export default function Checkout() {
     email: '',
     fullName: '',
     address: '',
-    city: 'Prishtina',  // Default city for Kosovo
-    country: 'XK',   // Default to Kosovo
+    city: '',  // Default city for Kosovo
+    country: '',   // Default to Kosovo
     postalCode: '',
     phone: '',
     paymentMethod: '',
@@ -205,7 +205,7 @@ export default function Checkout() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Checkout Form */}
         <div>
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} autoComplete="off" className="space-y-6">
             {/* Contact Information */}
             <div>
               <h2 className="text-xl font-semibold mb-4">
@@ -216,6 +216,7 @@ export default function Checkout() {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
+                autoComplete="off"
                 placeholder={t('checkout.email')}
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -233,6 +234,7 @@ export default function Checkout() {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleInputChange}
+                  autoComplete="off"
                   placeholder={t('checkout.fullName')}
                   required
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -242,19 +244,36 @@ export default function Checkout() {
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
+                  autoComplete="off"
                   placeholder={t('checkout.address')}
                   required
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                 />
                 <div className="grid grid-cols-2 gap-4">
+                  <select
+                    name="country"
+                    value={formData.country}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary appearance-none bg-white"
+                  >
+                    <option value="">{t('checkout.selectCountry')}</option>
+                    {countries?.map((country) => (
+                      <option key={country.value} value={country.value}>
+                        {country.label}
+                      </option>
+                    ))}
+                  </select>
                   {formData.country.toLowerCase() === 'xk' ? (
                     <select
                       name="city"
                       value={formData.city}
                       onChange={handleInputChange}
+                      autoComplete="off"
                       required
                       className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary appearance-none bg-white"
                     >
+                      <option value="">{t('checkout.selectCity')}</option>
                       {kosovoMunicipalities?.map((city) => (
                         <option key={city} value={city}>
                           {city}
@@ -268,23 +287,11 @@ export default function Checkout() {
                       value={formData.city}
                       onChange={handleInputChange}
                       placeholder={t('checkout.city')}
+                      autoComplete="off"
                       required
                       className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                     />
                   )}
-                  <select
-                    name="country"
-                    value={formData.country}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary appearance-none bg-white"
-                  >
-                    {countries?.map((country) => (
-                      <option key={country.value} value={country.value}>
-                        {country.label}
-                      </option>
-                    ))}
-                  </select>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <input
@@ -292,6 +299,7 @@ export default function Checkout() {
                     name="postalCode"
                     value={formData.postalCode}
                     onChange={handleInputChange}
+                    autoComplete="off"
                     placeholder={t('checkout.postalCode')}
                     required
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
@@ -301,6 +309,7 @@ export default function Checkout() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
+                    autoComplete="off"
                     placeholder={t('checkout.phone')}
                     required
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"

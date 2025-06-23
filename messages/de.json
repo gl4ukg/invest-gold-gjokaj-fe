@@ -347,7 +347,9 @@
     "processing": "Processing...",
     "errorProcessingOrder": "Error processing your order. Please try again.",
     "choosePaymentMethod": "Choose payment method",
-    "reload": "Reload"
+    "reload": "Reload",
+    "selectCountry": "Select Country",
+    "selectCity": "Select City"
   },
   "product": {
     "loading": "Loading product...",
