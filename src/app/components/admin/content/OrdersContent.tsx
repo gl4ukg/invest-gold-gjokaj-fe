@@ -15,11 +15,17 @@ export default function OrdersContent() {
   const [status, setStatus] = useState<OrderStatus>(OrderStatus.PROCESSING);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 10;
+
+  const filteredOrders = orders.filter(order => 
+    (order.paymentMethod === 'card' && order.paymentStatus === 'success') || 
+    (order.paymentMethod === 'cash_on_delivery')
+  );
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(orders.length / itemsPerPage);
+  const currentItems = filteredOrders.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -120,10 +126,7 @@ export default function OrdersContent() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {currentItems?.filter(order => 
-              (order.paymentMethod === 'card' && order.paymentStatus === 'success') || 
-              (order.paymentMethod === 'cash_on_delivery')
-            ).map((order) => (
+            {currentItems.map((order) => (
               <React.Fragment key={order.id}>
                 <tr className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-darkGray">
