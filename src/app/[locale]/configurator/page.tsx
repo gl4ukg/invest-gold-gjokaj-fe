@@ -57,60 +57,41 @@ type EngravingSelectorProps = {
 };
 
 // Dynamic imports for configurator components with proper typing
+const LoadingComponent = () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>;
+
 const ProfileSelector = dynamic<ProfileSelectorProps>(
-  () => import("@/app/components/configurator/ProfileSelector").then(mod => mod as unknown as { default: React.ComponentType<ProfileSelectorProps> }),
-  {
-    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
-    ssr: false
-  }
+  () => import("@/app/components/configurator/ProfileSelector").then(mod => mod.ProfileSelector),
+  { loading: LoadingComponent, ssr: false }
 );
 
 const DimensionsSelector = dynamic<DimensionsSelectorProps>(
-  () => import("@/app/components/configurator/DimensionsSelector").then(mod => mod as unknown as { default: React.ComponentType<DimensionsSelectorProps> }),
-  {
-    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
-    ssr: false
-  }
+  () => import("@/app/components/configurator/DimensionsSelector").then(mod => mod.DimensionsSelector),
+  { loading: LoadingComponent, ssr: false }
 );
 
 const PreciousMetalSelector = dynamic<PreciousMetalSelectorProps>(
-  () => import("@/app/components/configurator/PreciousMetalSelector").then(mod => mod as unknown as { default: React.ComponentType<PreciousMetalSelectorProps> }),
-  {
-    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
-    ssr: false
-  }
+  () => import("@/app/components/configurator/PreciousMetalSelector").then(mod => mod.PreciousMetalSelector),
+  { loading: LoadingComponent, ssr: false }
 );
 
 const StoneSelector = dynamic<StoneSelectorProps>(
-  () => import("@/app/components/configurator/StoneSelector").then(mod => mod as unknown as { default: React.ComponentType<StoneSelectorProps> }),
-  {
-    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
-    ssr: false
-  }
+  () => import("@/app/components/configurator/StoneSelector").then(mod => mod.StoneSelector),
+  { loading: LoadingComponent, ssr: false }
 );
 
 const GroovesAndEdgesSelector = dynamic<GroovesAndEdgesSelectorProps>(
-  () => import("@/app/components/configurator/GroovesAndEdgesSelector").then(mod => mod as unknown as { default: React.ComponentType<GroovesAndEdgesSelectorProps> }),
-  {
-    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
-    ssr: false
-  }
+  () => import("@/app/components/configurator/GroovesAndEdgesSelector").then(mod => mod.GroovesAndEdgesSelector),
+  { loading: LoadingComponent, ssr: false }
 );
 
 const EngravingSelector = dynamic<EngravingSelectorProps>(
-  () => import("@/app/components/configurator/EngravingSelector").then(mod => mod as unknown as { default: React.ComponentType<EngravingSelectorProps> }),
-  {
-    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
-    ssr: false
-  }
+  () => import("@/app/components/configurator/EngravingSelector").then(mod => mod.EngravingSelector),
+  { loading: LoadingComponent, ssr: false }
 );
 
 const WeightSelector = dynamic<WeightSelectorProps>(
-  () => import("@/app/components/configurator/WeightSelector").then(mod => mod as unknown as { default: React.ComponentType<WeightSelectorProps> }),
-  {
-    loading: () => <div className="animate-pulse h-32 bg-gray-100 rounded-lg"></div>,
-    ssr: false
-  }
+  () => import("@/app/components/configurator/WeightSelector").then(mod => mod.WeightSelector),
+  { loading: LoadingComponent, ssr: false }
 );
 
 
