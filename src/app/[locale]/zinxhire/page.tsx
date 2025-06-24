@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -70,6 +71,11 @@ const ZinxhirePage = () => {
             <h2 className="mt-8 text-darkGray max-w-2xl text-lg">
             {t('pageDescription')}
             </h2>
+            <h2>{t('secondDescription')}</h2>
+            <Link href="/unaza" className="mt-8 text-darkGray max-w-2xl text-lg">
+            {t('shopLink')}
+            </Link>
+            <Image src="/images/um6.png" alt="Zinxhirë të artë Invest Gold Gjokaj" width={1200} height={630} className="mt-8" />
             <h3 className="mt-8 text-darkGray max-w-2xl text-lg">
             {t('comingSoon')}
             </h3>
