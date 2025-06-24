@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import { Link } from '@/i18n/routing';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -64,26 +64,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const ZinxhirePage = () => {
     const t = useTranslations('jewelry');
     return (
-        <main className="container mx-auto px-4 pt-36 pb-20 min-h-screen">
-            <h1 className="text-5xl text-darkGray font-bold">
+        <main className="bg-[url('/images/header-01.png')] bg-cover bg-center bg-no-repeat">
+          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div className='container mx-auto px-4 pt-44 pb-20 min-h-screen z-10 relative'>
+            <h1 className="text-5xl text-white font-bold">
             {t('pageTitle')}
             </h1>
-            <h2 className="mt-8 text-darkGray max-w-2xl text-lg">
+            <h2 className="mt-8 text-white max-w-2xl text-lg">
             {t('pageDescription')}
             </h2>
-            <h2>{t('secondDescription')}</h2>
-            <Link href="/unaza" className="mt-8 text-darkGray max-w-2xl text-lg">
-            {t('shopLink')}
-            </Link>
-            <Image src="/images/um6.png" alt="Zinxhirë të artë Invest Gold Gjokaj" width={1200} height={630} className="mt-8" />
-            <h3 className="mt-8 text-darkGray max-w-2xl text-lg">
+            <h3 className="mt-2 text-white max-w-2xl text-lg">
             {t('comingSoon')}
             </h3>
+            <h2 className='mt-16 text-white max-w-2xl text-lg mb-4'>{t('secondDescription')}</h2>
+            <Link href="/unaza" 
+              className="inline-flex justify-center items-center h-12 px-6 bg-[#907C33] text-white rounded-md hover:bg-[#907C33]/90 transition-colors"
+              aria-label={t('shopLink')}>
+            {t('shopLink')}
+            </Link>
 
             <section className="flex flex-col lg:flex-row gap-8">
                 <div className="w-full">
                 </div>
             </section>
+          </div>
         </main>
     );
 };
