@@ -19,7 +19,11 @@ const ProductsContent: React.FC = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [formData, setFormData] = useState<Omit<Product, 'id' | 'createdAt' | 'updatedAt'>>({
         name: '',
-        description: '',
+        description: {
+            en: '',
+            de: '',
+            sq: ''
+        },
         weight: '2-3',
         category: { id: '', name: '' },
         stock: 0,
@@ -149,10 +153,18 @@ const ProductsContent: React.FC = () => {
             toast.error('Emri i produktit është bosh');
             return false;
         }
-        // if (!formData.description.trim()) {
-        //     toast.error('Përshkrimi i produktit është bosh');
-        //     return false;
-        // }
+        if (!formData.description.en.trim()) {
+            toast.error('Përshkrimi i produktit në anglishtë është bosh');
+            return false;
+        }
+        if (!formData.description.de.trim()) {
+            toast.error('Përshkrimi i produktit në germanësh është bosh');
+            return false;
+        }
+        if (!formData.description.sq.trim()) {
+            toast.error('Përshkrimi i produktit në shqip është bosh');
+            return false;
+        }
         if (formData.weight <= '0') {
             toast.error('Pesha duhet të jetë ose një numër i vetëm (p.sh., "2") ose një varge (p.sh., "2-3")');
             return false;
@@ -171,7 +183,7 @@ const ProductsContent: React.FC = () => {
     const resetForm = () => {
         setFormData({
             name: '',
-            description: '',
+            description: { en: '', de: '', sq: '' },
             weight: '2-3',
             category: { id: '', name: '' },
             stock: 0,
@@ -220,9 +232,15 @@ const ProductsContent: React.FC = () => {
     const handleEditClick = async (product: Product) => {
         try {
             const productData = await ProductsService.getById(String(product.id));
+            const parsedDescription = typeof productData.description === 'string' 
+                ? productData.description === '' 
+                    ? { en: '', de: '', sq: '' }
+                    : JSON.parse(productData.description)
+                : productData.description || { en: '', de: '', sq: '' };
+
             setFormData({
                 name: productData.name,
-                description: productData.description,
+                description: parsedDescription,
                 weight: productData.weight,
                 category: productData.category,
                 stock: productData.stock,
@@ -238,6 +256,8 @@ const ProductsContent: React.FC = () => {
             // Scroll to form
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (error) {
+            console.error('Error fetching product:', error);
+            toast.error('Error fetching product details');
             toast.error('Marrja e produktit deshtoi');
             console.error(error);
         }
@@ -410,19 +430,67 @@ const ProductsContent: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* <div>
-                        <label htmlFor="description" className="block text-sm font-medium text-darkGray">
+                    {/* Description Fields */}
+                    <div className="mb-4 space-y-4">
+                        <label className="block text-sm font-medium text-darkGray mb-2">
                             Përshkrimi
                         </label>
-                        <textarea
-                            id="description"
-                            value={formData.description}
-                            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                            className="mt-1 p-1 border block w-full text-lightGray rounded-md border-gray-300 shadow-sm"
-                            rows={3}
-                            required
-                        />
-                    </div> */}
+                        {/* English Description */}
+                        <div>
+                            <label className="block text-sm font-medium text-darkGray mb-2">
+                                English
+                            </label>
+                            <textarea
+                                value={formData.description.en}
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        description: { ...formData.description, en: e.target.value }
+                                    })
+                                }
+                                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary text-darkGray"
+                                rows={4}
+                                placeholder="English description"
+                            />
+                        </div>
+                        {/* German Description */}
+                        <div>
+                            <label className="block text-sm font-medium text-darkGray mb-2">
+                                Deutsch
+                            </label>
+                            <textarea
+                                value={formData.description.de}
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        description: { ...formData.description, de: e.target.value }
+                                    })
+                                }
+                                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary text-darkGray"
+                                rows={4}
+                                placeholder="German description"
+                            />
+                        </div>
+                        {/* Albanian Description */}
+                        <div>
+                            <label className="block text-sm font-medium text-darkGray mb-2">
+                                Shqip
+                            </label>
+                            <textarea
+                                value={formData.description.sq}
+                                onChange={(e) =>
+                                    setFormData({
+                                        ...formData,
+                                        description: { ...formData.description, sq: e.target.value }
+                                    })
+                                }
+                                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary text-darkGray"
+                                rows={4}
+                                placeholder="Albanian description"
+                            />
+                        </div>
+                    </div>
+
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         <div>
@@ -498,9 +566,9 @@ const ProductsContent: React.FC = () => {
                                 <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Emri
                                 </th>
-                                {/* <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
+                                <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Përshkrimi
-                                </th> */}
+                                </th>
                                 <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-darkGray uppercase tracking-wider">
                                     Pesha
                                 </th>
@@ -531,9 +599,9 @@ const ProductsContent: React.FC = () => {
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-darkGray">{product.name}</div>
                                     </td>
-                                    {/* <td className="hidden lg:table-cell px-6 py-4">
-                                        <div className="text-sm text-darkGray line-clamp-2">{product.description}</div>
-                                    </td> */}
+                                    <td className="hidden lg:table-cell px-6 py-4">
+                                        <div className="text-sm text-darkGray line-clamp-2">{product.description.sq}</div>
+                                    </td>
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-darkGray">{product.weight}</div>
                                     </td>

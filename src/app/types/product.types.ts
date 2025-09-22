@@ -4,7 +4,11 @@ import { ConfiguratorState } from "./configurator";
 export interface Product {
     id?: string | number;
     name: string;
-    description: string;
+    description: {
+        en: string;
+        de: string;
+        sq: string;
+    };
     price?: number;
     weight: string;
     category: Category;

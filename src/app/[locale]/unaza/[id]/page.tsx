@@ -21,16 +21,30 @@ export async function generateMetadata({
     if (!product) {
       notFound();
     }
+    const productDescriptionParsed = (() => {
+      try {
+        if (typeof product?.description === 'string') {
+          if (product.description === '') {
+            return { en: '', de: '', sq: '' };
+          }
+          return JSON.parse(product.description);
+        }
+        return product.description || { en: '', de: '', sq: '' };
+      } catch (error) {
+        console.error('Error parsing product description:', error);
+        return { en: '', de: '', sq: '' };
+      }
+    })();
 
     const metadata: Metadata = {
       title: `${product.name} - ${t("product.title")}`,
-      description: product.name || "",
+      description: productDescriptionParsed[locale] || "",
       keywords: `${t("product.keywords")}, ${product.name}, ${
         product.category?.name || ""
       }`,
       openGraph: {
         title: `${product.name} - ${t("product.ogTitle")}`,
-        description: product.name || "",
+        description: productDescriptionParsed[locale] || "",
         images: [
           {
             url: product.images?.[0] || "/images/um6.png",
@@ -46,7 +60,7 @@ export async function generateMetadata({
       twitter: {
         card: "summary_large_image",
         title: `${product.name} - ${t("product.twitterTitle")}`,
-        description: product.name || "",
+        description: productDescriptionParsed[locale] || "",
         images: [product.images?.[0] || "/images/um6.png"],
       },
       alternates: {
@@ -97,6 +111,7 @@ export default async function ProductDetail({
           related={relatedItems}
           product={product}
           id={id}
+          locale={locale}
         />
       </div>
     );

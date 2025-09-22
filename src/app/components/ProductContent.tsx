@@ -1,6 +1,8 @@
 "use server";
 
 import React from "react";
+import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 import { Product } from "@/app/types/product.types";
 import { FaShoppingCart } from "react-icons/fa";
 import ProductCard from "@/app/components/ProductCard";
@@ -12,11 +14,13 @@ export default async function ProductContent({
   product,
   related,
   tNs,
+  locale,
 }: {
   id: string;
   product: Product;
   related: Product[];
   tNs: (key: string) => string;
+  locale: string;
 }) {
   const t = tNs;
 
@@ -27,6 +31,21 @@ export default async function ProductContent({
     "Ari Dy-ngjyrësh": t("rings.twoColorGold"),
     "Ari Shumëngjyrësh": t("rings.multiColorGold"),
   };
+
+  const productDescriptionParsed = (() => {
+    try {
+      if (typeof product?.description === 'string') {
+        if (product.description === '') {
+          return { en: '', de: '', sq: '' };
+        }
+        return JSON.parse(product.description);
+      }
+      return product.description || { en: '', de: '', sq: '' };
+    } catch (error) {
+      console.error('Error parsing product description:', error);
+      return { en: '', de: '', sq: '' };
+    }
+  })();
 
   return (
     <div className="container mx-auto px-4 py-32">
@@ -52,12 +71,12 @@ export default async function ProductContent({
             {product.weight} gram
           </div>
 
-          {/* <div>
+          <div>
             <h2 className="text-xl font-semibold mb-2 text-darkGray">
               {t('product.description')}
             </h2>
-            <p className="text-lightGray">{product.description}</p>
-          </div> */}
+            <p className="text-lightGray">{productDescriptionParsed[locale as 'en' | 'de' | 'sq']}</p>
+          </div>
 
           <div>
             <h2 className="text-xl text-darkGray font-semibold mb-2">
