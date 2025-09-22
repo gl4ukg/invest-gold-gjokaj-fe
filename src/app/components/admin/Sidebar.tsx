@@ -16,6 +16,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, onPageChange }) => {
         { name: 'Kategorite', id: 'categories' },
         { name: 'Porosite', id: 'orders' },
         { name: 'Cmimi i gramit', id: 'price-of-gram' },
+        { name: 'Blogjet', id: 'blogs' },
         { name: 'Ndrysho fjalekalimin', id: 'reset-password' }
     ];
 

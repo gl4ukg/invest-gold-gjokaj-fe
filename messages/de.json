@@ -5,7 +5,8 @@
     "jewelry": "Jewelry",
     "services": "Services",
     "contact": "Contact",
-    "shop": "Shop"
+    "shop": "Shop",
+    "blog": "Blog"
   },
   "header": {
     "title": "INVEST GOLD",
@@ -511,7 +512,18 @@
     "description": "We're sorry, the page you are looking for could not be found.",
     "backToHome": "Back to Home"
   },
+  "blog": {
+    "title": "Unser Blog",
+    "emptyState": {
+      "title": "Noch keine Blogbeiträge",
+      "description": "Wir arbeiten daran, interessante Inhalte für Sie zu erstellen. Schauen Sie bald wieder vorbei für Artikel über unsere neuesten Schmuckkollektionen, Eheringe und Geschichten über unsere Handwerkskunst."
+    }
+  },
   "metadata": {
+    "blog": {
+      "pageTitle": "Blog - Invest Gold Gjokaj | Handgefertigter Goldschmuck",
+      "description": "Entdecken Sie unsere Kollektion handgefertigter Goldschmuck, Eheringe und Verlobungsringe. Erleben Sie die Kunstfertigkeit und Handwerkskunst hinter unseren einzigartigen Stücken."
+    },
     "product": {
       "title": "Invest Gold Gjokaj | Gold Jewelry and Accessories",
       "description": "Explore our premium collection of gold jewelry and accessories. Find unique pieces crafted with excellence.",

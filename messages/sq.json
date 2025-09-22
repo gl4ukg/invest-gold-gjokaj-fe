@@ -5,7 +5,8 @@
     "jewelry": "Stoli",
     "services": "Shërbimet",
     "contact": "Kontakt",
-    "shop": "Dyqan"
+    "shop": "Dyqan",
+    "blog": "Blog"
   },
   "header": {
     "title": "INVEST GOLD",
@@ -511,7 +512,18 @@
     "description": "Na vjen keq, produkti që po kërkoni nuk mund të gjendet.",
     "backToHome": "Kthehu në faqen kryesore"
   },
+  "blog": {
+    "title": "Blogu Ynë",
+    "emptyState": {
+      "title": "Nuk ka ende postime në blog",
+      "description": "Ne jemi duke punuar për të krijuar përmbajtje të mrekullueshme për ju. Kthehuni së shpejti për artikuj rreth koleksioneve tona të reja të stolive, unazave të marteses dhe historive të mjeshtërisë sonë."
+    }
+  },
   "metadata": {
+    "blog": {
+      "pageTitle": "Blog - Invest Gold Gjokaj | Stoli të Punuara me Art",
+      "description": "Zbuloni koleksionin tonë të stolive të arit të punuara me dorë, unaza martese dhe fejese. Njihuni me artin dhe mjeshtërinë që qëndron pas pjesëve tona unike."
+    },
     "product": {
       "title": "Invest Gold Gjokaj | Stoli të Çmuara në Ari",
       "description": "Zbuloni koleksionin tonë të stolive të çmuara në ari. Çdo pjesë është punuar me precizion dhe kujdes.",

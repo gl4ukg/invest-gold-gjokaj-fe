@@ -7,6 +7,7 @@ import CategoriesContent from '@/app/components/admin/content/CategoriesContent'
 import OrdersContent from '@/app/components/admin/content/OrdersContent';
 import PriceOfGramContent from '@/app/components/admin/content/PriceOfGramContent';
 import ResetPassword from '@/app/components/admin/content/ResetPassword';
+import BlogsContent from '@/app/components/admin/content/BlogsContent';
 
 const AdminPage: React.FC = () => {
     const [activePage, setActivePage] = useState('products');
@@ -21,6 +22,8 @@ const AdminPage: React.FC = () => {
                 return <OrdersContent />;
             case 'price-of-gram':
                 return <PriceOfGramContent />
+            case 'blogs':
+                return <BlogsContent />
             case 'reset-password':
                 return <ResetPassword />
         }

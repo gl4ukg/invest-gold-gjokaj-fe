@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import { usePriceOfGram } from '@/app/hooks/usePriceOfGram';
-import { useCart } from '@/app/context/CartContext';
-import OrdersService from '@/app/services/orders';
-import { PayPalButtons } from '@paypal/react-paypal-js';
-import { useRouter } from '@/i18n/routing';
-import Loader from '@/app/components/Loader';
-import { countries, kosovoMunicipalities } from '@/app/data/locations';
-import Image from 'next/image';
-import PaymentsService from '@/app/services/paymets';
-import { delay } from 'lodash';
+import React, { useState, useEffect } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { usePriceOfGram } from "@/app/hooks/usePriceOfGram";
+import { useCart } from "@/app/context/CartContext";
+import OrdersService from "@/app/services/orders";
+import { PayPalButtons } from "@paypal/react-paypal-js";
+import { Link, useRouter } from "@/i18n/routing";
+import Loader from "@/app/components/Loader";
+import { countries, kosovoMunicipalities } from "@/app/data/locations";
+import Image from "next/image";
+import PaymentsService from "@/app/services/paymets";
+import { delay } from "lodash";
 
 interface CheckoutForm {
   email: string;
@@ -21,30 +21,30 @@ interface CheckoutForm {
   country: string; // We'll store just the country value here
   postalCode: string;
   phone: string;
-  paymentMethod: '' | 'paypal' | 'card' | 'cash_on_delivery';
-  shippingMethod: 'local' | 'international';
+  paymentMethod: "" | "paypal" | "card" | "cash_on_delivery";
+  shippingMethod: "local" | "international";
 }
 
 export default function Checkout() {
   const t = useTranslations();
   const router = useRouter();
-  const locale = useLocale()
+  const locale = useLocale();
   const { currentPrice } = usePriceOfGram();
   const { cart, clearCart, isLoading } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<CheckoutForm>({
-    email: '',
-    fullName: '',
-    address: '',
-    city: '',  // Default city for Kosovo
-    country: '',   // Default to Kosovo
-    postalCode: '',
-    phone: '',
-    paymentMethod: '',
-    shippingMethod: 'local',
+    email: "",
+    fullName: "",
+    address: "",
+    city: "", // Default city for Kosovo
+    country: "", // Default to Kosovo
+    postalCode: "",
+    phone: "",
+    paymentMethod: "",
+    shippingMethod: "local",
   });
-  console.log(currentPrice,"currentPrice")
+  console.log(currentPrice, "currentPrice");
 
   const [orderSummary, setOrderSummary] = useState({
     subtotal: 0,
@@ -62,12 +62,12 @@ export default function Checkout() {
   }, [cart.total]);
 
   useEffect(() => {
-    if (formData.country.toLowerCase() === 'xk') {
+    if (formData.country.toLowerCase() === "xk") {
       // If city is not in Kosovo municipalities, reset it
       if (!kosovoMunicipalities.includes(formData.city)) {
-        setFormData(prev => ({ ...prev, city: kosovoMunicipalities[0] }));
+        setFormData((prev) => ({ ...prev, city: kosovoMunicipalities[0] }));
       } else {
-        setFormData(prev => ({ ...prev, city: '' }));
+        setFormData((prev) => ({ ...prev, city: "" }));
       }
     }
   }, [formData.country]);
@@ -91,57 +91,56 @@ export default function Checkout() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    
-    if (name === 'phone') {
+
+    if (name === "phone") {
       // Only allow numbers
-      const numbersOnly = value.replace(/[^0-9]/g, '');
+      const numbersOnly = value.replace(/[^0-9]/g, "");
       setFormData((prev) => ({ ...prev, [name]: numbersOnly }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
 
-    if (name === 'shippingMethod') {
+    if (name === "shippingMethod") {
       updateShippingCost(value, formData.country);
-    } else if (name === 'country') {
+    } else if (name === "country") {
       updateShippingCost(formData.shippingMethod, value);
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    if(formData.fullName === '') {
-      setError(t('checkout.fillFullName'));
+    if (formData.fullName === "") {
+      setError(t("checkout.fillFullName"));
       return;
     }
-    if(formData.email === '') {
-      setError(t('checkout.fillEmail'));
+    if (formData.email === "") {
+      setError(t("checkout.fillEmail"));
       return;
     }
-    if(formData.address === '') {
-      setError(t('checkout.fillAddress'));
+    if (formData.address === "") {
+      setError(t("checkout.fillAddress"));
       return;
     }
-    if(formData.postalCode === '') {
-      setError(t('checkout.fillPostalCode'));
+    if (formData.postalCode === "") {
+      setError(t("checkout.fillPostalCode"));
       return;
     }
-    if(formData.phone === '') {
-      setError(t('checkout.fillPhone'));
+    if (formData.phone === "") {
+      setError(t("checkout.fillPhone"));
       return;
     }
-    if(formData.country === '') {
-      setError(t('checkout.selectCountry'));
+    if (formData.country === "") {
+      setError(t("checkout.selectCountry"));
       return;
     }
-    if(formData.city === '') {
-      setError(t('checkout.selectCity'));
+    if (formData.city === "") {
+      setError(t("checkout.selectCity"));
       return;
     }
     e.preventDefault();
-    if(formData.paymentMethod !== '') {
-
+    if (formData.paymentMethod !== "") {
       setLoading(true);
       setError(null);
-  
+
       try {
         const orderItems = cart.items.map((item) => ({
           id: String(item.id),
@@ -149,10 +148,9 @@ export default function Checkout() {
           product: item.product,
           price: Number(item?.configuration?.weight) * currentPrice,
           image: String(item.product.images?.[0]),
-          
-      }));
+        }));
         console.log(orderItems, "order items");
-  
+
         const order = await OrdersService.createOrder({
           email: formData.email,
           items: orderItems,
@@ -168,20 +166,20 @@ export default function Checkout() {
           shippingMethod: formData.shippingMethod,
           subtotal: cart.total,
         });
-  
-        if (formData.paymentMethod === 'paypal') {
+
+        if (formData.paymentMethod === "paypal") {
           // PayPal payment will be handled by PayPal buttons
           return;
         }
 
-        if (formData.paymentMethod === 'card') {
+        if (formData.paymentMethod === "card") {
           const cardPayment = await PaymentsService.initiateCardPayment({
             orderId: order.id,
             amount: order.total,
-            currency: 'EUR',
+            currency: "EUR",
             returnUrl: `${window.location.origin}/${locale}/order-confirmation`,
           });
-        
+
           window.location.href = cardPayment.redirectUrl;
         } else {
           router.push(`/order-confirmation/${order.id}`);
@@ -189,16 +187,17 @@ export default function Checkout() {
             clearCart();
           }, 800);
         }
-  
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : t('checkout.errorProcessingOrder')
+          err instanceof Error
+            ? err.message
+            : t("checkout.errorProcessingOrder")
         );
       } finally {
         setLoading(false);
       }
     } else {
-      setError(t('checkout.choosePaymentMethod'));
+      setError(t("checkout.choosePaymentMethod"));
     }
   };
 
@@ -214,13 +213,14 @@ export default function Checkout() {
     return (
       <div className="container mx-auto px-4 py-20 h-screen flex justify-center items-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">{t('checkout.emptyCart')}</h1>
-          <button
-            onClick={() => router.push('/unaza')}
+          <h1 className="text-2xl font-bold mb-4">{t("checkout.emptyCart")}</h1>
+          <Link
+            href={"/unaza"}
+            aria-label="unaza"
             className="bg-primary text-white px-6 py-2 rounded-lg"
           >
-            {t('checkout.continueShopping')}
-          </button>
+            {t("checkout.continueShopping")}
+          </Link>
         </div>
       </div>
     );
@@ -228,16 +228,21 @@ export default function Checkout() {
 
   return (
     <div className="container mx-auto px-4 pt-32 pb-20 min-h-screen text-darkGray">
-      <h1 className="text-3xl font-bold mb-8">{t('checkout.title')}</h1>
+      <h1 className="text-3xl font-bold mb-8">{t("checkout.title")}</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Checkout Form */}
         <div>
-          <form onSubmit={handleSubmit} autoComplete="off" className="space-y-6" data-form-type="other">
+          <form
+            onSubmit={handleSubmit}
+            autoComplete="off"
+            className="space-y-6"
+            data-form-type="other"
+          >
             {/* Contact Information */}
             <div>
               <h2 className="text-xl font-semibold mb-4">
-                {t('checkout.contactInformation')}
+                {t("checkout.contactInformation")}
               </h2>
               <input
                 type="email"
@@ -247,7 +252,7 @@ export default function Checkout() {
                 autoComplete="new-email"
                 autoCorrect="off"
                 spellCheck="false"
-                placeholder={t('checkout.email')}
+                placeholder={t("checkout.email")}
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
               />
@@ -256,7 +261,7 @@ export default function Checkout() {
             {/* Shipping Address */}
             <div>
               <h2 className="text-xl font-semibold mb-4">
-                {t('checkout.shippingAddress')}
+                {t("checkout.shippingAddress")}
               </h2>
               <div className="space-y-4">
                 <input
@@ -267,7 +272,7 @@ export default function Checkout() {
                   autoComplete="new-name"
                   autoCorrect="off"
                   spellCheck="false"
-                  placeholder={t('checkout.fullName')}
+                  placeholder={t("checkout.fullName")}
                   required
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                 />
@@ -279,7 +284,7 @@ export default function Checkout() {
                   autoComplete="new-address"
                   autoCorrect="off"
                   spellCheck="false"
-                  placeholder={t('checkout.address')}
+                  placeholder={t("checkout.address")}
                   required
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                 />
@@ -291,14 +296,14 @@ export default function Checkout() {
                     required
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary appearance-none bg-white"
                   >
-                    <option value="">{t('checkout.selectCountry')}</option>
+                    <option value="">{t("checkout.selectCountry")}</option>
                     {countries?.map((country) => (
                       <option key={country.value} value={country.value}>
                         {country.label}
                       </option>
                     ))}
                   </select>
-                  {formData.country.toLowerCase() === 'xk' ? (
+                  {formData.country.toLowerCase() === "xk" ? (
                     <select
                       name="city"
                       value={formData.city}
@@ -307,7 +312,7 @@ export default function Checkout() {
                       required
                       className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary appearance-none bg-white"
                     >
-                      <option value="">{t('checkout.selectCity')}</option>
+                      <option value="">{t("checkout.selectCity")}</option>
                       {kosovoMunicipalities?.map((city) => (
                         <option key={city} value={city}>
                           {city}
@@ -320,7 +325,7 @@ export default function Checkout() {
                       name="city"
                       value={formData.city}
                       onChange={handleInputChange}
-                      placeholder={t('checkout.city')}
+                      placeholder={t("checkout.city")}
                       autoComplete="new-city"
                       autoCorrect="off"
                       spellCheck="false"
@@ -338,7 +343,7 @@ export default function Checkout() {
                     autoComplete="new-postal-code"
                     autoCorrect="off"
                     spellCheck="false"
-                    placeholder={t('checkout.postalCode')}
+                    placeholder={t("checkout.postalCode")}
                     required
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                   />
@@ -350,7 +355,7 @@ export default function Checkout() {
                     autoComplete="new-phone"
                     autoCorrect="off"
                     spellCheck="false"
-                    placeholder={t('checkout.phone')}
+                    placeholder={t("checkout.phone")}
                     required
                     className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
                   />
@@ -361,7 +366,7 @@ export default function Checkout() {
             {/* Shipping Method */}
             <div>
               <h2 className="text-xl font-semibold mb-4">
-                {t('checkout.shippingMethod')}
+                {t("checkout.shippingMethod")}
               </h2>
               <select
                 name="shippingMethod"
@@ -370,9 +375,9 @@ export default function Checkout() {
                 required
                 className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary"
               >
-                <option value="local">{t('checkout.localDelivery')}</option>
+                <option value="local">{t("checkout.localDelivery")}</option>
                 <option value="international">
-                  {t('checkout.internationalDelivery')}
+                  {t("checkout.internationalDelivery")}
                 </option>
               </select>
             </div>
@@ -380,11 +385,9 @@ export default function Checkout() {
             {/* Payment Method */}
             <div>
               <h2 className="text-xl font-semibold mb-4">
-                {t('checkout.paymentMethod')}
+                {t("checkout.paymentMethod")}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-     
-
                 <label
                   className={`relative block cursor-pointer transition-all duration-200`}
                 >
@@ -392,34 +395,60 @@ export default function Checkout() {
                     type="radio"
                     name="paymentMethod"
                     value="card"
-                    checked={formData.paymentMethod === 'card'}
+                    checked={formData.paymentMethod === "card"}
                     onChange={(e) =>
                       handleInputChange({
-                        target: { name: 'paymentMethod', value: 'card' },
+                        target: { name: "paymentMethod", value: "card" },
                       } as any)
                     }
                     className="absolute opacity-0"
                   />
                   <div
-                    className={`flex min-h-[100px] items-center gap-4 border rounded-xl p-4 transition-all duration-200 ${formData.paymentMethod === 'card'
-                      ? 'border-primary bg-gradient-to-br from-primary/5 to-primary/10 shadow-lg'
-                      : 'border-gray-200 hover:border-primary/50 hover:shadow-md'
-                      }`}
+                    className={`flex min-h-[100px] items-center gap-4 border rounded-xl p-4 transition-all duration-200 ${
+                      formData.paymentMethod === "card"
+                        ? "border-primary bg-gradient-to-br from-primary/5 to-primary/10 shadow-lg"
+                        : "border-gray-200 hover:border-primary/50 hover:shadow-md"
+                    }`}
                   >
                     <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 shrink-0">
-                      <svg className="w-6 h-6 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 4H3C1.89543 4 1 4.89543 1 6V18C1 19.1046 1.89543 20 3 20H21C22.1046 20 23 19.1046 23 18V6C23 4.89543 22.1046 4 21 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M1 10H23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg
+                        className="w-6 h-6 shrink-0 text-primary"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M21 4H3C1.89543 4 1 4.89543 1 6V18C1 19.1046 1.89543 20 3 20H21C22.1046 20 23 19.1046 23 18V6C23 4.89543 22.1046 4 21 4Z"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M1 10H23"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </div>
                     <div className="flex flex-col flex-grow">
-                      <span className="text-lg font-semibold text-darkGray">{t('checkout.creditCard')}</span>
+                      <span className="text-lg font-semibold text-darkGray">
+                        {t("checkout.creditCard")}
+                      </span>
                       <span className="text-xs text-gray-500">
-                        {t('checkout.payWithCard')}
+                        {t("checkout.payWithCard")}
                       </span>
                     </div>
-                    <div className={`w-6 h-6 shrink-0 rounded-full border-2 ${formData.paymentMethod === 'card' ? 'border-primary bg-primary' : 'border-gray-300'} flex items-center justify-center`}>
-                      {formData.paymentMethod === 'card' && (
+                    <div
+                      className={`w-6 h-6 shrink-0 rounded-full border-2 ${
+                        formData.paymentMethod === "card"
+                          ? "border-primary bg-primary"
+                          : "border-gray-300"
+                      } flex items-center justify-center`}
+                    >
+                      {formData.paymentMethod === "card" && (
                         <div className="w-2 h-2 rounded-full bg-white"></div>
                       )}
                     </div>
@@ -433,34 +462,63 @@ export default function Checkout() {
                     type="radio"
                     name="paymentMethod"
                     value="cash_on_delivery"
-                    checked={formData.paymentMethod === 'cash_on_delivery'}
+                    checked={formData.paymentMethod === "cash_on_delivery"}
                     onChange={(e) =>
                       handleInputChange({
-                        target: { name: 'paymentMethod', value: 'cash_on_delivery' },
+                        target: {
+                          name: "paymentMethod",
+                          value: "cash_on_delivery",
+                        },
                       } as any)
                     }
                     className="absolute opacity-0"
                   />
                   <div
-                    className={`flex min-h-[100px] items-center gap-4 border rounded-xl p-4 transition-all duration-200 ${formData.paymentMethod === 'cash_on_delivery'
-                      ? 'border-primary bg-gradient-to-br from-primary/5 to-primary/10 shadow-lg'
-                      : 'border-gray-200 hover:border-primary/50 hover:shadow-md'
-                      }`}
+                    className={`flex min-h-[100px] items-center gap-4 border rounded-xl p-4 transition-all duration-200 ${
+                      formData.paymentMethod === "cash_on_delivery"
+                        ? "border-primary bg-gradient-to-br from-primary/5 to-primary/10 shadow-lg"
+                        : "border-gray-200 hover:border-primary/50 hover:shadow-md"
+                    }`}
                   >
                     <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 shrink-0">
-                      <svg className="w-6 h-6 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 9V7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M20 9H4C2.89543 9 2 9.89543 2 11V20C2 21.1046 2.89543 22 4 22H20C21.1046 22 22 21.1046 22 20V11C22 9.89543 21.1046 9 20 9Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg
+                        className="w-6 h-6 shrink-0 text-primary"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M17 9V7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7V9"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M20 9H4C2.89543 9 2 9.89543 2 11V20C2 21.1046 2.89543 22 4 22H20C21.1046 22 22 21.1046 22 20V11C22 9.89543 21.1046 9 20 9Z"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </div>
                     <div className="flex flex-col flex-grow">
-                      <span className="text-lg font-semibold text-darkGray">{t('checkout.cashOnDelivery')}</span>
+                      <span className="text-lg font-semibold text-darkGray">
+                        {t("checkout.cashOnDelivery")}
+                      </span>
                       <span className="text-xs text-gray-500">
-                        {t('checkout.payOnDelivery')}
+                        {t("checkout.payOnDelivery")}
                       </span>
                     </div>
-                    <div className={`w-6 h-6 shrink-0 rounded-full border-2 ${formData.paymentMethod === 'cash_on_delivery' ? 'border-primary bg-primary' : 'border-gray-300'} flex items-center justify-center`}>
-                      {formData.paymentMethod === 'cash_on_delivery' && (
+                    <div
+                      className={`w-6 h-6 shrink-0 rounded-full border-2 ${
+                        formData.paymentMethod === "cash_on_delivery"
+                          ? "border-primary bg-primary"
+                          : "border-gray-300"
+                      } flex items-center justify-center`}
+                    >
+                      {formData.paymentMethod === "cash_on_delivery" && (
                         <div className="w-2 h-2 rounded-full bg-white"></div>
                       )}
                     </div>
@@ -489,9 +547,7 @@ export default function Checkout() {
               disabled={loading}
               className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
             >
-              {loading
-                ? t('checkout.processing')
-                : t('checkout.placeOrder')}
+              {loading ? t("checkout.processing") : t("checkout.placeOrder")}
             </button>
           </form>
         </div>
@@ -500,7 +556,7 @@ export default function Checkout() {
         <div>
           <div className="bg-gray-50 p-0 md:p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">
-              {t('checkout.orderSummary')}
+              {t("checkout.orderSummary")}
             </h2>
             <div className="space-y-4">
               {cart.items?.map((item, idx) => (
@@ -508,36 +564,40 @@ export default function Checkout() {
                   key={idx}
                   className="flex justify-between items-center py-2 border-b"
                 >
-                  <div className='flex items-center gap-3 justify-between w-full'>
-                    <div className='flex items-center gap-3 '>
+                  <div className="flex items-center gap-3 justify-between w-full">
+                    <div className="flex items-center gap-3 ">
                       <Image
                         src={String(item?.product?.images?.[0])}
                         alt={item?.product?.name}
                         width={50}
                         height={50}
                       />
-                      <div className='flex flex-col'>
-                        <h3 className="font-medium">{t('checkout.product')}: {item?.product?.name}</h3>
+                      <div className="flex flex-col">
+                        <h3 className="font-medium">
+                          {t("checkout.product")}: {item?.product?.name}
+                        </h3>
                         <p className="text-sm text-gray-600">
-                          {t('checkout.quantity')}: {item.quantity}
+                          {t("checkout.quantity")}: {item.quantity}
                         </p>
                       </div>
                     </div>
-                    <span>€{(Number(item?.configuration?.weight) * currentPrice)}</span>
+                    <span>
+                      €{Number(item?.configuration?.weight) * currentPrice}
+                    </span>
                   </div>
                 </div>
               ))}
               <div className="space-y-2 pt-4">
                 <div className="flex justify-between">
-                  <span>{t('checkout.subtotal')}</span>
+                  <span>{t("checkout.subtotal")}</span>
                   <span>€{orderSummary.subtotal}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>{t('checkout.shipping')}</span>
+                  <span>{t("checkout.shipping")}</span>
                   <span>€{orderSummary.shippingCost}</span>
                 </div>
                 <div className="flex justify-between font-bold text-lg pt-2 border-t">
-                  <span>{t('checkout.total')}</span>
+                  <span>{t("checkout.total")}</span>
                   <span>€{orderSummary.total}</span>
                 </div>
               </div>

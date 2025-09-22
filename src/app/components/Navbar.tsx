@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { href: '#services', key: 'services' },
   { href: '#contact', key: 'contact' },
   { href: '/unaza', key: 'shop' }, // External Page
+  { href: '/blog', key: 'blog' }, // External Page
 ];
 
 const LANGUAGE_LINKS = [
@@ -27,7 +28,8 @@ const Navbar = () => {
   const t = useTranslations('navbar');
   const { itemCount, setIsCartOpen, isNavbarOpen, setIsNavbarOpen } = useCart();
   const pathname = usePathname();
-  const { id } = useParams();
+  const params = useParams();
+  const { id, slug } = params;
   const router = useRouter();
   const locale = useLocale();
 
@@ -73,6 +75,8 @@ const Navbar = () => {
         || pathname === `/order-confirmation/error`
         || pathname === `/order-confirmation/cancel`
         || pathname === `/unaza/${id}`
+        || pathname === `/blog`
+        || pathname === `/blog/${slug}`
       ){
         console.log("here")
         window.location.replace(`/${fullPath}`);
@@ -83,9 +87,15 @@ const Navbar = () => {
     }
   };
 
+  console.log(params,"params")
+
   const changeLocale = (newLocale: string) => {
     if(pathname === "/unaza"){
       window.location.replace(`/${newLocale}/unaza`);
+    } else if (pathname === "/blog"){
+      window.location.replace(`/${newLocale}/blog`);
+    } else if (pathname === `/blog/${slug}`){
+      window.location.replace(`/${newLocale}/blog/${slug}`);
     } else if (pathname === `/unaza/${id}`){
       window.location.replace(`/${newLocale}/unaza/${id}`);
     } else if (pathname === "/configurator"){
