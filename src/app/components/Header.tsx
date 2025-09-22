@@ -2,10 +2,15 @@
 
 import HeaderContentText from './HeaderContentText';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Header = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
@@ -32,7 +37,7 @@ const Header = () => {
       {/* Deferred Video Load */}
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute inset-0 bg-black bg-opacity-40" />
-        {typeof window !== 'undefined' && (
+        {isMounted && (
           <video
             autoPlay
             muted

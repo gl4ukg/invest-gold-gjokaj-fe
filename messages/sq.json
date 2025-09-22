@@ -290,6 +290,7 @@
     "outOfStock": "Nuk ka stok",
     "errorFetchingProducts": "Gabim në ngarkimin e produkteve",
     "errorFetchingCategories": "Gabim në ngarkimin e kategorive",
+    "errorLoadingProducts": "Gabim në ngarkimin e produkteve",
     "categoryAll": "Të Gjitha",
     "categoryRings": "Unaza",
     "categoryBracelets": "Byzylykë",

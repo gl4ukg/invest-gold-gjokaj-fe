@@ -290,6 +290,7 @@
     "outOfStock": "Out of stock",
     "errorFetchingProducts": "Error fetching products",
     "errorFetchingCategories": "Error fetching categories",
+    "errorLoadingProducts": "Fehler beim Laden der Produkte",
     "categoryAll": "All",
     "categoryRings": "Rings",
     "categoryBracelets": "Bracelets",
