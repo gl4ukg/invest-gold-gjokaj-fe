@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { FaTrash } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 import BlogsService from '@/app/services/blogs';
 import { Blog, CreateBlog } from '@/app/types/blog.types';
 import { useParams } from 'next/navigation';
@@ -38,15 +39,13 @@ export default function BlogsContent() {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      // Check file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
-        alert('Image size should be less than 5MB');
+        toast.error('Madhësia e imazhit duhet të jetë më pak se 5 MB');
         return;
       }
-
-      // Check file type
-      if (!file.type.startsWith('image/')) {
-        alert('Please upload an image file');
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+      if (!validTypes.includes(file.type)) {
+        toast.error('Ju lutem shtojni vetëm imazhe JPG ose PNG');
         return;
       }
 
@@ -55,19 +54,28 @@ export default function BlogsContent() {
         try {
           const base64String = e.target?.result as string;
           if (!base64String.startsWith('data:image/')) {
-            alert('Invalid image format');
+            toast.error('Format i pavlefshëm i imazhit', {
+              duration: 4000,
+              position: 'top-center',
+            });
             return;
           }
           setFormData(prev => ({ ...prev, image: base64String }));
           setSelectedFile(file);
         } catch (error) {
           console.error('Error processing image:', error);
-          alert('Failed to process image. Please try another one.');
+          toast.error('Gabim gjatë procesimit të imazhit. Ju lutemi provoni një tjetër.', {
+            duration: 4000,
+            position: 'top-center',
+          });
         }
       };
       reader.onerror = () => {
         console.error('Error reading file');
-        alert('Failed to read image file. Please try another one.');
+        toast.error('Failed to read image file. Please try another one.', {
+          duration: 4000,
+          position: 'top-center',
+        });
       };
       reader.readAsDataURL(file);
     }
@@ -89,25 +97,46 @@ export default function BlogsContent() {
         image: formData.image
       };
 
+      if (!formData.title.en.trim() || !formData.content.en.trim() || !formData.title.de.trim() || !formData.content.de.trim() || !formData.title.sq.trim() || !formData.content.sq.trim()) {
+        toast.error('Ju lutem plotësoni të gjitha fushat e detyrueshme', {
+          duration: 4000,
+          position: 'top-center',
+        });
+        return;
+      }
+
       if (editingBlog) {
         await BlogsService.update(String(editingBlog.id), blogData);
+        toast.success('Blogu u përditësua me sukses!', {
+          duration: 3000,
+          position: 'top-center',
+        });
       } else {
-        await BlogsService.create(blogData);
+        const createdBlog = await BlogsService.create(blogData);
+        setBlogs([...blogs, createdBlog]);
+        setEditingBlog(null);
+        setSelectedFile(null);
+        setFormData({
+          title: { en: '', de: '', sq: '' },
+          content: { en: '', de: '', sq: '' },
+          slug: '',
+          metaDescription: { en: '', de: '', sq: '' },
+          image: ''
+        });
+        setLoading(false);
+        toast.success('Blogu u krijua me sukses!', {
+          duration: 3000,
+          position: 'top-center',
+        });
       }
-      // Reset form
-      setEditingBlog(null);
-      setSelectedFile(null);
-      setFormData({
-        title: { en: '', de: '', sq: '' },
-        content: { en: '', de: '', sq: '' },
-        slug: '',
-        metaDescription: { en: '', de: '', sq: '' },
-        image: ''
-      });
       await loadBlogs();
     } catch (error) {
-      console.error('Error saving blog:', error);
-      alert('Failed to save blog post. Please try again.');
+      console.error('Error creating blog:', error);
+      setLoading(false);
+      toast.error('Gabim gjatë krijimit të blogut. Ju lutemi provoni përsëri.', {
+        duration: 4000,
+        position: 'top-center',
+      });
     }
   };
 
@@ -116,9 +145,16 @@ export default function BlogsContent() {
       try {
         await BlogsService.delete(String(id));
         loadBlogs();
+        toast.success('Blogu u fshi me sukses!', {
+          duration: 3000,
+          position: 'top-center',
+        });
       } catch (error) {
         console.error('Error deleting blog:', error);
-        alert('Failed to delete blog post. Please try again.');
+        toast.error('Gabim gjatë fshirjes së blogut. Ju lutemi provoni përsëri.', {
+          duration: 4000,
+          position: 'top-center',
+        });
       }
     }
   };
@@ -169,7 +205,7 @@ export default function BlogsContent() {
                 )}
                 <input
                   type="file"
-                  accept="image/*"
+                  accept=".jpg,.jpeg,.png"
                   onChange={handleImageChange}
                   ref={fileInputRef}
                   className="hidden"

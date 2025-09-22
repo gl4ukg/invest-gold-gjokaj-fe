@@ -51,8 +51,9 @@ export default function CategoriesContent() {
                 toast.error('Madhësia e imazhit duhet të jetë më pak se 5 MB');
                 return;
             }
-            if (!file.type.startsWith('image/')) {
-                toast.error('Ju lutem shtojni një imazh');
+            const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (!validTypes.includes(file.type)) {
+                toast.error('Ju lutem shtojni vetëm imazhe JPG ose PNG');
                 return;
             }
             setSelectedImage(file);
@@ -212,7 +213,7 @@ export default function CategoriesContent() {
                                 type="file"
                                 ref={fileInputRef}
                                 onChange={handleImageChange}
-                                accept="image/*"
+                                accept=".jpg,.jpeg,.png"
                                 className="hidden"
                             />
                             <button

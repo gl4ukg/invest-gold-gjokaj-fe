@@ -92,23 +92,26 @@ const ProductsContent: React.FC = () => {
     }, []);
 
     const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (files) {
+        const files = Array.from(e.target.files || []);
+        const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        const validFiles = files.filter(file => {
+            if (file.size > 5 * 1024 * 1024) {
+                toast.error(`${file.name} është më i madh se 5MB`);
+                return false;
+            }
+            if (!validTypes.includes(file.type)) {
+                toast.error(`${file.name} duhet të jetë JPG ose PNG`);
+                return false;
+            }
+            return true;
+        });
+
+        if (validFiles.length > 0) {
             const newPreviews: string[] = [];
             const newBase64Images: string[] = [];
-            
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                if (file.size > 5 * 1024 * 1024) { // 5MB limit
-                    toast.error('Madhësia e imazhit duhet të jetë më pak se 5 MB');
-                    return;
-                }
-                
-                if (!file.type.startsWith('image/')) {
-                    toast.error('Ju lutem shtojni një imazh');
-                    return;
-                }
 
+            for (let i = 0; i < validFiles.length; i++) {
+                const file = validFiles[i];
                 try {
                     const base64String = await convertFileToBase64(file);
                     // Ensure the base64 string is complete and not split
@@ -365,7 +368,7 @@ const ProductsContent: React.FC = () => {
                                 )}
                                 <input
                                     type="file"
-                                    accept="image/*"
+                                    accept=".jpg,.jpeg,.png"
                                     multiple
                                     onChange={handleImageChange}
                                     ref={fileInputRef}
