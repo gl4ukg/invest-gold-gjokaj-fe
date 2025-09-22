@@ -3,6 +3,7 @@ import { ConfiguratorState } from "./configurator";
 
 export interface Product {
     id?: string | number;
+    numericId?: number;
     name: string;
     description: {
         en: string;
@@ -20,6 +21,6 @@ export interface Product {
 }
 
 export interface CreateProduct {
-    product: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>;
+    product: Omit<Product, 'id' | 'createdAt' | 'updatedAt' | 'numericId'>;
     categoryId: string;
 }

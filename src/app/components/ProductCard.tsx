@@ -16,7 +16,8 @@ export default function ProductCard({
   showAddToCart = true,
   priorityImage = false,
 }: ProductCardProps) {
-  const href = `/unaza/${product.id}`;
+  console.log(product);
+  const href = product.numericId ? `/unaza/${product.numericId}` : `/unaza/${product.id}`;
   const t = useTranslations();
   const { addToCart } = useCart();
 
@@ -47,7 +48,7 @@ export default function ProductCard({
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-0 text-darkGray">
           <Link href={href} className="hover:underline">
-            {product.name}
+            Unaza: {product.name}
           </Link>
         </h3>
 

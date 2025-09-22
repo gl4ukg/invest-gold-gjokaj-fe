@@ -43,6 +43,7 @@ const ProductsService = {
 
       const instance = typeof window === 'undefined' ? axiosServer : axiosClient;
       const response = await instance.get("/products");
+      console.log(response.data,"res");
       
       // Update cache
       productsCache = {

@@ -68,7 +68,7 @@ const ProductsContent: React.FC = () => {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(products.length / itemsPerPage);
-    
+    console.log(products,"prod1")
     const fetchData = async () => {
         try {
             const [productsData, categoriesData] = await Promise.all([
@@ -76,7 +76,6 @@ const ProductsContent: React.FC = () => {
                 CategoriesService.getAll()
             ]);
             const sortedProducts = productsData.sort((a, b) => new Date(String(b?.createdAt)).getTime() - new Date(String(a?.createdAt)).getTime());
-
             setProducts(sortedProducts);
             setCategories(categoriesData);
             setError(null);
@@ -600,7 +599,7 @@ const ProductsContent: React.FC = () => {
                                         <div className="text-sm text-darkGray">{product.name}</div>
                                     </td>
                                     <td className="hidden lg:table-cell px-6 py-4">
-                                        <div className="text-sm text-darkGray line-clamp-2">{product.description.sq}</div>
+                                        <div className="text-sm text-darkGray line-clamp-2">{product?.description?.sq || 'Nuk ka përshkrim'}</div>
                                     </td>
                                     <td className="px-4 lg:px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-darkGray">{product.weight}</div>
