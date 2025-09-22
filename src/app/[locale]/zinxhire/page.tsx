@@ -1,8 +1,5 @@
 import { Metadata } from 'next';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 
 type Props = {
@@ -61,8 +58,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 
-const ZinxhirePage = () => {
-    const t = useTranslations('jewelry');
+const ZinxhirePage = async () => {
+    const t = await getTranslations({ namespace: 'jewelry' });
     return (
         <main className="bg-[url('/images/header-01.png')] bg-cover bg-center bg-no-repeat">
           <div className="absolute inset-0 bg-black bg-opacity-40"></div>

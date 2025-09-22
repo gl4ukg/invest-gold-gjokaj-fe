@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import ProductsService from "@/app/services/products";
-import CategoriesService from "@/app/services/categories";
 import { Product } from "@/app/types/product.types";
 import { Category } from "@/app/types/category.types";
 import { FaFilter } from "react-icons/fa";
@@ -11,89 +10,97 @@ import { debounce } from "lodash";
 import ProductCard from "@/app/components/ProductCard";
 import Loader from "@/app/components/Loader";
 
-interface Filter {
-  sortOrder: "ASC" | "DESC";
+type SortOrder = "ASC" | "DESC";
+
+interface Props {
+  locale: string;
+  initialCategories: Category[];
+  initialProducts: Product[];
+  initialSelectedCategoryIds: string[];
+  initialSortOrder: SortOrder;
+  initialPage: number;
+  itemsPerPage: number;
+  initialTotalPages: number;
 }
 
-export default function ShopContent() {
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
-  const [hasMore, setHasMore] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
-  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
-  const [filters, setFilters] = useState<Filter>({
-    sortOrder: "DESC", // Default to newest first
-  });
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const ITEMS_PER_PAGE = 9;
-
+export default function ShopContent({
+  locale,
+  initialCategories,
+  initialProducts,
+  initialSelectedCategoryIds,
+  initialSortOrder,
+  initialPage,
+  itemsPerPage,
+  initialTotalPages,
+}: Props) {
   const t = useTranslations();
-  const loaderRef = useRef<HTMLDivElement>(null);
 
-  const fetchCategories = async () => {
-    try {
-      const categoriesData = await CategoriesService.getAll();
-      setCategories(categoriesData);
-    } catch (err) {
-      console.error("Failed to fetch categories:", err);
-      setError(t("shop.errorFetchingCategories"));
-    }
-  };
+  // Hydrate with SSR data
+  const [categories] = useState<Category[]>(initialCategories);
+  const [allProducts, setAllProducts] = useState<Product[]>(initialProducts);
+  const [selectedCategory, setSelectedCategory] = useState<string[]>(initialSelectedCategoryIds);
+  const [filters, setFilters] = useState<{ sortOrder: SortOrder }>({ sortOrder: initialSortOrder });
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(initialPage);
+  const [totalPages, setTotalPages] = useState<number>(initialTotalPages);
+  const [hasMore, setHasMore] = useState<boolean>(initialPage < initialTotalPages);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+
+  const loaderRef = useRef<HTMLDivElement>(null);
 
   const searchProducts = async (params: {
     query?: string;
     categoryIds: string[];
-    sortOrder?: string;
+    sortOrder: SortOrder;
     page: number;
     loadMore?: boolean;
   }) => {
+    const { query = "", categoryIds, sortOrder, page, loadMore } = params;
+
     try {
-      if (!params.loadMore) {
+      if (loadMore) {
+        setLoadingMore(true);
+      } else {
         setLoading(true);
       }
 
-      // Simulate loading time
-      await new Promise((resolve) => setTimeout(resolve, 800));
-
       const response = await ProductsService.search({
-        query: params.query || "", // Ensure query is never undefined
-        categoryIds: params.categoryIds,
-        page: params.page,
-        limit: ITEMS_PER_PAGE,
-        sortOrder: params.sortOrder,
+        query,
+        categoryIds,
+        page,
+        limit: itemsPerPage,
+        sortOrder,
       });
 
-      if (params.loadMore) {
-        setAllProducts((prev) => [...prev, ...response.items]);
+      const items = response?.items ?? [];
+      const total = response?.meta?.totalPages ?? 1;
+
+      if (loadMore) {
+        setAllProducts((prev) => [...prev, ...items]);
       } else {
-        setAllProducts(response.items);
+        setAllProducts(items);
       }
 
-      setHasMore(response.items.length === ITEMS_PER_PAGE);
-      setTotalPages(response.meta.totalPages);
+      setTotalPages(total);
+      setHasMore(page < total);
       setError(null);
     } catch (err) {
       console.error("Failed to search products:", err);
-      setError("Failed to load products");
+      setError(t("shop.errorLoadingProducts") || "Failed to load products");
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
   };
 
-  // Debounced search function
+  // Debounced search (does not run on first paint)
   const debouncedSearch = useCallback(
-    debounce((params: {
-      query?: string;
-      categoryIds: string[];
-      sortOrder: string;
-      page: number;
-    }) => {
-      searchProducts(params);
+    debounce((q: string, categoryIds: string[], sortOrder: SortOrder) => {
+      setCurrentPage(1);
+      searchProducts({ query: q, categoryIds, sortOrder, page: 1 });
     }, 500),
     []
   );
@@ -101,38 +108,32 @@ export default function ShopContent() {
   // Handle search input change
   const handleSearchChange = (newSearchTerm: string) => {
     setSearchTerm(newSearchTerm);
-    setCurrentPage(1);
-
-    debouncedSearch({
-      query: newSearchTerm,
-      categoryIds: selectedCategory,
-      sortOrder: filters.sortOrder,
-      page: 1,
-    });
+    debouncedSearch(newSearchTerm, selectedCategory, filters.sortOrder);
   };
 
-  // Handle filter changes
-  const handleFilterChange = (newFilters: Partial<Filter>) => {
-    const updatedFilters = { ...filters, ...newFilters };
-    setFilters(updatedFilters);
-    setCurrentPage(1); // Reset to first page when filters change
+  // Handle sort change
+  const handleFilterChange = (newFilters: Partial<{ sortOrder: SortOrder }>) => {
+    const next = { ...filters, ...newFilters };
+    setFilters(next);
+    setCurrentPage(1);
     setHasMore(true);
     searchProducts({
       query: searchTerm,
       categoryIds: selectedCategory,
-      sortOrder: updatedFilters.sortOrder,
+      sortOrder: next.sortOrder,
       page: 1,
     });
   };
 
-  // Handle category change
+  // Handle category toggle
   const handleCategoryChange = (categoryId: string) => {
     const newSelection = selectedCategory.includes(categoryId)
-      ? selectedCategory.filter(id => id !== categoryId)
+      ? selectedCategory.filter((id) => id !== categoryId)
       : [...selectedCategory, categoryId];
-    
+
     setSelectedCategory(newSelection);
     setCurrentPage(1);
+    setHasMore(true);
 
     searchProducts({
       query: searchTerm,
@@ -142,13 +143,11 @@ export default function ShopContent() {
     });
   };
 
-  // Load more products
+  // Infinite load more
   const loadMore = () => {
     if (loadingMore || !hasMore) return;
-
     const nextPage = currentPage + 1;
     setCurrentPage(nextPage);
-
     searchProducts({
       query: searchTerm,
       categoryIds: selectedCategory,
@@ -158,8 +157,11 @@ export default function ShopContent() {
     });
   };
 
-  // Intersection Observer setup
+  // Intersection Observer
   useEffect(() => {
+    const node = loaderRef.current;
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         const first = entries[0];
@@ -170,36 +172,12 @@ export default function ShopContent() {
       { threshold: 1.0 }
     );
 
-    const currentLoader = loaderRef.current;
-    if (currentLoader) {
-      observer.observe(currentLoader);
-    }
-
-    return () => {
-      if (currentLoader) {
-        observer.unobserve(currentLoader);
-      }
-    };
+    observer.observe(node);
+    return () => observer.unobserve(node);
   }, [hasMore, loadingMore, loading, currentPage]);
 
-  // Fetch categories on mount
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  // Initial search
-  useEffect(() => {
-    if (searchTerm !== undefined) {
-      searchProducts({
-        query: searchTerm,
-        categoryIds: selectedCategory,
-        sortOrder: filters.sortOrder,
-        page: currentPage,
-      });
-    }
-  }, [searchTerm]);
-
-  const ringsText: { [key: string]: string } = {
+  // Map localized category names
+  const ringsText: Record<string, string> = {
     "Ari i Verdhë": t("rings.yellowGold"),
     "Ari i Bardhë": t("rings.whiteGold"),
     "Ari Rozë": t("rings.roseGold"),
@@ -219,17 +197,11 @@ export default function ShopContent() {
         </button>
 
         {/* Filters Sidebar */}
-        <aside
-          className={`lg:w-1/4 ${
-            isMobileFiltersOpen ? "block" : "hidden"
-          } lg:block`}
-        >
+        <aside className={`lg:w-1/4 ${isMobileFiltersOpen ? "block" : "hidden"} lg:block`}>
           <div className="bg-gray rounded-lg shadow-lg p-6 sticky top-4">
             {/* Search */}
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-3 text-darkGray">
-                {t("shop.search")}
-              </h3>
+              <h3 className="text-lg font-semibold mb-3 text-darkGray">{t("shop.search")}</h3>
               <input
                 type="text"
                 value={searchTerm}
@@ -241,9 +213,7 @@ export default function ShopContent() {
 
             {/* Categories */}
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-4 text-darkGray">
-                {t("shop.categories")}
-              </h3>
+              <h3 className="text-lg font-semibold mb-4 text-darkGray">{t("shop.categories")}</h3>
               <div className="space-y-3">
                 {categories?.map((category) => (
                   <div
@@ -262,17 +232,13 @@ export default function ShopContent() {
                           checked={selectedCategory.includes(category.id!)}
                           onChange={() => handleCategoryChange(category.id!)}
                           className="appearance-none w-4 h-4 rounded border-2 border-darkGray 
-                                                             checked:border-primary checked:bg-primary checked:border-0
-                                                             transition-all duration-200 cursor-pointer 
-                                                             focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                     checked:border-primary checked:bg-primary checked:border-0
+                                     transition-all duration-200 cursor-pointer 
+                                     focus:outline-none focus:ring-2 focus:ring-primary/20"
                         />
                         <div
                           className={`absolute inset-0 rounded transition-transform duration-200 
-                                                    ${
-                                                      selectedCategory.includes(category.id!)
-                                                        ? "scale-100 opacity-100"
-                                                        : "scale-0 opacity-0"
-                                                    }`}
+                                      ${selectedCategory.includes(category.id!) ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
                         >
                           <div className="absolute inset-0 rounded bg-primary/10 animate-pulse"></div>
                         </div>
@@ -284,7 +250,7 @@ export default function ShopContent() {
                             : "text-darkGray group-hover:text-primary"
                         }`}
                       >
-                        {ringsText[category.name]}
+                        {ringsText[category.name] ?? category.name}
                       </span>
                     </label>
                   </div>
@@ -294,15 +260,11 @@ export default function ShopContent() {
 
             {/* Sort */}
             <div>
-              <h3 className="text-lg font-semibold mb-3 text-darkGray">
-                {t("shop.sortBy")}
-              </h3>
+              <h3 className="text-lg font-semibold mb-3 text-darkGray">{t("shop.sortBy")}</h3>
               <select
                 value={filters.sortOrder}
                 onChange={(e) =>
-                  handleFilterChange({
-                    sortOrder: e.target.value as Filter["sortOrder"],
-                  })
+                  handleFilterChange({ sortOrder: e.target.value as SortOrder })
                 }
                 className="w-full px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary  text-lightGray"
               >
@@ -315,7 +277,7 @@ export default function ShopContent() {
 
         {/* Product Grid */}
         <div className="flex-1">
-          {loading ? (
+          {loading && !allProducts.length ? (
             <Loader loaderRef={loaderRef} />
           ) : error ? (
             <div className="text-center py-12">
@@ -328,7 +290,7 @@ export default function ShopContent() {
           ) : (
             <>
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-                {allProducts?.map((product) => (
+                {allProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
