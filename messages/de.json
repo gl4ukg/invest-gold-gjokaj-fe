@@ -1,8 +1,12 @@
 {
   "navbar": {
-    "about": "About",
-    "rings": "Rings",
-    "jewelry": "Jewelry",
+    "about": "Über Uns",
+    "rings": "Ringe",
+    "unazaFejese": "Verlobungsringe",
+    "unazaMartese": "Eheringe",
+    "rratheFejese": "Verlobungsbänder",
+    "rratheMartese": "Ehebänder",
+    "jewelry": "Schmuck",
     "services": "Services",
     "contact": "Contact",
     "shop": "Shop",
@@ -34,6 +38,76 @@
     "multiColorGold": "Multi Color Gold",
     "prev": "Previous",
     "next": "Next"
+  },
+  "pages": {
+    "unazaFejese": {
+      "heading": "Verlobungsringe in Gjakova",
+      "description": "Besondere Momente verdienen besondere Ringe. Entdecken Sie unsere Kollektion an Verlobungsringen, handgefertigt und personalisiert, um Ihren besonderen Moment zu verewigen.",
+      "collectionTitle": "Warum unsere Verlobungsringe wählen?",
+      "feature1": "✨ Einzigartige und personalisierbare Designs",
+      "feature2": "💎 14k und 18k Gold",
+      "feature3": "🔨 Von unseren Handwerkern gefertigt",
+      "feature4": "💫 Für jeden Stil und jedes Budget",
+      "feature5": "🤝 Professionelle Beratung für Ihre perfekte Wahl",
+      "viewCollection": "Verlobungsring-Kollektion ansehen",
+      "section1Title": "Vollständige Personalisierung",
+      "section1Description": "Wir gestalten Ihren Verlobungsring nach Ihren Wünschen, einschließlich der Wahl von Metall, Design und personalisierten Details.",
+      "section2Title": "Premium-Qualität",
+      "section2Description": "Wir verwenden nur hochwertigste Materialien und moderne Techniken, um Ringe zu schaffen, die ein Leben lang halten.",
+      "section3Title": "Professionelle Expertise",
+      "section3Description": "Unser spezialisiertes Team hilft Ihnen, den perfekten Ring zu finden, der zu Ihrem Stil und Budget passt."
+    },
+    "unazaMartese": {
+      "heading": "Eheringe in Gjakova",
+      "description": "Wählen Sie Eheringe, die Ihre ewige Liebe symbolisieren. Unsere Kollektion verbindet Tradition mit modernem Stil.",
+      "collectionTitle": "Personalisierte Eheringe",
+      "feature1": "💑 Designs für moderne Paare",
+      "feature2": "💍 14k und 18k Gold",
+      "feature3": "✨ Personalisierte Details für jedes Paar",
+      "feature4": "🎨 Große Auswahl an Stilen und Farben",
+      "feature5": "❤️ Symbole ewiger Hingabe",
+      "viewCollection": "Ehering-Kollektion ansehen",
+      "section1Title": "Tradition trifft Moderne",
+      "section1Description": "Unsere Eheringe verbinden traditionelle Elemente mit modernen Designs für jeden Stil.",
+      "section2Title": "Handwerkskunst",
+      "section2Description": "Jeder Ehering wird sorgfältig und liebevoll von unseren erfahrenen Meistern gefertigt.",
+      "section3Title": "Lebenslange Garantie",
+      "section3Description": "Wir bieten eine lebenslange Garantie für alle unsere Eheringe, genau wie Ihre Liebe."
+    },
+    "rratheFejese": {
+      "heading": "Verlobungsbänder in Gjakova",
+      "description": "Der Beginn einer neuen Liebesgeschichte verdient einen besonderen Ring. Entdecken Sie unsere moderne Kollektion an Verlobungsbändern, bei der jedes Stück ein Kunstwerk ist.",
+      "collectionTitle": "Unsere Verlobungsband-Kollektion",
+      "feature1": "💎 Moderne und elegante Designs",
+      "feature2": "✨ Reines Gold mit Edelsteinen",
+      "feature3": "🎨 Verschiedene Stile für jeden Geschmack",
+      "feature4": "💫 Mit höchster Handwerkskunst gefertigt",
+      "feature5": "🤝 Persönliche Beratung für Ihre Wahl",
+      "viewCollection": "Verlobungsband-Kollektion ansehen",
+      "section1Title": "Modernes Design",
+      "section1Description": "Verlobungsbänder mit zeitgenössischen Designs, die Liebe und moderne Eleganz widerspiegeln.",
+      "section2Title": "Premium-Materialien",
+      "section2Description": "Wir verwenden nur reinstes Gold und hochwertige Edelsteine.",
+      "section3Title": "Vollständige Personalisierung",
+      "section3Description": "Wir gestalten Ihr Verlobungsband nach Ihren Wünschen, einschließlich aller gewünschten Details."
+    },
+    "rratheMartese": {
+      "heading": "Ehebänder in Gjakova",
+      "description": "Die Wahl der Ehebänder ist ein besonderer Moment. Unsere Kollektion umfasst traditionelle und moderne Designs, die Ihre ewige Liebe symbolisieren.",
+      "collectionTitle": "Ehebänder für jeden Stil",
+      "feature1": "💑 Designs für traditionelle und moderne Paare",
+      "feature2": "💍 14k und 18k Gold",
+      "feature3": "✨ Über Generationen weitergegebene Handwerkskunst",
+      "feature4": "🎨 Einzigartige Kombinationen edler Metalle",
+      "feature5": "❤️ Lebenslange Qualitätsgarantie",
+      "viewCollection": "Eheband-Kollektion ansehen",
+      "section1Title": "Tradition und Qualität",
+      "section1Description": "Unsere Ehebänder werden mit Respekt für Tradition und Hingabe zur höchsten Qualität geschaffen.",
+      "section2Title": "Zeitlose Designs",
+      "section2Description": "Wir schaffen Ehebänder, die für immer schön bleiben, genau wie Ihre Liebe.",
+      "section3Title": "Vollständige Personalisierung",
+      "section3Description": "Jedes Detail Ihrer Ehebänder kann nach Ihren Wünschen und Ihrem Stil personalisiert werden."
+    }
   },
   "services": {
     "title": "Services",
@@ -521,6 +595,30 @@
     }
   },
   "metadata": {
+    "unazaFejese": {
+      "title": "Verlobungsringe in Gjakova | Individuelle Verlobungsringe",
+      "description": "Die beste Kollektion von Verlobungsringen in Gjakova. Meisterhaft gefertigte Verlobungsringe. Einzigartige Designs für Ihren besonderen Moment.",
+      "keywords": "verlobungsringe gjakova, eheringe, goldringe gjakova, verlobungsschmuck, verlobungsringe",
+      "ogImageAlt": "Verlobungsringe in Gjakova"
+    },
+    "unazaMartese": {
+      "title": "Eheringe in Gjakova | Individuelle Trauringe",
+      "description": "Die beste Kollektion von Eheringen in Gjakova. Meisterhaft gefertigte Trauringe. Einzigartige Designs für Ihren besonderen Tag.",
+      "keywords": "eheringe gjakova, trauringe, goldringe gjakova, hochzeitsschmuck, eheringe",
+      "ogImageAlt": "Eheringe in Gjakova"
+    },
+    "rratheFejese": {
+      "title": "Verlobungsbänder in Gjakova | Individuelle Verlobungsringe",
+      "description": "Die größte Kollektion von Verlobungsbändern in Gjakova. Meisterhaft gefertigte Verlobungsringe. Moderne Designs für Ihren besonderen Moment.",
+      "keywords": "verlobungsbänder gjakova, verlobungsringe, goldbänder gjakova, verlobungsschmuck, moderne bänder",
+      "ogImageAlt": "Verlobungsbänder in Gjakova"
+    },
+    "rratheMartese": {
+      "title": "Ehebänder in Gjakova | Individuelle Trauringe",
+      "description": "Die größte Kollektion von Ehebändern in Gjakova. Meisterhaft gefertigte Trauringe. Traditionelle und moderne Designs für Ihren besonderen Tag.",
+      "keywords": "ehebänder gjakova, trauringe, goldbänder gjakova, hochzeitsschmuck, traditionelle bänder",
+      "ogImageAlt": "Ehebänder in Gjakova"
+    },
     "blog": {
       "pageTitle": "Blog - Invest Gold Gjokaj | Handgefertigter Goldschmuck",
       "description": "Entdecken Sie unsere Kollektion handgefertigter Goldschmuck, Eheringe und Verlobungsringe. Erleben Sie die Kunstfertigkeit und Handwerkskunst hinter unseren einzigartigen Stücken."

@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-gray-900 pt-12 pb-8">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4">{t("footer.about")}</h3>
@@ -48,6 +48,50 @@ const Footer = () => {
                   className="text-sm text-gray-300 hover:text-white transition-colors"
                 >
                   Blog
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="text-center md:text-left">
+            <h3 className="text-lg font-semibold mb-4">
+              <Link
+                href="/unaza"
+                className="text-lg font-semibold mb-4"
+              >
+                {t("rings.rings")}
+              </Link>
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/unaza-martese"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Unaza Martese
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/unaza-fejese"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Unaza Fejese
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/rrathe-martese"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Rrathe Martese
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/rrathe-fejese"
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Rrathe Fejese
                 </Link>
               </li>
             </ul>

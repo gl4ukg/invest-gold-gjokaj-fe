@@ -1,7 +1,11 @@
 {
   "navbar": {
-    "about": "About",
+    "about": "About Us",
     "rings": "Rings",
+    "engagementRings": "Engagement Rings",
+    "weddingRings": "Wedding Rings",
+    "engagementBands": "Engagement Bands",
+    "weddingBands": "Wedding Bands",
     "jewelry": "Jewelry",
     "services": "Services",
     "contact": "Contact",
@@ -34,6 +38,76 @@
     "multiColorGold": "Multi Color Gold",
     "prev": "Previous",
     "next": "Next"
+  },
+  "pages": {
+    "unazaFejese": {
+      "heading": "Engagement Rings in Gjakova",
+      "description": "Special moments deserve special rings. Discover our collection of engagement rings, expertly crafted and personalized to immortalize your special moment.",
+      "collectionTitle": "Why Choose Our Engagement Rings?",
+      "feature1": "✨ Unique and customizable designs",
+      "feature2": "💎 14k and 18k gold",
+      "feature3": "🔨 Crafted by our artisans",
+      "feature4": "💫 Tailored for every style and budget",
+      "feature5": "🤝 Professional guidance for your perfect choice",
+      "viewCollection": "View Engagement Ring Collection",
+      "section1Title": "Complete Personalization",
+      "section1Description": "We create your engagement ring according to your wishes, including choice of metal, design, and personalized details.",
+      "section2Title": "Premium Quality",
+      "section2Description": "We use only the highest quality materials and modern techniques to create rings that last a lifetime.",
+      "section3Title": "Professional Expertise",
+      "section3Description": "Our specialized team helps you find the perfect ring that matches your style and budget."
+    },
+    "unazaMartese": {
+      "heading": "Wedding Rings in Gjakova",
+      "description": "Choose wedding rings that will symbolize your eternal love. Our collection of wedding rings combines tradition with modern style.",
+      "collectionTitle": "Personalized Wedding Rings",
+      "feature1": "💑 Designs for modern couples",
+      "feature2": "💍 14k and 18k gold",
+      "feature3": "✨ Personalized details for every couple",
+      "feature4": "🎨 Wide range of styles and colors",
+      "feature5": "❤️ Symbols of eternal commitment",
+      "viewCollection": "View Wedding Ring Collection",
+      "section1Title": "Tradition Meets Modern",
+      "section1Description": "Our wedding rings combine traditional elements with modern designs for every style.",
+      "section2Title": "Artisanal Work",
+      "section2Description": "Each wedding ring is carefully and lovingly crafted by our experienced masters.",
+      "section3Title": "Lifetime Guarantee",
+      "section3Description": "We offer a lifetime guarantee for all our wedding rings, just like your love."
+    },
+    "rratheFejese": {
+      "heading": "Engagement Bands in Gjakova",
+      "description": "The beginning of a new love story deserves a special ring. Discover our modern collection of engagement bands, where each piece is a work of art.",
+      "collectionTitle": "Our Engagement Band Collection",
+      "feature1": "💎 Modern and elegant designs",
+      "feature2": "✨ Pure gold with precious stones",
+      "feature3": "🎨 Different styles for every taste",
+      "feature4": "💫 Crafted with highest artistry",
+      "feature5": "🤝 Personal guidance for your choice",
+      "viewCollection": "View Engagement Band Collection",
+      "section1Title": "Modern Design",
+      "section1Description": "Engagement bands with contemporary designs that reflect love and modern elegance.",
+      "section2Title": "Premium Materials",
+      "section2Description": "We use only the purest gold and precious stones of the highest quality.",
+      "section3Title": "Complete Personalization",
+      "section3Description": "We create your engagement band according to your wishes, including every detail you desire."
+    },
+    "rratheMartese": {
+      "heading": "Wedding Bands in Gjakova",
+      "description": "Choosing wedding bands is a special moment. Our collection includes traditional and modern designs that symbolize your eternal love.",
+      "collectionTitle": "Wedding Bands for Every Style",
+      "feature1": "💑 Designs for traditional and modern couples",
+      "feature2": "💍 14k and 18k gold",
+      "feature3": "✨ Craftsmanship passed down through generations",
+      "feature4": "🎨 Unique combinations of precious metals",
+      "feature5": "❤️ Lifetime quality guarantee",
+      "viewCollection": "View Wedding Band Collection",
+      "section1Title": "Tradition and Quality",
+      "section1Description": "Our wedding bands are created with respect for tradition and dedication to the highest quality.",
+      "section2Title": "Timeless Designs",
+      "section2Description": "We create wedding bands that stay beautiful forever, just like your love.",
+      "section3Title": "Complete Personalization",
+      "section3Description": "Every detail of your wedding bands can be personalized according to your wishes and style."
+    }
   },
   "services": {
     "title": "Services",
@@ -521,6 +595,30 @@
     }
   },
   "metadata": {
+    "unazaFejese": {
+      "title": "Engagement Rings in Gjakova | Custom Engagement Rings",
+      "description": "The finest collection of engagement rings in Gjakova. Expertly crafted engagement rings. Unique designs for your special moment.",
+      "keywords": "engagement rings gjakova, wedding bands, gold rings gjakova, engagement jewelry, engagement rings",
+      "ogImageAlt": "Engagement Rings in Gjakova"
+    },
+    "unazaMartese": {
+      "title": "Wedding Rings in Gjakova | Custom Wedding Rings",
+      "description": "The finest collection of wedding rings in Gjakova. Expertly crafted wedding rings. Unique designs for your special day.",
+      "keywords": "wedding rings gjakova, wedding bands, gold rings gjakova, wedding jewelry, wedding rings",
+      "ogImageAlt": "Wedding Rings in Gjakova"
+    },
+    "rratheFejese": {
+      "title": "Engagement Bands in Gjakova | Custom Engagement Rings",
+      "description": "The widest collection of engagement bands in Gjakova. Expertly crafted engagement rings. Modern designs for your special moment.",
+      "keywords": "engagement bands gjakova, engagement rings, gold bands gjakova, engagement jewelry, modern bands",
+      "ogImageAlt": "Engagement Bands in Gjakova"
+    },
+    "rratheMartese": {
+      "title": "Wedding Bands in Gjakova | Custom Wedding Rings",
+      "description": "The widest collection of wedding bands in Gjakova. Expertly crafted wedding rings. Traditional and modern designs for your special day.",
+      "keywords": "wedding bands gjakova, wedding rings, gold bands gjakova, wedding jewelry, traditional bands",
+      "ogImageAlt": "Wedding Bands in Gjakova"
+    },
     "blog": {
       "pageTitle": "Blog - Invest Gold Gjokaj | Handcrafted Gold Jewelry",
       "description": "Explore our collection of handcrafted gold jewelry, wedding rings, and engagement rings. Discover the artistry and craftsmanship behind our unique pieces."

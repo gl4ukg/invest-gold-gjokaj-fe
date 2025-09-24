@@ -36,47 +36,70 @@ export async function generateMetadata({
       }
     })();
 
-    const metadata: Metadata = {
-      title: `${product.name} - ${t("product.title")}`,
-      description: productDescriptionParsed[locale] || "",
-      keywords: `${t("product.keywords")}, ${product.name}, ${
-        product.category?.name || ""
-      }`,
+    const category = product?.category?.name || '';
+    const isEngagement = category.toLowerCase().includes('fejese');
+    const isWedding = category.toLowerCase().includes('martese');
+    
+    const title = `${isEngagement ? 'Unazë Fejese' : 'Unazë Martese'} ${product?.name} në Gjakovë | Invest Gold Gjokaj`;
+    const description = `${isEngagement ? 'Unazë Fejese' : 'Unazë Martese'} ${product?.name} e punuar me mjeshtëri në Gjakovë. ${product?.weight}g ar. Dizajn unik për momentin tuaj të veçantë.`;
+    const keywords = `${isEngagement ? 'unaza fejese, rrathe fejese' : 'unaza martese, rrathe martese'}, ${product?.name}, unaza ari gjakove, stoli martese gjakove`;
+
+    return {
+      metadataBase: new URL('https://investgoldgjokaj.com'),
+      title,
+      description,
+      keywords,
+      applicationName: 'Invest Gold Gjokaj',
+      category: 'Shopping',
+      robots: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1
+      },
+      other: {
+        'fb:app_id': 'your-fb-app-id',
+        'og:type': 'product',
+        'og:price:amount': product?.price?.toString() || '',
+        'og:price:currency': 'EUR',
+        'og:availability': product?.stock && product?.stock > 0 ? 'instock' : 'outofstock',
+        'product:brand': 'Invest Gold Gjokaj',
+        'product:category': category || '',
+        'geo.region': 'XK-Đakovica',
+        'geo.placename': 'Gjakovë',
+        'geo.position': '42.3833;20.4333',
+        'ICBM': '42.3833, 20.4333',
+        'twitter:label1': 'Pesha',
+        'twitter:data1': `${product?.weight || ''}g`,
+        'twitter:label2': 'Kategoria',
+        'twitter:data2': product?.category?.name || ''
+      },  
       openGraph: {
-        title: `${product.name} - ${t("product.ogTitle")}`,
-        description: productDescriptionParsed[locale] || "",
-        images: [
-          {
-            url: product.images?.[0] || "/images/um6.png",
-            width: 1200,
-            height: 630,
-            alt: `${product.name} - ${t("product.ogImageAlt")}`,
-          },
-        ],
+        title,
+        description,
+        images: [{ url: String(product?.images?.[0] || '/images/placeholder.jpg'), width: 1200, height: 630, alt: `${isEngagement ? 'Unazë Fejese' : 'Unazë Martese'} ${product?.name} në Gjakovë` }],
         locale,
-        type: "website",
-        siteName: "Invest Gold Gjokaj - Product",
+        type: 'website',
+        siteName: 'Invest Gold Gjokaj'
+        // Note: OpenGraph doesn't support price directly, it's handled via product meta tags
       },
       twitter: {
-        card: "summary_large_image",
-        title: `${product.name} - ${t("product.twitterTitle")}`,
-        description: productDescriptionParsed[locale] || "",
-        images: [product.images?.[0] || "/images/um6.png"],
+        card: 'summary_large_image',
+        title: `${isEngagement ? 'Unazë Fejese' : 'Unazë Martese'} ${product.name} në Gjakovë | Invest Gold Gjokaj`,
+        description: `${isEngagement ? 'Unazë Fejese' : 'Unazë Martese'} ${product.name} e punuar me mjeshtëri. ${product.weight}g ar. Dizajn unik për momentin tuaj të veçantë.`,
+        images: [product.images?.[0] || '/images/um6.png'],
+        creator: '@investgoldgjokaj',
+        site: '@investgoldgjokaj',
       },
       alternates: {
-        canonical: new URL(
-          `/${locale}/unaza/${id}`,
-          "https://investgoldgjokaj.com"
-        ).toString(),
+        canonical: `https://investgoldgjokaj.com/${locale}/unaza/${id}`,
         languages: {
-          en: `/en/unaza/${id}`,
-          de: `/de/unaza/${id}`,
-          sq: `/sq/unaza/${id}`,
-        },
-      },
+          en: `https://investgoldgjokaj.com/en/unaza/${id}`,
+          de: `https://investgoldgjokaj.com/de/unaza/${id}`,
+          sq: `https://investgoldgjokaj.com/sq/unaza/${id}`
+        }
+      }
     };
-
-    return metadata;
   } catch (error) {
     notFound();
   }

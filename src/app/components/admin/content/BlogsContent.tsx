@@ -88,6 +88,7 @@ export default function BlogsContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const blogData: CreateBlog = {
         title: formData.title,
@@ -105,17 +106,24 @@ export default function BlogsContent() {
         return;
       }
 
-      if (editingBlog) {
-        await BlogsService.update(String(editingBlog.id), blogData);
-        toast.success('Blogu u përditësua me sukses!', {
-          duration: 3000,
-          position: 'top-center',
-        });
-      } else {
-        const createdBlog = await BlogsService.create(blogData);
-        setBlogs([...blogs, createdBlog]);
-        setEditingBlog(null);
-        setSelectedFile(null);
+      try {
+        if (editingBlog) {
+          await BlogsService.update(String(editingBlog.id), blogData);
+          await loadBlogs(); // Refresh after update
+          toast.success('Blogu u përditësua me sukses!', {
+            duration: 3000,
+            position: 'top-center',
+          });
+        } else {
+          await BlogsService.create(blogData);
+          await loadBlogs(); // Refresh after create
+          toast.success('Blog u krijua me sukses!', {
+            duration: 3000,
+            position: 'top-center'
+          });
+        }
+        
+        // Reset form in both cases
         setFormData({
           title: { en: '', de: '', sq: '' },
           content: { en: '', de: '', sq: '' },
@@ -123,20 +131,23 @@ export default function BlogsContent() {
           metaDescription: { en: '', de: '', sq: '' },
           image: ''
         });
-        setLoading(false);
-        toast.success('Blogu u krijua me sukses!', {
-          duration: 3000,
-          position: 'top-center',
+        setSelectedFile(null);
+        setEditingBlog(null);
+      } catch (error) {
+        console.error('Error saving blog:', error);
+        toast.error(editingBlog ? 'Gabim gjatë përditësimit të blogut.' : 'Gabim gjatë krijimit të blogut.', {
+          duration: 4000,
+          position: 'top-center'
         });
       }
-      await loadBlogs();
     } catch (error) {
-      console.error('Error creating blog:', error);
-      setLoading(false);
-      toast.error('Gabim gjatë krijimit të blogut. Ju lutemi provoni përsëri.', {
+      console.error('Error validating blog data:', error);
+      toast.error('Ju lutem plotësoni të gjitha fushat e detyrueshme.', {
         duration: 4000,
         position: 'top-center',
       });
+    } finally {
+      setLoading(false);
     }
   };
 

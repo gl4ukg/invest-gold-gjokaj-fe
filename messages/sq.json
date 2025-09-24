@@ -2,6 +2,10 @@
   "navbar": {
     "about": "Rreth Nesh",
     "rings": "Unaza",
+    "unazaFejese": "Unaza Fejese",
+    "unazaMartese": "Unaza Martese",
+    "rratheFejese": "Rrathe Fejese",
+    "rratheMartese": "Rrathe Martese",
     "jewelry": "Stoli",
     "services": "Shërbimet",
     "contact": "Kontakt",
@@ -10,8 +14,8 @@
   },
   "header": {
     "title": "INVEST GOLD",
-    "subtitle": "Ne jemi gjithmonë pranë atyre që betohen përpara dashurisë",
-    "secondSubtitle": "Unaza Fejese, Unaza Martese, Byzylykë dhe Zinxhirë Ari në Kosovë",
+    "subtitle": "Mjeshtri e unazave të martesës dhe fejesës në Gjakovë",
+    "secondSubtitle": "Rrathe Fejese dhe Martese të Personalizuara | Unaza Ari në Gjakovë",
     "seeMore": "Shiko më shumë",
     "video": "Video"
   },
@@ -34,6 +38,76 @@
     "multiColorGold": "Ari Shumëngjyrësh",
     "prev": "Prapa",
     "next": "Para"
+  },
+  "pages": {
+    "unazaFejese": {
+      "heading": "Unaza Fejese në Gjakovë",
+      "description": "Momentet e veçanta kërkojnë unaza të veçanta. Zbuloni koleksionin tonë të unazave të fejesës, të punuara me mjeshtëri dhe të personalizuara për të përjetësuar momentin tuaj të veçantë.",
+      "collectionTitle": "Pse të Zgjidhni Unazat Tona të Fejesës?",
+      "feature1": "✨ Dizajne unike dhe të personalizueshme",
+      "feature2": "💎 Ar i pastër 14k dhe 18k",
+      "feature3": "🔨 Punuar me mjeshtëri nga artizanët tanë",
+      "feature4": "💫 Përshtatur për çdo stil dhe buxhet",
+      "feature5": "🤝 Këshillim profesional për zgjedhjen e unazës perfekte",
+      "viewCollection": "Shiko Koleksionin e Unazave të Fejesës",
+      "section1Title": "Personalizim i Plotë",
+      "section1Description": "Krijojmë unazën tuaj të fejesës sipas dëshirës, duke përfshirë zgjedhjen e metalit, dizajnit dhe detajeve të personalizuara.",
+      "section2Title": "Cilësi Premium",
+      "section2Description": "Përdorim vetëm materiale të cilësisë më të lartë dhe teknika moderne për të krijuar unaza që zgjasin përjetë.",
+      "section3Title": "Ekspertizë Profesionale",
+      "section3Description": "Ekipi ynë i specializuar ju ndihmon të zgjidhni unazën perfekte që përshtatet me stilin dhe buxhetin tuaj."
+    },
+    "unazaMartese": {
+      "heading": "Unaza Martese në Gjakovë",
+      "description": "Zgjidhni unazat e martesës që do të simbolizojnë dashurinë tuaj përjetë. Koleksioni ynë i unazave të martesës kombinon traditën me stilin modern.",
+      "collectionTitle": "Unaza Martese të Personalizuara",
+      "feature1": "💑 Dizajne për çifte moderne",
+      "feature2": "💍 Ar i pastër 14k dhe 18k",
+      "feature3": "✨ Detaje të personalizuara për çdo çift",
+      "feature4": "🎨 Zgjedhje të gjerë stilesh dhe ngjyrash",
+      "feature5": "❤️ Simbole të përkushtimit të përjetshëm",
+      "viewCollection": "Shiko Koleksionin e Unazave të Martesës",
+      "section1Title": "Tradita dhe Modernia",
+      "section1Description": "Unazat tona të martesës kombinojnë elementet tradicionale me dizajne moderne për çdo stil.",
+      "section2Title": "Punë Artizanale",
+      "section2Description": "Çdo unazë martese punohet me kujdes dhe dashuri nga mjeshtrit tanë me përvojë.",
+      "section3Title": "Garanci e Përjetshme",
+      "section3Description": "Ofrojmë garanci të përjetshme për të gjitha unazat tona të martesës, ashtu si dashuria juaj."
+    },
+    "rratheFejese": {
+      "heading": "Rrathe Fejese në Gjakovë",
+      "description": "Fillimi i një historie të re dashurie meriton një unazë të veçantë. Zbuloni koleksionin tonë modern të rratheve të fejesës, ku çdo pjesë është një vepër arti.",
+      "collectionTitle": "Koleksioni Ynë i Rratheve të Fejesës",
+      "feature1": "💎 Dizajne moderne dhe elegante",
+      "feature2": "✨ Ar i pastër me gurë të çmuar",
+      "feature3": "🎨 Stile të ndryshme për çdo shije",
+      "feature4": "💫 Punuar me mjeshtëri të lartë",
+      "feature5": "🤝 Këshillim personal për zgjedhjen tuaj",
+      "viewCollection": "Shiko Koleksionin e Rratheve të Fejesës",
+      "section1Title": "Dizajn Modern",
+      "section1Description": "Rrathe fejese me dizajne bashkëkohore që reflektojnë dashurinë dhe elegancën moderne.",
+      "section2Title": "Materiale Premium",
+      "section2Description": "Përdorim vetëm ar të pastër dhe gurë të çmuar të cilësisë më të lartë.",
+      "section3Title": "Personalizim i Plotë",
+      "section3Description": "Krijojmë rrethin tuaj të fejesës sipas dëshirës, duke përfshirë çdo detaj që dëshironi."
+    },
+    "rratheMartese": {
+      "heading": "Rrathe Martese në Gjakovë",
+      "description": "Përzgjedhja e rratheve të martesës është një moment i veçantë. Koleksioni ynë përfshin dizajne tradicionale dhe moderne që simbolizojnë dashurinë tuaj të përjetshme.",
+      "collectionTitle": "Rrathe Martese për Çdo Stil",
+      "feature1": "💑 Dizajne për çifte tradicionale dhe moderne",
+      "feature2": "💍 Ar i pastër 14k dhe 18k",
+      "feature3": "✨ Mjeshtëri e trashëguar brez pas brezi",
+      "feature4": "🎨 Kombinime unike të metaleve të çmuara",
+      "feature5": "❤️ Garanci e përjetshme për cilësinë",
+      "viewCollection": "Shiko Koleksionin e Rratheve të Martesës",
+      "section1Title": "Traditë dhe Cilësi",
+      "section1Description": "Rrathet tona të martesës janë krijuar me respekt për traditën dhe përkushtim ndaj cilësisë më të lartë.",
+      "section2Title": "Dizajne të Përjetshme",
+      "section2Description": "Krijojmë rrathe martese që qëndrojnë të bukura përgjithmonë, ashtu si dashuria juaj.",
+      "section3Title": "Personalizim i Plotë",
+      "section3Description": "Çdo detaj i rratheve tuaj të martesës mund të personalizohet sipas dëshirës dhe stilit tuaj."
+    }
   },
   "services": {
     "title": "Shërbimet Tona",
@@ -521,6 +595,30 @@
     }
   },
   "metadata": {
+    "unazaFejese": {
+      "title": "Unaza Fejese në Gjakovë | Rrathe Fejese të Personalizuara",
+      "description": "Koleksioni më i mirë i unazave të fejesës në Gjakovë. Rrathe fejese të punuara me mjeshtëri. Dizajne unike për momentin tuaj të veçantë.",
+      "keywords": "unaza fejese gjakove, rrathe fejese, unaza ari gjakove, stoli fejese, unaza fejese",
+      "ogImageAlt": "Unaza Fejese"
+    },
+    "unazaMartese": {
+      "title": "Unaza Martese në Gjakovë | Rrathe Martese të Personalizuara",
+      "description": "Koleksioni më i mirë i unazave të martesës në Gjakovë. Rrathe martese të punuara me mjeshtëri. Dizajne unike për momentin tuaj të veçantë.",
+      "keywords": "unaza martese gjakove, rrathe martese, unaza ari gjakove, stoli martese, unaza martese",
+      "ogImageAlt": "Unaza Martese"
+    },
+    "rratheFejese": {
+      "title": "Rrathe Fejese në Gjakovë | Unaza Fejese të Personalizuara",
+      "description": "Koleksioni më i gjerë i rratheve të fejesës në Gjakovë. Unaza fejese të punuara me mjeshtëri. Dizajne moderne për momentin tuaj të veçantë.",
+      "keywords": "rrathe fejese gjakove, unaza fejese, rrathe ari gjakove, stoli fejese, rrathe moderne",
+      "ogImageAlt": "Rrathe Fejese"
+    },
+    "rratheMartese": {
+      "title": "Rrathe Martese në Gjakovë | Unaza Martese të Personalizuara",
+      "description": "Koleksioni më i gjerë i rratheve të martesës në Gjakovë. Unaza martese të punuara me mjeshtëri. Dizajne tradicionale dhe moderne për ditën tuaj të veçantë.",
+      "keywords": "rrathe martese gjakove, unaza martese, rrathe ari gjakove, stoli martese, rrathe tradicionale",
+      "ogImageAlt": "Rrathe Martese"
+    },
     "blog": {
       "pageTitle": "Blog - Invest Gold Gjokaj | Stoli të Punuara me Art",
       "description": "Zbuloni koleksionin tonë të stolive të arit të punuara me dorë, unaza martese dhe fejese. Njihuni me artin dhe mjeshtërinë që qëndron pas pjesëve tona unike."
@@ -549,9 +647,9 @@
       "featuring": "featuring"
     },
     "home": {
-      "title": "Invest Gold Gjokaj | Stoli të Çmuara në Ari",
-      "description": "Zbuloni koleksionin premium të Invest Gold Gjokaj me bizhuteri të arit, unaza dhe rrathe të punuara me përkushtim në Kosovë. Tek ne gjeni bizhuteri unike të punuara me përsoshmëri.",
-      "keywords": "bizhuteri ari, unaza ari, byzylykë ari, varëse ari, bizhuteri me porosi, dyqan bizhuterish",
+      "title": "Unaza Martese dhe Fejese në Gjakovë | Invest Gold Gjokaj",
+      "description": "Zbuloni koleksionin premium të unazave të martesës dhe fejesës në Gjakovë. Rrathe martese dhe fejese të punuara me mjeshtëri nga Invest Gold Gjokaj. Dizajne unike dhe moderne për momentet tuaja të veçanta.",
+      "keywords": "unaza martese gjakove, unaza martese, unaza fejese gjakove, unaza fejese, rrathe fejese, rrathe martese, unaza ari gjakove, bizhuteri ari, stoli martese, stoli fejese, unaza çifti, unaza dasme",
       "ogTitle": "Invest Gold Gjokaj - Partneri Juaj i Besuar",
       "ogDescription": "Partneri juaj i besuar për bizhuteri dhe aksesorë premium të arit. Zbuloni koleksionin tonë premium të arit për investim dhe stolive të mrekullueshme.",
       "ogImageAlt": "Vitrina e Invest Gold Gjokaj",

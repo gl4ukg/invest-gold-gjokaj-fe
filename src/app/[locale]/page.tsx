@@ -7,11 +7,13 @@ import CategoriesService from '@/app/services/categories';
 import ProductsService from '@/app/services/products';
 
 import Header from '@/app/components/Header';
+import LocalBusinessSchema from '../components/LocalBusinessSchema';
 import AboutSection from '@/app/components/AboutSection';
 import JewelrySection from '@/app/components/JewelerySection';
 import ServicesSection from '@/app/components/ServicesSection';
 import ContactSection from '@/app/components/ContactSection';
 import RingsSection from '../components/Rings';
+import RingsNavigation from '../components/RingsNavigation';
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -25,32 +27,51 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
   return {
+    metadataBase: new URL('https://investgoldgjokaj.com'),
     title: t('home.title'),
     description: t('home.description'),
     keywords: t('home.keywords'),
-    openGraph: {
-      title: t('home.ogTitle'),
-      description: t('home.ogDescription'),
-      images: [{ url: '/images/um6.png', width: 1200, height: 630, alt: t('home.ogImageAlt') }],
-      locale,
-      type: 'website',
-      siteName: 'Invest Gold Gjokaj',
+    other: {
+      'geo.region': 'XK-Đakovica',
+      'geo.placename': 'Gjakovë',
+      'geo.position': '42.3833;20.4333',
+      'ICBM': '42.3833, 20.4333',
+      'revisit-after': '7 days'
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: t('home.twitterTitle'),
-      description: t('home.twitterDescription'),
-      images: ['/images/um6.png'],
-    },
-    alternates: {
-      canonical: new URL(`/${locale}`, 'https://investgoldgjokaj.com').toString(),
-      languages: { en: '/en', de: '/de', sq: '/sq' },
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
-    },
+        openGraph: {
+          title: t('home.ogTitle'),
+          description: t('home.ogDescription'),
+          images: [{ url: '/images/um6.png', width: 1200, height: 630, alt: t('home.ogImageAlt') }],
+          locale,
+          type: 'website',
+          siteName: 'Invest Gold Gjokaj',
+        },
+        twitter: {
+          card: 'summary_large_image',
+          title: t('home.twitterTitle'),
+          description: t('home.twitterDescription'),
+          images: ['/images/um6.png'],
+        },
+        alternates: {
+          canonical: new URL(`/${locale}`, 'https://investgoldgjokaj.com').toString(),
+          languages: { en: '/en', de: '/de', sq: '/sq' },
+        },
+        robots: {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+            'max-video-preview': -1
+          },
+        },
+        verification: {
+          google: 'your-verification-code',
+          yandex: 'your-verification-code',
+          yahoo: 'your-verification-code'
+        },
   };
 }
 
@@ -74,6 +95,7 @@ export default async function Home({ params }: Props) {
 
     return (
       <>
+        <LocalBusinessSchema />
         <Header />
         <main className="overflow-x-hidden">
           <AboutSection
@@ -84,6 +106,7 @@ export default async function Home({ params }: Props) {
             imageAlt={t('title')}
           />
 
+          <RingsNavigation />
           <RingsSection
             locale={locale}
             initialCategories={categories}
