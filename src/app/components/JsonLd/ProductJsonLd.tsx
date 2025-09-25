@@ -9,7 +9,7 @@ export default function ProductJsonLd({ product }: ProductJsonLdProps) {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
-    description: product.name,
+    description: `${product.name} - Unaza me porosi në Kosovë. Punuar me mjeshtëri nga artizanët tanë, me ar të pastër 14k dhe 18k.`,
     image: product.images?.[0] || '/images/um6.png',
     sku: String(product.id),
     brand: {
@@ -30,6 +30,28 @@ export default function ProductJsonLd({ product }: ProductJsonLdProps) {
       priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
+      availableDeliveryMethod: ['https://schema.org/OnSitePickup', 'https://schema.org/ParcelService'],
+      additionalProperty: [{
+        '@type': 'PropertyValue',
+        name: 'CustomizableProduct',
+        value: 'true'
+      }, {
+        '@type': 'PropertyValue',
+        name: 'MadeToOrder',
+        value: 'true'
+      }, {
+        '@type': 'PropertyValue',
+        name: 'CustomOrder',
+        value: 'Unaza me Porosi'
+      }, {
+        '@type': 'PropertyValue',
+        name: 'CustomOrderLocation',
+        value: 'Kosovë'
+      }, {
+        '@type': 'PropertyValue',
+        name: 'CustomOrderDescription',
+        value: 'Unaza me porosi në Kosovë'
+      }],
       shippingDetails: {
         '@type': 'OfferShippingDetails',
         shippingRate: {
