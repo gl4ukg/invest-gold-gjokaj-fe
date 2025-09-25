@@ -2,15 +2,17 @@
   "navbar": {
     "about": "Rreth Nesh",
     "rings": "Unaza",
-    "unazaFejese": "Unaza Fejese",
-    "unazaMartese": "Unaza Martese",
-    "rratheFejese": "Rrathe Fejese",
-    "rratheMartese": "Rrathe Martese",
+    "engagementRings": "Unaza Fejese",
+    "weddingRings": "Unaza Martese",
+    "engagementBands": "Rrathe Fejese",
+    "weddingBands": "Rrathe Martese",
     "jewelry": "Stoli",
     "services": "Shërbimet",
     "contact": "Kontakt",
     "shop": "Dyqan",
-    "blog": "Blog"
+    "blog": "Blog",
+    "openMenu": "Hap Menynë",
+    "closeMenu": "Mbyll Menynë"
   },
   "header": {
     "title": "INVEST GOLD",

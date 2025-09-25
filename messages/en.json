@@ -10,7 +10,13 @@
     "services": "Services",
     "contact": "Contact",
     "shop": "Shop",
-    "blog": "Blog"
+    "blog": "Blog",
+    "unazaFejese": "Engagement Rings",
+    "unazaMartese": "Wedding Rings",
+    "rratheFejese": "Engagement Bracelets",
+    "rratheMartese": "Wedding Bracelets",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "header": {
     "title": "INVEST GOLD",

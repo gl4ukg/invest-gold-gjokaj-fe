@@ -22,9 +22,49 @@ export default function ProductJsonLd({ product }: ProductJsonLdProps) {
       url: `https://investgoldgjokaj.com/unaza/${product.id}`,
       priceCurrency: 'EUR',
       price: product.price,
-      priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 30 days from now
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        price: product.price,
+        priceCurrency: 'EUR'
+      },
+      priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       itemCondition: 'https://schema.org/NewCondition',
-      availability: 'https://schema.org/InStock'
+      availability: 'https://schema.org/InStock',
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: 0,
+          currency: 'EUR'
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'XK'
+        },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 1,
+            maxValue: 3,
+            unitCode: 'DAY'
+          },
+          transitTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 1,
+            maxValue: 2,
+            unitCode: 'DAY'
+          }
+        }
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'XK',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 14,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn'
+      }
     },
     aggregateRating: {
       '@type': 'AggregateRating',

@@ -2,15 +2,17 @@
   "navbar": {
     "about": "Über Uns",
     "rings": "Ringe",
-    "unazaFejese": "Verlobungsringe",
-    "unazaMartese": "Eheringe",
-    "rratheFejese": "Verlobungsbänder",
-    "rratheMartese": "Ehebänder",
+    "engagementRings": "Verlobungsringe",
+    "weddingRings": "Eheringe",
+    "engagementBands": "Verlobungsbänder",
+    "weddingBands": "Ehebänder",
     "jewelry": "Schmuck",
     "services": "Services",
     "contact": "Contact",
     "shop": "Shop",
-    "blog": "Blog"
+    "blog": "Blog",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen"
   },
   "header": {
     "title": "INVEST GOLD",
